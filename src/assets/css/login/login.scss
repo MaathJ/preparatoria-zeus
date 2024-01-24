@@ -1,0 +1,70 @@
+body {
+    background-color: #010133;
+}
+.body__login {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(ellipse at 50% -20%, rgba(120, 119, 198, 0.3), rgba(255, 255, 255, 0));
+}
+
+.form__container {
+    color: white;
+    border: 1px solid #2d374859;
+    padding: 4rem;
+    border-radius: 10%;
+    box-shadow:
+        rgba(1, 1, 49, 0.603) 0px 30px 60px -12px,
+        rgba(0, 0, 0, 0.274) 0px 18px 36px -18px;
+    .logo__form {
+        display: flex;
+        place-content: center;
+    }
+}
+
+.login__form {
+    font-weight: bold;
+    display: flex;
+    // align-items: center;
+    // justify-content: center;
+    flex-direction: column;
+}
+
+.form__logo__zeus {
+    height: 150px;
+    width: 150px;
+}
+
+
+//footer
+.footer{
+    position: fixed;
+    left: 16px;
+    bottom: 16px;
+    text-align: left;
+    background: rgba(41, 41, 41, 0.11);
+    padding: 8px 24px;
+    border-radius: 32px;
+    opacity: .85;
+    color: white;
+    // font-weight: bold;
+    backdrop-filter: blur(8px);
+}
+
+.footer h4, .footer h5{
+    margin: 0;
+    display: flex;
+}
+
+@media (max-width: 500px) {
+   footer{
+    display: none;
+   }
+   .form__container{
+    width: 92%;
+   }
+  }
+  

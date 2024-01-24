@@ -1,0 +1,21 @@
+.tdactivo .tdculminado {
+    display: grid;
+    place-items: center;
+}
+
+.tdactivo p{
+    background:#2ECC71;
+    border-radius: 15px;
+    font-weight: 600;
+    color:white ;
+    padding: 7px ;
+
+}
+
+.tdculminado p{
+    background:red;
+    border-radius: 15px;
+    font-weight: 600;
+    color:white ;
+    padding: 7px;
+}
