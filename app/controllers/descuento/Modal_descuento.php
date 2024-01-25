@@ -6,7 +6,6 @@
                 <h4 class="modal-title" id="exampleModalLabel">
                     REGISTRAR DESCUENTO
                 </h4>
-                <button type="button" class="btn-close" style="background-color: #ffffff;" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form action="app/controllers/descuento/R_descuento.php" method="post">
@@ -37,7 +36,6 @@
                 <h4 class="modal-title" id="exampleModalLabel">
                     EDITAR DESCUENTO
                 </h4>
-                <button type="button" class="btn-close" style="background-color: #ffffff;" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form action="app/controllers/descuento/U_descuento.php" method="post">
@@ -78,7 +76,6 @@
                 <h4 class="modal-title" id="exampleModalLabel">
                     ¡¡ ADVERTENCIA !! SE ELIMINARÁ UN DESCUENTO
                 </h4>
-                <button type="button" class="btn-close" style="background-color: #ffffff;" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form action="app/controllers/descuento/D_descuento.php" method="post">

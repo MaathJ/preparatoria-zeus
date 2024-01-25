@@ -1,11 +1,10 @@
 <?php
 include_once('auth.php');
+include_once('src/components/parte_superior.php');
 include('config/conexion.php');
 ?>
 
-<?php 
-include_once('src/components/parte_superior.php');
-?>
+ 
 
 <div class="container-page">
     <div>
@@ -48,7 +47,7 @@ include_once('src/components/parte_superior.php');
                                                 ?></td>
                                 <td>
                                 <center>
-                                <a class="btn btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#modalEditar" data-bs-whatever="@mdo" target="_parent" onclick="cargar_info({
+                                <a class="btn btn-sm btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#modalEditar" data-bs-whatever="@mdo" target="_parent" onclick="cargar_info({
                                             'turno': '<?php echo $filaTurno['nombre_tu'] ?? ''; ?>',
                                             'horaentrada': '<?php echo $filaTurno['hent_tu'] ?? ''; ?>',
                                             'horasalida': '<?php echo $filaTurno['hsal_tu'] ?? ''; ?>',
@@ -61,7 +60,7 @@ include_once('src/components/parte_superior.php');
 
 
                                     <!-- Agregar el atributo data-bs-toggle y data-bs-target para abrir el modal -->
-                                    <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalConfirmarEliminar" data-id="<?php echo $filaTurno['id_tu']; ?>">
+                                    <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modalConfirmarEliminar" data-id="<?php echo $filaTurno['id_tu']; ?>">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </center>
@@ -177,7 +176,7 @@ include_once('src/components/parte_superior.php');
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     <a href="#" class="btn btn-danger" id="confirmarEliminar" data-id="" style="text-decoration:none;">
-                        Confirmar Eliminar
+                        Confirmar
                     </a>
                 </div>
         </div>

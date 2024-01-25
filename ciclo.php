@@ -144,7 +144,7 @@ include('config/conexion.php');
                     </div>
                     <div class="col-12 mb-3">
                         <label for="precio" class="col-form-label" style="color: black;">Precio:</label>
-                        <input type="text" name="r_precio" placeholder="Ingrese el Nombre" class="form-control" id="precio" required>
+                        <input type="number" name="r_precio" placeholder="Ingrese el Nombre" class="form-control" id="precio" required>
                     </div>
                     <div class="col-12 mb-3">
                         <label for="turnos" class="col-form-label" style="color: black;">TURNOS:</label>
@@ -231,7 +231,7 @@ include('config/conexion.php');
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="precio" class="col-form-label" style="color: black;">Precio:</label>
-                                <input type="text" name="u_precio" placeholder="Ingrese el Nombre" class="form-control" id="u_precio" required>
+                                <input type="number" name="u_precio" placeholder="Ingrese el Nombre" class="form-control" id="u_precio" required>
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="turnos" class="col-form-label" style="color: black;">TURNOS:</label>

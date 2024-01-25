@@ -7,7 +7,7 @@ $f = mysqli_query($cn, $sql);
 include('modales_periodo.php');
 ?>
 <link rel="stylesheet" src="style.css" href="./bootstrap/bootstrap.css">
-<div></div>
+<link rel="stylesheet" src="style.css" href="./datatables/datatables.css">
 <div class="container-page">
     <div>
         <p>Zeus<span> / Periodo</span></p>
@@ -19,9 +19,9 @@ include('modales_periodo.php');
             <table class="table table-striped" id="table_periodo">
                 <thead align="center" class="" style="color: #fff; background-color:#010133;">
                     <tr>
-                        <th>Periodo</th>
-                        <th>Estado</th>
-                        <th>Opciones</th>
+                        <th class="text-center">Periodo</th>
+                        <th class="text-center">Estado</th>
+                        <th class="text-center">Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -101,4 +101,78 @@ include_once("src/components/parte_inferior.php")
         document.getElementById('estado').value = data.estado;
         console.log(data)
     }
+
+    function createCellPos(n) {
+        var ordA = 'A'.charCodeAt(0);
+        var ordZ = 'Z'.charCodeAt(0);
+        var len = ordZ - ordA + 1;
+        var s = "";
+
+        while (n >= 0) {
+            s = String.fromCharCode(n % len + ordA) + s;
+            n = Math.floor(n / len) - 1;
+        }
+
+        return s;
+    }
+
+    let table = new DataTable('#table_periodo', {
+        // "bInfo": false,
+        responsive: true,
+        language: {
+            "lengthMenu": "Mostrar _MENU_ registros",
+            "zeroRecords": "No se encontraron resultados",
+            "info": " _TOTAL_ registros",
+            "infoEmpty": "No hay registros para mostrar",
+            "infoFiltered": "(filtrado de _MAX_  registros)",
+            "sSearch": "Buscar:",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "sProcessing": "Cargando...",
+        },
+        //para usar los botones   
+        responsive: "true",
+        dom: 'Bfrtilp',
+        buttons: [{
+                extend: 'excelHtml5',
+                autofilter: true,
+                text: '<i class="fa-regular fa-file-excel"></i>',
+                titleAttr: 'Exportar a Excel',
+                
+            },
+            {
+                extend: 'pdfHtml5',
+                text: '<i class="fa-regular fa-file-pdf"></i>',
+                titleAttr: 'Exportar a PDF',
+                exportOptions: {
+                    columns: [0, 1]
+                },
+                customize: function(doc) {
+                   
+                    doc.content[1].table.body[0].forEach(function(h) {
+                        h.fillColor = 'rgb(1, 1, 51)';
+                    });
+                    doc.content[1].table.widths = [
+                        '50%',
+                        '50%',
+                    ]
+                    doc.content[1].margin = [ 100, 0, 100, 0 ]
+                },
+            },
+            {
+                extend: 'print',
+                text: '<i class="fa-solid fa-print"></i>',
+                titleAttr: 'Imprimir',
+                exportOptions: {
+                    columns: [0, 1]
+                },
+                
+            },
+        ]
+
+    });
 </script>

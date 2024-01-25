@@ -174,14 +174,15 @@ header .image-text .header-text {
 
 /* Buttons Reuse*/
 .active-button {
-  background: #01C408;
+  background: #01c408;
 }
 
 .inactive-button {
-  background: #E40000;
+  background: #e40000;
 }
 
-.active-button, .inactive-button {
+.active-button,
+.inactive-button {
   max-width: 100px;
   border: none;
   font-size: 12px;
@@ -205,4 +206,71 @@ header .image-text .header-text {
   padding: 1rem;
   border-radius: 1rem;
   margin-top: 1rem;
+}
+
+.img-fluid {
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+
+.view-more-info {
+  background-color: #292947;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 0.4rem 0.8rem;
+  border-radius: 15px;
+}
+
+.card-user-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.card-user-modal .card-important-info {
+  display: flex;
+  flex-direction: column;
+}
+.card-user-modal .card-important-info .user-name {
+  text-align: center;
+}
+.card-user-modal .card-important-info .card-cont-important-info {
+  display: flex;
+  flex-direction: row;
+  gap: 3px;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid rgba(53, 53, 53, 0.26);
+}
+.card-user-modal .card-more-info {
+  display: flex;
+  flex-direction: column;
+  padding: 0.8rem 0;
+  width: 100%;
+}
+
+.info-user-more {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+.info-user-more i {
+  width: 15px;
+  height: 15px;
+}
+
+.card-cont-important-info div {
+  padding: 0rem 0.2rem;
+  border-right: 2px solid rgb(0, 0, 0);
+}
+
+.card-logo-img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
 }/*# sourceMappingURL=menu.css.map */

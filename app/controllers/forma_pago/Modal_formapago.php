@@ -6,7 +6,6 @@
                 <h4 class="modal-title" id="exampleModalLabel">
                     REGISTRAR FORMA DE PAGO
                 </h4>
-                <button type="button" class="btn-close" style="background-color: #ffffff;" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form action="app/controllers/forma_pago/R_formapago.php" method="post" enctype="multipart/form-data">
@@ -44,7 +43,6 @@
                 <h4 class="modal-title" id="exampleModalLabel">
                     EDITAR FORMA DE PAGO
                 </h4>
-                <button type="button" class="btn-close" style="background-color: #ffffff;" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form action="app/controllers/forma_pago/U_formapago.php" method="post" enctype="multipart/form-data">
@@ -91,7 +89,6 @@
                 <h4 class="modal-title" id="exampleModalLabel">
                 ¡¡ ADVERTENCIA !! SE ELIMINARÁ UNA FORMA DE PAGO
                 </h4>
-                <button type="button" class="btn-close" style="background-color: #ffffff;" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form action="app/controllers/forma_pago/D_formapago.php" method="post">

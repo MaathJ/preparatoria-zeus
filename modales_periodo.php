@@ -3,10 +3,10 @@
 function deleteModalPeriodo($id)
 {
     echo <<<HTML
-    <div class="modal fade" id="DeleteModalPeriodo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade  " id="DeleteModalPeriodo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog  modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header" style="background-color: #010133; color: #ffffff;">
+                <div class="modal-header " style="background-color: #010133; color: #ffffff;">
                     <h4 class="modal-title" id="exampleModalLabel">Registro Periodo Academico</h4>
                 </div>
                 <div class="modal-body">
@@ -56,7 +56,7 @@ HTML;
     </div>
 </div>
 
-<div class="modal fade" id="registerModalPeriodo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade  " id="registerModalPeriodo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header " style="background-color: #010133; color: #ffffff;">
