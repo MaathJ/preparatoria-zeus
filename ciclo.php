@@ -1,6 +1,7 @@
-<!-- <link rel="stylesheet" href="bootstrap/bootstrap.css">
-<script src="src/assets/js/boostrap/bootstrap.js"></script> -->
+
 <?php 
+include_once('auth.php');
+
 include_once('src/components/parte_superior.php');
 ?>
 
@@ -19,7 +20,7 @@ include('config/conexion.php');
     <br>
     <div class="container-table" style="background-color: #fff;">
         <div class="col-md-12">
-            <table class="table table-striped" id="table_Turno">
+            <table class="table table-striped" id="table_ciclo">
             <thead align="center" class="" style="color: #fff; background-color:#010133;">
                                     <tr>
                                         <th>ID</th>
@@ -106,10 +107,13 @@ include('config/conexion.php');
 <div class="modal fade" id="ModalcicloRegistro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -20px;">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
+        <form action="app/controllers/ciclo/R_ciclo.php" method="post">
+
             <div class="modal-header" style="background-color: #010133; color: #ffffff;">
                 <h4 class="modal-title" id="exampleModalLabel">REGISTRO CICLO:</h4>
             </div>
             <div class="modal-body row g-3">
+
                 <!-- Columna izquierda -->
                 <div class="col-md-6">
                     <div class="col-12 mb-3">
@@ -144,7 +148,7 @@ include('config/conexion.php');
                     </div>
                     <div class="col-12 mb-3">
                         <label for="precio" class="col-form-label" style="color: black;">Precio:</label>
-                        <input type="number" name="r_precio" placeholder="Ingrese el Nombre" class="form-control" id="precio" required>
+                        <input type="number" name="r_precio" placeholder="Ingrese el Monto" class="form-control" id="precio" required>
                     </div>
                     <div class="col-12 mb-3">
                         <label for="turnos" class="col-form-label" style="color: black;">TURNOS:</label>
@@ -176,6 +180,8 @@ include('config/conexion.php');
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CERRAR</button>
                 <button type="submit" class="btn btn-primary" id="registrar">Registrar</button>
             </div>
+            </form>
+
         </div>
     </div>
 </div>
@@ -329,3 +335,6 @@ function obtenerTurnosCiclo($idCi, $conexion) {
 
 include_once('src/components/parte_inferior.php');
 ?>
+<script src="src/assets/js/datatableIntegration.js"></script>
+
+<script>initializeDataTable('#table_ciclo');</script>

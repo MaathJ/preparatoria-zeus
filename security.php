@@ -15,7 +15,7 @@ mysqli_stmt_bind_param($stmt, 'ss', $usuario, $pass);
 mysqli_stmt_execute($stmt);
 
 
-mysqli_stmt_bind_result($stmt, $estado, $id_usuario);
+mysqli_stmt_bind_result($stmt, $estado, $id_usuario,$rol);
 
 
 $resultado = mysqli_stmt_fetch($stmt);
@@ -27,6 +27,7 @@ mysqli_close($cn);
 
 if ($resultado && $estado == true) {
     $_SESSION["n_usuario"] = $usuario;
+    $_SESSION["rol_usuario"] = $rol;
     $_SESSION["usuario"] = $id_usuario;
     $_SESSION["auth"] = 1;
     header("location: principal.php");

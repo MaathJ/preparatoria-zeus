@@ -1,5 +1,5 @@
 <?php
-//include_once('auth.php');
+include_once('auth.php');
 include('config/conexion.php');
 include_once('src/components/parte_superior.php');
 ?>
@@ -17,11 +17,27 @@ include_once('src/components/parte_superior.php');
         padding: 10px;
     }
 </style>
+
 <div class="container-page">
     <div>
         <p>Zeus<span>/Usuario</span></p>
         <h3>Usuario</h3>
     </div>
+    <?php
+    if ($_SESSION["usuario"]) {
+        $id_rol = $_SESSION["rol_usuario"];
+        if ($id_rol === "ADMINISTRADOR") {
+    ?>
+            <button class="usuario-admin btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalRegistrar" data-bs-whatever="@mdo">
+                Registrar
+            </button>
+        <?php
+        }
+        ?>
+    <?php
+    }
+    ?>
+
 
     <div class="container-table" style="background-color: #fff;">
         <table class="table table-striped" id="table_usuario">
@@ -87,7 +103,6 @@ include_once('src/components/parte_superior.php');
                                                 'usuario2': '<?php echo $r['id_us'] ?? ''; ?>',
                                             
                                                 });"><i class="fas fa-trash"></i></a>
-
                             </center>
                         </td>
                     </tr>
@@ -98,19 +113,7 @@ include_once('src/components/parte_superior.php');
         </table>
     </div>
 
-
-
-
 </div>
-
-
-
-
-
-
-
-
-
 
 <div class="modal fade  " id="ModalEliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -535,50 +538,12 @@ if (
 }
 ?>
 
-<script>
-    let table = new DataTable('#table_usuario', {
-        language: {
-            "lengthMenu": "Mostrar _MENU_ registros",
-            "zeroRecords": "No se encontraron resultados",
-            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-            "sSearch": "Buscar:",
-            "oPaginate": {
-                "sFirst": "Primero",
-                "sLast": "Último",
-                "sNext": "Siguiente",
-                "sPrevious": "Anterior"
-            },
-            "sProcessing": "Procesando...",
-        },
-        //para usar los botones   
-        responsive: "true",
-        dom: 'Bfrtilp',
-        buttons: [{
-                extend: 'excelHtml5',
-                text: '<i class="fas fa-file-excel"></i> ',
-                titleAttr: 'Exportar a Excel',
-                className: 'btn btn-success'
-            },
-            {
-                extend: 'pdfHtml5',
-                text: '<i class="fas fa-file-pdf"></i> ',
-                titleAttr: 'Exportar a PDF',
-                className: 'btn btn-danger',
-                orientation: 'landscape'
-            },
-            {
-                extend: 'print',
-                text: '<i class="fa fa-print"></i> ',
-                titleAttr: 'Imprimir',
-                className: 'btn btn-info'
-            },
-        ]
 
-    });
-</script>
 
 <?php
 include_once('src/components/parte_inferior.php');
 ?>
+
+<script src="src/assets/js/datatableIntegration.js"></script>
+
+<script>initializeDataTable('#table_usuario');</script>

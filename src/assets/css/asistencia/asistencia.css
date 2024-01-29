@@ -1,0 +1,80 @@
+.container-asitencia {
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.container-asitencia .asistencia-input-info {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.container-asitencia .asistencia-input-info .asis-img img {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.container-card-asistencia {
+  padding: 1.5rem;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.container-card-asistencia .card-principal-info {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.container-card-asistencia .card-principal-info .card-asistencia-info h1 {
+  font-size: 3rem;
+}
+.container-card-asistencia .card-principal-info .card-asistencia-info span {
+  font-weight: bold;
+  font-size: 2rem;
+  color: #164494;
+}
+.container-card-asistencia .card-principal-info .card-asistencia-info-image {
+  display: flex;
+  align-items: center;
+}
+.container-card-asistencia .card-principal-info .card-asistencia-info-image img {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.card-second-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card-second-info span {
+  font-weight: bolder;
+  font-size: 2.5rem;
+}
+.card-second-info h3 {
+  color: #164494;
+}
+
+.card-asistencia-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.card-asistencia-footer .asis-footer-info {
+  font-size: 2rem;
+}
+.card-asistencia-footer .asis-footer-info span {
+  color: rgb(1, 1, 51);
+  font-size: 2rem;
+  font-weight: bolder;
+}/*# sourceMappingURL=asistencia.css.map */

@@ -1,0 +1,25 @@
+#listaAlumnos {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    max-height: 200px;
+    /* Agrega un máximo de altura para hacer desplazable */
+    overflow-y: auto;
+    /* Agrega scroll si se excede la altura máxima */
+}
+
+#listaAlumnos li {
+    padding: 5px;
+    cursor: pointer;
+}
+
+#listaAlumnos li:hover {
+    background-color: #010133;
+    color: white;
+}
+
+.inputAcep{
+    border: 3px solid #A6E233;
+}

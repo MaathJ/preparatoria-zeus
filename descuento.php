@@ -14,7 +14,7 @@ include_once('src/components/parte_superior.php');
                         <!-- Tabla -->
                         <div class="container-table" style="background-color: #fff;">
                             <div class="col-md-12">
-                            <table class="table table-striped"  id="table_matricula">
+                            <table class="table table-striped"  id="table_descuento">
                                 <thead align="center" class=""  style="color: #fff; background-color:#010133;">
                                     <tr>
                                         <th>Nombre</th>
@@ -79,3 +79,7 @@ include_once('src/components/parte_superior.php');
 
 include_once('src/components/parte_inferior.php');
 ?>
+
+<script src="src/assets/js/datatableIntegration.js"></script>
+
+<script>initializeDataTable('#table_descuento');</script>

@@ -44,8 +44,7 @@ $estado_al = isset($_POST['checkestado']) ? $_POST['checkestado'] : 'INACTIVO';
 $direccion_al = $_POST['txtdireccionU'];
 $apoderado_al = $_POST['nombrea-alumnoU'];
 $celapod_al = $_POST['celulara-alumnoU'];
-$archivo = $_FILES['foto2']["tmp_name"]; 
-$nombres=$_FILES["foto2"]["name"];
+
 
 
 
@@ -69,20 +68,46 @@ if (isset($_FILES['foto2']) && $_FILES['foto2']['error'] == UPLOAD_ERR_OK) {
     $archivo = $_FILES['foto2']['tmp_name'];
     $nombres = $_FILES['foto2']['name'];
 
-    list($n, $e) = explode(".", $nombres);
+    $lastDotPosition = strrpos($nombres, ".");
+if ($lastDotPosition !== false) {
+    $n = substr($nombres, 0, $lastDotPosition);
+    $e = substr($nombres, $lastDotPosition + 1);
+} else {
+    // Si no hay punto en el nombre del archivo, manejar según tus necesidades
+    // Puedes asignar un valor predeterminado a $n y $e, o mostrar un mensaje de error, etc.
+    $n = $nombres;
+    $e = '';
+}
 
-    $allowedExtensions = ['png', 'jpg', 'jpeg'];
-    $imageType = exif_imagetype($archivo);
 
-    if (in_array($e, $allowedExtensions) && ($imageType == IMAGETYPE_JPEG || $imageType == IMAGETYPE_PNG)) {
+    $allowedExtensions = ['png', 'jpg', 'jpeg', 'JPG', 'JPEG'];
+    $imageInfo = getimagesize($archivo);
+
+    // Verificar que es una imagen y el tipo está permitido
+    if ($imageInfo && in_array($e, $allowedExtensions) && ($imageInfo[2] == IMAGETYPE_JPEG || $imageInfo[2] == IMAGETYPE_PNG)) {
         // Genera un nombre único para evitar conflictos
-        $nombreArchivo = $dni_al . '.' . $e;
+        $nombreArchivo = $dni_al . '.' . 'jpg';
 
         // Mueve el archivo a la ubicación deseada
         move_uploaded_file($archivo, "../src/assets/images/alumno/" . $nombreArchivo);
-        header('location: ../alumno.php');
+        echo '<script type="text/javascript">
+           window.location = "../alumno.php";
+           setTimeout(function(){
+               window.location.reload(); // Esto recargará la página después de un breve retraso (en milisegundos)
+           }, 1000); // Ejemplo: recarga después de 1 segundo (ajusta según sea necesario)
+      </script>';
+
+
+
     } else {
-        header('location: ../alumno.php');
+        echo '<script type="text/javascript">
+           window.location = "../alumno.php";
+           setTimeout(function(){
+               window.location.reload(); // Esto recargará la página después de un breve retraso (en milisegundos)
+           }, 1000); // Ejemplo: recarga después de 1 segundo (ajusta según sea necesario)
+      </script>';
+
+
     }
 } else {
     $archivop = '../src/assets/images/alumno/predt.jpg';
@@ -91,8 +116,16 @@ if (isset($_FILES['foto2']) && $_FILES['foto2']['error'] == UPLOAD_ERR_OK) {
 
         // Si no se ha seleccionado un archivo, asigna la foto predeterminada
         copy('../src/assets/images/alumno/predt.jpg', "../src/assets/images/alumno/" . $dni_al . '.jpg');
+        echo '<script type="text/javascript">
+           window.location = "../alumno.php";
+           setTimeout(function(){
+               window.location.reload(); // Esto recargará la página después de un breve retraso (en milisegundos)
+           }, 1000); // Ejemplo: recarga después de 1 segundo (ajusta según sea necesario)
+      </script>';
 
-    header('location: ../alumno.php');
+
+
+    
 }
 
 

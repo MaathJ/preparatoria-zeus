@@ -273,4 +273,22 @@ header .image-text .header-text {
   height: 200px;
   width: 200px;
   border-radius: 50%;
+}
+
+.menu-links-options {
+  display: none;
+  margin-left: 2.5rem;
+  padding: 0 0.4rem;
+  border-left: 1px solid rgba(128, 128, 128, 0.247);
+}
+.menu-links-options .links-options {
+  cursor: pointer;
+  color: rgb(112, 112, 112);
+}
+.menu-links-options .links-options:hover {
+  color: rgb(0, 0, 29);
+}
+
+.onclick {
+  display: block;
 }/*# sourceMappingURL=menu.css.map */

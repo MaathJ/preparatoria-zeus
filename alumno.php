@@ -1,5 +1,5 @@
 <?php
-
+include_once('auth.php');
 include_once("./src/components/parte_superior.php");
 include_once('./config/conexion.php');
 include_once('modal_card_alumno.php');
@@ -136,8 +136,6 @@ include('modales_alumno.php');
     ?>
 
     <script type="text/javascript">
-
-        
         /* function validarFormularioAlumnoR() {
                 let selectElement = document.getElementById('area-alumno');
                 let selectedValue = selectElement.value;
@@ -260,8 +258,20 @@ include('modales_alumno.php');
                     extend: 'pdfHtml5',
                     text: '<i class="fa-regular fa-file-pdf"></i>',
                     titleAttr: 'Exportar a PDF',
-                    // className: 'btn btn-danger',
-                    orientation: 'landscape'
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5]
+                    },
+                    customize: function(doc) {
+
+                        doc.content[1].table.body[0].forEach(function(h) {
+                            h.fillColor = 'rgb(1, 1, 51)';
+                        });
+                        // doc.content[1].table.widths = [
+                        //     '50%',
+                        //     '50%',
+                        // ]
+                        doc.content[1].margin = [100, 0, 100, 0]
+                    },
                 },
                 {
                     extend: 'print',
@@ -340,150 +350,156 @@ include('modales_alumno.php');
                 }
             });
         }
-        function limpiarselect(select){
+
+        function limpiarselect(select) {
             $(select).empty();
         }
 
         document.addEventListener("DOMContentLoaded", function() {
             // Variable para controlar si ya se ha enviado el formulario
-        var enviado = false;
+            var enviado = false;
 
-        $("#ModalRegistrar form").submit(function(event) {
-            // Si ya se ha enviado el formulario, no hacer nada
-            if (enviado) {
-                return;
-            }
-
-            // Detén el envío del formulario
-            event.preventDefault();
-
-            // Obtén el valor del DNI desde el input y recorta espacios
-            var dni = $("#Dni-name").val().trim();
-
-            // Realiza la solicitud AJAX
-            $.ajax({
-                type: "POST",
-                url: "./Alumno/actions/verificardni.php", // Reemplaza con la ruta correcta a tu script PHP
-                data: { dni: dni },  // Envía solo el DNI
-                success: function(response) {
-                    console.log(response);
-                    // Maneja la respuesta del servidor
-                    if (response == "existe") {
-                        // Muestra una alerta indicando que el alumno existe
-                        alert("El alumno ya existe. Por favor, revisa el DNI.");
-
-                        // Puedes realizar otras acciones aquí si es necesario
-                        // Por ejemplo, cambiar el formato del mensaje de error en tu modal
-
-                        // Mostrar el mensaje de error en tu modal
-                        $("#mensajeError").html("El alumno ya existe. Por favor, revisa el DNI.").show();
-                    } else {
-                        // Si el alumno no existe, realiza la verificación de área y carrera
-                        let selectElementArea = document.getElementById('area-alumno');
-                        let selectedValueArea = selectElementArea.value;
-
-                        // Verifica si se ha seleccionado una opción válida
-                        if (selectedValueArea == '' || selectedValueArea == null) {
-                            alert('Por favor, selecciona un área.');
-                            return;
-                        }
-
-                        let selectElementCarrera = document.getElementById('carrera-alumno');
-                        let selectedValueCarrera = selectElementCarrera.value;
-
-                        // Verifica si se ha seleccionado una opción válida
-                        if (selectedValueCarrera == '' || selectedValueCarrera == null) {
-                            alert('Por favor, selecciona una carrera.');
-                            return;
-                        }
-
-                        // Marcar el formulario como enviado
-                        enviado = true;
-
-                        // Permitir que el formulario se envíe
-                        $("#ModalRegistrar form").unbind('submit').submit();
-                    }
-                },
-                error: function() {
-                    // Maneja errores de la solicitud AJAX
-                    alert("Error en la solicitud AJAX.");
+            $("#ModalRegistrar form").submit(function(event) {
+                // Si ya se ha enviado el formulario, no hacer nada
+                if (enviado) {
+                    return;
                 }
-            });
-        });
 
+                // Detén el envío del formulario
+                event.preventDefault();
 
-        // Variable para controlar si ya se ha enviado el formulario
-        var enviadoEditar = false;
+                // Obtén el valor del DNI desde el input y recorta espacios
+                var dni = $("#Dni-name").val().trim();
 
-        $("#ModalEditar form").submit(function(event) {
-            // Si ya se ha enviado el formulario, no hacer nada
-            if (enviadoEditar) {
-                return;
-            }
-
-            // Detén el envío del formulario
-            event.preventDefault();
-
-            // Obtén el valor del DNI desde el input y recorta espacios
-            var dni = $("#Dni-nameU").val().trim();
-            var idAlumno = $("#id_alumnoU").val();
-
-            // Realiza la solicitud AJAX
-            $.ajax({
-                type: "POST",
-                url: "./Alumno/actions/verificardniU.php", // Reemplaza con la ruta correcta a tu script PHP
-                
-                data: { dni: dni, id_alumno: idAlumno }, // Envía tanto el DNI como el ID del alumno
-
-                success: function(response) {
-                    // Maneja la respuesta del servidor
-                    if (response == "existe") {
-                        console.log(idAlumno);
-                        console.log(dni);
+                // Realiza la solicitud AJAX
+                $.ajax({
+                    type: "POST",
+                    url: "./Alumno/actions/verificardni.php", // Reemplaza con la ruta correcta a tu script PHP
+                    data: {
+                        dni: dni
+                    }, // Envía solo el DNI
+                    success: function(response) {
                         console.log(response);
-                        console.log('asd');
-                        // Muestra una alerta indicando que el alumno ya existe
-                        alert("El alumno ya existe. Por favor, revisa el DNI.");
+                        // Maneja la respuesta del servidor
+                        if (response == "existe") {
+                            // Muestra una alerta indicando que el alumno existe
+                            alert("El alumno ya existe. Por favor, revisa el DNI.");
 
-                        // Puedes realizar otras acciones aquí si es necesario
-                        // Por ejemplo, cambiar el formato del mensaje de error en tu modal
+                            // Puedes realizar otras acciones aquí si es necesario
+                            // Por ejemplo, cambiar el formato del mensaje de error en tu modal
 
-                        // Mostrar el mensaje de error en tu modal
-                        $("#mensajeError").html("El alumno ya existe. Por favor, revisa el DNI.").show();
-                    } else {
-                        // Si el alumno no existe, realiza la verificación de área y carrera
-                        let selectElementArea = document.getElementById('Area-alumnoU');
-                        let selectedValueArea = selectElementArea.value;
+                            // Mostrar el mensaje de error en tu modal
+                            $("#mensajeError").html("El alumno ya existe. Por favor, revisa el DNI.").show();
+                        } else {
+                            // Si el alumno no existe, realiza la verificación de área y carrera
+                            let selectElementArea = document.getElementById('area-alumno');
+                            let selectedValueArea = selectElementArea.value;
 
-                        // Verifica si se ha seleccionado una opción válida
-                        if (selectedValueArea == '' || selectedValueArea == null) {
-                            alert('Por favor, selecciona un área.');
-                            return;
+                            // Verifica si se ha seleccionado una opción válida
+                            if (selectedValueArea == '' || selectedValueArea == null) {
+                                alert('Por favor, selecciona un área.');
+                                return;
+                            }
+
+                            let selectElementCarrera = document.getElementById('carrera-alumno');
+                            let selectedValueCarrera = selectElementCarrera.value;
+
+                            // Verifica si se ha seleccionado una opción válida
+                            if (selectedValueCarrera == '' || selectedValueCarrera == null) {
+                                alert('Por favor, selecciona una carrera.');
+                                return;
+                            }
+
+                            // Marcar el formulario como enviado
+                            enviado = true;
+
+                            // Permitir que el formulario se envíe
+                            $("#ModalRegistrar form").unbind('submit').submit();
                         }
-
-                        let selectElementCarrera = document.getElementById('Carrera-alumnoU');
-                        let selectedValueCarrera = selectElementCarrera.value;
-
-                        // Verifica si se ha seleccionado una opción válida
-                        if (selectedValueCarrera == '' || selectedValueCarrera == null) {
-                            alert('Por favor, selecciona una carrera.');
-                            return;
-                        }
-
-                        // Marcar el formulario como enviado
-                        enviadoEditar = true;
-
-                        // Permitir que el formulario se envíe
-                        $("#ModalEditar form").unbind('submit').submit();
+                    },
+                    error: function() {
+                        // Maneja errores de la solicitud AJAX
+                        alert("Error en la solicitud AJAX.");
                     }
-                },
-                error: function() {
-                    // Maneja errores de la solicitud AJAX
-                    alert("Error en la solicitud AJAX.");
-                }
+                });
             });
-        });
-            $('#ModalRegistrar').on('hidden.bs.modal', function () {
+
+
+            // Variable para controlar si ya se ha enviado el formulario
+            var enviadoEditar = false;
+
+            $("#ModalEditar form").submit(function(event) {
+                // Si ya se ha enviado el formulario, no hacer nada
+                if (enviadoEditar) {
+                    return;
+                }
+
+                // Detén el envío del formulario
+                event.preventDefault();
+
+                // Obtén el valor del DNI desde el input y recorta espacios
+                var dni = $("#Dni-nameU").val().trim();
+                var idAlumno = $("#id_alumnoU").val();
+
+                // Realiza la solicitud AJAX
+                $.ajax({
+                    type: "POST",
+                    url: "./Alumno/actions/verificardniU.php", // Reemplaza con la ruta correcta a tu script PHP
+
+                    data: {
+                        dni: dni,
+                        id_alumno: idAlumno
+                    }, // Envía tanto el DNI como el ID del alumno
+
+                    success: function(response) {
+                        // Maneja la respuesta del servidor
+                        if (response == "existe") {
+                            console.log(idAlumno);
+                            console.log(dni);
+                            console.log(response);
+                            console.log('asd');
+                            // Muestra una alerta indicando que el alumno ya existe
+                            alert("El alumno ya existe. Por favor, revisa el DNI.");
+
+                            // Puedes realizar otras acciones aquí si es necesario
+                            // Por ejemplo, cambiar el formato del mensaje de error en tu modal
+
+                            // Mostrar el mensaje de error en tu modal
+                            $("#mensajeError").html("El alumno ya existe. Por favor, revisa el DNI.").show();
+                        } else {
+                            // Si el alumno no existe, realiza la verificación de área y carrera
+                            let selectElementArea = document.getElementById('Area-alumnoU');
+                            let selectedValueArea = selectElementArea.value;
+
+                            // Verifica si se ha seleccionado una opción válida
+                            if (selectedValueArea == '' || selectedValueArea == null) {
+                                alert('Por favor, selecciona un área.');
+                                return;
+                            }
+
+                            let selectElementCarrera = document.getElementById('Carrera-alumnoU');
+                            let selectedValueCarrera = selectElementCarrera.value;
+
+                            // Verifica si se ha seleccionado una opción válida
+                            if (selectedValueCarrera == '' || selectedValueCarrera == null) {
+                                alert('Por favor, selecciona una carrera.');
+                                return;
+                            }
+
+                            // Marcar el formulario como enviado
+                            enviadoEditar = true;
+
+                            // Permitir que el formulario se envíe
+                            $("#ModalEditar form").unbind('submit').submit();
+                        }
+                    },
+                    error: function() {
+                        // Maneja errores de la solicitud AJAX
+                        alert("Error en la solicitud AJAX.");
+                    }
+                });
+            });
+            $('#ModalRegistrar').on('hidden.bs.modal', function() {
                 // Vaciar o establecer en un estado predeterminado los campos de texto
                 $('#Apellido-name, #Nombre-name, #Dni-name, #Telefono-name, #Fenac-alumno, #Colegio-alumno, #Ciudad-name, #Direccion-name, #Nombrea-alumno, #Celulara-alumno').val('');
 
@@ -496,15 +512,15 @@ include('modales_alumno.php');
                 limpiarselect('#carrera-alumno');
 
                 // Puedes agregar aquí cualquier código adicional para limpiar otros elementos del modal
-                });
+            });
             $('#area-alumno').change(function() {
                 // Obtener el valor del área seleccionada
                 var id_ar = $(this).val();
                 console.log(id_ar);
                 // Cargar las carreras correspondientes al área seleccionada
-                if(id_ar!=null || id_ar != ''){
+                if (id_ar != null || id_ar != '') {
                     obtenerCarreras(id_ar);
-                }else{
+                } else {
                     limpiarselect('#carrera-alumno');
 
                 }
@@ -544,10 +560,10 @@ include('modales_alumno.php');
                 var id_ar = $(this).val();
                 console.log(id_ar);
                 // Cargar las carreras correspondientes al área seleccionada
-                if(id_ar!=null || id_ar != ''){
+                if (id_ar != null || id_ar != '') {
                     obtenerCarrerasU(id_ar, null);
 
-                }else{
+                } else {
                     limpiarselect('#Carrera-alumnoU');
 
                 }

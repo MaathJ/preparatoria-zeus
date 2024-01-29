@@ -90,12 +90,12 @@ include('config/conexion.php');
                         <input type="text" name="txtturno" placeholder="Ingrese el turno" class="form-control" id="turno" required>
                     </div>
                     <div class="col-12 mb-3">
-                        <label for="hsal" class="form-label">H. Salida:</label>
-                        <input type="time" name="txthsal" class="form-control" id="hsal" required>
-                    </div>
-                    <div class="col-12 mb-3">
                         <label for="hent" class="form-label">H. Entrada:</label>
                         <input type="time" name="txthent" class="form-control" id="hent" onchange="actualizarHoraSalida()" required>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for="hsal" class="form-label">H. Salida:</label>
+                        <input type="time" name="txthsal" class="form-control" id="hsal" required>
                     </div>
                     <div class="col-12 mb-3">
                         <label for="tolerancia" class="form-label">Tolerancia:</label>
@@ -239,53 +239,14 @@ include('config/conexion.php');
 
 
 
-<script>
-    let table = new DataTable('#table_turno', {
-    language: {
-                "lengthMenu": "Mostrar _MENU_ registros",
-                "zeroRecords": "No se encontraron resultados",
-                "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-                "sSearch": "Buscar:",
-                "oPaginate": {
-                    "sFirst": "Primero",
-                    "sLast":"Último",
-                    "sNext":"Siguiente",
-                    "sPrevious": "Anterior"
-			     },
-			     "sProcessing":"Procesando...",
-            }   ,
-        //para usar los botones   
-        responsive: "true",
-        dom: 'Bfrtilp',       
-        buttons:[ 
-			{
-				extend:    'excelHtml5',
-				text:      '<i class="fas fa-file-excel"></i> ',
-				titleAttr: 'Exportar a Excel',
-				className: 'btn btn-success'
-			},
-			{
-				extend:    'pdfHtml5',
-				text:      '<i class="fas fa-file-pdf"></i> ',
-				titleAttr: 'Exportar a PDF',
-				className: 'btn btn-danger',
-                orientation: 'landscape' 
-			},
-			{
-				extend:    'print',
-				text:      '<i class="fa fa-print"></i> ',
-				titleAttr: 'Imprimir',
-				className: 'btn btn-info'
-			},
-		]	      
 
-});       
-</script>
 
 
 <?php 
 
 include_once('src/components/parte_inferior.php');
 ?>
+
+<script src="src/assets/js/datatableIntegration.js"></script>
+
+<script>initializeDataTable('#table_turno');</script>

@@ -1,0 +1,24 @@
+.form-inputs-pagos .container-for .input-forma-pago {
+    display: flex;
+    align-items: center;
+  }
+  .form-inputs-pagos .container-for .input-forma-pago img {
+    -o-object-fit: cover;
+       object-fit: cover;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+  }
+
+  .form-inputs-pagos {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    padding: 0 0.5rem;
+  }
+  .form-inputs-pagos .container-for {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+  }

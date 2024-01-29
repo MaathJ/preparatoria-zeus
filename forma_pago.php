@@ -4,6 +4,7 @@ include_once('config/conexion.php');
 include_once('app/controllers/forma_pago/Modal_formapago.php');
 include_once('src/components/parte_superior.php');
 ?>
+
 <div class="pcoded-inner-content">
     <div class="main-body">
         <div class="page-wrapper">
@@ -23,7 +24,7 @@ include_once('src/components/parte_superior.php');
                         <br>
                         <!-- Tabla -->
                         <div class="col-md-12">
-                            <table class="table table-striped"  id="table_matricula">
+                            <table class="table table-striped"  id="table_formapago">
                                 <thead align="center" class=""  style="color: #fff; background-color:#17a2b8;">
                                     <tr>
                                         <th>Imagen</th>
@@ -85,3 +86,7 @@ include_once('src/components/parte_superior.php');
 <?php 
 include_once('src/components/parte_inferior.php');
 ?>
+
+<script src="src/assets/js/datatableIntegration.js"></script>
+
+<script>initializeDataTable('#table_formapago');</script>

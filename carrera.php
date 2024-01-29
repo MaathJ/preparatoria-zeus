@@ -315,63 +315,11 @@ include_once("src/components/parte_superior.php");
 include_once("src/components/parte_inferior.php")
 ?>
 
-<script>
-    let table = new DataTable('#table_carrera', {
-        language: {
-            "lengthMenu": "Mostrar _MENU_ registros",
-            "zeroRecords": "No se encontraron resultados",
-            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-            "sSearch": "Buscar:",
-            "oPaginate": {
-                "sFirst": "Primero",
-                "sLast": "Último",
-                "sNext": "Siguiente",
-                "sPrevious": "Anterior"
-            },
-            "sProcessing": "Procesando...",
-        },
-        //para usar los botones   
-        responsive: "true",
-        dom: 'Bfrtilp',
-        buttons: [{
-                extend: 'excelHtml5',
-                text: '<i class="fa-regular fa-file-excel"></i>',
-                titleAttr: 'Exportar a Excel',
-            },
-            {
-                extend: 'pdfHtml5',
-                text: '<i class="fa-regular fa-file-pdf"></i>',
-                titleAttr: 'Exportar a PDF',
-                exportOptions: {
-                    columns: [0, 1, 2]
-                },
-                customize: function(doc) {
-
-                    doc.content[1].table.body[0].forEach(function(h) {
-                        h.fillColor = 'rgb(1, 1, 51)';
-                    });
-                    doc.content[1].table.widths = [
-                        '50%',
-                        '50%',
-                        '20%'
-                    ]
-                    doc.content[1].margin = [80, 0, 100, 0]
-                },
-            },
-            {
-                extend: 'print',
-                text: '<i class="fa-solid fa-print"></i>',
-                titleAttr: 'Imprimir',
-                // className: 'btn btn-info'
-            },
-        ]
-
-    });
-</script>
 
 
+<script src="src/assets/js/datatableIntegration.js"></script>
+
+<script>initializeDataTable('#table_carrera');</script>
 
 <!-- Recibiendo por metodo post el formulario  -->
 
