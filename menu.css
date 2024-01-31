@@ -166,7 +166,7 @@ header .image-text .header-text {
   width: calc(100% - 250px);
   background-color: var(--body-color);
   transition: var(--tran-04);
-  padding: 2rem 50px;
+  padding: 2rem 25px;
 }
 .home .text {
   font-size: 1.3rem;

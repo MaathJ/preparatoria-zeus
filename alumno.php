@@ -5,7 +5,7 @@ include_once('./config/conexion.php');
 include_once('modal_card_alumno.php');
 include('modales_alumno.php');
 ?>
-<link rel="stylesheet" src="style.css" href="src/assets/css/alumno/alumno.css">
+<link rel="stylesheet" href="src/assets/css/alumno/alumno.css">
 <link rel="stylesheet" src="style.css" href="./bootstrap/bootstrap.css">
 <link rel="stylesheet" src="style.css" href="./datatables/datatables.css">
 <link rel="icon" href="src/assets/images/logo-zeus.png">
@@ -97,17 +97,17 @@ include('modales_alumno.php');
     <div class="container-table" style="background-color: #fff;">
         <div class="col-md-12">
             <table class="table table-striped table_id" id="table_alumno">
-                <thead class="text-center" style="color: #fff; background-color:#010133;">
-                    <tr>
+                <thead align="center" class="" style="color: #fff; background-color:#010133;">
+                    <tr align="center">
                         <!--<th> ID </th>-->
-                        <th class="text-center"> FOTO </th>
-                        <th class="text-center"> Alumno </th>
-                        <th class="text-center"> Edad</th>
-                        <th class="text-center"> DNI </th>
-                        <th class="text-center"> Telefono </th>
-                        <th class="text-center"> Dirección </th>
-                        <th class="text-center"> Detalle</th>
-                        <th class="text-center"> Opciones</th>
+                        <th> FOTO </th>
+                        <th> Alumno </th>
+                        <th> Edad</th>
+                        <th> DNI </th>
+                        <th> Telefono </th>
+                        <th> Direc. </th>
+                        <th> Mas Info</th>
+                        <th> Opciones</th>
                 </thead>
                 <?php
                 include('./config/conexion.php');
@@ -117,21 +117,21 @@ include('modales_alumno.php');
 
 
                 ?>
-                    </tr>
+
 
                     <!--<td align="center"><?php echo $r['id_al'] ?></td>-->
-                    <td align="center"><img class="img-fluid" src="./src/assets/images/alumno/<?php echo $r['dni_al'] ?>.jpg"></td>
-                    <td align="center"><?php echo $r['apellido_al'] . ', ' . $r['nombre_al']; ?></td>
-                    <td align="center"><?php
-                                        $fechaNacimiento = $r['fnac_al'];
-                                        // Obtener la fecha actual
-                                        $fechaActual = date('Y-m-d');
-                                        // Calcular la diferencia entre la fecha actual y la fecha de nacimiento
-                                        $diff = date_diff(date_create($fechaNacimiento), date_create($fechaActual));
-                                        // Obtener el componente de años de la diferencia
-                                        $edad = $diff->format('%Y');
-                                        echo $edad;
-                                        ?>
+                    <td><img class="img-fluid" src="./src/assets/images/alumno/<?php echo $r['dni_al'] ?>.jpg"></td>
+                    <td><?php echo $r['apellido_al'] . ', ' . $r['nombre_al']; ?></td>
+                    <td><?php
+                        $fechaNacimiento = $r['fnac_al'];
+                        // Obtener la fecha actual
+                        $fechaActual = date('Y-m-d');
+                        // Calcular la diferencia entre la fecha actual y la fecha de nacimiento
+                        $diff = date_diff(date_create($fechaNacimiento), date_create($fechaActual));
+                        // Obtener el componente de años de la diferencia
+                        $edad = $diff->format('%Y');
+                        echo $edad;
+                        ?>
                     </td>
                     <td align="center"><?php echo $r['dni_al'] ?></td>
                     <td align="center"><?php echo $r['celular_al'] ?></td>
