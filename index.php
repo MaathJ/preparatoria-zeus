@@ -1,5 +1,6 @@
 <?php 
 include_once('./config/conexion.php');
+include_once("./src/components/parte_superior.php");
 ?>
 <style>
 .inputuser:hover{

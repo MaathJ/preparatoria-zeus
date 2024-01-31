@@ -20,10 +20,10 @@ include_once('src/components/parte_superior.php');
                             <table class="table table-striped"  id="table_descuento">
                                 <thead align="center" class=""  style="color: #fff; background-color:#010133;">
                                     <tr>
-                                        <th>Nombre</th>
-                                        <th>Monto</th>
-                                        <th>Estado</th>
-                                        <th>Opciones</th>
+                                        <th class="text-center">Nombre</th>
+                                        <th class="text-center">Monto</th>
+                                        <th class="text-center">Estado</th>
+                                        <th class="text-center">Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>

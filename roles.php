@@ -23,9 +23,9 @@ include_once('src/components/parte_superior.php');
             <thead align="center" style="color: #fff; background-color:#010133;">
                 <tr>
                     
-                    <th>ROL</th>
-                    <th>ESTADO</th>
-                    <th>OPCIONES</th>
+                    <th class="text-center">Rol</th>
+                    <th class="text-center">Estado</th>
+                    <th class="text-center">Opciones</th>
                 </tr>
             </thead>
             <tbody>

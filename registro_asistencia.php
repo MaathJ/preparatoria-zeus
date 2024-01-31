@@ -19,14 +19,14 @@ include('config/conexion.php');
         <table class="table table-striped" id="table_registro_asistencia">
                     <thead  align="center" style="color: #fff; background-color:#010133;">
                         <tr>
-                            <th>Fecha Asistencia</th>
-                            <th>Hora de Entrada</th>
-                            <th>Apellidos y Nombres</th>
-                            <th>Estado</th>
-                            <th>Ciclo</th>
-                            <th>Turno</th>
-                            <th>Detalle</th>
-                            <th>Opciones</th>
+                            <th class="text-center">Fecha Asistencia</th>
+                            <th class="text-center">Hora de Entrada</th>
+                            <th class="text-center">Apellidos y Nombres</th>
+                            <th class="text-center">Estado</th>
+                            <th class="text-center">Ciclo</th>
+                            <th class="text-center">Turno</th>
+                            <th class="text-center">Detalle</th>
+                            <th class="text-center">Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,7 +54,7 @@ include('config/conexion.php');
                         <td align="center">29-01-24</td>
                         <td align="center">08:37</td>
                         <td>Arévalo Nazario Diego Matias</td>
-                        <td align="center" class="btn btn-warning">TARDANZA</td>
+                        <td align="center" class="button inactive-button">TARDANZA</td>
                         <td align="center">VERANO 2024-1</td>
                         <td align="center">MAÑANA</td>
                         <td align="center"><b>VER INFO</b></td>

@@ -19,12 +19,12 @@ include('modales_turno.php');
             <table class="table table-striped" id="table_turno">
                 <thead align="center" style="color: #fff; background-color:#010133;">
                     <tr>
-                        <th>Turno</th>
-                        <th>Hora de Entrada</th>
-                        <th>Hora de Salida</th>
-                        <th>Tolerancia</th>
-                        <th>Estado</th>
-                        <th>Opciones</th>
+                        <th class="text-center">Turno</th>
+                        <th class="text-center">Hora de Entrada</th>
+                        <th class="text-center">Hora de Salida</th>
+                        <th class="text-center">Tolerancia</th>
+                        <th class="text-center">Estado</th>
+                        <th class="text-center">Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,7 +59,7 @@ include('modales_turno.php');
                                             'estado': '<?php echo $filaTurno['estado_tu'] ?? ''; ?>'
                                                 });">
                                         <i class="fas fa-edit"> </i></a>
-                                    <a class="btn btn-danger btn-circle " target="_parent" data-bs-toggle="modal" data-bs-target="#DeleteModalTurno<?php echo $filaTurno['id_tu'] ?? ''; ?>" data-bs-whatever="@mdo">
+                                    <a class="btn btn-sm btn-danger btn-circle" target="_parent" data-bs-toggle="modal" data-bs-target="#DeleteModalTurno<?php echo $filaTurno['id_tu'] ?? ''; ?>" data-bs-whatever="@mdo">
                                         <i class="fas fa-trash"> </i>
                                     </a>
                                 </center>

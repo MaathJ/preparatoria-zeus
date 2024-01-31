@@ -46,7 +46,7 @@ include('modales_area.php');
                                 ?>
                             </td>
                             <td class="text-center">
-                                <a class="btn btn-lg btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#modalEditar" data-bs-whatever="@mdo" target="_parent" onclick="cargar_info({
+                                <a class="btn btn-sm btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#modalEditar" data-bs-whatever="@mdo" target="_parent" onclick="cargar_info({
                             
                               'area': '<?php echo isset($filar['nombre_ar']) ? $filar['nombre_ar'] : ''; ?>',
                                  
@@ -55,7 +55,7 @@ include('modales_area.php');
                                     });">
                                     <i class="fas fa-edit"> </i></a>
 
-                                <a href="#" class="btn btn-lg btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModalArea<?php echo $filar['id_ar']; ?>">
+                                <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModalArea<?php echo $filar['id_ar']; ?>">
                                     <i class="fas fa-trash"></i>
                                 </a>
 

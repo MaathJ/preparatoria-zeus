@@ -84,42 +84,42 @@ ma.id_ma;
                         $final = $rma['ffin_ci'];
                     ?>
                         <tr>
-                            <td>
+                            <td align="center">
                                 <?php echo $rma['id_ma'] ?>
                             </td>
-                            <td>
+                            <td align="center">
                                 <?php echo $rma['apellido_al'] . ' ' . $rma['nombre_al'] ?>
                             </td>
-                            <td>
+                            <td align="center">
                                 <?php echo $rma['nombre_pe'] . ' ' . $rma['nombre_ci'] ?>
                             </td>
-                            <td>
+                            <td align="center">
                                 <?php echo $rma['mensualidad_ma'] ?>
                             </td>
-                            <td>
+                            <td align="center">
                                 <?php echo $rma['total_meses'] ?>
                             </td>
-                            <td>
+                            <td align="center">
 
                                 <a class="btn btn-sm btn-success" href="boleta.php?id=<?php echo $rma['id_ma']; ?>"><i class="fa-solid fa-file-invoice"></i> Boletas</a>
 
                             </td>
 
-                            <td>
+                            <td align="center">
                                 <?php echo $rma['mensualidad_ma'] ?>
                             </td>
-                            <td>
+                            <td align="center">
                                 <?php echo $rma['total_deudas'] ?>
                             </td>
 
-                            <td class="<?php echo ($rma['estado_ma'] == 'ACTIVO') ? 'tdactivo' : 'tdculminado'; ?>">
+                            <td align="center" class="<?php echo ($rma['estado_ma'] == 'ACTIVO') ? 'tdactivo' : 'tdculminado'; ?>">
                                 <p><?php echo $rma['estado_ma']; ?></p>
                             </td>
 
-                            <td>
+                            <td align="center">
                                 <?php echo $rma['nombre_us'] ?>
                             </td>
-                            <td>
+                            <td align="center">
                                 <?php echo $rma['freg_ma'] ?>
                             </td>
 

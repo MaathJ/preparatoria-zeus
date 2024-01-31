@@ -61,7 +61,7 @@ if ($_SESSION["usuario"]) {
                     </li>
                     <ul class="menu-links-options" id="links-estudiante">
                         <li class="links-options" onclick="window.location.href='./alumno.php'">Alumnos</li>
-                        <li class="links-options" onclick="window.location.href='./area.php'">Area</li>
+                        <li class="links-options" onclick="window.location.href='./area.php'">Área</li>
                         <li class="links-options" onclick="window.location.href='./carrera.php'">Carrera</li>
                         <li class="links-options" onclick="window.location.href='./asistencia.php'">Asistencia</li>
                     </ul>
@@ -70,7 +70,7 @@ if ($_SESSION["usuario"]) {
                     <li class="nav-link">
                         <a style="cursor: pointer;" onclick="window.location.href='./matricula.php'">
                             <i class="fa-solid fa-box-archive icon"></i>
-                            <span class="text nav-text">Matriculas</span>
+                            <span class="text nav-text">Matrículas</span>
                         </a>
                     </li>
 
@@ -134,7 +134,7 @@ if ($_SESSION["usuario"]) {
                 <li class="">
                     <a href="./cerrar_sesion.php">
                         <i class="fa-solid fa-arrow-right-from-bracket icon"></i>
-                        <span class="text nav-text">Cerrar Sesion </span>
+                        <span class="text nav-text">Cerrar Sesión </span>
                     </a>
                 </li>
             </div>
