@@ -489,6 +489,8 @@ pre code {
 .row {
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
+  box-sizing: border-box;
   margin-right: -15px;
   margin-left: -15px;
 }
