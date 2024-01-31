@@ -41,9 +41,9 @@ include_once('src/components/parte_superior.php');
     ?>
 
 
-    <div class="container-table" style="background-color: #fff; overflow-x: auto;">
-        <div class="table-responsive">
-            <table class="table table-striped" id="table_usuario">
+<div class="container-table" style="background-color: #fff; overflow:hidden">
+        <div class="col-md-12" style="box-sizing: border-box;">
+            <table class="table table-striped table_id" id="table_usuario" style="width:100%; box-sizing: border-box; overflow:hidden">
                 <thead align="center" style="color: #fff; background-color:#010133;">
                     <tr align="center">
                         <th class="text-center">ID</th>

@@ -14,9 +14,9 @@ include('modales_area.php');
     <button type="button" class="periodo btn btn-primary " style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
         Registrar
     </button>
-    <div class="container-table" style="background-color: #fff;">
-        <div class="col-md-12">
-            <table class="table table-striped" id="table_area">
+    <div class="container-table" style="background-color: #fff; overflow:hidden">
+        <div class="col-md-12" style="box-sizing: border-box;">
+            <table class="table table-striped" id="table_area" id="table_area" style="width:100%; box-sizing: border-box; overflow:hidden">
                 <thead align="center" class="" style="color: #fff; background-color:#010133;">
                     <tr>
 

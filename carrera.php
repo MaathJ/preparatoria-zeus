@@ -16,13 +16,9 @@ include('modales_carrera.php');
     </button>
 
 
-    <div class="container-table" style="background-color: #fff;">
-
-
-        <div class="col-md-12">
-
-
-            <table class="table table-striped" id="table_carrera">
+    <div class="container-table" style="background-color: #fff; overflow:hidden">
+        <div class="col-md-12" style="box-sizing: border-box;">
+            <table class="table table-striped table_id" id="table_carrera" style="width:100%; box-sizing: border-box; overflow:hidden">
                 <thead align="center" class="" style="color: #fff; background-color:#010133;">
                     <tr>
 

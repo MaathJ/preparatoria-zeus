@@ -17,9 +17,9 @@ include_once('src/components/parte_superior.php');
 
     </div>
     <button class="turno btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalrolRegistro" data-bs-whatever="@mdo" style="cursor: pointer;">Registrar</button>
-    <div class="container-table" style="background-color: #fff;">
-    <div class="col-md-12">
-        <table class="table table-striped" id="table_rol">
+    <div class="container-table" style="background-color: #fff; overflow:hidden">
+        <div class="col-md-12" style="box-sizing: border-box;">
+            <table class="table table-striped table_id" id="table_rol" style="width:100%; box-sizing: border-box; overflow:hidden">
             <thead align="center" style="color: #fff; background-color:#010133;">
                 <tr>
                     

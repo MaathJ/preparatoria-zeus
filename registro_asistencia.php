@@ -14,9 +14,9 @@ include('config/conexion.php');
         <h3>Asistencia</h3>
     </div>
 <br>
-<div class="container-table" style="background-color: #fff;">
-        <div class="col-md-12">
-        <table class="table table-striped" id="table_registro_asistencia">
+<div class="container-table" style="background-color: #fff; overflow:hidden">
+        <div class="col-md-12" style="box-sizing: border-box;">
+            <table class="table table-striped table_id" id="table_registro_asistencia" style="width:100%; box-sizing: border-box; overflow:hidden">
                     <thead  align="center" style="color: #fff; background-color:#010133;">
                         <tr>
                             <th class="text-center">Fecha Asistencia</th>
