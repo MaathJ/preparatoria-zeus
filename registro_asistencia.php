@@ -7,7 +7,7 @@ include_once('src/components/parte_superior.php');
 <?php
 include('config/conexion.php');
 ?>
-
+<link rel="icon" href="src/assets/images/logo-zeus.png">
 <div class="container-page">
     <div>
         <p>Zeus<span> / Registro Asistencia</span></p>

@@ -5,9 +5,11 @@ include_once('app/controllers/forma_pago/Modal_formapago.php');
 include_once('src/components/parte_superior.php');
 ?>
 
+<link rel="icon" href="src/assets/images/logo-zeus.png">
+
 <div class="container-page">
     <div>
-        <p>Zeus<span> / Forma de pago</span></p>
+        <p>Zeus<span> / Forma de pago</span></p>    
         <h3>Forma de pago</h3>
     </div>
     <button class="turno btn btn-primary" data-bs-toggle="modal" data-bs-target="#Registrar" data-bs-whatever="@mdo" style="cursor: pointer;">Registrar</button>

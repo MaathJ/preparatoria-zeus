@@ -22,6 +22,7 @@ if ($_SESSION["usuario"]) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" src="style.css" href="./datatables/datatables.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="icon" href="src/assets/images/logo-zeus.png">
     
 
 </head>
@@ -45,7 +46,7 @@ if ($_SESSION["usuario"]) {
             <div class="menu">
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="#">
+                        <a onclick="window.location.href='./principal.php'">
                             <i class="fa-solid fa-house icon"></i>
                             <span class="text nav-text">Panel de Control</span>
                         </a>
@@ -62,83 +63,12 @@ if ($_SESSION["usuario"]) {
                         <li class="links-options" onclick="window.location.href='./alumno.php'">Alumnos</li>
                         <li class="links-options" onclick="window.location.href='./area.php'">Area</li>
                         <li class="links-options" onclick="window.location.href='./carrera.php'">Carrera</li>
+                        <li class="links-options" onclick="window.location.href='./asistencia.php'">Asistencia</li>
                     </ul>
-
-                    <style>
-                        
-                        .arrow-toggle {
-                            display: none;
-                        }
-                        /* Estudiante */
-                        .sidebar.closeSideBar #button-estudiante .fa-arrow-turn-down {
-                            display: none;
-                        }
-                        #links-estudiante {
-                            display: none;
-                        }
-                        .sidebar.closeSideBar #links-estudiante {
-                            display: none;
-                        }
-
-                        /* Ciclo */
-                        .sidebar.closeSideBar #button-ciclo .fa-arrow-turn-down {
-                            display: none;
-                        }
-
-                        /* Usuario */
-                        .sidebar.closeSideBar #button-usuario .fa-arrow-turn-down {
-                            display: none;
-                        }
-
-                    </style>
-
-                    <script>
-                    $(document).ready(function() {
-                        $("#button-estudiante").on("click", function() {
-                        $("#links-estudiante").slideToggle();
-                        $(".fa-arrow-turn-down", this).toggleClass("arrow-toggle");
-                        });
-                    });
-
-                    
-                    $(document).ready(function() {
-                        $("#button-estudiante").on("click", function() {
-                        if ($('.sidebar').hasClass('closeSideBar')) {
-                            // Si la barra lateral está contraída, expandirla junto con la sublista
-                            $(".sidebar").removeClass("closeSideBar");
-                            $("#links-estudiante").slideDown();
-                        } else {
-                            // Si la barra lateral está desplegada, solo alternar la sublista y el ícono de flecha
-                            $("#links-estudiante").slideToggle();
-                            $(".fa-arrow-turn-down", this).toggleClass("arrow-toggle");
-                        }
-                        });
-
-                        // Ocultar la sublista cuando se contrae la barra lateral
-                        $(".toggle").on("click", function() {
-                        $("#links-estudiante").slideUp();
-                        $(".fa-arrow-turn-down").removeClass("arrow-toggle");
-                        });
-                    });
-
-                    $(document).ready(function() {
-                        $("#button-ciclo").on("click", function() {
-                        $("#links-ciclo").slideToggle();
-                        $(".fa-arrow-turn-down", this).toggleClass("arrow-toggle");
-                        });
-                    });
-
-                    $(document).ready(function() {
-                        $("#button-usuario").on("click", function() {
-                        $("#links-usuario").slideToggle();
-                        $(".fa-arrow-turn-down", this).toggleClass("arrow-toggle");
-                        });
-                    });
-                    </script>
                     
 
                     <li class="nav-link">
-                        <a href="../../../preparatoria-zeus/matricula.php">
+                        <a onclick="window.location.href='./matricula.php'">
                             <i class="fa-solid fa-box-archive icon"></i>
                             <span class="text nav-text">Matriculas</span>
                         </a>
@@ -159,7 +89,7 @@ if ($_SESSION["usuario"]) {
 
 
                     <li class="nav-link">
-                        <a href="#">
+                        <a onclick="window.location.href='./forma_pago.php'">
                             <i class="fa-solid fa-money-bill icon"></i>
                             <span class="text nav-text">Pagos</span>
                         </a>
@@ -210,6 +140,197 @@ if ($_SESSION["usuario"]) {
             </div>
         </div>
     </div>
+
+                    <style>
+                        
+                        .arrow-toggle {
+                            display: none;
+                        }
+                        /* Estudiante */
+                        .sidebar.closeSideBar #button-estudiante .fa-arrow-turn-down {
+                            display: none;
+                        }
+                        #links-estudiante {
+                            display: none;
+                        }
+                        .sidebar.closeSideBar #links-estudiante {
+                            display: none;
+                        }
+
+
+                        /* Ciclo */
+                        .sidebar.closeSideBar #button-ciclo .fa-arrow-turn-down {
+                            display: none;
+                        }
+                        #links-ciclo {
+                            display: none;
+                        }
+                        .sidebar.closeSideBar #links-ciclo{
+                            display: none;
+                        }
+
+
+                        /* Usuario */
+                        .sidebar.closeSideBar #button-usuario .fa-arrow-turn-down {
+                            display: none;
+                        }
+                        #links-usuario {
+                            display: none;
+                        }
+                        .sidebar.closeSideBar #links-usuario{
+                            display: none;
+                        }
+
+                    </style>
+
+                    <script>
+
+                        $(document).ready(function() {
+                            // Función para activar el scroll de la barra lateral
+                            function activarScroll() {
+                            $(".menu-bar").css("overflow-y", "auto");
+                            $(".menu-bar").css("max-height", $(window).height() - $(".header").outerHeight());
+                            }
+
+                            // Verificar y activar el scroll cuando el documento esté listo
+                            activarScroll();
+
+                            // Volver a verificar y activar el scroll si la ventana cambia de tamaño
+                            $(window).resize(function() {
+                            activarScroll();
+                            });
+                        });
+
+                        //ESTUDIANTE
+                        $(document).ready(function() {
+                            $("#button-estudiante").on("click", function() {
+                            $("#links-estudiante").slideToggle();
+                            $(".fa-arrow-turn-down", this).toggleClass("arrow-toggle");
+                            });
+                        });                    
+                        
+                        $(document).ready(function() {
+                            var sublistaVisible = false;
+                            var sidebarContraida = $(".sidebar").hasClass("closeSideBar");
+
+                            $("#button-estudiante").on("click", function() {
+                            // Verificar si la barra lateral está contraída
+                            sidebarContraida = $(".sidebar").hasClass("closeSideBar");
+
+                            if (sidebarContraida) {
+                                // Si la barra lateral está contraída, expandirla y mostrar la sublista
+                                $(".sidebar").removeClass("closeSideBar");
+                                $("#links-estudiante").slideDown();
+                                $(".fa-arrow-turn-down", this).addClass("arrow-toggle");
+                                sublistaVisible = true;
+                            } else {
+                                // Si la barra lateral está desplegada, ocultar o mostrar la sublista después de un clic
+                                if (sublistaVisible) {
+                                $("#links-estudiante").slideUp();
+                                $(".fa-arrow-turn-down", this).removeClass("arrow-toggle");
+                                } else {
+                                $("#links-estudiante").slideDown();
+                                $(".fa-arrow-turn-down", this).addClass("arrow-toggle");
+                                }
+                                sublistaVisible = !sublistaVisible;
+                            }
+                            });
+
+                            // Ocultar la sublista cuando se contrae la barra lateral
+                            $(".toggle").on("click", function() {
+                            $("#links-estudiante").slideUp();
+                            $(".fa-arrow-turn-down").removeClass("arrow-toggle");
+                            sublistaVisible = false;
+                            });
+                        });
+
+                        //CICLO
+                        $(document).ready(function() {
+                            $("#button-ciclo").on("click", function() {
+                            $("#links-ciclo").slideToggle();
+                            $(".fa-arrow-turn-down", this).toggleClass("arrow-toggle");
+                            });
+                        });
+
+                        $(document).ready(function() {
+                            var sublistaVisible = false;
+                            var sidebarContraida = $(".sidebar").hasClass("closeSideBar");
+
+                            $("#button-ciclo").on("click", function() {
+                            // Verificar si la barra lateral está contraída
+                            sidebarContraida = $(".sidebar").hasClass("closeSideBar");
+
+                            if (sidebarContraida) {
+                                // Si la barra lateral está contraída, expandirla y mostrar la sublista
+                                $(".sidebar").removeClass("closeSideBar");
+                                $("#links-ciclo").slideDown();
+                                $(".fa-arrow-turn-down", this).addClass("arrow-toggle");
+                                sublistaVisible = true;
+                            } else {
+                                // Si la barra lateral está desplegada, ocultar o mostrar la sublista después de un clic
+                                if (sublistaVisible) {
+                                $("#links-ciclo").slideUp();
+                                $(".fa-arrow-turn-down", this).removeClass("arrow-toggle");
+                                } else {
+                                $("#links-ciclo").slideDown();
+                                $(".fa-arrow-turn-down", this).addClass("arrow-toggle");
+                                }
+                                sublistaVisible = !sublistaVisible;
+                            }
+                            });
+
+                            // Ocultar la sublista cuando se contrae la barra lateral
+                            $(".toggle").on("click", function() {
+                            $("#links-ciclo").slideUp();
+                            $(".fa-arrow-turn-down").removeClass("arrow-toggle");
+                            sublistaVisible = false;
+                            });
+                        });
+
+                        //USUARIO
+
+                        $(document).ready(function() {
+                            $("#button-usuario").on("click", function() {
+                            $("#links-usuario").slideToggle();
+                            $(".fa-arrow-turn-down", this).toggleClass("arrow-toggle");
+                            });
+                        });
+
+                        $(document).ready(function() {
+                            var sublistaVisible = false;
+                            var sidebarContraida = $(".sidebar").hasClass("closeSideBar");
+
+                            $("#button-usuario").on("click", function() {
+                            // Verificar si la barra lateral está contraída
+                            sidebarContraida = $(".sidebar").hasClass("closeSideBar");
+
+                            if (sidebarContraida) {
+                                // Si la barra lateral está contraída, expandirla y mostrar la sublista
+                                $(".sidebar").removeClass("closeSideBar");
+                                $("#links-usuario").slideDown();
+                                $(".fa-arrow-turn-down", this).addClass("arrow-toggle");
+                                sublistaVisible = true;
+                            } else {
+                                // Si la barra lateral está desplegada, ocultar o mostrar la sublista después de un clic
+                                if (sublistaVisible) {
+                                $("#links-usuario").slideUp();
+                                $(".fa-arrow-turn-down", this).removeClass("arrow-toggle");
+                                } else {
+                                $("#links-usuario").slideDown();
+                                $(".fa-arrow-turn-down", this).addClass("arrow-toggle");
+                                }
+                                sublistaVisible = !sublistaVisible;
+                            }
+                            });
+
+                            // Ocultar la sublista cuando se contrae la barra lateral
+                            $(".toggle").on("click", function() {
+                            $("#links-usuario").slideUp();
+                            $(".fa-arrow-turn-down").removeClass("arrow-toggle");
+                            sublistaVisible = false;
+                            });
+                        });
+                    </script>
 
     <section class="home">
         <script src="src/assets/js/menulinks/links.js"></script>

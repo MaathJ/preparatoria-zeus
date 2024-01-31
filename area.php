@@ -9,6 +9,7 @@ include_once("src/components/parte_superior.php");
 
 <link rel="stylesheet" src="style.css" href="./bootstrap/bootstrap.css">
 <link rel="stylesheet" src="style.css" href="./datatables/datatables.css">
+<link rel="icon" href="src/assets/images/logo-zeus.png">
 
 
             <div class="container-page">

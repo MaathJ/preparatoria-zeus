@@ -37,6 +37,7 @@ ma.id_ma;
 <link rel="stylesheet" href="./src/assets/css/matricula/matricula.css">
 
 <link rel="stylesheet" href="src/assets/css/estado.css">
+<link rel="icon" href="src/assets/images/logo-zeus.png">
 
 
 
@@ -49,8 +50,9 @@ ma.id_ma;
     <button class="turno btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalMatriculaRegistro" data-bs-whatever="@mdo" style="cursor: pointer;">Registrar</button>
 
     <br>
-    <div class="container-table" style="background-color: #fff;">
+    <div class="container-table" style="background-color: #fff; overflow-x: auto;">
         <div class="col-md-12">
+            <div class="table-responsive">
             <table class="table table-striped" id="table_matricula">
                 <thead align="center" class="" style="color: #fff; background-color:#010133;">
                     <tr>
@@ -187,10 +189,9 @@ ma.id_ma;
                 </tbody>
 
             </table>
+            </div>
         </div>
-
     </div>
-</div>
 
 <!-- Para traer el modal boleta  -->
 <?php

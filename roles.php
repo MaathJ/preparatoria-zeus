@@ -4,7 +4,7 @@ include('config/conexion.php');
 include_once('src/components/parte_superior.php');
 ?>
 
-
+<link rel="icon" href="src/assets/images/logo-zeus.png">
 <style type="text/css">
     td {
         padding: 10px;

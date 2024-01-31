@@ -9,6 +9,7 @@ include('modales_periodo.php');
 ?>
 <link rel="stylesheet" src="style.css" href="./bootstrap/bootstrap.css">
 <link rel="stylesheet" src="style.css" href="./datatables/datatables.css">
+<link rel="icon" href="src/assets/images/logo-zeus.png">
 <div class="container-page">
     <div>
         <p>Zeus<span> / Periodo</span></p>

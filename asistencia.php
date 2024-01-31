@@ -4,6 +4,7 @@ include_once('config/conexion.php');
 include_once('src/components/parte_superior.php');
 ?>
 <link rel="stylesheet" href="src/assets/css/asistencia/asistencia.css">
+<link rel="icon" href="src/assets/images/logo-zeus.png">
 
 <div class="container-page">
 

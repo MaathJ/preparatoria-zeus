@@ -5,6 +5,8 @@ include('config/conexion.php');
 include('modales_turno.php');
 ?>
 
+<link rel="icon" href="src/assets/images/logo-zeus.png">
+
 <div class="container-page">
     <div>
         <p>Zeus<span> / Turno</span></p>
