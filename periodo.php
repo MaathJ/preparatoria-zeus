@@ -35,7 +35,7 @@ include('modales_periodo.php');
                         deleteModalPeriodo($r['id_pe']);
                         ?>
                         <tr>
-                            <td align="center"><?php echo $r['nombre_pe'] ?></td>
+                            <td align="center"><i class="fa-solid fa-eye"></i> <?php echo $r['nombre_pe'] ?></td>
                             <td align="center"><?php
                                                 $estado = $r['estado_pe'];
                                                 $button = '<button class="' . ($estado === "ACTIVO" ? 'active-button' : 'inactive-button') . '">' . $estado . '</button>';

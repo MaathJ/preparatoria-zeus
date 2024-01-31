@@ -46,7 +46,6 @@ include_once('src/components/parte_superior.php');
             <table class="table table-striped table_id" id="table_usuario" style="width:100%; box-sizing: border-box; overflow:hidden">
                 <thead align="center" style="color: #fff; background-color:#010133;">
                     <tr align="center">
-                        <th class="text-center">ID</th>
                         <th class="text-center">Usuario</th>
                         <th class="text-center">Contraseña</th>
                         <th class="text-center">Nombre y Apellido</th>
@@ -71,8 +70,7 @@ include_once('src/components/parte_superior.php');
                     ?>
 
                         <tr align="center">
-                            <td><?php echo $r['id_us'] ?> </td>
-                            <td><?php echo $r['usuario_us'] ?></td>
+                            <td><i class="fa-solid fa-eye"></i> <?php echo $r['usuario_us'] ?></td>
                             <td><?php echo $r['contra_us'] ?></td>
                             <td><?php echo $r['nombre_us'] . " " . $r['apellido_us']  ?></td>
                             <td><?php echo $r['dni_us'] ?></td>

@@ -79,7 +79,7 @@ ma.id_ma;
                     ?>
                         <tr>
                             <td>
-                                <i class="fa-regular fa-folder"></i>
+                                <i class="fa-solid fa-eye"></i>
                                 <?php echo $rma['nombre_al'] ?>
                             </td>
                             <td>
