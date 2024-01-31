@@ -46,7 +46,7 @@ if ($_SESSION["usuario"]) {
             <div class="menu">
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a onclick="window.location.href='./principal.php'">
+                        <a style="cursor: pointer;" onclick="window.location.href='./principal.php'">
                             <i class="fa-solid fa-house icon"></i>
                             <span class="text nav-text">Panel de Control</span>
                         </a>
@@ -68,7 +68,7 @@ if ($_SESSION["usuario"]) {
                     
 
                     <li class="nav-link">
-                        <a onclick="window.location.href='./matricula.php'">
+                        <a style="cursor: pointer;" onclick="window.location.href='./matricula.php'">
                             <i class="fa-solid fa-box-archive icon"></i>
                             <span class="text nav-text">Matriculas</span>
                         </a>
@@ -87,18 +87,18 @@ if ($_SESSION["usuario"]) {
                         <li class="links-options" onclick="window.location.href='./turno.php'">Turno</li>
                     </ul>
 
-
                     <li class="nav-link">
-                        <a onclick="window.location.href='./forma_pago.php'">
-                            <i class="fa-solid fa-money-bill icon"></i>
-                            <span class="text nav-text">Pagos</span>
+                        <a style="cursor: pointer;" onclick="window.location.href='./descuento.php'">
+                        <i class="fa-solid fa-bookmark icon"></i>
+                            <span class="text nav-text">Descuentos</span>
                         </a>
                     </li>
 
+
                     <li class="nav-link">
-                        <a href="#">
-                            <i class="fa-solid fa-file icon"></i>
-                            <span class="text nav-text">Reportes</span>
+                        <a style="cursor: pointer;" onclick="window.location.href='./forma_pago.php'">
+                            <i class="fa-solid fa-money-bill icon"></i>
+                            <span class="text nav-text">Formas de Pago</span>
                         </a>
                     </li>
 
