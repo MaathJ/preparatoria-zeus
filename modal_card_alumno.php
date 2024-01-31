@@ -42,11 +42,11 @@ include_once('auth.php');
                         <div style="color: #010133; font-weight: bold;"></div>
                         <div>
                             <div class="info-user-more apoderado">
-                                <i class="fa-solid fa-user"></i>
+                                <i class="fa-solid fa-user" id="apo-icon-1"></i>
                                 <span id="card-napo"></span>
                             </div>
                             <div class="info-user-more telefono-apoderado">
-                                <i class="fa-solid fa-phone"></i>
+                                <i class="fa-solid fa-phone" id="apo-icon-2"></i>
                                 <span id="card-ntel"></span>
                             </div>
                         </div>

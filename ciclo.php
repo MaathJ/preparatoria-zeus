@@ -37,7 +37,7 @@ include('modales_ciclo.php');
                                         INNER JOIN periodo pe ON ci.id_pe = pe.id_pe 
                                         GROUP BY ci.id_ci";
                     $fc = mysqli_query($cn, $sqlc);
-                    while ($r = mysqli_fetch_assoc($fc)) {                        
+                    while ($r = mysqli_fetch_assoc($fc)) {
                     ?>
                         <?php
                         $turnos = obtenerTurnosCiclo($r['id_ci'], $cn);
@@ -76,7 +76,7 @@ include('modales_ciclo.php');
                                         });">
                                     <i class="fas fa-edit"> </i>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modalConfirmarEliminar" data-id="<?php echo $r['id_ci']; ?>">
+                                <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modalConfirmarEliminar<?php echo $r['id_ci']; ?>">
                                     <i class="fas fa-trash"></i>
                                 </a>
 

@@ -89,7 +89,7 @@
 function deleteModalTurno($id)
 {
     echo <<<HTML
-    <div class="modal fade" id="DeleteModalTurno" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="DeleteModalTurno{$id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                     <div class="modal-header" style="background-color: #010133; color: #ffffff;">

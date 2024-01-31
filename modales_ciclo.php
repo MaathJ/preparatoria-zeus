@@ -174,7 +174,7 @@ function deleteModalCiclo($id)
 {
 
     echo <<<HTML
-    <div class="modal fade" id="modalConfirmarEliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalConfirmarEliminar{$id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #010133; color: #ffffff;">
@@ -196,4 +196,3 @@ function deleteModalCiclo($id)
 ?>
 
 <?php
-
