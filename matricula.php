@@ -86,25 +86,25 @@ ma.id_ma;
 
                                 <?php echo $rma['apellido_al'] ?>
                             </td>
-                            <td>
+                            <td align="center">
                                 <?php echo $rma['nombre_pe'] . ' ' . $rma['nombre_ci'] ?>
                             </td>
-                            <td>
+                            <td align="center">
                                 <?php echo $rma['mensualidad_ma'] ?>
                             </td>
-                            <td>
+                            <td align="center">
                                 <?php echo $rma['total_meses'] ?>
                             </td>
-                            <td>
+                            <td align="center">
 
                                 <a class="btn btn-sm btn-success" href="boleta.php?id=<?php echo $rma['id_ma']; ?>"><i class="fa-solid fa-file-invoice"></i></a>
 
                             </td>
 
-                            <td>
+                            <td align="center">
                                 <?php echo $rma['mensualidad_ma'] ?>
                             </td>
-                            <td>
+                            <td align="center">
                                 <?php echo $rma['total_deudas'] ?>
                             </td>
 
@@ -115,9 +115,7 @@ ma.id_ma;
                                 ?>
                                 |
                             </td>
-
                             <td>
-                                <span style="font-weight: bold; color:rgb(1, 1, 51)"><?php echo $rma['nombre_us'] ?>:</span>
                                 <?php echo $rma['freg_ma'] ?>
                             </td>
 

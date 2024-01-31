@@ -81,26 +81,33 @@ include('modales_alumno.php');
 </script>
 <div class="container-page">
     <div>
-        <p>Pages<span> / Alumno</span></p>
+        <p>Zeus<span> / Alumno</span></p>
         <h3>Alumno</h3>
     </div>
     <button class="cliente btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalRegistrar" data-bs-whatever="@mdo">
         Registrar
     </button>
+
+    <!-- <style>
+            #table_alumno thead th {
+                text-align: center;
+            }
+    </style> -->
+    
     <div class="container-table" style="background-color: #fff;">
         <div class="col-md-12">
             <table class="table table-striped table_id" id="table_alumno">
-                <thead style="color: #fff; background-color:#010133;">
-                    <tr>
-                        <th class="text-center"> FOTO </th>
-                        <th class="text-center"> Alumno </th>
-                        <th class="text-center"> Edad</th>
-                        <th class="text-center"> DNI </th>
-                        <th class="text-center"> Telefono </th>
-                        <th class="text-center"> Direc. </th>
-                        <th class="text-center"> Mas Info</th>
-                        <th class="text-center"> Opciones</th>
-                    </tr>
+                <thead align="center" class="" style="color: #fff; background-color:#010133;">
+                    <tr align="center">
+                        <!--<th> ID </th>-->
+                        <th> FOTO </th>
+                        <th> Alumno </th>
+                        <th> Edad</th>
+                        <th> DNI </th>
+                        <th> Telefono </th>
+                        <th> Direc. </th>
+                        <th> Mas Info</th>
+                        <th> Opciones</th>
                 </thead>
                 <?php
                 include('./config/conexion.php');
@@ -132,7 +139,7 @@ include('modales_alumno.php');
                     <!-- <td align="center"> <?php //echo $r['freg_al'] 
                                                 ?></td> -->
                     <td align="center">
-                        <a class="btn btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#ModalCardInfo" data-bs-whatever="@mdo" onclick="infoI(
+                        <a class="btn btn-sm btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#ModalCardInfo" data-bs-whatever="@mdo" onclick="infoI(
                                                         '<?php echo $r['id_al'] ?? ''; ?>'
                                                     )">
                             Más Info
@@ -153,7 +160,7 @@ include('modales_alumno.php');
                                 $row = $result->fetch_assoc();
                                 $id_arU = $row['id_ar'];
                             } ?>
-                            <a class="btn btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#ModalEditar" data-bs-whatever="@mdo" target="_parent" onclick="cargar_info({
+                            <a class="btn btn-sm btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#ModalEditar" data-bs-whatever="@mdo" target="_parent" onclick="cargar_info({
                                                         'id_alU': '<?php echo $r['id_al'] ?? ''; ?>',
                                                         'nombreU': '<?php echo $r['nombre_al'] ?? ''; ?>',
                                                         'apellidoU': '<?php echo $r['apellido_al'] ?? ''; ?>',
@@ -171,7 +178,7 @@ include('modales_alumno.php');
                                                         'generoU': '<?php echo $r['genero_al'] ?? ''; ?>'
                                                     });">
                                 <i class="fas fa-edit"> </i></a>
-                            <a class="btn btn-danger btn-circle " data-bs-toggle="modal" data-bs-target="#ModalEliminarD" data-bs-whatever="@mdo" target="_parent" onclick="cargar_infoD({
+                            <a class="btn btn-sm btn-danger btn-circle " data-bs-toggle="modal" data-bs-target="#ModalEliminarD" data-bs-whatever="@mdo" target="_parent" onclick="cargar_infoD({
                                                 'id_alD': '<?php echo $r['id_al'] ?? ''; ?>',
                                                 });">
                                 <i class="fas fa-trash"> </i></a>

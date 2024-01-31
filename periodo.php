@@ -44,14 +44,14 @@ include('modales_periodo.php');
                             </td>
                             <td>
                                 <center>
-                                    <a class="btn btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#editarModalPeriodo" data-bs-whatever="@mdo" target="_parent" onclick="cargarInfoEdit({
+                                    <a class="btn btn-sm btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#editarModalPeriodo" data-bs-whatever="@mdo" target="_parent" onclick="cargarInfoEdit({
                                                         'id': '<?php echo $r['id_pe'] ?? ''; ?>',
                                                         'nombre': '<?php echo $r['nombre_pe'] ?? ''; ?>',
                                                         'estado': '<?php echo $r['estado_pe'] ?? ''; ?>'
                                                     });">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <a class="btn btn-danger btn-circle " target="_parent" data-bs-toggle="modal" data-bs-target="#DeleteModalPeriodo<?php echo $r['id_pe'] ?>" data-bs-whatever="@mdo">
+                                    <a class="btn btn-sm btn-danger btn-circle " target="_parent" data-bs-toggle="modal" data-bs-target="#DeleteModalPeriodo<?php echo $r['id_pe'] ?>" data-bs-whatever="@mdo">
                                         <i class=" fas fa-trash"> </i>
                                     </a>
                                 </center>

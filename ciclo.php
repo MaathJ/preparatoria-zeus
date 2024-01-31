@@ -19,15 +19,15 @@ include('modales_ciclo.php');
             <table class="table table-striped" id="table_ciclo">
                 <thead align="center" class="" style="color: #fff; background-color:#010133;">
                     <tr>
-                        <th>ID</th>
-                        <th>CICLO</th>
-                        <th>Turnos</th>
-                        <th>Fecha de Inicio</th>
-                        <th>Fecha de Finalización</th>
-                        <th>Precio</th>
-                        <th>Periodo</th>
-                        <th>Estado</th>
-                        <th>Opciones</th>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">Ciclo</th>
+                        <th class="text-center">Turnos</th>
+                        <th class="text-center">Inicio</th>
+                        <th class="text-center">Finalización</th>
+                        <th class="text-center">Precio</th>
+                        <th class="text-center">Periodo</th>
+                        <th class="text-center">Estado</th>
+                        <th class="text-center">Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,9 +44,9 @@ include('modales_ciclo.php');
                         deleteModalCiclo($r['id_ci']);
                         ?>
                         <tr>
-                            <td><?php echo $r['id_ci'] ?></td>
-                            <td><?php echo $r['nombre_pe'] . ' ' . $r['nombre_ci'] ?></td>
-                            <td>
+                            <td align="center"><?php echo $r['id_ci'] ?></td>
+                            <td align="center"><?php echo $r['nombre_pe'] . ' ' . $r['nombre_ci'] ?></td>
+                            <td align="center">
                                 <?php
                                 $turnos_nombre_array = explode(', ', $turnos['turnos_nombre']);
                                 $turnos_horario_array = explode(', ', $turnos['turnos_horario']);
@@ -56,14 +56,14 @@ include('modales_ciclo.php');
                                 }
                                 ?>
                             </td>
-                            <td><?php echo  date('d-m-Y ', strtotime($r['fini_ci'])) ?></td>
-                            <td><?php echo  date('d-m-Y ', strtotime($r['ffin_ci']))  ?></td>
-                            <td><?php echo 'S/ ' . $r['precio_ci'] ?></td>
-                            <td><?php echo $r['nombre_pe'] ?></td>
-                            <td><?php $estado = $r['estado_ci'];
+                            <td align="center"><?php echo  date('d-m-Y ', strtotime($r['fini_ci'])) ?></td>
+                            <td align="center"><?php echo  date('d-m-Y ', strtotime($r['ffin_ci']))  ?></td>
+                            <td align="center"><?php echo 'S/ ' . $r['precio_ci'] ?></td>
+                            <td align="center"><?php echo $r['nombre_pe'] ?></td>
+                            <td align="center"><?php $estado = $r['estado_ci'];
                                 $button = '<button class="' . ($estado === "ACTIVO" ? 'active-button' : 'inactive-button') . '">' . $estado . '</button>';
                                 echo $button; ?></td>
-                            <td>
+                            <td align="center">
                                 <a class="btn btn-sm btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#ModalcicloEditar" data-bs-whatever="@mdo" target="_parent" onclick="cargar_info({
                                         'id':'<?php echo $r['id_ci']; ?>',
                                         'nombre':'<?php echo $r['nombre_ci']; ?>',

@@ -56,8 +56,8 @@ include('modales_carrera.php');
                                 ?>
                             </td>
 
-                            <td>
-                                <a class="btn btn-lg btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#modalEditar" data-bs-whatever="@mdo" target="_parent" onclick="cargar_info({
+                            <td align="center">
+                                <a class="btn btn-sm btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#modalEditar" data-bs-whatever="@mdo" target="_parent" onclick="cargar_info({
                             
                             'carrera': '<?php echo isset($filaca['nombre_ca']) ? $filaca['nombre_ca'] : ''; ?>',
                               'area': '<?php echo isset($filaca['id_ar']) ? $filaca['id_ar'] : ''; ?>',
@@ -67,7 +67,7 @@ include('modales_carrera.php');
                                     });">
                                     <i class="fas fa-edit"> </i></a>
                                 <!-- Agregar el atributo data-bs-toggle y data-bs-target para abrir el modal -->
-                                <a href="#" class="btn btn-lg btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteModalCarrera<?php echo $filaca['id_ca']; ?>">
+                                <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteModalCarrera<?php echo $filaca['id_ca']; ?>">
                                     <i class="fas fa-trash"></i>
                                 </a>
 

@@ -46,15 +46,15 @@ include_once('src/components/parte_superior.php');
             <table class="table table-striped" id="table_usuario">
                 <thead align="center" style="color: #fff; background-color:#010133;">
                     <tr align="center">
-                        <th>ID</th>
-                        <th>Usuario</th>
-                        <th>Contraseña</th>
-                        <th>Nombre y Apellido</th>
-                        <th>Dni</th>
-                        <th>Telefono</th>
-                        <th>Estado</th>
-                        <th>Rol</th>
-                        <th>Opciones</th>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">Usuario</th>
+                        <th class="text-center">Contraseña</th>
+                        <th class="text-center">Nombre y Apellido</th>
+                        <th class="text-center">Dni</th>
+                        <th class="text-center">Telefono</th>
+                        <th class="text-center">Estado</th>
+                        <th class="text-center">Rol</th>
+                        <th class="text-center">Opciones</th>
                     </tr>
 
                 </thead>
@@ -86,7 +86,7 @@ include_once('src/components/parte_superior.php');
                             <td><?php echo $r['nombre_ro'] ?></td>
                             <td>
                                 <center>
-                                    <a class="btn btn-lg btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#modalEditar" data-bs-whatever="@mdo" onclick="cargar_editar({
+                                    <a class="btn btn-sm btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#modalEditar" data-bs-whatever="@mdo" onclick="cargar_editar({
                                                 'usuario': '<?php echo $r['usuario_us'] ?? ''; ?>',
                                                 'pass': '<?php echo $r['contra_us'] ?? ''; ?>',
                                                 'nombre_us': '<?php echo $r['nombre_us'] ?? ''; ?>',
@@ -101,7 +101,7 @@ include_once('src/components/parte_superior.php');
 
 
 
-                                    <a class="btn btn-lg btn-danger" data-bs-toggle="modal" data-bs-target="#ModalEliminar" data-bs-whatever="@mdo" onclick="cargarinfo2({
+                                    <a class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#ModalEliminar" data-bs-whatever="@mdo" onclick="cargarinfo2({
                                                     'usuario2': '<?php echo $r['id_us'] ?? ''; ?>',
                                                 
                                                     });"><i class="fas fa-trash"></i></a>

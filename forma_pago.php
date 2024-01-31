@@ -20,10 +20,10 @@ include_once('src/components/parte_superior.php');
             <table class="table table-striped"  id="table_formapago">
                 <thead align="center" class=""  style="color: #fff; background-color:#010133;">
                     <tr>
-                        <th>Imagen</th>
-                        <th>Nombre</th>
-                        <th>Estado</th>
-                        <th>Opciones</th>
+                        <th class="text-center">Imagen</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Estado</th>
+                        <th class="text-center">Opciones</th>
                     </tr>
 
                 </thead>
@@ -50,10 +50,10 @@ include_once('src/components/parte_superior.php');
                                     'id_fp': '<?php echo $r['id_fp']; ?>',
                                     'nombre_fp': '<?php echo $r['nombre_fp']; ?>',
                                     'estado_fp': '<?php echo $r['estado_fp']; ?>',
-                                });"> EDITAR </button>
+                                });"><i class="fas fa-edit"></i> </button>
 
                                 <!-- BOTON ELIMINAR -->
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Eliminar" onclick="cargar_eliminar({ 
+                                <button type="button" class="btn btn-danger btn-circle" data-bs-toggle="modal" data-bs-target="#Eliminar" onclick="cargar_eliminar({ 
                                     'id_fp': '<?php echo $r['id_fp']; ?>',
                                     'nombre_fp': '<?php echo $r['nombre_fp']; ?>',
                                     'estado_fp': '<?php echo $r['estado_fp']; ?>',
