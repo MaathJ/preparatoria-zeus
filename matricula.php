@@ -64,8 +64,8 @@ ma.id_ma;
                         <th class="text-center">Dias Restantes</th>
                         <th class="text-center">Deuda</th>
                         <th class="text-center">Estado</th>
-                        <th class="text-center">Operador</th>
                         <th class="text-center">Fecha Registro</th>
+                        <th class="text-center">Operador</th>
                         <th class="text-center">Acciones</th>
                     </tr>
                 </thead>
@@ -78,7 +78,7 @@ ma.id_ma;
                         $final = $rma['ffin_ci'];
                     ?>
                         <tr>
-                            <?php echo $rma['id_ma'] ?>
+                            
                             <td>
                                 <?php echo $rma['apellido_al'] . ' ' . $rma['nombre_al'] ?>
                             </td>
@@ -109,12 +109,13 @@ ma.id_ma;
                             </td>
 
                             <td align="center">
-                                <?php echo $rma['nombre_us'] ?>
+                                <?php echo $rma['freg_ma'] ?>
+                                
                             </td>
                             <td align="center">
-                                <?php echo $rma['freg_ma'] ?>
+                                <?php echo $rma['nombre_us'] ?>
                             </td>
-
+                                
                             <td>
 
 

@@ -94,9 +94,9 @@ include('modales_alumno.php');
             }
     </style> -->
     
-    <div class="container-table" style="background-color: #fff;">
-        <div class="col-md-12">
-            <table class="table table-striped table_id" id="table_alumno">
+    <div class="container-table" style="background-color: #fff; overflow:hidden">
+        <div class="col-md-12" style="box-sizing: border-box;">
+            <table class="table table-striped table_id" id="table_alumno" style="width:100%; box-sizing: border-box; overflow:hidden">
                 <thead align="center" class="" style="color: #fff; background-color:#010133;">
                     <tr align="center">
                         <!--<th> ID </th>-->

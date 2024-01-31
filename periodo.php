@@ -16,9 +16,9 @@ include('modales_periodo.php');
         <h3>Periodo</h3>
     </div>
     <button class="periodo btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModalPeriodo" data-bs-whatever="@mdo" style="cursor: pointer;">Registrar</button>
-    <div class="container-table" style="background-color: #fff;">
-        <div class="col-md-12">
-            <table class="table table-striped" id="table_periodo">
+    <div class="container-table" style="background-color: #fff; overflow:hidden">
+        <div class="col-md-12" style="box-sizing: border-box;">
+            <table class="table table-striped table_id" id="table_periodo" style="width:100%; box-sizing: border-box; overflow:hidden">
                 <thead align="center" class="" style="color: #fff; background-color:#010133;">
                     <tr>
                         <th class="text-center">Periodo</th>

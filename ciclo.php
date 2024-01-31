@@ -14,9 +14,9 @@ include('modales_ciclo.php');
     </div>
     <button class="turno btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalcicloRegistro" data-bs-whatever="@mdo" style="cursor: pointer;">Registrar</button>
     <br>
-    <div class="container-table" style="background-color: #fff;">
-        <div class="col-md-12">
-            <table class="table table-striped" id="table_ciclo">
+    <div class="container-table" style="background-color: #fff; overflow:hidden">
+        <div class="col-md-12" style="box-sizing: border-box;">
+            <table class="table table-striped table_id" id="table_ciclo" style="width:100%; box-sizing: border-box; overflow:hidden">
                 <thead align="center" class="" style="color: #fff; background-color:#010133;">
                     <tr>
                         <th class="text-center">ID</th>
