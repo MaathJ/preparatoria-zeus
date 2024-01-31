@@ -8,6 +8,7 @@ include('modales_alumno.php');
 <link rel="stylesheet" src="style.css" href="./src/assets/css/alumno/alumno.css">
 <link rel="stylesheet" src="style.css" href="./bootstrap/bootstrap.css">
 <link rel="stylesheet" src="style.css" href="./datatables/datatables.css">
+<link rel="icon" href="src/assets/images/logo-zeus.png">
 <script>
     function infoI(dato) {
         idAlumno = dato;

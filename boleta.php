@@ -7,6 +7,7 @@ include_once('src/components/parte_superior.php');
 $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 ?>
 <link rel="stylesheet" href="src/assets/css/boleta/forma_pago.css">
+<link rel="icon" href="src/assets/images/logo-zeus.png">
 
 <div class="container-page">
     <?php

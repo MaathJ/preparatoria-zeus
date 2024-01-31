@@ -18,6 +18,8 @@ include_once('src/components/parte_superior.php');
     }
 </style>
 
+<link rel="icon" href="src/assets/images/logo-zeus.png">
+
 <div class="container-page">
     <div>
         <p>Zeus<span>/Usuario</span></p>
@@ -39,80 +41,80 @@ include_once('src/components/parte_superior.php');
     ?>
 
 
-    <div class="container-table" style="background-color: #fff;">
-        <table class="table table-striped" id="table_usuario">
-            <thead align="center" style="color: #fff; background-color:#010133;">
-                <tr align="center">
-                    <th>ID</th>
-                    <th>Usuario</th>
-                    <th>Contraseña</th>
-                    <th>Nombre y Apellido</th>
-                    <th>Dni</th>
-                    <th>Telefono</th>
-                    <th>Estado</th>
-                    <th>Rol</th>
-                    <th>Opciones</th>
-                </tr>
-
-            </thead>
-            <tbody>
-                <?php
-
-                $sqlu = "SELECT u.* , ro.* FROM  usuario u inner join rol ro
-                                       on u.id_ro = ro.id_ro order by u.id_us DESC ";
-                $f = mysqli_query($cn, $sqlu);
-
-                while ($r = mysqli_fetch_assoc($f)) {
-
-
-                ?>
-
+    <div class="container-table" style="background-color: #fff; overflow-x: auto;">
+        <div class="table-responsive">
+            <table class="table table-striped" id="table_usuario">
+                <thead align="center" style="color: #fff; background-color:#010133;">
                     <tr align="center">
-                        <td><?php echo $r['id_us'] ?> </td>
-                        <td><?php echo $r['usuario_us'] ?></td>
-                        <td><?php echo $r['contra_us'] ?></td>
-                        <td><?php echo $r['nombre_us'] . " " . $r['apellido_us']  ?></td>
-                        <td><?php echo $r['dni_us'] ?></td>
-                        <td><?php echo $r['telefono_us'] ?></td>
-                        <td align="center"><?php
-                                            $estado = $r['estado_us'];
-                                            $button = '<button class="' . ($estado === "ACTIVO" ? 'active-button' : 'inactive-button') . '">' . $estado . '</button>';
-                                            echo $button;
-                                            ?>
-                        </td>
-                        <td><?php echo $r['nombre_ro'] ?></td>
-                        <td>
-                            <center>
-                                <a class="btn btn-lg btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#modalEditar" data-bs-whatever="@mdo" onclick="cargar_editar({
-                                            'usuario': '<?php echo $r['usuario_us'] ?? ''; ?>',
-                                            'pass': '<?php echo $r['contra_us'] ?? ''; ?>',
-                                            'nombre_us': '<?php echo $r['nombre_us'] ?? ''; ?>',
-                                            'telefono': '<?php echo $r['telefono_us'] ?? ''; ?>',
-                                            'estado': '<?php echo $r['estado_us'] ?? ''; ?>',
-                                            'rol': '<?php echo $r['id_ro'] ?? ''; ?>',
-                                            'id': '<?php echo $r['id_us'] ?? ''; ?>',
-                                            'apellido': '<?php echo $r['apellido_us'] ?? ''; ?>',
-                                            'dni': '<?php echo $r['dni_us'] ?? ''; ?>',
-                                                });">
-                                    <i class="fas fa-edit"> </i></a>
-
-
-
-                                <a class="btn btn-lg btn-danger" data-bs-toggle="modal" data-bs-target="#ModalEliminar" data-bs-whatever="@mdo" onclick="cargarinfo2({
-                                                'usuario2': '<?php echo $r['id_us'] ?? ''; ?>',
-                                            
-                                                });"><i class="fas fa-trash"></i></a>
-                            </center>
-                        </td>
+                        <th>ID</th>
+                        <th>Usuario</th>
+                        <th>Contraseña</th>
+                        <th>Nombre y Apellido</th>
+                        <th>Dni</th>
+                        <th>Telefono</th>
+                        <th>Estado</th>
+                        <th>Rol</th>
+                        <th>Opciones</th>
                     </tr>
-                <?php
-                }
-                ?>
-            </tbody>
-        </table>
-    </div>
 
-</div>
+                </thead>
+                <tbody>
+                    <?php
+
+                    $sqlu = "SELECT u.* , ro.* FROM  usuario u inner join rol ro
+                                        on u.id_ro = ro.id_ro order by u.id_us DESC ";
+                    $f = mysqli_query($cn, $sqlu);
+
+                    while ($r = mysqli_fetch_assoc($f)) {
+
+
+                    ?>
+
+                        <tr align="center">
+                            <td><?php echo $r['id_us'] ?> </td>
+                            <td><?php echo $r['usuario_us'] ?></td>
+                            <td><?php echo $r['contra_us'] ?></td>
+                            <td><?php echo $r['nombre_us'] . " " . $r['apellido_us']  ?></td>
+                            <td><?php echo $r['dni_us'] ?></td>
+                            <td><?php echo $r['telefono_us'] ?></td>
+                            <td align="center"><?php
+                                                $estado = $r['estado_us'];
+                                                $button = '<button class="' . ($estado === "ACTIVO" ? 'active-button' : 'inactive-button') . '">' . $estado . '</button>';
+                                                echo $button;
+                                                ?>
+                            </td>
+                            <td><?php echo $r['nombre_ro'] ?></td>
+                            <td>
+                                <center>
+                                    <a class="btn btn-lg btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#modalEditar" data-bs-whatever="@mdo" onclick="cargar_editar({
+                                                'usuario': '<?php echo $r['usuario_us'] ?? ''; ?>',
+                                                'pass': '<?php echo $r['contra_us'] ?? ''; ?>',
+                                                'nombre_us': '<?php echo $r['nombre_us'] ?? ''; ?>',
+                                                'telefono': '<?php echo $r['telefono_us'] ?? ''; ?>',
+                                                'estado': '<?php echo $r['estado_us'] ?? ''; ?>',
+                                                'rol': '<?php echo $r['id_ro'] ?? ''; ?>',
+                                                'id': '<?php echo $r['id_us'] ?? ''; ?>',
+                                                'apellido': '<?php echo $r['apellido_us'] ?? ''; ?>',
+                                                'dni': '<?php echo $r['dni_us'] ?? ''; ?>',
+                                                    });">
+                                        <i class="fas fa-edit"> </i></a>
+
+
+
+                                    <a class="btn btn-lg btn-danger" data-bs-toggle="modal" data-bs-target="#ModalEliminar" data-bs-whatever="@mdo" onclick="cargarinfo2({
+                                                    'usuario2': '<?php echo $r['id_us'] ?? ''; ?>',
+                                                
+                                                    });"><i class="fas fa-trash"></i></a>
+                                </center>
+                            </td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 <div class="modal fade  " id="ModalEliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

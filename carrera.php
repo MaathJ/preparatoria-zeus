@@ -4,6 +4,7 @@ include('config/conexion.php');
 include_once("src/components/parte_superior.php");
 include('modales_carrera.php');
 ?>
+<link rel="icon" href="src/assets/images/logo-zeus.png">
 <div class="container-page">
     <div>
         <p>Zeus<span>/Carrera</span></p>

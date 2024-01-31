@@ -4,6 +4,9 @@ include_once('config/conexion.php');
 include_once('app/controllers/descuento/Modal_descuento.php');
 include_once('src/components/parte_superior.php');
 ?>
+
+<link rel="icon" href="src/assets/images/logo-zeus.png">
+
 <div class="container-page">
     <div>
         <p>Zeus<span> / Descuento</span></p>

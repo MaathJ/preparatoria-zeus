@@ -5,6 +5,8 @@ include_once('src/components/parte_superior.php');
 include('modales_ciclo.php');
 ?>
 
+<link rel="icon" href="src/assets/images/logo-zeus.png">
+
 <div class="container-page">
     <div>
         <p>Zeus<span> / Ciclo</span></p>

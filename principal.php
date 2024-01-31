@@ -7,12 +7,16 @@ $f = mysqli_query($cn, $sql);
 ?>
 <link rel="stylesheet" src="style.css" href="./bootstrap/bootstrap.css">
 <link rel="stylesheet" src="style.css" href="./datatables/datatables.css">
+<link rel="icon" href="src/assets/images/logo-zeus.png">
 <div class="container-page">
     <div>
         <p>Zeus<span> / Panel de Control</span></p>
         <h3>Panel de Control</h3>
     </div>
+    <form action="backup.php" method="post">
+    <button class="btn btn-primary" style="cursor: pointer;" name="backup_btn" value="Generar Backup">Generar BackUp</button>
     
+    </form>
     </div>
 
 </div>

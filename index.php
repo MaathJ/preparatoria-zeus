@@ -35,6 +35,7 @@ include_once('./config/conexion.php');
     <title>Document</title>
     <link rel="stylesheet" href="./index.css">
     <link rel="stylesheet" href="./src/assets/css/login/login.css"/>
+    <link rel="icon" href="src/assets/images/logo-zeus.png">
 </head>
 <body >
     <div class="body__login">
