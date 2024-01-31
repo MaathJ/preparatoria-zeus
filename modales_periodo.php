@@ -1,5 +1,7 @@
 <?php
 
+include_once('auth.php');
+
 function deleteModalPeriodo($id)
 {
     echo <<<HTML

@@ -1,9 +1,9 @@
 <?php
 include('../../../config/conexion.php');
 
-$codigo = $_GET['cod'];
+$id = $_GET['id'];
 
-$sql = "DELETE FROM carrera WHERE id_ca = $codigo";
+$sql = "DELETE FROM carrera WHERE id_ca = '$id'";
 mysqli_query($cn, $sql);
 
 header("Location: ../../../carrera.php");

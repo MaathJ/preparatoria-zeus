@@ -89,21 +89,21 @@
                 <h4 class="modal-title" id="exampleModalLabel2">CONFIRMACION DE ELIMINACION:</h4>
                 <button type="button" class="btn-close" style="background-color: #ffffff;" data-bs-dismiss="modal" aria-label="Close" onclick="reopenFirstModal()"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body"> 
                 <form action="app/controllers/pago/D_pago.php" method="post">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <h5>¿Está seguro que desea eliminar el pago?</h5>
-                                <input type="text" name="cod_pa" id="cod_pa" class="form-control">
+                                <input type="text" name="cod_pa" id="D-id-pago" hidden>
+                                <input type="text" name="cod_bo" id="D-id-boleta" hidden>
+                                <input type="text" name="volver" id="D-volver-boleta" hidden>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" name="id_rol_seleccionado" id="id_rol_seleccionado" value="">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="reopenFirstModal()">CERRAR</button>
                         <button type="submit" class="btn btn-primary">ELIMINAR</button>
-                        <input type="hidden" name="id_us" id="id_us">
                     </div>
                 </form>
             </div>
@@ -123,6 +123,8 @@
 
     function cargar_eliminar_pago(dato){
         document.getElementById('D-id-pago').value = dato.id_pa;
+        document.getElementById('D-id-boleta').value = dato.id_bo;
+        document.getElementById('D-volver-boleta').value = dato.volver;
     }
 
     function restar_deuda() {
@@ -176,4 +178,4 @@
     }
 </style>
 
-<script src="src/assets/js/img.js"></script>
+<!-- <script src="src/assets/js/img.js"></script> -->

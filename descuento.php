@@ -22,7 +22,6 @@ include_once('src/components/parte_superior.php');
                                         <th>Estado</th>
                                         <th>Opciones</th>
                                     </tr>
-
                                 </thead>
                                 <tbody>
                                     <?php

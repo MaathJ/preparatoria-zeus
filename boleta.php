@@ -4,6 +4,7 @@ include_once('config/conexion.php');
 include_once('app/controllers/boleta/Modal_boleta.php');
 include_once('app/controllers/pago/Modal_pago.php');
 include_once('src/components/parte_superior.php');
+$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 ?>
 <link rel="stylesheet" href="src/assets/css/boleta/forma_pago.css">
 
@@ -12,9 +13,12 @@ include_once('src/components/parte_superior.php');
         if(isset($_GET['id'])){
             $id = $_GET['id'];
  
-            $sql="SELECT ma.*, ci.* 
+            $sql="SELECT ma.*, ci.*, al.*, ar.*
             FROM matricula ma
             INNER JOIN ciclo ci ON ma.id_ci = ci.id_ci
+            INNER JOIN alumno al ON al.id_al = ma.id_al
+            INNER JOIN carrera ca ON al.id_ca = ca.id_ca
+            INNER JOIN area ar ON ca.id_ar = ar.id_ar
             WHERE ma.id_ma = $id";
             $f=mysqli_query($cn, $sql);
             if($r = mysqli_fetch_assoc($f)){  
@@ -22,6 +26,19 @@ include_once('src/components/parte_superior.php');
                 $inicio = $r['fini_ci'];
                 $final = $r['ffin_ci'];
                 $texto = "";
+
+                //DATOS ALUMNO
+                $dni= $r['dni_al'];
+                $nombre = $r['apellido_al'].", ".$r['nombre_al'];
+                $area = $r['nombre_ar'];
+                //------------
+                //DATOS MATRICULA
+                $ciclo = $r['nombre_ci'];
+                $mat_ini = strtotime($r['fini_ci']);
+                $mat_fin = strtotime($r['ffin_ci']);
+                $fecha_ini = date('d', $mat_ini)." de ".$meses[date('n', $mat_ini)-1]." de ".date('Y', $mat_ini);
+                $fecha_fin = date('d', $mat_fin)." de ".$meses[date('n', $mat_fin)-1]." de ".date('Y', $mat_fin);
+                //---------------
                 
                 $sql_fecha= "SELECT estadodeu_bo, ffin_bo FROM boleta WHERE id_ma = $id ORDER BY ffin_bo DESC LIMIT 1";
                 $f_fecha = mysqli_query($cn, $sql_fecha);
@@ -32,9 +49,31 @@ include_once('src/components/parte_superior.php');
     ?>
         <!-- CABECERA -->
         <div>
+            <input type="hidden" value="<?php echo $id;?>" id="id_para_volver">
             <p>Zeus<span> / Boleta</span></p> 
-            <h3>Matricula</h3>
-            <h3>Otros datos del alumno</h3>
+            <h3>Boleta</h3>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>ALUMNO</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="src/assets/images/alumno/<?php echo $dni ?>.jpg" height="200" width="200">
+                        </div>
+                        <div class="col-md-6">
+                            <h3>NOMBRE:</h3><?php echo $nombre ?>
+                            <h3>DNI:</h3><?php echo $dni ?>
+                            <h3>ÁREA:</h3><?php echo $area ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h2>MATRICULA</h2>
+                    <h3>CICLO: </h3><?php echo $ciclo?>
+                    <h3>INICIO: </h3><?php echo $fecha_ini?>
+                    <h3>FINAL: </h3><?php echo $fecha_fin?>
+                </div>
+            </div>
         </div>
         <?php 
             if($texto != "DEUDA"){
@@ -160,10 +199,50 @@ include_once('src/components/parte_superior.php');
     ?>
 </div>
 
+<div class="modal fade" id="boletaExistenteModal" tabindex="-1" role="dialog" aria-labelledby="boletaExistenteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="boletaExistenteModalLabel">Número de Boleta Existente</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Esta número de boleta ya existe.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary close" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-  Launch demo modal
-</button> -->
+<script>
+    $(document).ready(function(){
+        var urlParams = new URLSearchParams(window.location.search);
+        var mensaje = urlParams.get('mensaje');
+
+        if (mensaje === '1') {
+            $('#boletaExistenteModal').modal('show');
+
+            $('#boletaExistenteModal').on('hidden.bs.modal', function () {
+                if (history.replaceState) {
+                    var urlWithoutParams = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                    history.replaceState(null, null, urlWithoutParams);
+                }
+            });
+
+            $('#boletaExistenteModal').on('click', '.close', function() {
+                if (history.replaceState) {
+                    var urlWithoutParams = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                    history.replaceState(null, null, urlWithoutParams);
+                }
+                $('#boletaExistenteModal').modal('hide');
+            });
+        }
+    });
+</script>
 
 
 

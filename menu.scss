@@ -58,7 +58,14 @@ body {
     align-items: center;
     justify-content: center;
 }
-
+.sidebar.closeSideBar{
+    .menu-links-options{
+        display: none;
+    }
+    .row-section{
+        display: none;
+    }
+}
 .sidebar.closeSideBar .text {
     display: none;
     // opacity: 0;
@@ -317,3 +324,4 @@ header .image-text .header-text {
 .onclick{
     display: block;
 }
+

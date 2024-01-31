@@ -45,6 +45,13 @@ body {
   justify-content: center;
 }
 
+.sidebar.closeSideBar .menu-links-options {
+  display: none;
+}
+.sidebar.closeSideBar .row-section {
+  display: none;
+}
+
 .sidebar.closeSideBar .text {
   display: none;
 }

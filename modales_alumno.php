@@ -1,3 +1,6 @@
+<?php
+include_once('auth.php');
+?>
     <div class="modal fade  " id="ModalEliminarD" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -118,7 +121,7 @@
                             <div class="col-md-6">
                                 <div class="col-12">
                                     <label class="form-label" for="universidad">Universidad:</label>
-                                    <select class="form-control" name="lstcarrera" id="universidad-alumno">
+                                    <select class="form-control" name="lstuniversidad" id="universidad-alumno">
                                         <option value="UNAP" selected>UNAP</option>
                                         <option value="UNSA">UNSA</option>
                                         <option value="UNAJ">UNAJ</option>
@@ -161,6 +164,8 @@
         </div>
     </div>
 
+
+    <!-- EDITAR  -->
 
     <div class="modal fade bd-example-modal-xl modal-fluid" id="ModalEditar">
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -251,9 +256,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="col-12">
+
                                     <label class="form-label" for="area">Area:</label>
                                     <select class="form-control" name="lstareaU" id="Area-alumnoU">
                                     </select>
+                                    
                                 </div>
                                 <div class="col-12">
                                     <label class="ml-2" for="carrera">Carrera:</label>

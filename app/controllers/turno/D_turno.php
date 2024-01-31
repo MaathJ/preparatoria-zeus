@@ -1,9 +1,9 @@
 <?php
 include('../../../config/conexion.php');
 
-$codigo = $_GET['cod'];
+$id = $_GET['id'];
 
-$sql = "DELETE FROM turno WHERE id_tu = $codigo";
+$sql = "DELETE FROM turno WHERE id_tu = '$id'";
 mysqli_query($cn, $sql);
 
 header('location:../../../turno.php');

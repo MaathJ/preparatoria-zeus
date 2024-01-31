@@ -1,4 +1,41 @@
+
+
+
+<link rel="stylesheet" href="../../../src/assets/css/boleta/forma_pago.css">
+
+
 <!-- Modal REGISTRAR -->
+
+<style>
+
+.form-inputs-pagos .container-for .input-forma-pago {
+    display: flex;
+    align-items: center;
+  }
+  .form-inputs-pagos .container-for .input-forma-pago img {
+    -o-object-fit: cover;
+       object-fit: cover;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+  }
+
+  .form-inputs-pagos {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    padding: 0 0.5rem;
+  }
+  .form-inputs-pagos .container-for {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+  }
+    
+</style>
+
+
 <div class="modal fade" id="Registrar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -14,14 +51,15 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-6">
+                             <div class="mb-3">
+                                <label for="R-nro" class="col-form-label" style="color: black;">N° Boleta:</label>
+                                <input type="text" name="txt_nboleta" class="form-control" id="R-nro" required>
+                            </div>
                             <div class="mb-3">
                                 <label for="R-fini" class="col-form-label" style="color: black;">Fecha inicio:</label>
                                 <input type="date" name="txt_fini" class="form-control" id="R-fini" required oninput="agregar()" min="">
                             </div>
-                            <div class="mb-3">
-                                <label for="R-nro" class="col-form-label" style="color: black;">N° Boleta:</label>
-                                <input type="text" name="txt_nboleta" class="form-control" id="R-nro" required>
-                            </div>
+                           
                             <div class="mb-3">
                                 <label for="R-mes" class="col-form-label" style="color: black;">Meses:</label>
                                 <input type="number" name="txt_mes" class="form-control" id="R-mes" required value="1" min="1" max="12" oninput="agregar()" oninput="multiplicar()">
@@ -70,7 +108,7 @@
 
                                     <div class="container-for">
                                         <div class="input-forma-pago">
-                                            <input class="form-check-input" type="radio" name="opc_fp" value="<?php echo $rP['id_fp']; ?>">
+                                            <input class="form-check-input" required  type="radio" name="opc_fp" value="<?php echo $rP['id_fp']; ?>">
                                             <img src="src/assets/images/forma_pago/<?php echo $rP['id_fp']; ?>.jpg" onerror="this.src='src/assets/images/forma_pago/desconocido.jpg'">
                                         </div>
 
@@ -259,8 +297,9 @@
     };
 </script>
 
+
 <!-- CSS y JS para FOTO-->
-<style type="text/css">
+<!-- <style type="text/css">
     #foto,
     #U-foto {
         display: none;
@@ -274,6 +313,6 @@
         padding-top: 5px;
         height: 35px;
     }
-</style>
+</style> -->
 
-<script src="src/assets/js/img.js"></script>
+<!-- <script src="src/assets/js/img.js"></script> -->

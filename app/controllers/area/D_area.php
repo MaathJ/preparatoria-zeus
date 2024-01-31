@@ -3,9 +3,9 @@
 
 include('../../../config/conexion.php');
 
-$codigo = $_GET['cod'];
+$id = $_GET['id'];
 
-$sql = "DELETE FROM area WHERE id_ar = $codigo";
+$sql = "DELETE FROM area WHERE id_ar = '$id'";
 mysqli_query($cn, $sql);
 
 

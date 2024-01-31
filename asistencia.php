@@ -21,7 +21,7 @@ include_once('src/components/parte_superior.php');
                 <input class="form-control" type="text" placeholder="Escanear codigo de barras">
             </div>
             <div class="asis-button-ver">
-                <button class="btn btn-primary">Ver Registros</button>
+                <a class="btn btn-primary" href="registro_asistencia.php" style="text-decoration: none;">Ver Registros</a>
             </div>
         </div>
     </div>

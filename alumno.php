@@ -8,7 +8,53 @@ include('modales_alumno.php');
 <link rel="stylesheet" src="style.css" href="./src/assets/css/alumno/alumno.css">
 <link rel="stylesheet" src="style.css" href="./bootstrap/bootstrap.css">
 <link rel="stylesheet" src="style.css" href="./datatables/datatables.css">
+<script>
+    function infoI(dato) {
+        idAlumno = dato;
+        console.log(idAlumno);
+        $.ajax({
+            url: './Alumno/actions/cardinfo.php',
+            type: 'POST',
+            data: {
+                id_alI: idAlumno
+            },
+            dataType: 'json',
+            success: function(data) {
+                // Actualizar elementos dentro del modal usando los IDs
+                $
+                $('#card-user').text(data.nombre);
+                $('#card-edad').text(data.edad);
+                $('#card-estado').text(data.estado);
+                let estadoTexto = $('#card-estado').text().trim();
+                if (estadoTexto === 'ACTIVO') {
+                    $('#card-estado').css({
+                        'color': 'green',
+                        'font-weight': 'bold'
+                    })
+                } else {
+                    $('#card-estado').css({
+                        'color': 'red',
+                        'font-weight': 'bold'
+                    })
+                }
 
+                $('#card-dni').text(data.dni);
+                $('#card-fnac').text(data.fechaNacimiento);
+                $('#card-cel').text(data.telefono);
+                $('#card-dir').text(data.direccion);
+                $('#card-col').text(data.colegio);
+                $('#card-uni').text(data.universidad);
+                $('#card-napo').text(data.apoderado);
+                $('#card-ntel').text(data.telefonoApoderado);
+                $('#card-logo-img').attr('src', 'src/assets/images/alumno/' + data.dni + '.jpg');
+            },
+            error: function(xhr, status, error) {
+                console.error("Error en la solicitud AJAX:", status, error);
+            }
+        });
+
+    }
+</script>
 <div class="container-page">
     <div>
         <p>Pages<span> / Alumno</span></p>
@@ -28,16 +74,13 @@ include('modales_alumno.php');
                         <th> Edad</th>
                         <th> DNI </th>
                         <th> Telefono </th>
-                        <!--<th> Edad </th>
-                    <th> Genero </th>-->
                         <th> Direc. </th>
-                        <!-- <th> Estado</th> -->
                         <th> Mas Info</th>
                         <th> Opciones</th>
                 </thead>
                 <?php
                 include('./config/conexion.php');
-                $sql = "select * from alumno where estado_al='ACTIVO'";
+                $sql = "select * from alumno ";
                 $f = mysqli_query($cn, $sql);
                 while ($r = mysqli_fetch_assoc($f)) {
 
@@ -65,8 +108,11 @@ include('modales_alumno.php');
                     <!-- <td align="center"> <?php //echo $r['freg_al'] 
                                                 ?></td> -->
                     <td align="center">
-                        <?php echo '<button class="view-more-info" data-bs-toggle="modal" data-bs-target="#ModalCardInfo" data-bs-whatever="@mdo">Mas Info</button>'; ?>
-
+                        <a class="btn btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#ModalCardInfo" data-bs-whatever="@mdo" onclick="infoI(
+                                                        '<?php echo $r['id_al'] ?? ''; ?>'
+                                                    )">
+                            Más Info
+                        </a>
                     </td>
 
                     <td>
@@ -183,17 +229,22 @@ include('modales_alumno.php');
 
         }
 
-        function cargar_info(dato) {
 
+        function cargar_info(dato) {
+            // Establecer el valor del área
+            $('#Area-alumnoU').val(dato.idarU);
+            console.log(dato);
+            // Obtener carreras después de establecer el área
+            obtenerCarrerasU(dato.idarU, dato.idcaU);
+
+            // Cargar la información restante
             document.getElementById('id_alumnoU').value = dato.id_alU;
             document.getElementById('Apellido-nameU').value = dato.apellidoU;
             document.getElementById('Nombre-nameU').value = dato.nombreU;
             document.getElementById('Dni-nameU').value = dato.dniU;
             document.getElementById('Telefono-nameU').value = dato.celularU;
-
             document.getElementById('Fenac-alumnoU').value = dato.fnacU;
             document.getElementById('Ciudad-nameU').value = dato.ciudadpU;
-
             document.getElementById('Colegio-alumnoU').value = dato.colegioU;
             document.getElementById('Direccion-nameU').value = dato.direccionU;
             document.getElementById('Nombrea-alumnoU').value = dato.apodU;
@@ -217,16 +268,9 @@ include('modales_alumno.php');
                 }
             }
 
-
             document.getElementById('img2').src = "./src/assets/images/alumno/" + dato.dniU + ".jpg";
-            // Simular el cambio y activar el evento 'change'
-
-            $('#Area-alumnoU').val(dato.idarU);
-
-
-            obtenerCarrerasU(dato.idarU, dato.idcaU);
-
         }
+
 
 
         let table = new DataTable('#table_alumno', {
@@ -266,10 +310,6 @@ include('modales_alumno.php');
                         doc.content[1].table.body[0].forEach(function(h) {
                             h.fillColor = 'rgb(1, 1, 51)';
                         });
-                        // doc.content[1].table.widths = [
-                        //     '50%',
-                        //     '50%',
-                        // ]
                         doc.content[1].margin = [100, 0, 100, 0]
                     },
                 },
@@ -291,7 +331,7 @@ include('modales_alumno.php');
                 data: {
                     id_arU: idArea
                 },
-                dataType: 'json', // Indica que esperas datos en formato JSON
+                /* dataType: 'json', */ // Indica que esperas datos en formato JSON
                 success: function(data) {
                     console.log(data);
 
@@ -323,7 +363,7 @@ include('modales_alumno.php');
                 data: {
                     id_arU: idArea
                 },
-                dataType: 'json', // Indica que esperas datos en formato JSON
+                /* dataType: 'json', */ // Indica que esperas datos en formato JSON
                 success: function(data) {
                     console.log(data);
 
@@ -358,7 +398,6 @@ include('modales_alumno.php');
         document.addEventListener("DOMContentLoaded", function() {
             // Variable para controlar si ya se ha enviado el formulario
             var enviado = false;
-
             $("#ModalRegistrar form").submit(function(event) {
                 // Si ya se ha enviado el formulario, no hacer nada
                 if (enviado) {

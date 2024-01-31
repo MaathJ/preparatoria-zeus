@@ -19,6 +19,11 @@ $uni_al = $_POST['lstuniversidadU'];
 $genero_al = $_POST['lstgeneroU'];
 $area_al = $_POST['lstareaU'];
 $carrera_al = $_POST['lstcarreraU'];
+
+$sqldniantiguo="select dni_al from alumno where id_al=$id_al";
+$fsqldni=mysqli_query($cn,$sqldniantiguo);
+$csqldni=mysqli_fetch_assoc($fsqldni);
+$dni_alant = $csqldni['dni_al'];
 // Obtener el nombre del área
 $sql = "CALL ObtenerNombreArea(?)";
 $stmt = $cn->prepare($sql);
@@ -64,69 +69,68 @@ $stmt->execute();
 $stmt->close();
 
 
+
+
+
+
 if (isset($_FILES['foto2']) && $_FILES['foto2']['error'] == UPLOAD_ERR_OK) {
     $archivo = $_FILES['foto2']['tmp_name'];
     $nombres = $_FILES['foto2']['name'];
 
     $lastDotPosition = strrpos($nombres, ".");
-if ($lastDotPosition !== false) {
-    $n = substr($nombres, 0, $lastDotPosition);
-    $e = substr($nombres, $lastDotPosition + 1);
-} else {
-    // Si no hay punto en el nombre del archivo, manejar según tus necesidades
-    // Puedes asignar un valor predeterminado a $n y $e, o mostrar un mensaje de error, etc.
-    $n = $nombres;
-    $e = '';
-}
-
+    if ($lastDotPosition !== false) {
+        $n = substr($nombres, 0, $lastDotPosition);
+        $e = substr($nombres, $lastDotPosition + 1);
+    } else {
+        // Si no hay punto en el nombre del archivo, manejar según tus necesidades
+        // Puedes asignar un valor predeterminado a $n y $e, o mostrar un mensaje de error, etc.
+        $n = $nombres;
+        $e = '';
+    }
 
     $allowedExtensions = ['png', 'jpg', 'jpeg', 'JPG', 'JPEG'];
     $imageInfo = getimagesize($archivo);
 
     // Verificar que es una imagen y el tipo está permitido
     if ($imageInfo && in_array($e, $allowedExtensions) && ($imageInfo[2] == IMAGETYPE_JPEG || $imageInfo[2] == IMAGETYPE_PNG)) {
-        // Genera un nombre único para evitar conflictos
-        $nombreArchivo = $dni_al . '.' . 'jpg';
+        // Genera nombres únicos para evitar conflictos
+        $nombreArchivoAntiguo = $dni_alant . '.' . 'jpg';
+        $nombreArchivoNuevo = $dni_al . '.' . 'jpg';
 
-        // Mueve el archivo a la ubicación deseada
-        move_uploaded_file($archivo, "../src/assets/images/alumno/" . $nombreArchivo);
-        echo '<script type="text/javascript">
-           window.location = "../alumno.php";
-           setTimeout(function(){
-               window.location.reload(); // Esto recargará la página después de un breve retraso (en milisegundos)
-           }, 1000); // Ejemplo: recarga después de 1 segundo (ajusta según sea necesario)
-      </script>';
+        $rutaArchivoAntiguo = "../src/assets/images/alumno/" . $nombreArchivoAntiguo;
+        $rutaArchivoNuevo = "../src/assets/images/alumno/" . $nombreArchivoNuevo;
 
+        // Verificar si el archivo antiguo existe antes de intentar eliminarlo
+        if (file_exists($rutaArchivoAntiguo)) {
+            // Eliminar el archivo antiguo
+            unlink($rutaArchivoAntiguo);
 
+            // Crear uno nuevo con el nuevo DNI
+            // Puedes hacer esto simplemente moviendo o copiando un archivo por defecto, o creándolo de alguna otra manera
+            move_uploaded_file($archivo, "../src/assets/images/alumno/" . $nombreArchivoNuevo);
+        }
+        header('location: ../alumno.php');
 
     } else {
-        echo '<script type="text/javascript">
-           window.location = "../alumno.php";
-           setTimeout(function(){
-               window.location.reload(); // Esto recargará la página después de un breve retraso (en milisegundos)
-           }, 1000); // Ejemplo: recarga después de 1 segundo (ajusta según sea necesario)
-      </script>';
-
-
+        header('location: ../alumno.php');
     }
 } else {
-    $archivop = '../src/assets/images/alumno/predt.jpg';
-    // Genera un nombre único para evitar conflictos
-    $nombreArchivo = $dni_al . '.jpg';
+    // Solo renombrar el archivo existente al nuevo DNI
+    $nombreArchivoAntiguo = $dni_alant . '.' . 'jpg';
+    $nombreArchivoNuevo = $dni_al . '.' . 'jpg';
 
-        // Si no se ha seleccionado un archivo, asigna la foto predeterminada
-        copy('../src/assets/images/alumno/predt.jpg', "../src/assets/images/alumno/" . $dni_al . '.jpg');
-        echo '<script type="text/javascript">
-           window.location = "../alumno.php";
-           setTimeout(function(){
-               window.location.reload(); // Esto recargará la página después de un breve retraso (en milisegundos)
-           }, 1000); // Ejemplo: recarga después de 1 segundo (ajusta según sea necesario)
-      </script>';
+    $rutaArchivoAntiguo = "../src/assets/images/alumno/" . $nombreArchivoAntiguo;
+    $rutaArchivoNuevo = "../src/assets/images/alumno/" . $nombreArchivoNuevo;
 
+    // Verificar si el archivo antiguo existe antes de intentar renombrarlo
+    if (file_exists($rutaArchivoAntiguo)) {
+        rename($rutaArchivoAntiguo, $rutaArchivoNuevo);
+    }
 
-
-    
+    // Continuar con la actualización o redirección
+    header('location: ../alumno.php');
 }
+
 
 
 ?>

@@ -5,13 +5,13 @@ include_once('../../config/conexion.php');
 // Obtener el ID del área desde la solicitud POST
 $idArea = $_POST['id_arU'];
 
-$sql = "select id_ca, nombre_ca FROM carrera WHERE id_ar = $idArea ORDER BY nombre_ca";
+$sql = "select id_ca, nombre_ca FROM carrera WHERE id_ar = $idArea";
 $result = $cn->query($sql);
 
 $options = array();
 $options[] = array(
     'value' => '',
-    'label' => '----Selecciona----'
+    'label' => '----Seleccionar----'
 );
 
 while ($row = $result->fetch_assoc()) {

@@ -83,17 +83,16 @@ include_once('src/components/parte_superior.php');
                         <td><?php echo $r['nombre_ro'] ?></td>
                         <td>
                             <center>
-                                <a class="btn btn-lg btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#modalEditar" data-bs-whatever="@mdo" onclick="cargar_info({
+                                <a class="btn btn-lg btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#modalEditar" data-bs-whatever="@mdo" onclick="cargar_editar({
                                             'usuario': '<?php echo $r['usuario_us'] ?? ''; ?>',
                                             'pass': '<?php echo $r['contra_us'] ?? ''; ?>',
-                                            'nombre': '<?php echo $r['nombre_us'] ?? ''; ?>',
+                                            'nombre_us': '<?php echo $r['nombre_us'] ?? ''; ?>',
                                             'telefono': '<?php echo $r['telefono_us'] ?? ''; ?>',
                                             'estado': '<?php echo $r['estado_us'] ?? ''; ?>',
                                             'rol': '<?php echo $r['id_ro'] ?? ''; ?>',
                                             'id': '<?php echo $r['id_us'] ?? ''; ?>',
                                             'apellido': '<?php echo $r['apellido_us'] ?? ''; ?>',
                                             'dni': '<?php echo $r['dni_us'] ?? ''; ?>',
-                                            
                                                 });">
                                     <i class="fas fa-edit"> </i></a>
 
@@ -123,8 +122,7 @@ include_once('src/components/parte_superior.php');
             </div>
             <div class="modal-body">
                 <form action="app/controllers/usuario/D_usuario.php" method="post">
-
-                    <iv class="row">
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <h5>¿Está seguro que desea eliminar el usuario?</h5>
@@ -132,38 +130,27 @@ include_once('src/components/parte_superior.php');
                             </div>
 
                         </div>
-
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="id_rol_seleccionado" id="id_rol_seleccionado" value="">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CERRAR</button>
+                        <button type="submit" class="btn btn-primary" id="">ELIMINAR</button>
+                        <input type="hidden" name="id_us" id="id_us" value="">
+                    </div>
+                </form>
             </div>
-            <div class="modal-footer">
-                <input type="hidden" name="id_rol_seleccionado" id="id_rol_seleccionado" value="">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CERRAR</button>
-                <button type="submit" class="btn btn-primary" id="">ELIMINAR</button>
-                <input type="hidden" name="id_us" id="id_us" value="">
-
-            </div>
-            </form>
         </div>
-
-
-
     </div>
 </div>
-</div>
-
-
-
-
-
-
-
 
 <div class="modal fade  " id="modalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header" style="color: #fff; background-color:#0A1048;">
+                <h3 class="modal-title" id="exampleModalLabel">EDITAR USUARIO</h3>
             </div>
             <div class="modal-body">
-                <form action="usuario/U_usuario.php" method="post">
+                <form action="app/controllers/usuario/U_usuario.php" method="post">
 
                     <div class="row">
 
@@ -174,16 +161,16 @@ include_once('src/components/parte_superior.php');
                             <table width="100%" cellspacing="10">
                                 <tr>
                                     <td style="width: 10px">
-                                        <label for="nombre" class="col-form-label" style="color: black;">Nombre:</label>
+                                        <label class="col-form-label" style="color: black;">Nombre:</label>
                                     </td>
                                     <td>
-                                        <input type="text" name="txtnombre" placeholder="Ingrese el nombre completo" maxlength="50" class="form-control" id="nombre" required>
+                                        <input type="text" name="txtnombre" placeholder="Ingrese el nombre completo" maxlength="50" class="form-control" id="U-nombre" required>
                                     </td>
                                     <td>
                                         <label for="nombre" class="col-form-label" style="color: black;">Apellido:</label>
                                     </td>
                                     <td>
-                                        <input type="text" name="txtapellido2" placeholder="Ingrese el apellido completo" maxlength="50" class="form-control" id="apellido2" required>
+                                        <input type="text" name="txtapellido2" placeholder="Ingrese el apellido completo" maxlength="50" class="form-control" id="U-apellido2" required>
                                     </td>
                                 </tr>
                                 <tr>
@@ -191,13 +178,13 @@ include_once('src/components/parte_superior.php');
                                         <label for="nombre" class="col-form-label" style="color: black;">DNI:</label>
                                     </td>
                                     <td>
-                                        <input type="text" name="txtdni2" placeholder="Ingrese el dni completo" maxlength="50" class="form-control" id="dni2" required>
+                                        <input type="text" name="txtdni2" placeholder="Ingrese el dni completo" maxlength="50" class="form-control" id="U-dni2" required>
                                     </td>
                                     <td>
                                         <label for="telefono" class="col-form-label" style="color: black;">Telefono:</label>
                                     </td>
                                     <td>
-                                        <input type="text" name="txttelefono" placeholder="Ingrese 9 digitos" class="form-control" id="telefono" required maxlength="9">
+                                        <input type="text" name="txttelefono" placeholder="Ingrese 9 digitos" class="form-control" id="U-telefono" required maxlength="9">
                                     </td>
                                 </tr>
                             </table>
@@ -211,8 +198,8 @@ include_once('src/components/parte_superior.php');
                                 <tr>
                                     <td><label for="usuario" class="col-form-label" style="color: black;">Usuario:</label></td>
                                     <td>
-                                        <input type="text" name="txtusuario" placeholder="Ingrese el usuario" class="form-control" id="usuario" required>
-                                        <input type="text" name="id_usu2" placeholder="Ingrese el usuario" class="form-control" id="id_usu2" hidden>
+                                        <input type="text" name="txtusuario" placeholder="Ingrese el usuario" class="form-control" id="U-usuario" required>
+                                        <input type="text" name="id_usu2" placeholder="Ingrese el usuario" class="form-control" id="U-id_usu2" hidden>
                                     </td>
 
                                     <td>
@@ -220,7 +207,7 @@ include_once('src/components/parte_superior.php');
                                     </td>
                                     <td>
                                         <div class="usuar">
-                                            <input type="password" name="txtpass" placeholder="Ingrese su contraseña" class="form-control" id="pass2" required><img src="src/assets/images/candado.png" class="icono" width="20px" style="margin-top: 10px;" height="20px" onclick="mostrarContrasena()">
+                                            <input type="password" name="txtpass" placeholder="Ingrese su contraseña" class="form-control" id="U-pass2" required><img src="src/assets/images/candado.png" class="icono" width="20px" style="margin-top: 10px;" height="20px" onclick="mostrarContrasena()">
                                         </div>
                                     </td>
                                 </tr>
@@ -228,15 +215,15 @@ include_once('src/components/parte_superior.php');
                                     <td><label for="usuario" class="col-form-label" style="color: black;">Confirmar:</label></td>
                                     <td>
                                         <div class="usuar">
-                                            <input type="password" name="txtpass" placeholder="Ingrese su contraseña" class="form-control" id="pass2" required><img src="src/assets/images/candado.png" class="icono" width="20px" style="margin-top: 10px;" height="20px" onclick="mostrarContrasena()">
+                                            <input type="password" name="txtpass" placeholder="Ingrese su contraseña" class="form-control" id="U-Confpass2" required><img src="src/assets/images/candado.png" class="icono" width="20px" style="margin-top: 10px;" height="20px" onclick="mostrarContrasena2()">
                                         </div>
                                         <p id="" style="display: none;">Corregir No es igual a la contraseña</p>
 
                                     </td>
                                     <td><label for="rol" class="col-form-label" style="color: black;">Rol:</label></td>
-                                    <td><select class="form-select form-select-sm mb-3" name="lstrol" id="rol22" required>
-                                            <option value="" disabled>Selecciona un rol</option>
-                                            <?php
+                                    <td><select class="form-control form-select-lm mb-3" name="lstrol" id="U-rol" required>
+                                        <option value="" disabled>Selecciona un rol</option>
+                                        <?php
                                             $sql = "SELECT * FROM rol";
                                             $f = mysqli_query($cn, $sql);
 
@@ -253,7 +240,7 @@ include_once('src/components/parte_superior.php');
                                 </tr>
                                 <tr>
                                     <td> <label for="estado" class="col-form-label" style="color: black;">Estado:</label></td>
-                                    <td><select class="form-select form-select-sm mb-3" name="lstestado" id="estado" required>
+                                    <td><select class="form-control form-select-sm mb-3" name="lstestado" id="U-estado" required>
 
                                             <option value="" disabled selected>Selecciona un Estado</option>
                                             <option value="ACTIVO" require>ACTIVO</option>
@@ -279,11 +266,11 @@ include_once('src/components/parte_superior.php');
     </div>
 </div>
 
-<div class="modal fade  " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade  " id="ModalRegistrar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header ">
-                <h6 class="modal-title" id="exampleModalLabel">Agregar registro de Usuario:</h6>
+            <div class="modal-header" style="color: #fff; background-color:#0A1048;">
+                <h3 class="modal-title" id="exampleModalLabel">AGREGAR USUARIO</h3>
             </div>
             <div class="modal-body">
                 <form action="usuario.php" method="get">
@@ -347,7 +334,7 @@ include_once('src/components/parte_superior.php');
 
                                     </td>
                                     <td><label for="rol" class="col-form-label" style="color: black;">Rol:</label></td>
-                                    <td><select class="form-select form-select-sm mb-6" name="lstrol" id="rol" style="width: 100%;" required>
+                                    <td><select class="form-control form-select-sm mb-6" name="lstrol" id="rol" style="width: 100%;" required>
 
                                             <option value="" disabled selected>Selecciona un rol</option>
 
@@ -419,7 +406,7 @@ include_once('src/components/parte_superior.php');
     }
 
     function mostrarContrasena() {
-        var inputPass = document.getElementById("pass2");
+        var inputPass = document.getElementById("U-pass2");
 
         if (inputPass.type === "password") {
             inputPass.type = "text";
@@ -429,7 +416,7 @@ include_once('src/components/parte_superior.php');
     }
 
     function mostrarContrasena2() {
-        var inputPass = document.getElementById("Confpass2");
+        var inputPass = document.getElementById("U-Confpass2");
 
         if (inputPass.type === "password") {
             inputPass.type = "text";
@@ -442,41 +429,18 @@ include_once('src/components/parte_superior.php');
         document.getElementById('cod_us').value = data.usuario2;
     }
 
-    function cargar_info(dato) {
+    function cargar_editar(dato) {
 
-        document.getElementById('usuario').value = dato.usuario;
-        document.getElementById('pass2').value = dato.pass;
-        document.getElementById('Confpass2').value = dato.pass;
-        document.getElementById('nombre').value = dato.nombre;
-        document.getElementById('telefono').value = dato.telefono;
-        document.getElementById('rol').value = dato.rol;
-        document.getElementById('id_us').value = dato.id;
-        document.getElementById('apellido2').value = dato.apellido;
-        document.getElementById('dni2').value = dato.dni;
-        document.getElementById('id_usu2').value = dato.id;
-
-
-
-        var generoSelect = document.getElementById('rol22');
-
-        for (var i = 0; i < generoSelect.options.length; i++) {
-            if (generoSelect.options[i].value == dato.rol) {
-                generoSelect.options[i].selected = true;
-                break;
-            }
-        }
-
-
-        var generoSelect = document.getElementById('estado');
-
-        for (var i = 0; i < generoSelect.options.length; i++) {
-            if (generoSelect.options[i].value == dato.estado) {
-                generoSelect.options[i].selected = true;
-                break;
-            }
-        }
-
-
+        document.getElementById('U-usuario').value = dato.usuario;
+        document.getElementById('U-pass2').value = dato.pass;
+        document.getElementById('U-Confpass2').value = dato.pass;
+        document.getElementById('U-nombre').value = dato.nombre_us;
+        document.getElementById('U-telefono').value = dato.telefono;
+        document.getElementById('U-rol').value = dato.rol;
+        document.getElementById('U-apellido2').value = dato.apellido;
+        document.getElementById('U-dni2').value = dato.dni;
+        document.getElementById('U-id_usu2').value = dato.id;
+        document.getElementById('U-estado').value = dato.estado;
     }
     $(document).ready(function() {
         $('#rol').on('change', function() {

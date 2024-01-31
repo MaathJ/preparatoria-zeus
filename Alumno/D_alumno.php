@@ -4,7 +4,7 @@ include('../config/conexion.php');
 
 $codigo = $_POST['codalD'];
 
-$sql = "update alumno SET estado_al = 'INACTIVO' WHERE id_al = $codigo";
+$sql = "delete from alumno  WHERE id_al = $codigo";
 
 
 mysqli_query($cn, $sql);

@@ -6,7 +6,6 @@ if ($_SESSION["usuario"]) {
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,9 +21,12 @@ if ($_SESSION["usuario"]) {
     <script src="src/assets/js/boostrap/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" src="style.css" href="./datatables/datatables.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+
 </head>
 
-<body>
+
     <div class="sidebar closeSideBar">
         <header>
             <div class="image-text">
@@ -53,6 +55,7 @@ if ($_SESSION["usuario"]) {
                         <a style="cursor: pointer;">
                             <i class="fa-solid fa-users icon"></i>
                             <span class="text nav-text">Estudiantes</span>
+                            <i class="fa-solid fa-arrow-turn-down icon row-section"></i>
                         </a>
                     </li>
                     <ul class="menu-links-options" id="links-estudiante">
@@ -60,8 +63,82 @@ if ($_SESSION["usuario"]) {
                         <li class="links-options" onclick="window.location.href='./area.php'">Area</li>
                         <li class="links-options" onclick="window.location.href='./carrera.php'">Carrera</li>
                     </ul>
+
+                    <style>
+                        
+                        .arrow-toggle {
+                            display: none;
+                        }
+                        /* Estudiante */
+                        .sidebar.closeSideBar #button-estudiante .fa-arrow-turn-down {
+                            display: none;
+                        }
+                        #links-estudiante {
+                            display: none;
+                        }
+                        .sidebar.closeSideBar #links-estudiante {
+                            display: none;
+                        }
+
+                        /* Ciclo */
+                        .sidebar.closeSideBar #button-ciclo .fa-arrow-turn-down {
+                            display: none;
+                        }
+
+                        /* Usuario */
+                        .sidebar.closeSideBar #button-usuario .fa-arrow-turn-down {
+                            display: none;
+                        }
+
+                    </style>
+
+                    <script>
+                    $(document).ready(function() {
+                        $("#button-estudiante").on("click", function() {
+                        $("#links-estudiante").slideToggle();
+                        $(".fa-arrow-turn-down", this).toggleClass("arrow-toggle");
+                        });
+                    });
+
+                    
+                    $(document).ready(function() {
+                        $("#button-estudiante").on("click", function() {
+                        if ($('.sidebar').hasClass('closeSideBar')) {
+                            // Si la barra lateral está contraída, expandirla junto con la sublista
+                            $(".sidebar").removeClass("closeSideBar");
+                            $("#links-estudiante").slideDown();
+                        } else {
+                            // Si la barra lateral está desplegada, solo alternar la sublista y el ícono de flecha
+                            $("#links-estudiante").slideToggle();
+                            $(".fa-arrow-turn-down", this).toggleClass("arrow-toggle");
+                        }
+                        });
+
+                        // Ocultar la sublista cuando se contrae la barra lateral
+                        $(".toggle").on("click", function() {
+                        $("#links-estudiante").slideUp();
+                        $(".fa-arrow-turn-down").removeClass("arrow-toggle");
+                        });
+                    });
+
+                    $(document).ready(function() {
+                        $("#button-ciclo").on("click", function() {
+                        $("#links-ciclo").slideToggle();
+                        $(".fa-arrow-turn-down", this).toggleClass("arrow-toggle");
+                        });
+                    });
+
+                    $(document).ready(function() {
+                        $("#button-usuario").on("click", function() {
+                        $("#links-usuario").slideToggle();
+                        $(".fa-arrow-turn-down", this).toggleClass("arrow-toggle");
+                        });
+                    });
+                    </script>
+                    
+
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="../../../preparatoria-zeus/matricula.php">
                             <i class="fa-solid fa-box-archive icon"></i>
                             <span class="text nav-text">Matriculas</span>
                         </a>
@@ -71,6 +148,7 @@ if ($_SESSION["usuario"]) {
                         <a style="cursor: pointer;">
                             <i class="fa-solid fa-book icon"></i>
                             <span class="text nav-text">Ciclos</span>
+                            <i class="fa-solid fa-arrow-turn-down icon row-section"></i>
                         </a>
                     </li>
                     <ul class="menu-links-options" id="links-ciclo">
@@ -97,8 +175,9 @@ if ($_SESSION["usuario"]) {
 
                     <li class="nav-link" id="button-usuario">
                         <a style="cursor: pointer;">
-                        <i class="fa-regular fa-user icon"></i>
+                            <i class="fa-regular fa-user icon"></i>
                             <span class="text nav-text">Usuario</span>
+                            <i class="fa-solid fa-arrow-turn-down icon row-section"></i>
                         </a>
                     </li>
                     <ul class="menu-links-options" id="links-usuario">
@@ -123,9 +202,9 @@ if ($_SESSION["usuario"]) {
                     </a>
                 </li>
                 <li class="">
-                    <a href="#">
+                    <a href="./cerrar_sesion.php">
                         <i class="fa-solid fa-arrow-right-from-bracket icon"></i>
-                        <span class="text nav-text">Cerrar Sesion</span>
+                        <span class="text nav-text">Cerrar Sesion </span>
                     </a>
                 </li>
             </div>
@@ -133,4 +212,4 @@ if ($_SESSION["usuario"]) {
     </div>
 
     <section class="home">
-    <script src="src/assets/js/menulinks/links.js"></script>
+        <script src="src/assets/js/menulinks/links.js"></script>

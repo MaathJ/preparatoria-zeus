@@ -2,18 +2,18 @@
 
 include('../../../config/conexion.php');
 
-$codigo = $_GET['cod'];
+$id = $_GET['id'];
 
 // Iniciar una transacción
 mysqli_begin_transaction($cn);
 
 try {
     // Eliminar relaciones en detalle_ciclo_turno
-    $sqlDeleteRelaciones = "DELETE FROM detalle_ciclo_turno WHERE id_ci = $codigo";
+    $sqlDeleteRelaciones = "DELETE FROM detalle_ciclo_turno WHERE id_ci = '$id'";
     mysqli_query($cn, $sqlDeleteRelaciones);
 
     // Eliminar el registro en la tabla ciclo
-    $sqlDeleteCiclo = "DELETE FROM ciclo WHERE id_ci = $codigo";
+    $sqlDeleteCiclo = "DELETE FROM ciclo WHERE id_ci = '$id'";
     mysqli_query($cn, $sqlDeleteCiclo);
 
     // Confirmar la transacción
