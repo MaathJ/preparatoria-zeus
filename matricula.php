@@ -53,10 +53,11 @@ ma.id_ma;
     <div class="container-table" style="background-color: #fff; overflow:hidden">
         <div class="col-md-12" style="box-sizing: border-box;">
             <table class="table table-responsive-sm" id="table_matricula" style="width:100%; box-sizing: border-box; overflow:hidden">
-                <thead align="center" class="" style="color: #fff; background-color:#010133;">
+                <thead align="center" class="" style="color: #fff; background-color:#010133; height:52px; max-height:100%;">
                     <tr>
                         <!-- <th class="text-center">ID</th> -->
-                        <th class="text-center">Alumno</th>
+                        <th class="text-center">Nombres</th>
+                        <th class="text-center">Apellidos</th>
                         <th class="text-center">Ciclo</th>
                         <th class="text-center">Mensualidad</th>
                         <th class="text-center">Meses</th>
@@ -64,8 +65,7 @@ ma.id_ma;
                         <th class="text-center">Dias Restantes</th>
                         <th class="text-center">Deuda</th>
                         <th class="text-center">Estado</th>
-                        <th class="text-center">Fecha Registro</th>
-                        <th class="text-center">Operador</th>
+                        <th class="text-center">Operario</th>
                         <th class="text-center">Acciones</th>
                     </tr>
                 </thead>
@@ -78,9 +78,13 @@ ma.id_ma;
                         $final = $rma['ffin_ci'];
                     ?>
                         <tr>
-                            
                             <td>
-                                <?php echo $rma['apellido_al'] . ' ' . $rma['nombre_al'] ?>
+                                <i class="fa-regular fa-folder"></i>
+                                <?php echo $rma['nombre_al'] ?>
+                            </td>
+                            <td>
+
+                                <?php echo $rma['apellido_al'] ?>
                             </td>
                             <td align="center">
                                 <?php echo $rma['nombre_pe'] . ' ' . $rma['nombre_ci'] ?>
@@ -93,7 +97,7 @@ ma.id_ma;
                             </td>
                             <td align="center">
 
-                                <a class="btn btn-sm btn-success" href="boleta.php?id=<?php echo $rma['id_ma']; ?>"><i class="fa-solid fa-file-invoice"></i> Boletas</a>
+                                <a class="btn btn-sm btn-success" href="boleta.php?id=<?php echo $rma['id_ma']; ?>"><i class="fa-solid fa-file-invoice"></i></a>
 
                             </td>
 
@@ -104,18 +108,17 @@ ma.id_ma;
                                 <?php echo $rma['total_deudas'] ?>
                             </td>
 
-                            <td align="center" class="<?php echo ($rma['estado_ma'] == 'ACTIVO') ? 'tdactivo' : 'tdculminado'; ?>">
-                                <p><?php echo $rma['estado_ma']; ?></p>
+                            <td>
+                                <?php $estado = $rma['estado_ma'];
+                                $button = '<button class= "' . ($estado === "ACTIVO" ? 'active-button' : 'inactive-button') . '">' . $estado . '</button';
+                                echo $button;
+                                ?>
+                                |
+                            </td>
+                            <td>
+                                <?php echo $rma['freg_ma'] ?>
                             </td>
 
-                            <td align="center">
-                                <?php echo $rma['freg_ma'] ?>
-                                
-                            </td>
-                            <td align="center">
-                                <?php echo $rma['nombre_us'] ?>
-                            </td>
-                                
                             <td>
 
 
@@ -138,7 +141,7 @@ ma.id_ma;
                                         // Si no es "DEUDA", mostrar el botón
                                     ?>
                                         <!-- Botón de registro -->
-                                        <button class="turno btn btn-primary" data-bs-toggle="modal" data-bs-target="#Registrar" data-bs-whatever="@mdo" style="cursor: pointer;" onclick="cargar_registro({
+                                        <button class="turno btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#Registrar" data-bs-whatever="@mdo" style="cursor: pointer;" onclick="cargar_registro({
                                             'mensualidad': '<?php echo $rma['mensualidad_ma']; ?>',
                                             'volver':'<?php echo $id; ?>',
                                             'fini':'<?php echo $inicio; ?>',
@@ -153,7 +156,7 @@ ma.id_ma;
                                     }
                                     ?>
 
-                                    <a class="btn btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#ModalMatriculaEditar" data-bs-whatever="@mdo" target="_parent" onclick="cargar_info_Editar({
+                                    <a class="btn btn-sm btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#ModalMatriculaEditar" data-bs-whatever="@mdo" target="_parent" onclick="cargar_info_Editar({
                                                         'id_maU': '<?php echo $rma['id_ma'] ?? ''; ?>',
                                                         'monto_maU': '<?php echo $rma['monto_ma'] ?? ''; ?>',
                                                         'mensualidad_maU': '<?php echo $rma['mensualidad_ma'] ?? ''; ?>',
@@ -165,7 +168,7 @@ ma.id_ma;
                                                         'id_deU': '<?php echo $rma['id_de'] ?? ''; ?>'
                                                     });">
                                         <i class="fas fa-edit"> </i></a>
-                                    <a class="btn btn-danger btn-circle " data-bs-toggle="modal" data-bs-target="#DeleteModalMatricula" data-bs-whatever="@mdo" target="_parent" onclick="cargar_info_Eliminar({
+                                    <a class="btn btn-sm btn-danger btn-circle " data-bs-toggle="modal" data-bs-target="#DeleteModalMatricula" data-bs-whatever="@mdo" target="_parent" onclick="cargar_info_Eliminar({
                                                 'id_maD': '<?php echo $rma['id_ma'] ?? ''; ?>'
                                                 });">
                                         <i class="fas fa-trash"> </i></a>
@@ -579,7 +582,57 @@ ma.id_ma;
     <script>
         $(document).ready(function() {
             var table = $('#table_matricula').DataTable({
-                responsive: true
+                responsive: true,
+                language: {
+                    "lengthMenu": "Mostrar _MENU_ registros",
+                    "zeroRecords": "No se encontraron resultados",
+                    "info": " _TOTAL_ registros",
+                    "infoEmpty": "No hay registros para mostrar",
+                    "infoFiltered": "(filtrado de _MAX_  registros)",
+                    "sSearch": "Buscar:",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "sProcessing": "Cargando...",
+                },
+                dom: 'Bfrtilp',
+                buttons: [{
+                        extend: 'excelHtml5',
+                        autofilter: true,
+                        text: '<i class="fa-regular fa-file-excel"></i>',
+                        titleAttr: 'Exportar a Excel',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 6, 7, 8, 9]
+                        }
+
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        text: '<i class="fa-regular fa-file-pdf"></i>',
+                        titleAttr: 'Exportar a PDF',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 6, 7, 8, 9]
+                        },
+                        customize: function(doc) {
+
+                            doc.content[1].table.body[0].forEach(function(h) {
+                                h.fillColor = 'rgb(1, 1, 51)';
+                            });
+                        },
+                    },
+                    {
+                        extend: 'print',
+                        text: '<i class="fa-solid fa-print"></i>',
+                        titleAttr: 'Imprimir',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 6, 7, 8, 9]
+                        },
+
+                    },
+                ]
             });
 
             new $.fn.dataTable.FixedHeader(table);
