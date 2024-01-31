@@ -56,7 +56,7 @@ if ($_SESSION["usuario"]) {
                         <a style="cursor: pointer;">
                             <i class="fa-solid fa-users icon"></i>
                             <span class="text nav-text">Estudiantes</span>
-                            <i class="fa-solid fa-arrow-turn-down icon row-section"></i>
+                            <i class="fa-solid fa-caret-down icon row-section"></i>
                         </a>
                     </li>
                     <ul class="menu-links-options" id="links-estudiante">
@@ -78,7 +78,7 @@ if ($_SESSION["usuario"]) {
                         <a style="cursor: pointer;">
                             <i class="fa-solid fa-book icon"></i>
                             <span class="text nav-text">Ciclos</span>
-                            <i class="fa-solid fa-arrow-turn-down icon row-section"></i>
+                            <i class="fa-solid fa-caret-down icon row-section"></i>
                         </a>
                     </li>
                     <ul class="menu-links-options" id="links-ciclo">
@@ -107,7 +107,7 @@ if ($_SESSION["usuario"]) {
                         <a style="cursor: pointer;">
                             <i class="fa-regular fa-user icon"></i>
                             <span class="text nav-text">Usuario</span>
-                            <i class="fa-solid fa-arrow-turn-down icon row-section"></i>
+                            <i class="fa-solid fa-caret-down icon row-section"></i>
                         </a>
                     </li>
                     <ul class="menu-links-options" id="links-usuario">
@@ -189,6 +189,7 @@ if ($_SESSION["usuario"]) {
                             // Función para activar el scroll de la barra lateral
                             function activarScroll() {
                             $(".menu-bar").css("overflow-y", "auto");
+                            $(".menu-bar").css("overflow-x", "hidden");
                             $(".menu-bar").css("max-height", $(window).height() - $(".header").outerHeight());
                             }
 
