@@ -298,4 +298,9 @@ header .image-text .header-text {
 
 .onclick {
   display: block;
+}
+
+.dtr-title {
+  font-weight: bold;
+  color: rgb(1, 1, 51);
 }/*# sourceMappingURL=menu.css.map */
