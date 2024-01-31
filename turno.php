@@ -10,9 +10,7 @@ include('modales_turno.php');
         <p>Zeus<span> / Turno</span></p>
         <h3>Turno</h3>
     </div>
-
     <button class="turno btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" style="cursor: pointer;">Registrar</button>
-
     <br>
     <div class="container-table" style="background-color: #fff;">
         <div class="col-md-12">
@@ -57,14 +55,9 @@ include('modales_turno.php');
                                             'horasalida': '<?php echo $filaTurno['hsal_tu'] ?? ''; ?>',
                                             'tolerancia': '<?php echo $filaTurno['tolerancia_tu'] ?? ''; ?>',
                                             'estado': '<?php echo $filaTurno['estado_tu'] ?? ''; ?>'
-                                            
-                                            
                                                 });">
                                         <i class="fas fa-edit"> </i></a>
-
-
-
-                                    <a class="btn btn-danger btn-circle " target="_parent" data-bs-toggle="modal" data-bs-target="#DeleteModalTurno" data-bs-whatever="@mdo">
+                                    <a class="btn btn-danger btn-circle " target="_parent" data-bs-toggle="modal" data-bs-target="#DeleteModalTurno<?php echo $filaTurno['id_tu'] ?? ''; ?>" data-bs-whatever="@mdo">
                                         <i class="fas fa-trash"> </i>
                                     </a>
                                 </center>
@@ -96,6 +89,7 @@ include_once('src/components/parte_inferior.php');
 
 
     }
+
     function actualizarHoraSalida() {
         // Obtén el valor de la hora de entrada
         var horaEntrada = document.getElementById('hent').value;
@@ -103,6 +97,7 @@ include_once('src/components/parte_inferior.php');
         // Actualiza el campo de hora de salida para que no permita horas anteriores
         document.getElementById('hsal').min = horaEntrada;
     }
+
     function actualizarHoraSalidaEditar() {
         // Obtén el valor de la hora de entrada en el modal editar
         var horaEntradaEditar = document.getElementById('U_hent').value;

@@ -26,6 +26,7 @@ include('modales_periodo.php');
                     </tr>
                 </thead>
                 <tbody>
+
                     <?php
                     while ($r = mysqli_fetch_assoc($f)) {
                     ?>
@@ -49,8 +50,8 @@ include('modales_periodo.php');
                                                     });">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <a class="btn btn-danger btn-circle " target="_parent" data-bs-toggle="modal" data-bs-target="#DeleteModalPeriodo" data-bs-whatever="@mdo">
-                                        <i class="fas fa-trash"> </i>
+                                    <a class="btn btn-danger btn-circle " target="_parent" data-bs-toggle="modal" data-bs-target="#DeleteModalPeriodo<?php echo $r['id_pe'] ?>" data-bs-whatever="@mdo">
+                                        <i class=" fas fa-trash"> </i>
                                     </a>
                                 </center>
                             </td>
@@ -116,10 +117,10 @@ include_once("src/components/parte_inferior.php")
 
         return s;
     }
-
-    
 </script>
 
 <script src="src/assets/js/datatableIntegration.js"></script>
 
-<script>initializeDataTable('#table_periodo');</script>
+<script>
+    initializeDataTable('#table_periodo');
+</script>

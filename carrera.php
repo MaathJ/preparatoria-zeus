@@ -65,11 +65,8 @@ include('modales_carrera.php');
                                   'id_ca': '<?php echo isset($filaca['id_ca']) ? $filaca['id_ca'] : ''; ?>',
                                     });">
                                     <i class="fas fa-edit"> </i></a>
-
-
-
                                 <!-- Agregar el atributo data-bs-toggle y data-bs-target para abrir el modal -->
-                                <a href="#" class="btn btn-lg btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteModalCarrera" data-id="<?php echo $filaca['id_ca']; ?>">
+                                <a href="#" class="btn btn-lg btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteModalCarrera<?php echo $filaca['id_ca']; ?>">
                                     <i class="fas fa-trash"></i>
                                 </a>
 

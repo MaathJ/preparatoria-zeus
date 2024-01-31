@@ -46,6 +46,29 @@ include('modales_alumno.php');
                 $('#card-uni').text(data.universidad);
                 $('#card-napo').text(data.apoderado);
                 $('#card-ntel').text(data.telefonoApoderado);
+                let telApoderado = $('#card-ntel').text().trim();
+                let dataApoderado = $('#card-napo').text().trim();
+                console.log({
+                    telApoderado,
+                    dataApoderado
+                })
+                if (telApoderado === "" && dataApoderado === "") {
+                    $('#apo-icon-1').css({
+                        'display': 'none'
+                    })
+                    $('#apo-icon-2').css({
+                        'display': 'none'
+                    })
+
+                } else {
+                    $('#apo-icon-1').css({
+                        'display': 'block'
+                    })
+                    $('#apo-icon-2').css({
+                        'display': 'block'
+                    })
+                }
+
                 $('#card-logo-img').attr('src', 'src/assets/images/alumno/' + data.dni + '.jpg');
             },
             error: function(xhr, status, error) {

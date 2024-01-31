@@ -5,7 +5,7 @@ include_once('auth.php');
 function deleteModalPeriodo($id)
 {
     echo <<<HTML
-    <div class="modal fade  " id="DeleteModalPeriodo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade  " id="DeleteModalPeriodo{$id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog  modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header " style="background-color: #010133; color: #ffffff;">
