@@ -7,7 +7,7 @@ include_once('auth.php');
             <div class="modal-body">
                 <div class="card-user-modal ">
                     <div class="card-logo">
-                        <img class="card-logo-img" id="card-imgA" alt="">
+                        <img class="card-logo-img" id="card-imgA" alt="" src="#card-logo-img" style="object-fit: cover;">
 
                     </div>
                     <div class="card-important-info">
