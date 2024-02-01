@@ -77,6 +77,8 @@ $pdf->Image('../../../src/assets/images/matricula/FICHA_DE_MATRICULA.jpg', 0, 0,
                                 $pdf->Cell(10, 12.5, 'X',0, 0, 'L');
                                 $pdf->Ln(21.7);
                                 break;
+            default: $pdf->Ln(30.8);;
+                    break;
         }
 
     //COMO SE ENTERO
