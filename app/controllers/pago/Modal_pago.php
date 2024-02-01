@@ -38,7 +38,7 @@
 
                                     <div class="container-for">
                                         <div class="input-forma-pago">
-                                            <input class="form-check-input" type="radio" name="opc_fp" value="<?php echo $rP['id_fp']; ?>">
+                                            <input class="form-check-input" required  type="radio" name="opc_fp" value="<?php echo $rP['id_fp']; ?>">
                                             <img src="src/assets/images/forma_pago/<?php echo $rP['id_fp']; ?>.jpg" onerror="this.src='src/assets/images/forma_pago/desconocido.jpg'">
                                         </div>
 

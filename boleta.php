@@ -7,7 +7,6 @@ include_once('src/components/parte_superior.php');
 $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 ?>
 <link rel="stylesheet" href="src/assets/css/boleta/forma_pago.css">
-<link rel="icon" href="src/assets/images/logo-zeus.png">
 
 <div class="container-page">
     <?php
@@ -49,7 +48,7 @@ $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto"
                 }
     ?>
         <!-- CABECERA -->
-        <div>
+        <div class='mb-2'>
             <input type="hidden" value="<?php echo $id;?>" id="id_para_volver">
             <p>Zeus<span> / Boleta</span></p> 
             <h3>Boleta</h3>
@@ -59,7 +58,7 @@ $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto"
                     <h2>ALUMNO</h2>
                     <div class="row">
                         <div class="col-md-6">
-                            <img src="src/assets/images/alumno/<?php echo $dni ?>.jpg" height="200" width="200" style="border-radius:50%; object-fit:cover; margin-bottom:10px;">
+                            <img src="src/assets/images/alumno/<?php echo $dni ?>.jpg" height="200" width="200">
                         </div>
                         <div class="col-md-6">
                             <h3>NOMBRE:</h3><?php echo $nombre ?>
@@ -91,9 +90,9 @@ $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto"
         <?php } ?>
         <br>
         <!-- Tabla -->
-        <div class="container-table" style="background-color: #fff; overflow:hidden">
-        <div class="col-md-12" style="box-sizing: border-box;">
-            <table class="table table-striped table_id" id="table_boleta" style="width:100%; box-sizing: border-box; overflow:hidden">
+        <div class="container-table" style="background-color: #fff;">
+            <div class="col-md-12">
+                <table class="table table-striped"  id="table_boleta">
                     <thead align="center" class=""  style="color: #fff; background-color:#010133;">
                         <tr>
                             <th>N° Boleta</th>
@@ -116,13 +115,13 @@ $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto"
                         ?>
                             <tr>
                                 <td>
-                                <i class="fa-solid fa-eye"></i> <?php echo $rB['nroboleta_bo']; ?>
+                                    <?php echo $rB['nroboleta_bo']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $rB['fini_bo']; ?>
+                                    <?php  echo date('d-m-Y ', strtotime($rB['fini_bo']))  ; ?>
                                 </td>
                                 <td>
-                                    <?php echo $rB['ffin_bo']; ?>
+                                    <?php echo date('d-m-Y ', strtotime($rB['ffin_bo']))  ; ?>
                                 </td>
                                 <td>
                                     <?php echo $rB['mes_bo']; ?>
@@ -277,63 +276,5 @@ include_once('src/components/parte_inferior.php');
 
 <script src="src/assets/js/datatableIntegration.js"></script>
 
-<script>
-$(document).ready(function() {
-            var table = $('#table_boleta').DataTable({
-                responsive: true,
-                language: {
-                    "lengthMenu": "Mostrar _MENU_ registros",
-                    "zeroRecords": "No se encontraron resultados",
-                    "info": " _TOTAL_ registros",
-                    "infoEmpty": "No hay registros para mostrar",
-                    "infoFiltered": "(filtrado de _MAX_  registros)",
-                    "sSearch": "Buscar:",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "sProcessing": "Cargando...",
-                },
-                dom: 'Bfrtilp',
-                buttons: [{
-                        extend: 'excelHtml5',
-                        autofilter: true,
-                        text: '<i class="fa-regular fa-file-excel"></i>',
-                        titleAttr: 'Exportar a Excel',
-                        exportOptions: {
-                            columns: [1, 2, 3, 4, 5]
-                        }
-
-                    },
-                    {
-                        extend: 'pdfHtml5',
-                        text: '<i class="fa-regular fa-file-pdf"></i>',
-                        titleAttr: 'Exportar a PDF',
-                        exportOptions: {
-                            columns: [1, 2, 3, 4, 5]
-                        },
-                        customize: function(doc) {
-
-                            doc.content[1].table.body[0].forEach(function(h) {
-                                h.fillColor = 'rgb(1, 1, 51)';
-                            });
-                        },
-                    },
-                    {
-                        extend: 'print',
-                        text: '<i class="fa-solid fa-print"></i>',
-                        titleAttr: 'Imprimir',
-                        exportOptions: {
-                            columns: [1, 2, 3, 4, 5]
-                        },
-
-                    },
-                ]
-            });
-
-            new $.fn.dataTable.FixedHeader(table);
-        });
-</script>
+<script>initializeDataTable('#table_boleta');</script>
 

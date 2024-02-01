@@ -22,16 +22,15 @@ $numero = mysqli_query($cn, $sql_boleta);
 $bol = mysqli_num_rows($numero);
 
 
- 
 if($bol<= 0){
 		if ($d == 0) {
 		    $estado_boleta = 'PAGADO';
 		} else {
 		    $estado_boleta = 'DEUDA';
 		}
+		echo $volver;
 
-
-		$sql = "insert into boleta values (0, '$b','$fi','$ff','$m','$p','$d', 'ACTIVO', '$estado_boleta', 1)"; 
+		$sql = "insert into boleta values (0, '$b','$fi','$ff','$m','$p','$d', 'ACTIVO', '$estado_boleta', $volver)"; 
 
 
 		 $f =  mysqli_query($cn, $sql);
@@ -41,17 +40,15 @@ if($bol<= 0){
 		$sql_pago = "insert into pago (id_pa, monto_pa,	estado_pa, id_bo, id_fp) values (0, '$monto', 'ACTIVO','$id', '$f_pago')";
 		 mysqli_query($cn, $sql_pago);
 
-		 mysqli_close($cn);
-
-		$ruta="location: ../../../boleta.php?id=".$volver;
-		header($ruta);
-
 }else{
+		$f_boleta = mysqli_fetch_assoc($numero);
 
-		mysqli_close($cn);
-
-		$ruta="location: ../../../boleta.php?id=".$volver.'&mensaje=1';
-		header($ruta);
+		$id_b = $f_boleta['id_bo'];
+		$sql_pago = "insert into pago (id_pa, monto_pa,	estado_pa, id_bo, id_fp) values (0, '$monto', 'ACTIVO','$id_b ', '$f_pago')";
+		 mysqli_query($cn, $sql_pago);
 }
+mysqli_close($cn);
 
+ $ruta="location: ../../../boleta.php?id=".$volver;
+header($ruta); 
 ?>
