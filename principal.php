@@ -10,7 +10,7 @@ $f = mysqli_query($cn, $sql);
 <link rel="icon" href="src/assets/images/logo-zeus.png">
 <div class="container-page">
     <div>
-        <p>Zeus<span> / Panel de ControlRAAAAAAAAAAAAAAAAAAAA</span></p>
+        <p>Zeus<span> / Panel de Control</span></p>
         <h3>Panel de Control</h3>
     </div>
     <form action="backup.php" method="post">

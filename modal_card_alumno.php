@@ -5,12 +5,13 @@ include_once('auth.php');
     <div class="modal-dialog modal-dialog-centered modal-sm">
         <div class="modal-content">
             <div class="modal-body">
-                <div class="card-user-modal">
+                <div class="card-user-modal ">
                     <div class="card-logo">
-                        <img class="card-logo-img" id="card-logo-img" src="#card-logo-img">
+                        <img class="card-logo-img" id="card-imgA" alt="">
+
                     </div>
                     <div class="card-important-info">
-                        <div class="user-name" id="card-user" style="color: #010133; font-weight: bold; font-size: 1.3rem;">
+                        <div class="user-name" id="card-user" style="color: #010133; font-weight: bold; font-size: 1rem;">
                         </div>
                         <div class="user-edad" id="card-edad" style="text-align: center;">
                         </div>
@@ -20,7 +21,7 @@ include_once('auth.php');
                             <div id="card-fnac" class="text-nowrap"></div>
                         </div>
                     </div>
-                    <div class="card-more-info">
+                    <div class="card-more-info" >
                         <div class="info-user-more telefono">
                             <i class="fa-solid fa-phone"></i>
                             <span id="card-cel"></span>
@@ -37,18 +38,34 @@ include_once('auth.php');
                             <i class="fa-solid fa-building-columns"></i>
                             <span id="card-uni"></span>
                         </div>
+                        <!-- Icono para Área -->
+                        <div class="info-user-more area" style="align-items: center;">
+                            <i class="fas fa-globe"></i> <!-- Utiliza "fas" para los iconos sólidos -->
+                            <span id="card-area"></span>
+                        </div>
+
+                        <!-- Icono para Carrera -->
+                        <div class="info-user-more carrera">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span id="card-carrera"></span>
+                        </div>
+
+
                     </div>
                     <div class="card-apoderado-info">
-                        <div style="color: #010133; font-weight: bold;"></div>
                         <div>
+                            <!-- Icono para Apoderado -->
                             <div class="info-user-more apoderado">
-                                <i class="fa-solid fa-user" id="apo-icon-1"></i>
+                                <i class="fas fa-users"></i> <!-- Utiliza "fas" para los iconos sólidos -->
                                 <span id="card-napo"></span>
                             </div>
+
+                            <!-- Icono para Teléfono del Apoderado -->
                             <div class="info-user-more telefono-apoderado">
-                                <i class="fa-solid fa-phone" id="apo-icon-2"></i>
+                                <i class="fas fa-mobile-alt"></i>
                                 <span id="card-ntel"></span>
                             </div>
+
                         </div>
                     </div>
                 </div>
