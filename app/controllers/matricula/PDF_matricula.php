@@ -40,11 +40,14 @@ $r=mysqli_fetch_assoc($f_pdf);
     $apod = mb_convert_encoding(ucwords(strtolower($r['apoderado_al'])), 'ISO-8859-1', 'UTF-8');
     $cel_apod = $r['celapod_al'];
 
-    /* Formato nacimiento */
+    /* Formato imagen */
     $ruta = '../../../src/assets/images/alumno/'.$dni.'.jpg';
-
+    
     if(!file_exists($ruta)){
-        $ruta = '../../../src/assets/images/alumno/desconocido.jpg';
+        $ruta = '../../../src/assets/images/alumno/'.$dni.'.jpeg';
+        if(!file_exists($ruta)){
+            $ruta = '../../../src/assets/images/alumno/desconocido.jpg';
+        }
     }
 
 
