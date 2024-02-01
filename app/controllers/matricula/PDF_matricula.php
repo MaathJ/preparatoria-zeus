@@ -19,14 +19,14 @@ $f_pdf=mysqli_query($cn, $sql_pdf);
 $r=mysqli_fetch_assoc($f_pdf);
 
 //DATOS
-    $ciclo = "";//strtoupper( $r['nombre_pe'] );
+    $ciclo = strtoupper( $r['nombre_pe'] );
     $entero = "VOLANTES";//strtoupper( $r[''] );
-    $area = "";//strtoupper( $r['nombre_ar'] );
+    $area = strtoupper( $r['nombre_ar'] );
     /* Cadena grande */
     $escuela = mb_convert_encoding(ucwords(strtolower( $r['nombre_ca'] )), 'ISO-8859-1', 'UTF-8');
     $letras = strlen($escuela);
     /* ----------------- */
-    $uni = "";//strtoupper( $r['uni_al'] );
+    $uni = strtoupper( $r['uni_al'] );
     $celular = $r['celular_al'];
     $dni = $r['dni_al'];
     $nombre = ucwords(strtolower(mb_convert_encoding($r['apellido_al'].", ".$r['nombre_al'], 'ISO-8859-1', 'UTF-8')));
