@@ -67,18 +67,6 @@ include_once('src/components/parte_superior.php');
     <div id="styleSelector"> </div>
 </div>
 
-<!-- Cabecera -->
-<div class="col-md-12">
-    <div class="row">
-        <div class="col-md-4">
-            <button type="button" class="btn btn-lg btn-success" data-bs-toggle="modal" data-bs-target="#Registrar" data-bs-whatever="@mdo">
-                <i class="fa-solid fa-plus text-white"></i> <span class="text-white">Agregar forma de pago</span>
-            </button>
-        </div>
-    </div>
-</div>
-<br>
-
 
 <!-- SCRIPT ESTADO -->
 <script src="src/assets/js/estado.js"></script>
