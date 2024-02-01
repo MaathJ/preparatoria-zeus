@@ -47,34 +47,10 @@ $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "
                 $texto = $r_fecha['estadodeu_bo'];
             }
     ?>
-            <!-- CABECERA -->
-            <div class='mb-2'>
-                <input type="hidden" value="<?php echo $id; ?>" id="id_para_volver">
-                <p>Zeus<span> / Boleta</span></p>
-                <h3>Boleta</h3>
-                <hr>
-                <div class="row">
-                    <div class="col-md-6">
-                        <h2>ALUMNO</h2>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <img src="src/assets/images/alumno/<?php echo $dni ?>.jpg" height="200" width="200">
-                            </div>
-                            <div class="col-md-6">
-                                <h3>NOMBRE:</h3><?php echo $nombre ?>
-                                <h3>DNI:</h3><?php echo $dni ?>
-                                <h3>ÁREA:</h3><?php echo $area ?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <h2>MATRICULA</h2>
-                        <h3>CICLO: </h3><?php echo $ciclo ?>
-                        <h3>INICIO: </h3><?php echo $fecha_ini ?>
-                        <h3>FINAL: </h3><?php echo $fecha_fin ?>
-                    </div>
-                </div>
-            </div>
+            <input type="hidden" value="<?php echo $id; ?>" id="id_para_volver">
+            <p>Zeus<span> / Boleta</span></p>
+            <h3>Boleta</h3>
+            <hr>
             <?php
             if ($texto != "DEUDA") {
             ?>
@@ -88,9 +64,8 @@ $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "
                 </button>
             <?php } ?>
             <br>
-            <!-- Tabla -->
             <div class="container-table" style="background-color: #fff; overflow:hidden">
-                <div class="col-md-12" style="box-sizing: border-box;" >
+                <div class="col-md-12" style="box-sizing: border-box;">
                     <table class="table table-striped table_id" id="table_boleta" style="width:100%; box-sizing: border-box; overflow:hidden">
                         <thead align="center" class="" style="color: #fff; background-color:#010133;">
                             <tr>
@@ -114,7 +89,7 @@ $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "
                             ?>
                                 <tr>
                                     <td>
-                                    <i class="fa-solid fa-eye"></i>
+                                        <i class="fa-solid fa-eye"></i>
                                         <?php echo $rB['nroboleta_bo']; ?>
                                     </td>
                                     <td>
@@ -145,7 +120,7 @@ $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "
                                         ?>
                                     </td>
                                     <td>
-                                        <a class="btn btn-sm btn-primary btn-circle ver-pagos-btn" id="abrir_pago" data-bs-toggle="modal" data-bs-target="#ModalPago" data-bs-whatever="@mdo" data-id-bo="<?php echo $rB['id_bo']; ?>">VER PAGOS</a>
+                                        <a class="btn btn-sm btn-primary btn-circle ver-pagos-btn" id="abrir_pago" data-bs-toggle="modal" data-bs-target="#ModalPago" data-bs-whatever="@mdo" data-id-bo="<?php echo $rB['id_bo']; ?>"><i class="fa-solid fa-money-bill"></i></a>
                                     </td>
                                     <td>
                                         <!-- BOTON EDITAR -->
@@ -192,7 +167,31 @@ $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "
             </div>";
     }
     ?>
+
+
+
+
+
+
 </div>
+<div class="boleta-user-card">
+    <div class="boleta-user-img">
+        <img src="src/assets/images/alumno/<?php echo $dni ?>.jpg">
+    </div>
+    <div class="boleta-user-info">
+        <h2>ALUMNO</h2>
+        <h3>NOMBRE:</h3><?php echo $nombre ?>
+        <h3>DNI:</h3><?php echo $dni ?>
+        <h3>ÁREA:</h3><?php echo $area ?>
+    </div>
+    <div class="boleta-user-matricula">
+        <h2>MATRICULA</h2>
+        <h3>CICLO: </h3><?php echo $ciclo ?>
+        <h3>INICIO: </h3><?php echo $fecha_ini ?>
+        <h3>FINAL: </h3><?php echo $fecha_fin ?>
+    </div>
+</div>
+
 
 <div class="modal fade" id="boletaExistenteModal" tabindex="-1" role="dialog" aria-labelledby="boletaExistenteModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
