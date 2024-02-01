@@ -47,6 +47,8 @@ include('modales_alumno.php');
                 $('#card-uni').text(data.universidad);
                 $('#card-napo').text(data.apoderado);
                 $('#card-ntel').text(data.telefonoApoderado);
+                $('#card-carrera').text(data.nombre_carrera);
+                $('#card-area').text(data.nombre_area);
                 let telApoderado = $('#card-ntel').text().trim();
                 let dataApoderado = $('#card-napo').text().trim();
                 console.log({
