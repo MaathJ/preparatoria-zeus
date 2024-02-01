@@ -375,7 +375,7 @@ include('modales_alumno.php');
                 data: {
                     id_arU: idArea
                 },
-                /* dataType: 'json', */ // Indica que esperas datos en formato JSON
+                dataType: 'json', // Indica que esperas datos en formato JSON
                 success: function(data) {
                     console.log(data);
 

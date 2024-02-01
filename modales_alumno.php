@@ -144,13 +144,13 @@ include_once('auth.php');
                             <div class="col-md-6">
                                 <div class="col-12">
                                     <label class="form-label" for="nombrea-alumno">Apellidos y Nombres:</label>
-                                    <input name="nombrea-alumno" class="form-control" type="text" id="Nombrea-alumno">
+                                    <input name="nombrea-alumno" class="form-control" type="text" id="Nombrea-alumno" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="col-12">
                                     <label class="form-label" for="celulara-alumno">Celular:</label>
-                                    <input name="celulara-alumno" class="form-control" type="text" id="Celulara-alumno">
+                                    <input name="celulara-alumno" class="form-control" type="text" id="Celulara-alumno" required>
                                 </div>
                             </div>
                         </div>
@@ -224,7 +224,7 @@ include_once('auth.php');
                             <div class="col-md-6">
                                 <div class="col-12">
                                     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; ">
-                                        <img src="./src/assets/images/img_fond.jpg" alt="avatar" id="img2" width="200" height="200" style="object-fit: cover;">
+                                        <img src="./src/assets/images/img_fond.jpg" alt="avatar" id="img2" width="200" height="200">
                                         <input type="file" name="foto2" id="foto2" accept="image/*">
                                         <label class="btn_img btn-danger" for="foto2">CAMBIAR FOTO</label>
                                     </div>
