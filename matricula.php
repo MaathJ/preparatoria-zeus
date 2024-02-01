@@ -172,6 +172,9 @@ ma.id_ma;
                                                 'id_maD': '<?php echo $rma['id_ma'] ?? ''; ?>'
                                                 });">
                                         <i class="fas fa-trash"> </i></a>
+                                    
+                                    <a class="btn btn-warning btn-circle " data-bs-toggle="modal" data-bs-target="#PDFMatricula" data-bs-whatever="@mdo" target="_parent" onclick="cargar_pdf(<?php echo $rma['id_ma'] ?? ''; ?>)">
+                                    <i class="fas fa-print"> </i></a>
                                 </center>
 
                             </td>
@@ -549,6 +552,20 @@ ma.id_ma;
         </div>
     </div>
 
+    <!-- MODAL PARA PDF -->
+    <div class="modal fade  " id="PDFMatricula" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header " style="background-color: #010133; color: #ffffff;">
+                    <h4 class="modal-title" id="exampleModalLabel">MATRICULA DOCUMENTO</h4>
+                </div>
+                <div class="modal-body">
+                    <iframe id='pdfIFrame' width='1100' height='600'></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Colocar antes de los Script  -->
     <?php
     include_once('src/components/parte_inferior.php');
@@ -632,6 +649,9 @@ ma.id_ma;
 
             new $.fn.dataTable.FixedHeader(table);
         });
+        function cargar_pdf(cod){
+            document.getElementById('pdfIFrame').src = 'app/controllers/matricula/PDF_matricula.php?cod=' + cod;
+        }
     </script>
 
     <?php
