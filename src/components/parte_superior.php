@@ -52,6 +52,13 @@ if ($_SESSION["usuario"]) {
                         </a>
                     </li>
 
+                    <li class="nav-link">
+                        <a style="cursor: pointer;" onclick="window.location.href='./asistencia.php'">
+                        <i class="fa-solid fa-user-graduate icon"></i>
+                            <span class="text nav-text">Asistencia</span>
+                        </a>
+                    </li>
+
                     <li class="nav-link" id="button-estudiante">
                         <a style="cursor: pointer;">
                             <i class="fa-solid fa-users icon"></i>
@@ -63,7 +70,6 @@ if ($_SESSION["usuario"]) {
                         <li class="links-options" onclick="window.location.href='./alumno.php'">Alumnos</li>
                         <li class="links-options" onclick="window.location.href='./area.php'">Área</li>
                         <li class="links-options" onclick="window.location.href='./carrera.php'">Carrera</li>
-                        <li class="links-options" onclick="window.location.href='./asistencia.php'">Asistencia</li>
                     </ul>
                     
 

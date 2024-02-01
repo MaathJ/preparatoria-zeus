@@ -58,7 +58,7 @@ $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "
                         <h2>ALUMNO</h2>
                         <div class="row">
                             <div class="col-md-6">
-                                <img src="src/assets/images/alumno/<?php echo $dni ?>.jpg" height="200" width="200">
+                                <img src="src/assets/images/alumno/<?php echo $dni ?>.jpg" height="200" width="200" style="border-radius:50%; padding:10px;">
                             </div>
                             <div class="col-md-6">
                                 <h3>NOMBRE:</h3><?php echo $nombre ?>
@@ -92,7 +92,7 @@ $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "
             <div class="container-table" style="background-color: #fff; overflow:hidden">
                 <div class="col-md-12" style="box-sizing: border-box;" >
                     <table class="table table-striped table_id" id="table_boleta" style="width:100%; box-sizing: border-box; overflow:hidden">
-                        <thead align="center" class="" style="color: #fff; background-color:#010133;">
+                        <thead class="text-center" class="" style="color: #fff; background-color:#010133;">
                             <tr>
                                 <th>N° Boleta</th>
                                 <th>Fecha de inicio</th>
@@ -113,41 +113,41 @@ $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "
                             while ($rB = mysqli_fetch_assoc($fB)) {
                             ?>
                                 <tr>
-                                    <td>
+                                    <td align="center">
                                     <i class="fa-solid fa-eye"></i>
                                         <?php echo $rB['nroboleta_bo']; ?>
                                     </td>
-                                    <td>
+                                    <td align="center">
                                         <?php echo date('d-m-Y ', strtotime($rB['fini_bo'])); ?>
                                     </td>
-                                    <td>
+                                    <td align="center">
                                         <?php echo date('d-m-Y ', strtotime($rB['ffin_bo'])); ?>
                                     </td>
-                                    <td>
+                                    <td align="center">
                                         <?php echo $rB['mes_bo']; ?>
                                     </td>
-                                    <td>
+                                    <td align="center">
                                         <?php echo $rB['preciofijo_bo']; ?>
                                     </td>
-                                    <td>
+                                    <td align="center">
                                         <?php echo $rB['deuda_bo']; ?>
                                     </td>
-                                    <td>
+                                    <td align="center">
                                         <?php $estado = $rB['estadodeu_bo'];
                                         $button = '<button class="' . ($estado === "PAGADO" ? 'active-button' : 'inactive-button') . '">' . $estado . '</button>';
                                         echo $button;
                                         ?>
                                     </td>
-                                    <td>
+                                    <td align="center">
                                         <?php $estado = $rB['estadodur_bo'];
                                         $button = '<button class="' . ($estado === "ACTIVO" ? 'active-button' : 'inactive-button') . '">' . $estado . '</button>';
                                         echo $button;
                                         ?>
                                     </td>
-                                    <td>
+                                    <td align="center">
                                         <a class="btn btn-sm btn-primary btn-circle ver-pagos-btn" id="abrir_pago" data-bs-toggle="modal" data-bs-target="#ModalPago" data-bs-whatever="@mdo" data-id-bo="<?php echo $rB['id_bo']; ?>">VER PAGOS</a>
                                     </td>
-                                    <td>
+                                    <td align="center">
                                         <!-- BOTON EDITAR -->
                                         <a class="btn btn-sm btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#Editar" data-bs-whatever="@mdo" onclick=" cargar_editar({
                                                 'bol':' <?php echo $rB['nroboleta_bo'] ?? ''; ?> ',
