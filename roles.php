@@ -40,7 +40,7 @@ include_once('src/components/parte_superior.php');
                     <tr>
                         
                         <td>
-                            <center><?php echo $r['nombre_ro'] ?></center>
+                            <center><i class="fa-solid fa-eye"></i> <?php echo $r['nombre_ro'] ?></center>
                         </td>
                         <td align="center"><?php
                                             $estado = $r['estado_ro'];

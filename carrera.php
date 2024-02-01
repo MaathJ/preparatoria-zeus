@@ -42,7 +42,7 @@ include('modales_carrera.php');
                         ?>
                         <tr>
 
-                            <td class="text-center"><?php echo $filaca['nombre_ca']; ?></td>
+                            <td class="text-center"><i class="fa-solid fa-eye"></i> <?php echo $filaca['nombre_ca']; ?></td>
                             <td class="text-center"><?php echo $filaca['nombre_ar']; ?></td>
                             <td align="center">
                                 <?php

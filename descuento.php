@@ -34,7 +34,7 @@ include_once('src/components/parte_superior.php');
                                         while($r=mysqli_fetch_assoc($f)){
                                     ?>
                                         <tr>
-                                        <td align="center"><?php echo $r['nombre_de']; ?></td>
+                                        <td align="center"><i class="fa-solid fa-eye"></i> <?php echo $r['nombre_de']; ?></td>
                                         <td align="center"><?php echo $r['monto_de']; ?></td>
                                         <td align="center"><?php
                                                 $estado = $r['estado_de'];

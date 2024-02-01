@@ -19,7 +19,6 @@ include('modales_ciclo.php');
             <table class="table table-striped table_id" id="table_ciclo" style="width:100%; box-sizing: border-box; overflow:hidden">
                 <thead align="center" class="" style="color: #fff; background-color:#010133;">
                     <tr>
-                        <th class="text-center">ID</th>
                         <th class="text-center">Ciclo</th>
                         <th class="text-center">Turnos</th>
                         <th class="text-center">Inicio</th>
@@ -44,8 +43,8 @@ include('modales_ciclo.php');
                         deleteModalCiclo($r['id_ci']);
                         ?>
                         <tr>
-                            <td align="center"><?php echo $r['id_ci'] ?></td>
-                            <td align="center"><?php echo $r['nombre_pe'] . ' ' . $r['nombre_ci'] ?></td>
+                            
+                            <td align="center"><i class="fa-solid fa-eye"></i> <?php echo $r['nombre_pe'] . ' ' . $r['nombre_ci'] ?></td>
                             <td align="center">
                                 <?php
                                 $turnos_nombre_array = explode(', ', $turnos['turnos_nombre']);

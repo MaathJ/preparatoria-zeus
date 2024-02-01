@@ -59,7 +59,7 @@ $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto"
                     <h2>ALUMNO</h2>
                     <div class="row">
                         <div class="col-md-6">
-                            <img src="src/assets/images/alumno/<?php echo $dni ?>.jpg" height="200" width="200">
+                            <img src="src/assets/images/alumno/<?php echo $dni ?>.jpg" height="200" width="200" style="border-radius:50%; object-fit:cover; margin-bottom:10px;">
                         </div>
                         <div class="col-md-6">
                             <h3>NOMBRE:</h3><?php echo $nombre ?>
@@ -91,9 +91,9 @@ $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto"
         <?php } ?>
         <br>
         <!-- Tabla -->
-        <div class="container-table" style="background-color: #fff;">
-            <div class="col-md-12">
-                <table class="table table-striped"  id="table_boleta">
+        <div class="container-table" style="background-color: #fff; overflow:hidden">
+        <div class="col-md-12" style="box-sizing: border-box;">
+            <table class="table table-striped table_id" id="table_boleta" style="width:100%; box-sizing: border-box; overflow:hidden">
                     <thead align="center" class=""  style="color: #fff; background-color:#010133;">
                         <tr>
                             <th>N° Boleta</th>
@@ -116,7 +116,7 @@ $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto"
                         ?>
                             <tr>
                                 <td>
-                                    <?php echo $rB['nroboleta_bo']; ?>
+                                <i class="fa-solid fa-eye"></i> <?php echo $rB['nroboleta_bo']; ?>
                                 </td>
                                 <td>
                                     <?php echo $rB['fini_bo']; ?>
