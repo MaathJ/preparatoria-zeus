@@ -553,16 +553,11 @@ ma.id_ma;
     <?php
     include_once('src/components/parte_inferior.php');
     ?>
-
-
     <!-- Verificar Datos de Registrar Matrícula  -->
-
     <script src="src/assets/js/matricula/verificardatos.js"></script>
-
     <!-- PARA EL BUSCAR Alumno  -->
     <script src="src/assets/js/matricula/buscaralumno.js"></script>
-
-    <!-- PARA EL CARGAR DATOS DE CICLO  -->
+    <!-- PARA EL CARGAR DATOS DE CICLO  XD-->
     <script src="src/assets/js/matricula/obtenerciclo.js"></script>
 
     <!-- PARA EL CARGAR DATOS DE DESCUENTO -->
