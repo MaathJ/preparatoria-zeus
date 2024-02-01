@@ -1,24 +1,45 @@
 .form-inputs-pagos .container-for .input-forma-pago {
-    display: flex;
-    align-items: center;
-  }
-  .form-inputs-pagos .container-for .input-forma-pago img {
-    -o-object-fit: cover;
-       object-fit: cover;
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-  }
+  display: flex;
+  align-items: center;
+}
 
-  .form-inputs-pagos {
-    display: flex;
-    flex-direction: row;
-    gap: 2rem;
-    padding: 0 0.5rem;
-  }
-  .form-inputs-pagos .container-for {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 6px;
-  }
+.form-inputs-pagos .container-for .input-forma-pago img {
+  -o-object-fit: cover;
+  object-fit: cover;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
+.form-inputs-pagos {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  padding: 0 0.5rem;
+}
+
+.form-inputs-pagos .container-for {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+
+.boleta-user-card {
+  margin-top: 1rem;
+  display: flex;
+  padding: 2rem 0;
+  align-items: center;
+  gap: 25px;
+  border-radius: 1rem;
+  width: 100%;
+  background-color: #fff;
+  justify-content: space-evenly;
+}
+.boleta-user-card .boleta-user-img img {
+  height: 200px;
+  width: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}/*# sourceMappingURL=forma_pago.css.map */
