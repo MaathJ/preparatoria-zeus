@@ -38,7 +38,11 @@ include('modales_alumno.php');
                         'font-weight': 'bold'
                     })
                 }
+                // Actualizar elementos dentro del modal usando los IDs
+                var rutaImagen = "./src/assets/images/alumno/" + data.dni + ".jpg";
 
+                // Establecer la fuente de la imagen
+                $('#card-imgA').attr('src', rutaImagen);
                 $('#card-dni').text(data.dni);
                 $('#card-fnac').text(data.fechaNacimiento);
                 $('#card-cel').text(data.telefono);
