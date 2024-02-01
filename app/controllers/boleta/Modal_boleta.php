@@ -66,13 +66,14 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="R-ffin" class="col-form-label" style="color: black;">Fecha culminación:</label>
-                                <input type="date" name="txt_ffin" class="form-control" id="R-ffin" required readonly>
-                            </div>
+                         
                             <div class="mb-3">
                                 <label for="R-mensualidad" class="col-form-label" style="color: black;">Mensualidad:</label>
                                 <input type="text" name="txt_mensual" class="form-control" id="R-mensualidad" required readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="R-ffin" class="col-form-label" style="color: black;">Fecha culminación:</label>
+                                <input type="date" name="txt_ffin" class="form-control" id="R-ffin" required readonly>
                             </div>
                             <div class="mb-3">
                                 <label for="R-precio" class="col-form-label" style="color: black;">Precio fijo:</label>
