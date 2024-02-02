@@ -70,7 +70,7 @@ include_once('src/components/parte_superior.php');
                     ?>
 
                         <tr align="center">
-                            <td><i class="fa-solid fa-eye"></i> <?php echo $r['usuario_us'] ?></td>
+                            <td><?php echo $r['usuario_us'] ?></td>
                             <td><?php echo $r['contra_us'] ?></td>
                             <td><?php echo $r['nombre_us'] . " " . $r['apellido_us']  ?></td>
                             <td><?php echo $r['dni_us'] ?></td>

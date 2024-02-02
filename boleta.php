@@ -89,7 +89,7 @@ $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "
                             ?>
                                 <tr>
                                     <td align="center">
-                                        <i class="fa-solid fa-eye"></i>
+                                    
                                         <?php echo $rB['nroboleta_bo']; ?>
                                     </td>
                                     <td align="center">
