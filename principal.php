@@ -2,8 +2,11 @@
 include_once("auth.php");
 include_once("src/components/parte_superior.php");
 include('./config/conexion.php');
-$sql = "select * from periodo";
-$f = mysqli_query($cn, $sql);
+
+include_once('limpiezaciclo.php');
+
+$sqlp = "select * from periodo";
+$fp = mysqli_query($cn, $sqlp);
 ?>
 <link rel="stylesheet" src="style.css" href="./bootstrap/bootstrap.css">
 <link rel="stylesheet" src="style.css" href="./datatables/datatables.css">
