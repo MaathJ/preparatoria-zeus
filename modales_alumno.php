@@ -224,7 +224,7 @@ include_once('auth.php');
                             <div class="col-md-6">
                                 <div class="col-12">
                                     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; ">
-                                        <img src="./src/assets/images/img_fond.jpg" alt="avatar" id="img2" width="200" height="200">
+                                        <img src="./src/assets/images/img_fond.jpg" alt="avatar" id="img2" width="200" height="200" style="object-fit: cover;">
                                         <input type="file" name="foto2" id="foto2" accept="image/*">
                                         <label class="btn_img btn-danger" for="foto2">CAMBIAR FOTO</label>
                                     </div>
