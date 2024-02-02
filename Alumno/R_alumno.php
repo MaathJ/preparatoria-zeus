@@ -118,7 +118,7 @@ if (isset($_FILES['foto']) && $_FILES['foto']['error'] == UPLOAD_ERR_OK) {
 
     if (in_array($e, $allowedExtensions) && ($imageType == IMAGETYPE_JPEG || $imageType == IMAGETYPE_PNG)) {
         // Genera un nombre único para evitar conflictos
-        $nombreArchivo = $dni . '.' . $e;
+        $nombreArchivo = $dni . '.jpg';
 
         // Mueve el archivo a la ubicación deseada
         move_uploaded_file($archivo, "../src/assets/images/alumno/" . $nombreArchivo);
