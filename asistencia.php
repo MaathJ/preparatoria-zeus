@@ -5,7 +5,25 @@ include_once('src/components/parte_superior.php');
 ?>
 <link rel="stylesheet" href="src/assets/css/asistencia/asistencia.css">
 <link rel="icon" href="src/assets/images/logo-zeus.png">
+<script  type="text/javascript">
+    let dni=75441125;
+    $.ajax({
+        url: './app/controllers/asistencia/controlasistencia.php',
+        type: 'POST',
+        data: {
+            dni: dni
+        },
+        /* dataType: 'json', */ // Indica que esperas datos en formato JSON
+        success: function(data) {
+            console.log(data);
+        },
+        error: function(xhr, status, error) {
+            console.error("Error en la solicitud AJAX:", status, error);
+            // Puedes agregar aquí código adicional para manejar el error, como
+        }
+    });
 
+</script>
 <div class="container-page">
 
     <div>
@@ -33,7 +51,7 @@ include_once('src/components/parte_superior.php');
                 <span>INGENIERIA</span>
             </div>
             <div class="card-asistencia-info-image">
-                <img src="src/assets/images/alumno/232323.jpg" alt="">
+                <img src="src/assets/images/alumno/75441125.jpg" alt="">
             </div>
         </div>
         <div class="card-second-info">

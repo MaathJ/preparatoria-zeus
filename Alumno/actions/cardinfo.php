@@ -19,7 +19,18 @@ if ($row = $result->fetch_assoc()) {
     $diff = date_diff(date_create($fechaNacimiento), date_create($fechaActual));
     // Obtener el componente de años de la diferencia
     $edad = $diff->format('%Y') . ' años';
-
+    $id_carrera=$row['id_ca'];
+    $subc="Select nombre_ar,nombre_ca from alumno a inner join carrera c ON c.id_ca=a.id_ca
+            inner join area ar on ar.id_ar=c.id_ar where a.id_ca=$id_carrera";
+            $result=mysqli_query($cn,$subc);
+            if ($result) {
+                // Obtenemos la primera fila del resultado
+                $rows = mysqli_fetch_assoc($result);
+            
+                // Extraemos los valores de las columnas nombre_ar y nombre_ca
+                $nombre_ar = $rows['nombre_ar'];
+                $nombre_ca = $rows['nombre_ca'];
+            };
     // Construir el único arreglo asociativo con la información
     $info = array(
         'nombre' => $nombre_al,
@@ -33,7 +44,9 @@ if ($row = $result->fetch_assoc()) {
         'colegio' => $row['colegio_al'],
         'universidad' => $row['uni_al'],
         'apoderado' => $row['apoderado_al'],
-        'telefonoApoderado' => $row['celapod_al']
+        'telefonoApoderado' => $row['celapod_al'],
+        'nombre_carrera' => $nombre_ca,
+        'nombre_area' => $nombre_ar
     );
 
     // Enviar el arreglo como respuesta JSON

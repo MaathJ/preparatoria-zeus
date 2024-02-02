@@ -2,7 +2,7 @@
 <div class="modal fade" id="Registrar_pago" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header " style="background-color: #F39C12; color: #ffffff;">
+            <div class="modal-header " style="background-color: #010133; color: #ffffff;">
                 <h4 class="modal-title" id="exampleModalLabel">
                     REGISTRAR PAGOS
                 </h4>
@@ -65,7 +65,7 @@
 <div class="modal fade" id="ModalPago" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: #F39C12; color: #ffffff;">
+            <div class="modal-header" style="background-color: #010133; color: #ffffff;">
                 <h4 class="modal-title" id="exampleModalLabel3">TODOS LOS PAGOS</h4>
             </div>
             <div class="modal-body" id="modal-content">
