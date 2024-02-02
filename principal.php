@@ -2,11 +2,15 @@
 include_once("auth.php");
 include_once("src/components/parte_superior.php");
 include('./config/conexion.php');
+include_once('limpiezaciclo.php');
+
+$sqlp = "select * from periodo";
+$fp = mysqli_query($cn, $sqlp);
+
 include_once('./app/controllers/boleta/U_estadoboleta.php');
 if ($_SESSION["usuario"]) {
   $nombreUsuario = $_SESSION["n_usuario"];
 }
-
 ?>
 <link rel="stylesheet" src="style.css" href="./bootstrap/bootstrap.css">
 <link rel="stylesheet" src="style.css" href="./datatables/datatables.css">
