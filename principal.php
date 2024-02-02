@@ -82,21 +82,7 @@ if ($_SESSION["usuario"]) {
     </div>
 
 </div>
-<?php
-if ($_SESSION["usuario"]) {
-    $id_rol = $_SESSION["rol_usuario"];
-    if ($id_rol === "ADMINISTRADOR") {
-?>
-        <form action="backup.php" method="post">
-            <button class="btn btn-primary" style="cursor: pointer;" name="backup_btn" value="Generar Backup">Generar BackUp</button>
-        </form>
-    <?php
-    }
-    ?>
-<?php
-}
-?>
-</div>
+
 
 
 
