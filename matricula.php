@@ -1,11 +1,7 @@
-<!-- <link rel="stylesheet" href="bootstrap/bootstrap.css">
-<script src="src/assets/js/boostrap/bootstrap.js"></script> -->
 <?php
 include_once('auth.php');
-
 include_once('./src/components/parte_superior.php');
 ?>
-
 <?php
 include('./config/conexion.php');
 
@@ -36,7 +32,6 @@ ma.id_ma;
 
 <link rel="stylesheet" href="./src/assets/css/matricula/matricula.css">
 
-<link rel="stylesheet" href="src/assets/css/estado.css">
 <link rel="icon" href="src/assets/images/logo-zeus.png">
 
 

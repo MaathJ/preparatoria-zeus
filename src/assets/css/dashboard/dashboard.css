@@ -21,46 +21,12 @@
   gap: 1rem;
 }
 
-
-
-
-.card-earningsmatri {
-  /* background-color: white; */
-  /* background: linear-gradient(45deg, #EB9611, #F1B960); */
-  background: linear-gradient(45deg, #7710F6, #A45FF9);
-  border-radius: 1rem;
-  padding: 1.5rem;
-  text-align: center;
-  width: 70%;
-  color: white;
-}
 .card-earnings {
-  /* background-color: white; */
-  background: linear-gradient(45deg, #FA214B, #FF787C);
+  background-color: white;
   border-radius: 1rem;
   padding: 1.5rem;
   text-align: center;
   width: 70%;
-  color: white;
-}
-
-.card-earningsprice {
-  /* background-color: #51DFD5; */
-  background: linear-gradient(45deg, #4B70ED, #97ACF6);
-  border-radius: 1rem;
-  padding: 1.5rem;
-  text-align: center;
-  width: 70%;
-  color: white;
-}
-.card-earningsasis {
- 
-  background: linear-gradient(45deg, #00D0C2, #76E4D8);
-  border-radius: 1rem;
-  padding: 1.5rem;
-  text-align: center;
-  width: 70%;
-  color: white;
 }
 .card-earnings .card-earnings-title {
   display: flex;
@@ -84,27 +50,21 @@
 .content-left-tables {
   padding: 1.5rem 0;
   display: flex;
-
   gap: 3rem;
 }
 
 .table {
   padding: 1.5rem;
   flex: 1;
-  height: 400px;
-  width: 400px;
   display: flex;
   flex-direction: column;
   background-color: white;
   border-radius: 1rem;
-  overflow-y: scroll;
-  
 }
 .table .table-card {
   display: flex;
   margin-top: 1.2rem;
   border-bottom: solid 1px rgba(224, 224, 224, 0.4235294118);
- 
 }
 .table .table-card .table-card-info {
   flex: 2;

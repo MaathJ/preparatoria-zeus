@@ -5,14 +5,43 @@ include('./config/conexion.php');
 include_once('limpiezaciclo.php');
 
 include_once('./app/controllers/boleta/U_estadoboleta.php');
-if ($_SESSION["usuario"]) {
+if ($_SESSION["usuario"] && !isset($_SESSION["welcome_message_shown"])) {
   $nombreUsuario = $_SESSION["n_usuario"];
+  echo '
+  <script>
+      setTimeout(() => {
+          Swal.fire({
+              height: 300,
+              width: 300,
+              text: "Bienvenido! ' . $_SESSION['n_usuario'] . '",
+              imageUrl: "src/assets/images/logo-zeus.png",
+              imageWidth: 150,
+              imageHeight: 150,
+              timer: 1000,
+              timerProgressBar: true,
+              didOpen: () => {
+                  Swal.showLoading();
+                  const timer = Swal.getPopup().querySelector("b");
+                  timerInterval = setInterval(() => {
+                      timer.textContent = `${Swal.getTimerLeft()}`;
+                  }, 100);
+              },
+              willClose: () => {
+                  clearInterval(timerInterval);
+              }
+          }).then((result) => {
+              if (result.dismiss === Swal.DismissReason.timer) {
+                  console.log("I was closed by the timer");
+              }
+          });
+      }, 100);
+  </script>';
+
+  $_SESSION["welcome_message_shown"] = true;
 }
+
 ?>
-<link rel="stylesheet" src="style.css" href="./bootstrap/bootstrap.css">
-<link rel="stylesheet" src="style.css" href="./datatables/datatables.css">
 <link rel="stylesheet" src="style.css" href="src/assets/css/dashboard/dashboard.css">
-<link rel="icon" href="src/assets/images/logo-zeus.png">
 <div class="container-page">
   <div>
     <p>Zeus<span> / Panel de Control</span></p>
@@ -20,9 +49,6 @@ if ($_SESSION["usuario"]) {
   </div>
   <form action="backup.php" method="post">
     <button class="btn btn-primary" style="cursor: pointer;" name="backup_btn" value="Generar Backup">Generar BackUp</button>
-    <center>
-      <h1 style="font-size: 50px; padding:20px;">BIENVENIDO <?php echo $nombreUsuario; ?></h1>
-    </center>
     <div class="card-earningsasis" style="margin-top:15px; width:100%;">
       <div class="card-earnings-title">
         <span><i class="fa-solid fa-door-open"></i></span>

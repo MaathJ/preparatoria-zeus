@@ -35,13 +35,11 @@
   width: 100%;
   background-color: #fff;
   justify-content: space-evenly;
-
-  .boleta-user-img {
-      img{
-          height: 200px;
-          width: 200px;
-          object-fit: cover;
-          border-radius: 50%;
-      }
-  }
 }
+.boleta-user-card .boleta-user-img img {
+  height: 200px;
+  width: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}/*# sourceMappingURL=forma_pago.css.map */
