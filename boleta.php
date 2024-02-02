@@ -88,8 +88,8 @@ $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "
                             while ($rB = mysqli_fetch_assoc($fB)) {
                             ?>
                                 <tr>
-                                    <td>
-                                    <i class="fa-solid fa-eye"></i>
+                                    <td align="center">
+                                        <i class="fa-solid fa-eye"></i>
                                         <?php echo $rB['nroboleta_bo']; ?>
                                     </td>
                                     <td align="center">
@@ -119,8 +119,8 @@ $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "
                                         echo $button;
                                         ?>
                                     </td>
-                                    <td>
-                                        <a class="btn btn-sm btn-primary btn-circle ver-pagos-btn" id="abrir_pago" data-bs-toggle="modal" data-bs-target="#ModalPago" data-bs-whatever="@mdo" data-id-bo="<?php echo $rB['id_bo']; ?>">VER PAGOS</a>
+                                    <td align="center">
+                                        <a class="btn btn-sm btn-primary btn-circle ver-pagos-btn" id="abrir_pago" data-bs-toggle="modal" data-bs-target="#ModalPago" data-bs-whatever="@mdo" data-id-bo="<?php echo $rB['id_bo']; ?>"><i class="fa-solid fa-money-bill"></i></a>
                                     </td>
                                     <td align="center">
                                         <!-- BOTON EDITAR -->
