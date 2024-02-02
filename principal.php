@@ -19,6 +19,68 @@ if ($_SESSION["usuario"]) {
         <p>Zeus<span> / Panel de Control</span></p>
         <h3>Panel de Control</h3>
     </div>
+    <form action="backup.php" method="post">
+    <button class="btn btn-primary" style="cursor: pointer;" name="backup_btn" value="Generar Backup">Generar BackUp</button>
+
+                <center> <h1 style="font-size: 50px; padding:20px;">BIENVENIDO <?php echo $nombreUsuario;?></h1> </center>
+    
+                <div class="card-earningsasis" style="margin-top:15px; width:100%;">
+                      <div class="card-earnings-title">
+                        <span><i class="fa-solid fa-door-open"></i></span>
+                        <p style="font-weight: 500; font-size: 30px;">Asistencia Total del día</p>
+                      </div>
+                      <h2 class="card-earnings-text" style="font-size: 40px;">
+                        20
+                      </h2>
+                </div>
+
+
+                <div class="content-left-tables">
+                    <!-- LOS 20 ALUMNOS QUE NO TIENEN FALTAS -->
+                    <div class="table">
+                      <h3>Matrículas del día</h3>
+                      <div class="content-table-one">
+                        <!-- while -->
+                          <div class="table-card">
+                            <div class="table-card-info">
+                              <div class="card-info">
+                                <img src="src/assets/images/logo-zeus.png" width="30px" height="30px">
+                              </div>
+                              <div>
+                                PERSONA
+                              </div>
+                            </div>
+                            <div class="table-card-days">
+                              ADMIN
+                            </div>
+                            <div class="table-card-days">
+                              FECHA Y HORA
+                            </div>
+                          </div>
+                        
+                      </div>
+                    </div>
+                    <div class="table">
+                      <h3>Matriculas a Vencer</h3>
+                      <div class="content-table-one">
+                            <!-- CONSULTA -->
+                          <div class="table-card">
+                            <div class="table-card-info">
+                              <div class="card-info">
+                                <img src="src/assets/images/logo-zeus.png" alt="img-dni">
+                              </div>
+                              <div>ABC</div>
+                            </div>
+                            <div class="table-card-days">
+                              25 días
+                            </div>
+                          </div>
+                        
+
+
+    </form>
+    </div>
+
 </div>
 <?php
 if ($_SESSION["usuario"]) {
