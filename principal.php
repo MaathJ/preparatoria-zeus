@@ -4,9 +4,6 @@ include_once("src/components/parte_superior.php");
 include('./config/conexion.php');
 include_once('limpiezaciclo.php');
 
-$sqlp = "select * from periodo";
-$fp = mysqli_query($cn, $sqlp);
-
 include_once('./app/controllers/boleta/U_estadoboleta.php');
 if ($_SESSION["usuario"]) {
   $nombreUsuario = $_SESSION["n_usuario"];
@@ -36,11 +33,9 @@ if ($_SESSION["usuario"]) {
       </h2>
     </div>
     <div class="content-left-tables">
-      <!-- LOS 20 ALUMNOS QUE NO TIENEN FALTAS -->
       <div class="table">
         <h3>Matrículas del día</h3>
         <div class="content-table-one">
-          <!-- while -->
           <div class="table-card">
             <div class="table-card-info">
               <div class="card-info">
@@ -63,7 +58,6 @@ if ($_SESSION["usuario"]) {
       <div class="table">
         <h3>Matriculas a Vencer</h3>
         <div class="content-table-one">
-          <!-- CONSULTA -->
           <div class="table-card">
             <div class="table-card-info">
               <div class="card-info">
