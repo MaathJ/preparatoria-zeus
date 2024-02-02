@@ -19,69 +19,34 @@ if ($_SESSION["usuario"]) {
         <p>Zeus<span> / Panel de Control</span></p>
         <h3>Panel de Control</h3>
     </div>
-    <form action="backup.php" method="post">
-    <button class="btn btn-primary" style="cursor: pointer;" name="backup_btn" value="Generar Backup">Generar BackUp</button>
-
-                <center> <h1 style="font-size: 50px; padding:20px;">BIENVENIDO <?php echo $nombreUsuario;?></h1> </center>
-    
-                <div class="card-earningsasis" style="margin-top:15px; width:100%;">
-                      <div class="card-earnings-title">
-                        <span><i class="fa-solid fa-door-open"></i></span>
-                        <p style="font-weight: 500; font-size: 30px;">Asistencia Total del día</p>
-                      </div>
-                      <h2 class="card-earnings-text" style="font-size: 40px;">
-                        20
-                      </h2>
-                </div>
-
-
-                <div class="content-left-tables">
-                    <!-- LOS 20 ALUMNOS QUE NO TIENEN FALTAS -->
-                    <div class="table">
-                      <h3>Matrículas del día</h3>
-                      <div class="content-table-one">
-                        <!-- while -->
-                          <div class="table-card">
-                            <div class="table-card-info">
-                              <div class="card-info">
-                                <img src="src/assets/images/logo-zeus.png" width="30px" height="30px">
-                              </div>
-                              <div>
-                                PERSONA
-                              </div>
-                            </div>
-                            <div class="table-card-days">
-                              ADMIN
-                            </div>
-                            <div class="table-card-days">
-                              FECHA Y HORA
-                            </div>
-                          </div>
-                        
-                      </div>
-                    </div>
-                    <div class="table">
-                      <h3>Matriculas a Vencer</h3>
-                      <div class="content-table-one">
-                            <!-- CONSULTA -->
-                          <div class="table-card">
-                            <div class="table-card-info">
-                              <div class="card-info">
-                                <img src="src/assets/images/logo-zeus.png" alt="img-dni">
-                              </div>
-                              <div>ABC</div>
-                            </div>
-                            <div class="table-card-days">
-                              25 días
-                            </div>
-                          </div>
-                        
-
-
-    </form>
-    </div>
-
 </div>
+<?php
+if ($_SESSION["usuario"]) {
+    $id_rol = $_SESSION["rol_usuario"];
+    if ($id_rol === "ADMINISTRADOR") {
+?>
+        <form action="backup.php" method="post">
+            <button class="btn btn-primary" style="cursor: pointer;" name="backup_btn" value="Generar Backup">Generar BackUp</button>
+        </form>
+    <?php
+    }
+    ?>
+<?php
+}
+?>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 <style>
     
@@ -92,10 +57,7 @@ if ($_SESSION["usuario"]) {
 include_once("src/components/parte_inferior.php")
 ?>
 <script>
-
-
     let table = new DataTable('#table_periodo', {
-        // "bInfo": false,
         responsive: true,
         language: {
             "lengthMenu": "Mostrar _MENU_ registros",
@@ -112,7 +74,6 @@ include_once("src/components/parte_inferior.php")
             },
             "sProcessing": "Cargando...",
         },
-        //para usar los botones   
         responsive: "true",
         dom: 'Bfrtilp',
         buttons: [{
@@ -120,7 +81,6 @@ include_once("src/components/parte_inferior.php")
                 autofilter: true,
                 text: '<i class="fa-regular fa-file-excel"></i>',
                 titleAttr: 'Exportar a Excel',
-                // className: 'btn btn-success'
             },
             {
                 extend: 'pdfHtml5',
@@ -130,7 +90,7 @@ include_once("src/components/parte_inferior.php")
                     columns: [0, 1]
                 },
                 customize: function(doc) {
-                   
+
                     doc.content[1].table.body[0].forEach(function(h) {
                         h.fillColor = 'rgb(1, 1, 51)';
                     });
@@ -138,7 +98,7 @@ include_once("src/components/parte_inferior.php")
                         '50%',
                         '50%',
                     ]
-                    doc.content[1].margin = [ 100, 0, 100, 0 ]
+                    doc.content[1].margin = [100, 0, 100, 0]
                 },
             },
             {
@@ -148,7 +108,6 @@ include_once("src/components/parte_inferior.php")
                 exportOptions: {
                     columns: [0, 1]
                 },
-                // className: 'btn btn-info'
             },
         ]
 
