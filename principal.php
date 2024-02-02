@@ -13,13 +13,34 @@ $f = mysqli_query($cn, $sql);
         <p>Zeus<span> / Panel de Control</span></p>
         <h3>Panel de Control</h3>
     </div>
-    <form action="backup.php" method="post">
-    <button class="btn btn-primary" style="cursor: pointer;" name="backup_btn" value="Generar Backup">Generar BackUp</button>
-    
-    </form>
-    </div>
-
 </div>
+<?php
+if ($_SESSION["usuario"]) {
+    $id_rol = $_SESSION["rol_usuario"];
+    if ($id_rol === "ADMINISTRADOR") {
+?>
+        <form action="backup.php" method="post">
+            <button class="btn btn-primary" style="cursor: pointer;" name="backup_btn" value="Generar Backup">Generar BackUp</button>
+        </form>
+    <?php
+    }
+    ?>
+<?php
+}
+?>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -27,10 +48,7 @@ $f = mysqli_query($cn, $sql);
 include_once("src/components/parte_inferior.php")
 ?>
 <script>
-
-
     let table = new DataTable('#table_periodo', {
-        // "bInfo": false,
         responsive: true,
         language: {
             "lengthMenu": "Mostrar _MENU_ registros",
@@ -47,7 +65,6 @@ include_once("src/components/parte_inferior.php")
             },
             "sProcessing": "Cargando...",
         },
-        //para usar los botones   
         responsive: "true",
         dom: 'Bfrtilp',
         buttons: [{
@@ -55,7 +72,6 @@ include_once("src/components/parte_inferior.php")
                 autofilter: true,
                 text: '<i class="fa-regular fa-file-excel"></i>',
                 titleAttr: 'Exportar a Excel',
-                // className: 'btn btn-success'
             },
             {
                 extend: 'pdfHtml5',
@@ -65,7 +81,7 @@ include_once("src/components/parte_inferior.php")
                     columns: [0, 1]
                 },
                 customize: function(doc) {
-                   
+
                     doc.content[1].table.body[0].forEach(function(h) {
                         h.fillColor = 'rgb(1, 1, 51)';
                     });
@@ -73,7 +89,7 @@ include_once("src/components/parte_inferior.php")
                         '50%',
                         '50%',
                     ]
-                    doc.content[1].margin = [ 100, 0, 100, 0 ]
+                    doc.content[1].margin = [100, 0, 100, 0]
                 },
             },
             {
@@ -83,7 +99,6 @@ include_once("src/components/parte_inferior.php")
                 exportOptions: {
                     columns: [0, 1]
                 },
-                // className: 'btn btn-info'
             },
         ]
 
