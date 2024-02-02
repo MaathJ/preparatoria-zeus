@@ -144,13 +144,13 @@ include_once('auth.php');
                             <div class="col-md-6">
                                 <div class="col-12">
                                     <label class="form-label" for="nombrea-alumno">Apellidos y Nombres:</label>
-                                    <input name="nombrea-alumno" class="form-control" type="text" id="Nombrea-alumno">
+                                    <input name="nombrea-alumno" class="form-control" type="text" id="Nombrea-alumno" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="col-12">
                                     <label class="form-label" for="celulara-alumno">Celular:</label>
-                                    <input name="celulara-alumno" class="form-control" type="text" id="Celulara-alumno">
+                                    <input name="celulara-alumno" class="form-control" type="text" id="Celulara-alumno" required>
                                 </div>
                             </div>
                         </div>
