@@ -2,6 +2,7 @@
 include_once("auth.php");
 include_once("src/components/parte_superior.php");
 include('./config/conexion.php');
+include_once('./app/controllers/boleta/U_estadoboleta.php');
 $sql = "select * from periodo";
 $f = mysqli_query($cn, $sql);
 ?>
