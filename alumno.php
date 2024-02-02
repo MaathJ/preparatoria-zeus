@@ -38,7 +38,11 @@ include('modales_alumno.php');
                         'font-weight': 'bold'
                     })
                 }
+                // Actualizar elementos dentro del modal usando los IDs
+                var rutaImagen = "./src/assets/images/alumno/" + data.dni + ".jpg";
 
+                // Establecer la fuente de la imagen
+                $('#card-imgA').attr('src', rutaImagen);
                 $('#card-dni').text(data.dni);
                 $('#card-fnac').text(data.fechaNacimiento);
                 $('#card-cel').text(data.telefono);
@@ -47,6 +51,8 @@ include('modales_alumno.php');
                 $('#card-uni').text(data.universidad);
                 $('#card-napo').text(data.apoderado);
                 $('#card-ntel').text(data.telefonoApoderado);
+                $('#card-carrera').text(data.nombre_carrera);
+                $('#card-area').text(data.nombre_area);
                 let telApoderado = $('#card-ntel').text().trim();
                 let dataApoderado = $('#card-napo').text().trim();
                 console.log({
@@ -120,9 +126,9 @@ include('modales_alumno.php');
 
 
                     <!--<td align="center"><?php echo $r['id_al'] ?></td>-->
-                    <td><img class="img-fluid" src="./src/assets/images/alumno/<?php echo $r['dni_al'] ?>.jpg"></td>
-                    <td><?php echo $r['apellido_al'] . ', ' . $r['nombre_al']; ?></td>
-                    <td><?php
+                    <td align="center"><img class="img-fluid" src="./src/assets/images/alumno/<?php echo $r['dni_al'] ?>.jpg"></td>
+                    <td align="center"><?php echo $r['apellido_al'] . ', ' . $r['nombre_al']; ?></td>
+                    <td align="center"><?php
                         $fechaNacimiento = $r['fnac_al'];
                         // Obtener la fecha actual
                         $fechaActual = date('Y-m-d');

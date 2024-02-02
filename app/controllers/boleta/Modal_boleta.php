@@ -39,7 +39,7 @@
 <div class="modal fade" id="Registrar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header " style="background-color: #F39C12; color: #ffffff;">
+            <div class="modal-header " style="background-color: #010133; color: #ffffff;">
                 <h4 class="modal-title" id="exampleModalLabel">
                     REGISTRAR BOLETA
                 </h4>
