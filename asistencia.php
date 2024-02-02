@@ -2,28 +2,12 @@
 include_once('auth.php');
 include_once('config/conexion.php');
 include_once('src/components/parte_superior.php');
+
 ?>
 <link rel="stylesheet" href="src/assets/css/asistencia/asistencia.css">
 <link rel="icon" href="src/assets/images/logo-zeus.png">
-<script  type="text/javascript">
-    let dni=75441125;
-    $.ajax({
-        url: './app/controllers/asistencia/controlasistencia.php',
-        type: 'POST',
-        data: {
-            dni: dni
-        },
-        /* dataType: 'json', */ // Indica que esperas datos en formato JSON
-        success: function(data) {
-            console.log(data);
-        },
-        error: function(xhr, status, error) {
-            console.error("Error en la solicitud AJAX:", status, error);
-            // Puedes agregar aquí código adicional para manejar el error, como
-        }
-    });
 
-</script>
+
 <div class="container-page">
 
     <div>
@@ -71,6 +55,63 @@ include_once('src/components/parte_superior.php');
     </div>
 </div>
 
+
+
+
+
+
 <?php
 include_once('src/components/parte_inferior.php');
 ?>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script  type="text/javascript">
+    
+    let dni=45645600;
+    $.ajax({
+    url: './app/controllers/asistencia/controlasistencia.php',
+    type: 'POST',
+    data: {
+        dni: dni
+    },
+    dataType: 'json',  // Indica que esperas datos en formato JSON
+    success: function(data) {
+        // escenario---Numero de evento,
+        console.log(data); 
+        switch (data[0].escenario){
+        case 1:{
+            Swal.fire({
+            title: data[0].mensaje,
+            text: "Agregue al alumno o considere actualizar el DNI",
+            icon: "warning"
+        });};
+        break;
+        case 2:{
+            Swal.fire({
+            title: data[0].mensaje,
+            text: "Registre una matrícula o revise su horario",
+            icon: "warning"
+        });};
+        break;
+        case 3:{
+            Swal.fire({
+            title: data[0].mensaje,
+            text: "Genere su boleta",
+            icon: "warning"
+        });};
+        break;
+        case 4:{
+            Swal.fire({
+            title: "Asistencia exitosa",
+            text: "Se registró exitosamente",
+            icon: "success"
+        });};
+
+        }
+    },
+
+    error: function(xhr, status, error) {
+        console.error("Error en la solicitud AJAX:", status, error);
+        // Puedes agregar aquí código adicional para manejar el error, como
+    }
+});
+</script>
