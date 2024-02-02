@@ -126,9 +126,9 @@ include('modales_alumno.php');
 
 
                     <!--<td align="center"><?php echo $r['id_al'] ?></td>-->
-                    <td><img class="img-fluid" src="./src/assets/images/alumno/<?php echo $r['dni_al'] ?>.jpg"></td>
-                    <td><?php echo $r['apellido_al'] . ', ' . $r['nombre_al']; ?></td>
-                    <td><?php
+                    <td align="center"><img class="img-fluid" src="./src/assets/images/alumno/<?php echo $r['dni_al'] ?>.jpg"></td>
+                    <td align="center"><?php echo $r['apellido_al'] . ', ' . $r['nombre_al']; ?></td>
+                    <td align="center"><?php
                         $fechaNacimiento = $r['fnac_al'];
                         // Obtener la fecha actual
                         $fechaActual = date('Y-m-d');

@@ -32,7 +32,7 @@ include_once('./config/conexion.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Preparatoria Zeus</title>
     <link rel="stylesheet" href="./index.css">
     <link rel="stylesheet" href="./src/assets/css/login/login.css"/>
     <link rel="icon" href="src/assets/images/logo-zeus.png">

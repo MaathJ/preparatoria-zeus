@@ -173,7 +173,7 @@ ma.id_ma;
                                                 });">
                                         <i class="fas fa-trash"> </i></a>
                                     
-                                    <a class="btn btn-warning btn-circle " data-bs-toggle="modal" data-bs-target="#PDFMatricula" data-bs-whatever="@mdo" target="_parent" onclick="cargar_pdf(<?php echo $rma['id_ma'] ?? ''; ?>)">
+                                    <a class="btn btn-sm btn-warning btn-circle " data-bs-toggle="modal" data-bs-target="#PDFMatricula" data-bs-whatever="@mdo" target="_parent" onclick="cargar_pdf(<?php echo $rma['id_ma'] ?? ''; ?>)">
                                     <i class="fas fa-print"> </i></a>
                                 </center>
 
