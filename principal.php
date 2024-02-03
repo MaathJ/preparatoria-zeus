@@ -5,6 +5,7 @@ include('./config/conexion.php');
 include_once('limpiezaciclo.php');
 
 include_once('./app/controllers/boleta/U_estadoboleta.php');
+
 if ($_SESSION["usuario"] && !isset($_SESSION["welcome_message_shown"])) {
   $nombreUsuario = $_SESSION["n_usuario"];
   echo '
@@ -157,5 +158,5 @@ include_once("src/components/parte_inferior.php")
       },
     ]
 
-  });
+  }); 
 </script>
