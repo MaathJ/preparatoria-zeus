@@ -4,11 +4,6 @@ include_once("src/components/parte_superior.php");
 include('./config/conexion.php');
 include_once('limpiezaciclo.php');
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 256180beed167f4747c0fa15338eb0fedc3b3c14
 include_once('./app/controllers/boleta/U_estadoboleta.php');
 if ($_SESSION["usuario"] && !isset($_SESSION["welcome_message_shown"])) {
   $nombreUsuario = $_SESSION["n_usuario"];
@@ -45,10 +40,6 @@ if ($_SESSION["usuario"] && !isset($_SESSION["welcome_message_shown"])) {
   $_SESSION["welcome_message_shown"] = true;
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 256180beed167f4747c0fa15338eb0fedc3b3c14
 ?>
 <link rel="stylesheet" src="style.css" href="src/assets/css/dashboard/dashboard.css">
 <div class="container-page">
