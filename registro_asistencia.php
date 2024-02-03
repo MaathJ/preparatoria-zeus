@@ -85,64 +85,6 @@ include_once('modal_card_alumno.php');
         <p>Zeus<span> / Registro Asistencia</span></p>
         <h3>Asistencia</h3>
     </div>
-
-
-    <div class="container-table col-md-12" style="background-color: #fff; overflow:hidden">
-        <div class="row">
-            <div class="col-md-3">
-                <input type="date" class="form-control" name="fechaasis" id="fechaAsistencia">
-            </div>
-            <div class="col-md-3">
-                <select name="lstciclo" class="form-control" id="cicloA">
-                    <option value="" disabled selected>Selecciona un ciclo</option>
-                    <?php
-                    $sqlCICLO = "SELECT id_ci,nombre_ci from ciclo where estado_ci='ACTIVO'";
-                    $fsqlc = mysqli_query($cn, $sqlCICLO);
-                    while ($rsqlc = mysqli_fetch_assoc($fsqlc)) {
-                    ?>
-                        <option value=<?php echo $rsqlc['id_ci']; ?>><?php echo $rsqlc['nombre_ci']; ?></option>
-                    <?php
-                    } ?>
-                </select>
-            </div>
-
-            <div class="col-md-3">
-
-                <select name="lstturno" class="form-control" id="turnoA">
-                    <option value="" disabled selected>Selecciona un turno</option>
-                    <?php
-                    $sqlTURNO = "SELECT * from turno where estado_tu = 'ACTIVO'";
-                    $fturno = mysqli_query($cn, $sqlTURNO);
-                    while ($rturno = mysqli_fetch_assoc($fturno)) {
-
-
-                    ?>
-                        <option value="<?php echo $rturno['id_tu'] ?>"> <?php echo $rturno['nombre_tu'] ?> </option>
-
-                    <?php
-
-                    }
-                    ?>
-
-                </select>
-            </div>
-            <div class="col-md-3">
-
-                <select name="lstestado" class="form-control" id="estadoA">
-                    <option value="" disabled selected>Selecciona un estado</option>
-                    <option value="ASISTIO">ASISTIO</option>
-                    <option value="TARDANZA">TARDANZA</option>
-                    <option value="JUSTIFICADO">JUSTIFICADO</option>
-                    <option value="FALTO">FALTO</option>
-
-                </select>
-
-            </div>
-        </div>
-    </div>
-
-
-
     <div class="container-table" style="background-color: #fff; overflow:hidden">
         <div class="col-md-12" style="box-sizing: border-box;">
             <table class="table table-striped table_id" id="table_registro_asistencia" style="width:100%; box-sizing: border-box; overflow:hidden">
@@ -225,9 +167,6 @@ include_once('modal_card_alumno.php');
 
                                 <p><?php echo $rsqlasis['estado_as']; ?></p>
                             </td>
-
-                            <td align="center"><?php echo $rsqlasis['nombre_pe'] . $rsqlasis['nombre_ci']; ?></td>
-                            <td align="center"><?php echo $rsqlasis['nombre_tu']; ?></td>
                             <td align="center">
                                 <a class="btn btn-sm btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#ModalCardInfo" data-bs-whatever="@mdo" onclick="infoI(
                                                         '<?php echo $r['id_al'] ?? ''; ?>'
