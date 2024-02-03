@@ -157,10 +157,8 @@ include_once('modal_card_alumno.php');
                                                                     case 'JUSTIFICADO':
                                                                         echo 'btnjustificacion';
                                                                         break;
-                                                                    case 'FALTA':
+                                                                    case 'FALTO':
                                                                         echo 'btnfalto';
-                                                                        break;
-                                                                    default:
                                                                         break;
                                                                 }
                                                                 ?>">
@@ -280,7 +278,7 @@ include_once('src/components/parte_inferior.php');
         ],
         responsive: true,
         language: {
-            "lengthMenu": "Mostrar MENU registros",
+
             "zeroRecords": "No se encontraron resultados",
             "info": " TOTAL registros",
             "infoEmpty": "No hay registros para mostrar",
@@ -341,19 +339,19 @@ include_once('src/components/parte_inferior.php');
 }
 
 .btasistio p{
-    background:#4FFB0F;
+    background: #4FFB0F;
     border-radius: 15px;
     font-weight: 600;
-    color:white ;
+    color:white;
     padding: 7px ;
 
 }
 
 .bttardanza p{
-    background:#FCB932;
+    background: #FCB932;
     border-radius: 15px;
     font-weight: 600;
-    color:white ;
+    color:white;
     padding: 7px;
 }
     
@@ -365,7 +363,7 @@ include_once('src/components/parte_inferior.php');
     padding: 7px;
 }
 .btnfalto p{
-    background:#F31253;
+    background:red;
     border-radius: 15px;
     font-weight: 600;
     color:white ;
