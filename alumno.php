@@ -19,7 +19,7 @@ include('modales_alumno.php');
             dataType: 'json',
             success: function(data) {
                 // Actualizar elementos dentro del modal usando los IDs
-                $
+            
                 $('#card-user').text(data.nombre);
                 $('#card-edad').text(data.edad);
                 $('#card-estado').text(data.estado);
@@ -36,7 +36,7 @@ include('modales_alumno.php');
                     })
                 }
                 // Actualizar elementos dentro del modal usando los IDs
-                var rutaImagen = "./src/assets/images/alumno/" + data.dni + ".jpg";
+                var rutaImagen = "./src/assets/images/alumno/" + data.dni + ".jpeg";
 
                 // Establecer la fuente de la imagen
                 $('#card-imgA').attr('src', rutaImagen);
@@ -73,7 +73,7 @@ include('modales_alumno.php');
                     })
                 }
 
-                $('#card-logo-img').attr('src', 'src/assets/images/alumno/' + data.dni + '.jpg');
+                $('#card-logo-img').attr('src', 'src/assets/images/alumno/' + data.dni + '.jpeg');
             },
             error: function(xhr, status, error) {
                 console.error("Error en la solicitud AJAX:", status, error);
@@ -123,7 +123,7 @@ include('modales_alumno.php');
 
 
                     <!--<td align="center"><?php echo $r['id_al'] ?></td>-->
-                    <td align="center"><img class="img-fluid" src="./src/assets/images/alumno/<?php echo $r['dni_al'] ?>.jpg"></td>
+                    <td align="center"><img class="img-fluid" src="./src/assets/images/alumno/<?php echo $r['dni_al'] ?>.jpeg"></td>
                     <td align="center"><?php echo $r['apellido_al'] . ', ' . $r['nombre_al']; ?></td>
                     <td align="center"><?php
                         $fechaNacimiento = $r['fnac_al'];
@@ -268,7 +268,7 @@ include('modales_alumno.php');
                 }
             }
 
-            document.getElementById('img2').src = "./src/assets/images/alumno/" + dato.dniU + ".jpg";
+            document.getElementById('img2').src = "./src/assets/images/alumno/" + dato.dniU + ".jepg";
         }
 
 
