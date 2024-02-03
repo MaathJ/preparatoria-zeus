@@ -22,11 +22,11 @@
 }
 
 .card-earnings {
-  background-color: #71E3D7;
+  background-color: white;
   border-radius: 1rem;
   padding: 1.5rem;
   text-align: center;
-  width: 100%;
+  width: 70%;
 }
 .card-earnings .card-earnings-title {
   display: flex;
@@ -35,6 +35,7 @@
   flex-direction: column;
 }
 .card-earnings .card-earnings-title span {
+  background-color: #f05941;
   height: 30px;
   width: 30px;
   border-radius: 30%;
@@ -43,7 +44,7 @@
   align-items: center;
 }
 .card-earnings .card-earnings-title span i {
-  color: black;
+  color: white;
 }
 
 .content-left-tables {
