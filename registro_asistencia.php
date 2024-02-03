@@ -1,18 +1,146 @@
 <?php
 include_once('auth.php');
 include('config/conexion.php');
-
 include_once('src/components/parte_superior.php');
-
+include_once('modal_card_alumno.php');
 
 ?>
-<link rel="icon" href="src/assets/images/logo-zeus.png">
+<script>
+    function infoCard(dato) {
+        asisIdAlumno = dato;
+        console.log(asisIdAlumno)
+        $.ajax({
+            url: './Alumno/actions/cardinfo.php',
+            type: 'POST',
+            data: {
+                id_alI: asisIdAlumno
+            },
+            dataType: 'json',
+            success: function(data) {
+                // Actualizar elementos dentro del modal usando los IDs
 
+                $('#card-user').text(data.nombre);
+                $('#card-edad').text(data.edad);
+                $('#card-estado').text(data.estado);
+                let estadoTexto = $('#card-estado').text().trim();
+                if (estadoTexto === 'ACTIVO') {
+                    $('#card-estado').css({
+                        'color': 'green',
+                        'font-weight': 'bold'
+                    })
+                } else {
+                    $('#card-estado').css({
+                        'color': 'red',
+                        'font-weight': 'bold'
+                    })
+                }
+                // Actualizar elementos dentro del modal usando los IDs
+                var rutaImagen = "./src/assets/images/alumno/" + data.dni + ".jpeg";
+
+                // Establecer la fuente de la imagen
+                $('#card-imgA').attr('src', rutaImagen);
+                $('#card-dni').text(data.dni);
+                $('#card-fnac').text(data.fechaNacimiento);
+                $('#card-cel').text(data.telefono);
+                $('#card-dir').text(data.direccion);
+                $('#card-col').text(data.colegio);
+                $('#card-uni').text(data.universidad);
+                $('#card-napo').text(data.apoderado);
+                $('#card-ntel').text(data.telefonoApoderado);
+                $('#card-carrera').text(data.nombre_carrera);
+                $('#card-area').text(data.nombre_area);
+                let telApoderado = $('#card-ntel').text().trim();
+                let dataApoderado = $('#card-napo').text().trim();
+                console.log({
+                    telApoderado,
+                    dataApoderado
+                })
+                if (telApoderado === "" && dataApoderado === "") {
+                    $('#apo-icon-1').css({
+                        'display': 'none'
+                    })
+                    $('#apo-icon-2').css({
+                        'display': 'none'
+                    })
+
+                } else {
+                    $('#apo-icon-1').css({
+                        'display': 'block'
+                    })
+                    $('#apo-icon-2').css({
+                        'display': 'block'
+                    })
+                }
+
+                $('#card-logo-img').attr('src', 'src/assets/images/alumno/' + data.dni + '.jpeg');
+            },
+            error: function(xhr, status, error) {
+                console.error("Error en la solicitud AJAX:", status, error);
+            }
+        })
+    }
+</script>
 <div class="container-page">
     <div>
         <p>Zeus<span> / Registro Asistencia</span></p>
         <h3>Asistencia</h3>
     </div>
+
+
+    <div class="container-table col-md-12" style="background-color: #fff; overflow:hidden">
+        <div class="row">
+            <div class="col-md-3">
+                <input type="date" class="form-control" name="fechaasis" id="fechaAsistencia">
+            </div>
+            <div class="col-md-3">
+                <select name="lstciclo" class="form-control" id="cicloA">
+                    <option value="" disabled selected>Selecciona un ciclo</option>
+                    <?php
+                    $sqlCICLO = "SELECT id_ci,nombre_ci from ciclo where estado_ci='ACTIVO'";
+                    $fsqlc = mysqli_query($cn, $sqlCICLO);
+                    while ($rsqlc = mysqli_fetch_assoc($fsqlc)) {
+                    ?>
+                        <option value=<?php echo $rsqlc['id_ci']; ?>><?php echo $rsqlc['nombre_ci']; ?></option>
+                    <?php
+                    } ?>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+
+                <select name="lstturno" class="form-control" id="turnoA">
+                    <option value="" disabled selected>Selecciona un turno</option>
+                    <?php
+                    $sqlTURNO = "SELECT * from turno where estado_tu = 'ACTIVO'";
+                    $fturno = mysqli_query($cn, $sqlTURNO);
+                    while ($rturno = mysqli_fetch_assoc($fturno)) {
+
+
+                    ?>
+                        <option value="<?php echo $rturno['id_tu'] ?>"> <?php echo $rturno['nombre_tu'] ?> </option>
+
+                    <?php
+
+                    }
+                    ?>
+
+                </select>
+            </div>
+            <div class="col-md-3">
+
+                <select name="lstestado" class="form-control" id="estadoA">
+                    <option value="" disabled selected>Selecciona un estado</option>
+                    <option value="ASISTIO">ASISTIO</option>
+                    <option value="TARDANZA">TARDANZA</option>
+                    <option value="JUSTIFICADO">JUSTIFICADO</option>
+                    <option value="FALTO">FALTO</option>
+
+                </select>
+
+            </div>
+        </div>
+    </div>
+
 
 
     <div class="container-table" style="background-color: #fff; overflow:hidden">
@@ -59,6 +187,7 @@ include_once('src/components/parte_superior.php');
                 periodo pe ON pe.id_pe = c.id_pe
             
 
+
                                     ";
                 $fsqlasis = mysqli_query($cn, $sqlasistencia);
 
@@ -93,9 +222,19 @@ include_once('src/components/parte_superior.php');
                                                                         break;
                                                                 }
                                                                 ?>">
-                                                                 <p><?php echo $rsqlasis['estado_as']; ?></p> 
-                                                                </td>
-                            <td align="center"><b>VER INFO</b></td>
+
+                                <p><?php echo $rsqlasis['estado_as']; ?></p>
+                            </td>
+
+                            <td align="center"><?php echo $rsqlasis['nombre_pe'] . $rsqlasis['nombre_ci']; ?></td>
+                            <td align="center"><?php echo $rsqlasis['nombre_tu']; ?></td>
+                            <td align="center">
+                                <a class="btn btn-sm btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#ModalCardInfo" data-bs-whatever="@mdo" onclick="infoI(
+                                                        '<?php echo $r['id_al'] ?? ''; ?>'
+                                                    )">
+                                    Más Info
+                                </a>
+                            </td>
                             <td align="center">
                                 <center>
 
@@ -109,10 +248,6 @@ include_once('src/components/parte_superior.php');
                             </td>
                         </tr>
                     <?php } ?>
-                    
-                    
-                    
-                                        
                 </tbody>
 
             </table>
@@ -148,7 +283,6 @@ include_once('src/components/parte_inferior.php');
         const fechaHoyPeru = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
         return fechaHoyPeru;
     }
-    
 
     $(document).ready(function() {
     var table = $('#table_registro_asistencia').DataTable({
@@ -313,6 +447,7 @@ include_once('src/components/parte_inferior.php');
     color:white ;
     padding: 7px;
 }
+
 
 
 </style>
