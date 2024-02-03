@@ -66,7 +66,7 @@ include_once('src/components/parte_inferior.php');
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script  type="text/javascript">
     
-    let dni=45645600;
+    let dni=74412200;
     $.ajax({
     url: './app/controllers/asistencia/controlasistencia.php',
     type: 'POST',
