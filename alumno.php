@@ -6,9 +6,6 @@ include_once('modal_card_alumno.php');
 include('modales_alumno.php');
 ?>
 <link rel="stylesheet" href="src/assets/css/alumno/alumno.css">
-<link rel="stylesheet" src="style.css" href="./bootstrap/bootstrap.css">
-<link rel="stylesheet" src="style.css" href="./datatables/datatables.css">
-<link rel="icon" href="src/assets/images/logo-zeus.png">
 <script>
     function infoI(dato) {
         idAlumno = dato;
@@ -199,44 +196,10 @@ include('modales_alumno.php');
             </table>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <?php
-
     include_once("./src/components/parte_inferior.php")
     ?>
-
     <script type="text/javascript">
-        /* function validarFormularioAlumnoR() {
-                let selectElement = document.getElementById('area-alumno');
-                let selectedValue = selectElement.value;
-
-                // Verifica si se ha seleccionado una opción válida
-                if (selectedValue == '' || selectedValue == null) {
-                    alert('Por favor, selecciona un area y tambien una carrera.');
-                    return false; // Evita que el formulario se envíe
-                }
-                let selectElementc = document.getElementById('carrera-alumno');
-                let selectedValuec = selectElementc.value;
-
-                // Verifica si se ha seleccionado una opción válida
-                if (selectedValuec == '' || selectedValuec == null) {
-                    alert('Por favor, selecciona una carrera.');
-                    return false; // Evita que el formulario se envíe
-                }
-            } */
         // Función para obtener el valor de una cookie
         function getCookie(name) {
             var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));

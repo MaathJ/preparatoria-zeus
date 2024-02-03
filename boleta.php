@@ -50,7 +50,6 @@ $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "
             <input type="hidden" value="<?php echo $id; ?>" id="id_para_volver">
             <p>Zeus<span> / Boleta</span></p>
             <h3>Boleta</h3>
-            <hr>
             <?php
             if ($texto != "DEUDA") {
             ?>
@@ -89,7 +88,7 @@ $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "
                             ?>
                                 <tr>
                                     <td align="center">
-                                        <i class="fa-solid fa-eye"></i>
+                                    
                                         <?php echo $rB['nroboleta_bo']; ?>
                                     </td>
                                     <td align="center">
@@ -115,7 +114,7 @@ $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "
                                     </td>
                                     <td align="center">
                                         <?php $estado = $rB['estadodur_bo'];
-                                        $button = '<button class="' . ($estado === "ACTIVO" ? 'active-button' : 'inactive-button') . '">' . $estado . '</button>';
+                                        $button = '<button  class="' . ($estado === "ACTIVO" ? 'active-button' : 'inactive-button') . '">' . $estado . '</button>';
                                         echo $button;
                                         ?>
                                     </td>

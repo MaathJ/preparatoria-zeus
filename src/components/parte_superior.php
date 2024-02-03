@@ -19,7 +19,6 @@ if ($_SESSION["usuario"]) {
 
     <!-- Boostrap 5  -->
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
-    <script src="src/assets/js/boostrap/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" src="style.css" href="./datatables/datatables.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -30,7 +29,6 @@ if ($_SESSION["usuario"]) {
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
-    <script src="assets/js/chartjs/pie-ingresos.js"></script>
     
 
 </head>

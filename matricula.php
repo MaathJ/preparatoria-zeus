@@ -1,11 +1,7 @@
-<!-- <link rel="stylesheet" href="bootstrap/bootstrap.css">
-<script src="src/assets/js/boostrap/bootstrap.js"></script> -->
 <?php
 include_once('auth.php');
-
 include_once('./src/components/parte_superior.php');
 ?>
-
 <?php
 include('./config/conexion.php');
 
@@ -36,7 +32,6 @@ ma.id_ma;
 
 <link rel="stylesheet" href="./src/assets/css/matricula/matricula.css">
 
-<link rel="stylesheet" href="src/assets/css/estado.css">
 <link rel="icon" href="src/assets/images/logo-zeus.png">
 
 
@@ -79,11 +74,9 @@ ma.id_ma;
                     ?>
                         <tr>
                             <td>
-                                <i class="fa-solid fa-eye"></i>
                                 <?php echo $rma['nombre_al'] ?>
                             </td>
                             <td>
-
                                 <?php echo $rma['apellido_al'] ?>
                             </td>
                             <td align="center">
@@ -116,6 +109,9 @@ ma.id_ma;
                                 |
                             </td>
                             <td>
+                                <span style="font-weight: bold; color:#010133">
+                                    <?php echo $rma['nombre_us'] ?>
+                                </span>
                                 <?php echo $rma['freg_ma'] ?>
                             </td>
 
@@ -172,9 +168,9 @@ ma.id_ma;
                                                 'id_maD': '<?php echo $rma['id_ma'] ?? ''; ?>'
                                                 });">
                                         <i class="fas fa-trash"> </i></a>
-                                    
+
                                     <a class="btn btn-sm btn-warning btn-circle " data-bs-toggle="modal" data-bs-target="#PDFMatricula" data-bs-whatever="@mdo" target="_parent" onclick="cargar_pdf(<?php echo $rma['id_ma'] ?? ''; ?>)">
-                                    <i class="fas fa-print"> </i></a>
+                                        <i class="fas fa-print"> </i></a>
                                 </center>
 
                             </td>
@@ -649,7 +645,8 @@ ma.id_ma;
 
             new $.fn.dataTable.FixedHeader(table);
         });
-        function cargar_pdf(cod){
+
+        function cargar_pdf(cod) {
             document.getElementById('pdfIFrame').src = 'app/controllers/matricula/PDF_matricula.php?cod=' + cod;
         }
     </script>

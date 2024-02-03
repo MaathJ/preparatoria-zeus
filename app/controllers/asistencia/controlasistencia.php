@@ -4,5 +4,5 @@
     $consultaDNI="select * from matricula";
 
     echo "Hola";
-    
+
 ?>

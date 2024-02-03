@@ -82,7 +82,7 @@ if (isset($_SESSION['deleted_area'])) {
             text: "' . $_SESSION['deleted_area'] . '",
             icon: "success"
         });
-    }, 2000);
+    }, 500);
     </script>';
     unset($_SESSION['deleted_area']);
 }
@@ -96,7 +96,7 @@ if (isset($_SESSION['error_area'])) {
             text: "' . $_SESSION['error_area'] . '",
             icon: "error"
         });
-     }, 2000);
+     }, 500);
     </script>';
     unset($_SESSION['error_area']);
 }
