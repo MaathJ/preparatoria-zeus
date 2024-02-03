@@ -6,157 +6,153 @@ include_once('limpiezaciclo.php');
 
 include_once('./app/controllers/boleta/U_estadoboleta.php');
 
-if ($_SESSION["usuario"] && !isset($_SESSION["welcome_message_shown"])) {
-  $nombreUsuario = $_SESSION["n_usuario"];
-  echo '
-  <script>
-      setTimeout(() => {
-          Swal.fire({
-              height: 300,
-              width: 300,
-              text: "Bienvenido! ' . $_SESSION['n_usuario'] . '",
-              imageUrl: "src/assets/images/logo-zeus.png",
-              imageWidth: 150,
-              imageHeight: 150,
-              timer: 1000,
-              timerProgressBar: true,
-              didOpen: () => {
-                  Swal.showLoading();
-                  const timer = Swal.getPopup().querySelector("b");
-                  timerInterval = setInterval(() => {
-                      timer.textContent = `${Swal.getTimerLeft()}`;
-                  }, 100);
-              },
-              willClose: () => {
-                  clearInterval(timerInterval);
-              }
-          }).then((result) => {
-              if (result.dismiss === Swal.DismissReason.timer) {
-                  console.log("I was closed by the timer");
-              }
-          });
-      }, 100);
-  </script>';
-
-  $_SESSION["welcome_message_shown"] = true;
+// Verificar si es un nuevo día
+if ($_SESSION["usuario"] && !isset($_SESSION["last_access_date"]) || $_SESSION["last_access_date"] != date('Y-m-d')) {
+    // Si es un nuevo día, realiza las acciones necesarias
+    $_SESSION["last_access_date"] = date('Y-m-d');
+    
+    echo '
+    <script>
+        setTimeout(() => {
+            Swal.fire({
+                height: 300,
+                width: 300,
+                text: "Bienvenido! ' . $_SESSION['n_usuario'] . '",
+                imageUrl: "src/assets/images/logo-zeus.png",
+                imageWidth: 150,
+                imageHeight: 150,
+                timer: 1000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading();
+                    const timer = Swal.getPopup().querySelector("b");
+                    timerInterval = setInterval(() => {
+                        timer.textContent = `${Swal.getTimerLeft()}`;
+                    }, 100);
+                },
+                willClose: () => {
+                    clearInterval(timerInterval);
+                }
+            }).then((result) => {
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log("I was closed by the timer");
+                }
+            });
+        }, 100);
+    </script>';
 }
 
 ?>
-<link rel="stylesheet" src="style.css" href="src/assets/css/dashboard/dashboard.css">
+
+<link rel="stylesheet" href="src/assets/css/dashboard/dashboard.css">
+
 <div class="container-page">
-  <div>
-    <p>Zeus<span> / Panel de Control</span></p>
-    <h3>Panel de Control</h3>
-  </div>
-  <form action="backup.php" method="post">
-    <button class="btn btn-primary" style="cursor: pointer;" name="backup_btn" value="Generar Backup">Generar BackUp</button>
-    <div class="card-earningsasis" style="margin-top:15px; width:100%;">
-      <div class="card-earnings-title">
-        <span><i class="fa-solid fa-door-open"></i></span>
-        <p style="font-weight: 500; font-size: 30px;">Asistencia Total del día</p>
-      </div>
-      <h2 class="card-earnings-text" style="font-size: 40px;">
-        20
-      </h2>
+    <div>
+        <p>Zeus<span> / Panel de Control</span></p>
+        <h3>Panel de Control</h3>
     </div>
-    <div class="content-left-tables">
-      <div class="table">
-        <h3>Matrículas del día</h3>
-        <div class="content-table-one">
-          <div class="table-card">
-            <div class="table-card-info">
-              <div class="card-info">
-                <img src="src/assets/images/logo-zeus.png" width="30px" height="30px">
-              </div>
-              <div>
-                PERSONA
-              </div>
-            </div>
-            <div class="table-card-days">
-              ADMIN
-            </div>
-            <div class="table-card-days">
-              FECHA Y HORA
-            </div>
-          </div>
+    <form action="backup.php" method="post">
+        <button class="btn btn-primary" style="cursor: pointer; margin-bottom:10px;" name="backup_btn" value="Generar Backup">Generar BackUp</button>
+    </form>
 
+    <div class="card-earnings">
+        <div class="card-earnings-title" align="center">
+            <span><i class="fa-solid fa-door-open"></i></span>
+            <p style="font-weight: 500; font-size: 30px;">Asistencia Total del día</p>
         </div>
-      </div>
-      <div class="table">
-        <h3>Matriculas a Vencer</h3>
-        <div class="content-table-one">
-          <div class="table-card">
-            <div class="table-card-info">
-              <div class="card-info">
-                <img src="src/assets/images/logo-zeus.png" alt="img-dni">
-              </div>
-              <div>ABC</div>
-            </div>
-            <div class="table-card-days">
-              25 días
-            </div>
-          </div>
-  </form>
+        <h2 class="card-earnings-text" style="font-size: 35px;" align="center">
+            50 alumnos
+        </h2>
+    </div>
+
+    <div class="content-left-tables">
+        <div class="table">
+            <h3>Matrículas del día</h3>
+            <?php
+            $sql = "SELECT 
+                alumno.nombre_al AS nombre_alumno,
+                alumno.apellido_al AS apellido_alumno,
+                alumno.dni_al AS dni_alumno,
+                usuario.nombre_us AS nombre_usuario,
+                usuario.apellido_us AS apellido_usuario,
+                DATE_FORMAT(matricula.freg_ma, '%H:%i') AS hora
+                FROM matricula
+                INNER JOIN alumno ON matricula.id_al = alumno.id_al
+                INNER JOIN usuario ON matricula.id_us = usuario.id_us
+                WHERE DATE(matricula.freg_ma) = CURDATE()";
+
+            $resultado = mysqli_query($cn, $sql);
+
+            if ($resultado && mysqli_num_rows($resultado) > 0) {
+                // Iterar sobre los resultados
+                while ($fila = mysqli_fetch_assoc($resultado)) {
+            ?>
+                    <div class="content-table-one">
+                        <div class="table-card">
+                            <div class="table-card-info">
+                                <div class="card-info">
+                                    <img class="img-fluid" src="./src/assets/images/alumno/<?php echo $fila['dni_alumno'] ?>.jpg">
+                                </div>
+                                <div>
+                                    <?php echo $fila['nombre_alumno'] . ' ' . $fila['apellido_alumno']; ?>
+                                </div>
+                            </div>
+                            <div class="table-card-days">
+                                <?php echo $fila['nombre_usuario'] . ' ' . $fila['apellido_usuario']; ?>
+                            </div>
+                            <div class="table-card-days">
+                                <?php echo $fila['hora']; ?>
+                            </div>
+                        </div>
+                    </div>
+            <?php
+                }
+            } else {
+                echo '<p>No hay matrículas diarias.</p>';
+            }
+            ?>
+        </div>
+
+        <div class="table">
+            <h3>Alumnos con deuda</h3>
+            <?php
+            $sql = "SELECT alumno.nombre_al AS nombre_alumno, 
+                          alumno.apellido_al AS apellido_alumno,
+                          alumno.dni_al AS dni_alumno, 
+                          boleta.deuda_bo AS monto_deuda
+                    FROM boleta
+                    INNER JOIN matricula ON boleta.id_ma = matricula.id_ma
+                    INNER JOIN alumno ON matricula.id_al = alumno.id_al
+                    WHERE boleta.estadodeu_bo = 'DEUDA'";
+
+            $resultado_deuda = mysqli_query($cn, $sql);
+
+            if ($resultado_deuda && mysqli_num_rows($resultado_deuda) > 0) {
+                while ($fila_deuda = mysqli_fetch_assoc($resultado_deuda)) {
+            ?>
+                    <div class="content-table-one">
+                        <div class="table-card">
+                            <div class="table-card-info">
+                              <div class="card-info">
+                                    <img class="img-fluid" src="./src/assets/images/alumno/<?php echo $fila_deuda['dni_alumno'] ?>.jpg">
+                                </div>
+                                <div><?php echo $fila_deuda['nombre_alumno'] . ' ' . $fila_deuda['apellido_alumno']; ?></div>
+                            </div>
+                            <div class="table-card-days">
+                                <?php echo 'S/. '.$fila_deuda['monto_deuda']; ?>
+                            </div>
+                        </div>
+                    </div>
+            <?php
+                }
+            } else {
+                echo '<p>No hay alumnos con deuda.</p>';
+            }
+            ?>
+        </div>
+    </div>
 </div>
 
-</div>
 <?php
 include_once("src/components/parte_inferior.php")
 ?>
-<script>
-  let table = new DataTable('#table_periodo', {
-    responsive: true,
-    language: {
-      "lengthMenu": "Mostrar _MENU_ registros",
-      "zeroRecords": "No se encontraron resultados",
-      "info": " _TOTAL_ registros",
-      "infoEmpty": "No hay registros para mostrar",
-      "infoFiltered": "(filtrado de _MAX_  registros)",
-      "sSearch": "Buscar:",
-      "oPaginate": {
-        "sFirst": "Primero",
-        "sLast": "Último",
-        "sNext": "Siguiente",
-        "sPrevious": "Anterior"
-      },
-      "sProcessing": "Cargando...",
-    },
-    responsive: "true",
-    dom: 'Bfrtilp',
-    buttons: [{
-        extend: 'excelHtml5',
-        autofilter: true,
-        text: '<i class="fa-regular fa-file-excel"></i>',
-        titleAttr: 'Exportar a Excel',
-      },
-      {
-        extend: 'pdfHtml5',
-        text: '<i class="fa-regular fa-file-pdf"></i>',
-        titleAttr: 'Exportar a PDF',
-        exportOptions: {
-          columns: [0, 1]
-        },
-        customize: function(doc) {
-
-          doc.content[1].table.body[0].forEach(function(h) {
-            h.fillColor = 'rgb(1, 1, 51)';
-          });
-          doc.content[1].table.widths = [
-            '50%',
-            '50%',
-          ]
-          doc.content[1].margin = [100, 0, 100, 0]
-        },
-      },
-      {
-        extend: 'print',
-        text: '<i class="fa-solid fa-print"></i>',
-        titleAttr: 'Imprimir',
-        exportOptions: {
-          columns: [0, 1]
-        },
-      },
-    ]
-
-  }); 
-</script>
