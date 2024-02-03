@@ -32,7 +32,6 @@ ma.id_ma;
 
 <link rel="stylesheet" href="./src/assets/css/matricula/matricula.css">
 
-<link rel="icon" href="src/assets/images/logo-zeus.png">
 
 
 
