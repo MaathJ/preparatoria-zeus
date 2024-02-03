@@ -1,11 +1,10 @@
 <?php 
 include_once('auth.php');
+include('config/conexion.php');
 
 include_once('src/components/parte_superior.php');
-?>
 
-<?php
-include('config/conexion.php');
+
 ?>
 <link rel="icon" href="src/assets/images/logo-zeus.png">
 <div class="container-page">
@@ -13,7 +12,53 @@ include('config/conexion.php');
         <p>Zeus<span> / Registro Asistencia</span></p>
         <h3>Asistencia</h3>
     </div>
-<br>
+    
+    <div class="container-table" style="background-color: #fff; overflow:hidden">
+        <div class="col-md-12">
+            <div class="col-md-3">
+                <input type="date" class=""  name=""  id="">
+            </div>
+            <div class="col-md-3">
+                <select name="" id="">
+                <?php 
+                $sqlCICLO="SELECT id_ci,nombre_ci fron ciclo where esttado_ci='ACTIVO'";
+                $fsqlc=mysqli_query($cn,$sqlCICLO);
+                while($rsqlc=mysqli_fetch_assoc($fsqlc)){
+                ?>
+                    <option value=<?php echo $rsqlc['id_ci']; ?>><?php echo $rsqlc['nombre_ci']; ?></option>
+                <?php 
+                }?>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+
+                <select name="" id="">
+                        <?php 
+                        $sqlTURNO = "SELECT * from turno where estado_tu = 'ACTIVO'";
+                        $fturno = mysqli_query($cn,$sqlTURNO);
+                        while ($rturno = mysqli_fetch_assoc($fturno) ) {
+                        
+                        
+                        ?>
+                        <option value="<?php echo $rturno['id_tu']?>"> <?php echo $rturno['nombre_tu']?> </option>
+
+                        <?php 
+
+                        } 
+                        ?>
+
+                </select>   
+            </div>
+            <div class="col-md-3">
+
+                        
+
+            </div>
+        </div>
+    </div>
+
+
 <div class="container-table" style="background-color: #fff; overflow:hidden">
         <div class="col-md-12" style="box-sizing: border-box;">
             <table class="table table-striped table_id" id="table_registro_asistencia" style="width:100%; box-sizing: border-box; overflow:hidden">
@@ -108,6 +153,7 @@ include_once('src/components/parte_inferior.php');
 <script src="src/assets/js/datatableIntegration.js"></script>
 
 <script>
+     console.log('defdf')
 $(document).ready(function() {
             var table = $('#table_registro_asistencia').DataTable({
                 responsive: true,
