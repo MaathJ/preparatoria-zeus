@@ -82,7 +82,7 @@ if ($resultadoExistencia) {
                     } 
 
                     $toleranciaMinutos = $tolerancia;
-                    $fechaHoraActual = date('Y-m-d H:i:s'); // Cambia esta línea según la hora que desees probar
+                    $horaActual = date('H:i:s'); // Cambia esta línea según la hora que desees probar
 
 
                     // Convertir la hora de inicio y fin del turno a formato de hora
@@ -114,7 +114,7 @@ if ($resultadoExistencia) {
                     // Agregar resultado al arreglo
                     $resultados[] = array(
                         'escenario' => 4,
-                        'mensaje' => "La matrícula con ID $idMatricula está dentro del rango del turno. $hentTu - $hsalTu - Hora actual: $fechaHoraActual",
+                        'mensaje' => "La matrícula con ID $idMatricula está dentro del rango del turno. $hentTu - $hsalTu - Hora actual: $horaActual",
                         'estadoa' => $estado_Asistencia,
                         'idma' => $idMatricula,
                         'deuda' => $deuda,
