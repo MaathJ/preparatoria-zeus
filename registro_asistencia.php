@@ -85,6 +85,8 @@ include_once('modal_card_alumno.php');
         <p>Zeus<span> / Registro Asistencia</span></p>
         <h3>Asistencia</h3>
     </div>
+
+
     <div class="container-table" style="background-color: #fff; overflow:hidden">
         <div class="col-md-12" style="box-sizing: border-box;">
             <table class="table table-striped table_id" id="table_registro_asistencia" style="width:100%; box-sizing: border-box; overflow:hidden">
@@ -165,6 +167,7 @@ include_once('modal_card_alumno.php');
 
                                 <p><?php echo $rsqlasis['estado_as']; ?></p>
                             </td>
+
                             <td align="center">
                                 <a class="btn btn-sm btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#ModalCardInfo" data-bs-whatever="@mdo" onclick="infoCard(
                                                         '<?php echo $rsqlasis['id_al'] ?? ''; ?>'

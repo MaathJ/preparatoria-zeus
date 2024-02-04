@@ -9,7 +9,7 @@ include_once('../../../../config/conexion.php');
     FROM alumno AS al
     INNER JOIN carrera AS ca ON al.id_ca = ca.id_ca
     INNER JOIN area AS ar ON ca.id_ar = ar.id_ar
-    WHERE (al.apellido_al LIKE '%$busqueda%' OR al.dni_al LIKE '%$busqueda%')
+    WHERE (al.apellido_al LIKE '%$busqueda%' OR al.dni_al LIKE '%$busqueda%' OR al.nombre_al LIKE '%$busqueda%' )
     AND al.estado_al = 'ACTIVO'";
 
     $resultado = $cn->query($sql);

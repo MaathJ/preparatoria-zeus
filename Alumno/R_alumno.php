@@ -14,23 +14,24 @@ if (!mb_check_encoding($nombre, 'UTF-8')) {
 if (!mb_check_encoding($apellido, 'UTF-8')) {
     $apellido = mb_convert_encoding($apellido, 'UTF-8', 'ISO-8859-1');
 }
-
+$nombre = trim(mb_strtoupper($nombre, 'UTF-8'));
+$apellido = trim(mb_strtoupper($apellido, 'UTF-8'));
 
 
 $dni = $_POST['txtdni'];
 $telefono = $_POST['txttelefono'];
-$direccion = $_POST['txtdireccion'];
+$direccion = trim($_POST['txtdireccion']);
 $genero = $_POST['lstgenero'];
 $fnac= $_POST['txtfnac'];
 
-$colegio = $_POST['txtcolegio'];
+$colegio = trim($_POST['txtcolegio']);
 
 $archivo = $_FILES['foto']["tmp_name"]; 
 $nombres=$_FILES["foto"]["name"];
 
-$ciudad=$_POST['txtciudad'];
+$ciudad=trim($_POST['txtciudad']);
 
-$direccion = $_POST['txtdireccion'];
+$direccion = trim($_POST['txtdireccion']);
 
 $idarea=$_POST['lstarea'];
 
@@ -82,7 +83,17 @@ $stmt->close();
 
 $universidad= $_POST['lstuniversidad'];
 $nombreap= $_POST['nombrea-alumno'];
-$nombrecelularap= $_POST['celulara-alumno'];
+$celularap= $_POST['celulara-alumno'];
+if (!mb_check_encoding($nombreap, 'UTF-8')) {
+    $nombreap = mb_convert_encoding($nombreap, 'UTF-8', 'ISO-8859-1');
+}
+
+if (!mb_check_encoding($celularap, 'UTF-8')) {
+    $celularap= mb_convert_encoding($celularap, 'UTF-8', 'ISO-8859-1');
+}
+$nombreap = trim(mb_strtoupper($nombreap, 'UTF-8'));
+$celularap = trim(mb_strtoupper($celularap, 'UTF-8'));
+
 $ESTADO="ACTIVO";
 
 
@@ -92,7 +103,7 @@ $stmt = $cn->prepare($sql);
 
 // Bind de parámetros
 $stmt->bind_param("ssssssssssssssis", $nombre, $apellido, $dni, $telefono, $fnac, $ciudad, $colegio, $universidad, $nombreArea, $nombreCarrera,$ESTADO, $direccion, $nombreap, $nombrecelularap, $idcarrera,$genero);
-echo $nombre.$apellido. $dni. $telefono. $fnac. $ciudad. $colegio. $universidad. $nombreArea. $nombreCarrera.$ESTADO.$direccion. $nombreap. $nombrecelularap. $idcarrera.$genero;
+echo $nombre.$apellido. $dni. $telefono. $fnac. $ciudad. $colegio. $universidad. $nombreArea. $nombreCarrera.$ESTADO.$direccion. $nombreap. $celularap. $idcarrera.$genero;
 // Ejecutar el procedimiento almacenado
 $stmt->execute();
 // Cerrar la conexión y liberar recursos
