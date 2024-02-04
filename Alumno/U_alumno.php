@@ -10,11 +10,21 @@ $cn->set_charset("utf8");
 $id_al = $_POST['id_alumnoU'];
 $nombre_al = $_POST['txtnombreU'];
 $apellido_al = $_POST['txtapellidoU'];
+if (!mb_check_encoding($nombre_al , 'UTF-8')) {
+    $nombre_al = mb_convert_encoding($nombre_al , 'UTF-8', 'ISO-8859-1');
+}
+
+if (!mb_check_encoding($apellido_al, 'UTF-8')) {
+    $apellido_al= mb_convert_encoding($apellido_al, 'UTF-8', 'ISO-8859-1');
+}
+$nombre_al = trim(mb_strtoupper($nombre_al, 'UTF-8'));
+$apellido_al = trim(mb_strtoupper($apellido_al, 'UTF-8'));
+
 $dni_al = $_POST['txtdniU'];
 $celular_al = $_POST['txttelefonoU'];
 $fnac_al = $_POST['txtfnacU'];
-$ciudadp_al = $_POST['txtciudadU'];
-$colegio_al = $_POST['txtcolegioU'];
+$ciudadp_al = trim($_POST['txtciudadU']);
+$colegio_al = trim($_POST['txtcolegioU']);
 $uni_al = $_POST['lstuniversidadU'];
 $genero_al = $_POST['lstgeneroU'];
 $area_al = $_POST['lstareaU'];
@@ -46,10 +56,19 @@ $stmt->close();
 
 $estado_al = isset($_POST['checkestado']) ? $_POST['checkestado'] : 'INACTIVO';
 
-$direccion_al = $_POST['txtdireccionU'];
+$direccion_al = trim($_POST['txtdireccionU']);
+
 $apoderado_al = $_POST['nombrea-alumnoU'];
 $celapod_al = $_POST['celulara-alumnoU'];
+if (!mb_check_encoding($apoderado_al, 'UTF-8')) {
+    $apoderado_al= mb_convert_encoding($apoderado_al, 'UTF-8', 'ISO-8859-1');
+}
 
+if (!mb_check_encoding($celapod_al, 'UTF-8')) {
+    $celapod_al= mb_convert_encoding($celapod_al, 'UTF-8', 'ISO-8859-1');
+}
+$apoderado_al = trim(mb_strtoupper($apoderado_al, 'UTF-8'));
+$celular_al = trim(mb_strtoupper($celular_al, 'UTF-8'));
 
 
 
@@ -125,6 +144,10 @@ if (isset($_FILES['foto2']) && $_FILES['foto2']['error'] == UPLOAD_ERR_OK) {
     // Verificar si el archivo antiguo existe antes de intentar renombrarlo
     if (file_exists($rutaArchivoAntiguo)) {
         rename($rutaArchivoAntiguo, $rutaArchivoNuevo);
+    }else{
+        // Si no se ha seleccionado un archivo, asigna la foto predeterminada
+        copy('../src/assets/images/alumno/predt.jpg', "../src/assets/images/alumno/" . $dni_al . '.jpg');
+
     }
 
     // Continuar con la actualización o redirección
