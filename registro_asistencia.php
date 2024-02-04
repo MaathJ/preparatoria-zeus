@@ -172,21 +172,20 @@ include_once('modal_card_alumno.php');
                                 <a class="btn btn-sm btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#ModalCardInfo" data-bs-whatever="@mdo" onclick="infoCard(
                                                         '<?php echo $rsqlasis['id_al'] ?? ''; ?>'
                                                     )">
-                                    Más Info
+                                    Más Info <i class="fa-solid fa-phone-volume"></i>
                                 </a>
                             </td>
                             <td align="center">
                                 <center>
 
-                                    <a class="btn btn-sm btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#ModalEditar" data-bs-whatever="@mdo" onclick="cargar_info({
+                                    <a class="btn btn-sm btn-success btn-circle" data-bs-toggle="modal" data-bs-target="#ModalEditar" data-bs-whatever="@mdo" onclick="cargar_info({
                                         'id':'<?php echo $rsqlasis['id_as']; ?>',
                                         'estado':'<?php echo $rsqlasis['estado_as'] ?? ''; ?>'
                                         });">
-                                        <i class="fas fa-edit"></i></a>
+                                        <i class="fa-solid fa-clock"></i></a>
 
 
-                                    <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modalConfirmarEliminar" data-id="">
-                                        <i class="fas fa-trash"></i></a>
+                                 
                                 </center>
                             </td>
                         </tr>
