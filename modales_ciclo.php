@@ -26,7 +26,7 @@
                     <div class="col-md-6">
                         <div class="col-12 mb-3">
                             <label for="periodo" class="col-form-label" style="color: black;">Periodo:</label>
-                            <select name="lstperiodo" class="form-select form-select-sm mb-3" id="periodo">
+                            <select name="lstperiodo" class="form-control form-select-sm mb-3" id="periodo">
                                 <?php
                                 $sqlp = "SELECT * FROM  periodo WHERE estado_pe= 'ACTIVO' ";
                                 $f = mysqli_query($cn, $sqlp);
@@ -103,7 +103,7 @@
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="fechaCulminacion" class="col-form-label" style="color: black;">Estado :</label>
-                                <select name="u_lstestado" class="form-select form-select-sm mb-3" id="u_estado">
+                                <select name="u_lstestado" class="form-control form-select-sm mb-3" id="u_estado">
                                     <option value="ACTIVO">ACTIVO</option>
                                     <option value="INACTIVO">INACTIVO</option>
                                     <option value="FINALIZADO">FINALIZADO</option>
@@ -114,7 +114,7 @@
                         <div class="col-md-6">
                             <div class="col-12 mb-3">
                                 <label for="periodo" class="col-form-label" style="color: black;">Periodo:</label>
-                                <select name="u_lstperiodo" class="form-select form-select-sm mb-3" id="u_periodo" required>
+                                <select name="u_lstperiodo" class="form-control form-select-sm mb-3" id="u_periodo" required>
                                     <option value="" disabled selected>Selecciona un periodo</option>
                                     <?php
                                     $sqlpe = "SELECT * FROM  periodo WHERE estado_pe= 'ACTIVO' ";
