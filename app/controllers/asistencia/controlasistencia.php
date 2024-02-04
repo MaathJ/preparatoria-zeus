@@ -145,99 +145,109 @@ if ($resultadoExistencia) {
                                 $estado_Asistencia = 'FALTA';
                             }
 
-
-                            // Agregar resultado al arreglo
-                        
-                            $sqlexistenci = "SELECT COUNT(*) as total FROM  matricula m INNER JOIN 
-                            detalle_ciclo_turno dt ON m.id_ci = dt.id_ci
-                            INNER JOIN turno t ON dt.id_tu = t.id_tu inner join asistencia asi on asi.id_ma = m.id_ma inner join alumno al on al.id_al = m.id_al
-                            where now() BETWEEN CONCAT(CURRENT_DATE, ' ', t.hent_tu) AND CONCAT(CURRENT_DATE, ' ', t.hsal_tu) and al.dni_al = '$dniAlumno'
-                            AND asi.fecha_as > CONCAT(CURRENT_DATE, ' ', t.hent_tu)";
-
-                            $fexistencia = mysqli_query($cn,$sqlexistenci);
-                            $rexistencia = mysqli_fetch_assoc($fexistencia);
-                            $cantidadexistencia = $rexistencia['total'];
-                            if($cantidadexistencia<1){
-
-                                $sql_al="SELECT * FROM alumno a
-                                        INNER JOIN carrera c ON a.id_ca = c.id_ca
-                                        INNER JOIN area ar ON c.id_ar = ar.id_ar
-                                        WHERE a.dni_al = '$dniAlumno'";
-                                $f_al = mysqli_query($cn, $sql_al);
-                                $r_al = mysqli_fetch_assoc($f_al);
-
-                                //ALUMNO
-                                $nombre_al = ucwords(strtolower($r_al['apellido_al'].", ".$r_al['nombre_al']));
-                                $area_al =strtoupper( $r_al['nombre_ar'] );
-
-                                $fecha_nacimiento = new DateTime($r_al['fnac_al']);
-                                $hoy = new DateTime();
-                                $edad = $hoy->diff($fecha_nacimiento);
-
-                                //-------------
+                            if($estado_Asistencia != 'FALTA'){
+                                    // Agregar resultado al arreglo
+                            
+                                    $sqlexistenci = "SELECT COUNT(*) as total FROM  matricula m INNER JOIN 
+                                    detalle_ciclo_turno dt ON m.id_ci = dt.id_ci
+                                    INNER JOIN turno t ON dt.id_tu = t.id_tu inner join asistencia asi on asi.id_ma = m.id_ma inner join alumno al on al.id_al = m.id_al
+                                    where now() BETWEEN CONCAT(CURRENT_DATE, ' ', t.hent_tu) AND CONCAT(CURRENT_DATE, ' ', t.hsal_tu) and al.dni_al = '$dniAlumno'
+                                    AND asi.fecha_as > CONCAT(CURRENT_DATE, ' ', t.hent_tu)";
+    
+                                    $fexistencia = mysqli_query($cn,$sqlexistenci);
+                                    $rexistencia = mysqli_fetch_assoc($fexistencia);
+                                    $cantidadexistencia = $rexistencia['total'];
+                                    if($cantidadexistencia<1){
+    
+                                        $sql_al="SELECT * FROM alumno a
+                                                INNER JOIN carrera c ON a.id_ca = c.id_ca
+                                                INNER JOIN area ar ON c.id_ar = ar.id_ar
+                                                WHERE a.dni_al = '$dniAlumno'";
+                                        $f_al = mysqli_query($cn, $sql_al);
+                                        $r_al = mysqli_fetch_assoc($f_al);
+    
+                                        //ALUMNO
+                                        $nombre_al = ucwords(strtolower($r_al['apellido_al'].", ".$r_al['nombre_al']));
+                                        $area_al =strtoupper( $r_al['nombre_ar'] );
+    
+                                        $fecha_nacimiento = new DateTime($r_al['fnac_al']);
+                                        $hoy = new DateTime();
+                                        $edad = $hoy->diff($fecha_nacimiento);
+    
+                                        //-------------
+    
+                                        $resultados[] = array(
+                                            'escenario' => 4,
+                                            'mensaje' => "La matrícula con ID $idMatricula está dentro del rango del turno. $hentTu - $hsalTu - Hora actual: $fechaHoraActual",
+                                            'estadoa' => $estado_Asistencia,
+                                            'idma' => $idMatricula,
+                                            'deuda' => $deuda,
+                                            'TARD' => $hentTuHoraFormatoConTolerancia,
+                                            'TARDF' => $hsalTuTardanzaHoraFormato,
+                                            'INI' => $hentTuHoraFormato,
+                                            'FIN' => $hsalTuHoraFormato,
+                                            'info' => "<div class='card-principal-info'>
+                                                        <div class='card-asistencia-info'>
+                                                            <h1>".$nombre_al."</h1>
+                                                            <span>".$area_al."</span>
+                                                        </div>
+                                                        <div class='card-asistencia-info-image'>
+                                                            <img src='src/assets/images/alumno/".$dniAlumno.".jpg' onerror='this.src=". "'src/assets/images/forma_pago/desconocido.jpg'".">
+                                                        </div>
+                                                    </div>
+                                                    <div class='card-second-info'>
+                                                        <span>".$edad->y." AÑOS</span>
+                                                    </div>
+                                                    <div class='card-asistencia-footer'>
+                                                        <div class='asis-footer-info'>
+                                                            <span>CICLO: </span>".$ciclo."
+                                                        </div>
+                                                        <div class='asis-footer-info'>
+                                                            <span>DEUDA: </span> ".$deuda."
+                                                        </div>
+                                                        <div class='asis-footer-info'>
+                                                            <span>TURNO: </span> ".$turno."
+                                                        </div>
+                                                    </div>",
+    
+                                        );
+                                        
+                                        $sqlinsertasistencia = "INSERT INTO asistencia (id_ma, estado_as) VALUES (?, ?)";
+    
+                                        // Preparar la consulta
+                                        $stmt = mysqli_prepare($cn, $sqlinsertasistencia);
+    
+                                        if ($stmt) {
+                                            // Vincular parámetros
+                                            mysqli_stmt_bind_param($stmt, 'is', $idMatricula, $estado_Asistencia);
+    
+                                            // Ejecutar la consulta
+                                            $successqlinsertarasistencia = mysqli_stmt_execute($stmt);
+                                            // Cerrar la declaración
+                                            mysqli_stmt_close($stmt);
+                                        } else {
+                                            echo "Error al preparar la consulta: " . mysqli_error($cn);
+                                        }
+    
+    
+                                    }else{
+                                            $resultados[] = array(
+                                                    'escenario' => 5,
+                                                    'mensaje' => "Este alumno ya registro asistencia" 
+                                                );
+                                            
+                                    }
+    
+                            }else{
 
                                 $resultados[] = array(
-                                'escenario' => 4,
-                                'mensaje' => "La matrícula con ID $idMatricula está dentro del rango del turno. $hentTu - $hsalTu - Hora actual: $fechaHoraActual",
-                                'estadoa' => $estado_Asistencia,
-                                'idma' => $idMatricula,
-                                'deuda' => $deuda,
-                                'TARD' => $hentTuHoraFormatoConTolerancia,
-                                'TARDF' => $hsalTuTardanzaHoraFormato,
-                                'INI' => $hentTuHoraFormato,
-                                'FIN' => $hsalTuHoraFormato,
-                                'info' => "<div class='card-principal-info'>
-                                                <div class='card-asistencia-info'>
-                                                    <h1>".$nombre_al."</h1>
-                                                    <span>".$area_al."</span>
-                                                </div>
-                                                <div class='card-asistencia-info-image'>
-                                                    <img src='src/assets/images/alumno/".$dniAlumno.".jpg' onerror='this.src=". "'src/assets/images/forma_pago/desconocido.jpg'".">
-                                                </div>
-                                            </div>
-                                            <div class='card-second-info'>
-                                                <span>".$edad->y." AÑOS</span>
-                                            </div>
-                                            <div class='card-asistencia-footer'>
-                                                <div class='asis-footer-info'>
-                                                    <span>CICLO: </span>".$ciclo."
-                                                </div>
-                                                <div class='asis-footer-info'>
-                                                    <span>DEUDA: </span> ".$deuda."
-                                                </div>
-                                                <div class='asis-footer-info'>
-                                                    <span>TURNO: </span> ".$turno."
-                                                </div>
-                                            </div>",
-
-                            );
-                                
-                                $sqlinsertasistencia = "INSERT INTO asistencia (id_ma, estado_as) VALUES (?, ?)";
-
-                                // Preparar la consulta
-                                $stmt = mysqli_prepare($cn, $sqlinsertasistencia);
-
-                                if ($stmt) {
-                                    // Vincular parámetros
-                                    mysqli_stmt_bind_param($stmt, 'is', $idMatricula, $estado_Asistencia);
-
-                                    // Ejecutar la consulta
-                                    $successqlinsertarasistencia = mysqli_stmt_execute($stmt);
-                                    // Cerrar la declaración
-                                    mysqli_stmt_close($stmt);
-                                } else {
-                                    echo "Error al preparar la consulta: " . mysqli_error($cn);
-                                }
-
-
-                            }else{
-                                    $resultados[] = array(
-                                            'escenario' => 5,
-                                            'mensaje' => "Este alumno ya registro asistencia" 
-                                        );
-                                    
+                                    'escenario' => 7,
+                                    'mensaje' => "Culmino horario de asistencia" 
+                                );
                             }
 
+
+                            
 
                         }else{
                             $resultados[] = array(
