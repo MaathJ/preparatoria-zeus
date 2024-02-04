@@ -63,6 +63,8 @@ $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "
                 })">
                     <i class="fa-solid fa-plus text-white"></i> Registrar
                 </button>
+
+                <a href="matricula.php" style="text-decoration: none; background-color: #FFC107;" class="turno btn " > <i class="fa-solid fa-rotate-left"></i> VOLVER </a>
             <?php } ?>
             <br>
             <div class="container-table" style="background-color: #fff; overflow:hidden">
@@ -162,7 +164,7 @@ $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "
                                             'id_bo': '<?php echo $rB['id_bo']; ?>',
                                             'deuda_bo': '<?php echo $rB['deuda_bo']; ?>',
                                             'volver_bo':'<?php echo $id; ?>',
-                                        });">
+                                        });"> 
                                                 <i class="fa-solid fa-sack-dollar"></i> </a>
                                         <?php } ?>
                                     </td>
@@ -313,7 +315,7 @@ include_once('src/components/parte_inferior.php');
                     text: '<i class="fa-regular fa-file-excel"></i>',
                     titleAttr: 'Exportar a Excel',
                     exportOptions: {
-                        columns: [1, 2, 3, 4, 5]
+                        columns: [0,1, 2, 3, 4, 5]
                     }
 
                 },
@@ -322,7 +324,7 @@ include_once('src/components/parte_inferior.php');
                     text: '<i class="fa-regular fa-file-pdf"></i>',
                     titleAttr: 'Exportar a PDF',
                     exportOptions: {
-                        columns: [1, 2, 3, 4, 5]
+                        columns: [0,1, 2, 3, 4, 5]
                     },
                     customize: function(doc) {
 
@@ -336,7 +338,7 @@ include_once('src/components/parte_inferior.php');
                     text: '<i class="fa-solid fa-print"></i>',
                     titleAttr: 'Imprimir',
                     exportOptions: {
-                        columns: [1, 2, 3, 4, 5]
+                        columns: [0,1, 2, 3, 4, 5]
                     },
 
                 },
