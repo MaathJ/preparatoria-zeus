@@ -89,7 +89,7 @@ ma.id_ma
                             </td>
                             <td align="center">
 
-                                <a class="btn btn-lx " style="background-color: #4385F5; color: white; text-decoration: none;" href="boleta.php?id=<?php echo $rma['id_ma']; ?>">Boletas<i class="fa-solid fa-file-invoice"></i></a>
+                                <a class="btn btn-lx " style="background-color: #4385F5; color: white; text-decoration: none;" href="boleta.php?id=<?php echo $rma['id_ma']; ?>"><i class="fa-solid fa-file-invoice"></i></a>
 
                             </td>
 

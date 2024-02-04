@@ -1,32 +1,12 @@
-.main-content {
-    display: flex;
-    gap: 1rem;
-    padding: 1rem;
-    flex-direction: column;
-}
-.main-content-top {
-    display: flex;
-    gap: 1rem;
-    .main-content-left {
-        flex: 4;
-    }
-    .main-content-right {
-        flex: 1;
-    }
-}
-
-// information  top
-.content-left-earnings {
-    display: flex;
-    gap: 1rem;
-}
 
 .card-earnings {
     background-color: white;
     border-radius: 1rem;
     padding: 1.5rem;
     text-align: center;
-    width: 70%;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    width: 100%;
+    
 
     .card-earnings-title {
         display: flex;
@@ -34,7 +14,7 @@
         align-items: center;
         flex-direction: column;
         span {
-            background-color: #f05941;
+            background-color: rgb(1, 1, 51);
             height: 30px;
             width: 30px;
             border-radius: 30%;
@@ -49,17 +29,18 @@
 }
 // tablas
 .content-left-tables {
-    padding: 1.5rem 0;
+    padding: 1rem 0;
     display: flex;
-    gap: 3rem;
+    gap: 1rem;
 }
-.table {
+.table_principal {
     padding: 1.5rem;
     flex: 1;
     display: flex;
     flex-direction: column;
     background-color: white;
     border-radius: 1rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     .table-card {
         display: flex;
         margin-top: 1.2rem;

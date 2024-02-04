@@ -5,81 +5,7 @@ include_once('src/components/parte_superior.php');
 include_once('modal_card_alumno.php');
 
 ?>
-<script>
-    function infoCard(dato) {
-        asisIdAlumno = dato;
-        console.log(asisIdAlumno)
-        $.ajax({
-            url: './Alumno/actions/cardinfo.php',
-            type: 'POST',
-            data: {
-                id_alI: asisIdAlumno
-            },
-            dataType: 'json',
-            success: function(data) {
-                // Actualizar elementos dentro del modal usando los IDs
 
-                $('#card-user').text(data.nombre);
-                $('#card-edad').text(data.edad);
-                $('#card-estado').text(data.estado);
-                let estadoTexto = $('#card-estado').text().trim();
-                if (estadoTexto === 'ACTIVO') {
-                    $('#card-estado').css({
-                        'color': 'green',
-                        'font-weight': 'bold'
-                    })
-                } else {
-                    $('#card-estado').css({
-                        'color': 'red',
-                        'font-weight': 'bold'
-                    })
-                }
-                // Actualizar elementos dentro del modal usando los IDs
-                var rutaImagen = "./src/assets/images/alumno/" + data.dni + ".jpg";
-
-                // Establecer la fuente de la imagen
-                $('#card-imgA').attr('src', rutaImagen);
-                $('#card-dni').text(data.dni);
-                $('#card-fnac').text(data.fechaNacimiento);
-                $('#card-cel').text(data.telefono);
-                $('#card-dir').text(data.direccion);
-                $('#card-col').text(data.colegio);
-                $('#card-uni').text(data.universidad);
-                $('#card-napo').text(data.apoderado);
-                $('#card-ntel').text(data.telefonoApoderado);
-                $('#card-carrera').text(data.nombre_carrera);
-                $('#card-area').text(data.nombre_area);
-                let telApoderado = $('#card-ntel').text().trim();
-                let dataApoderado = $('#card-napo').text().trim();
-                console.log({
-                    telApoderado,
-                    dataApoderado
-                })
-                if (telApoderado === "" && dataApoderado === "") {
-                    $('#apo-icon-1').css({
-                        'display': 'none'
-                    })
-                    $('#apo-icon-2').css({
-                        'display': 'none'
-                    })
-
-                } else {
-                    $('#apo-icon-1').css({
-                        'display': 'block'
-                    })
-                    $('#apo-icon-2').css({
-                        'display': 'block'
-                    })
-                }
-
-                $('#card-logo-img').attr('src', 'src/assets/images/alumno/' + data.dni + '.jpg');
-            },
-            error: function(xhr, status, error) {
-                console.error("Error en la solicitud AJAX:", status, error);
-            }
-        })
-    }
-</script>
 <div class="container-page">
     <div>
         <p>Zeus<span> / Registro Asistencia</span></p>
@@ -185,7 +111,7 @@ include_once('modal_card_alumno.php');
                                         <i class="fa-solid fa-clock"></i></a>
 
 
-                                 
+
                                 </center>
                             </td>
                         </tr>
@@ -243,9 +169,82 @@ include_once('modal_card_alumno.php');
 
 include_once('src/components/parte_inferior.php');
 ?>
-<script src="src/assets/js/datatableIntegration.js"></script>
 
+<script>
+    function infoCard(dato) {
+        asisIdAlumno = dato;
+        console.log(asisIdAlumno)
+        $.ajax({
+            url: './Alumno/actions/cardinfo.php',
+            type: 'POST',
+            data: {
+                id_alI: asisIdAlumno
+            },
+            dataType: 'json',
+            success: function(data) {
+                // Actualizar elementos dentro del modal usando los IDs
 
+                $('#card-user').text(data.nombre);
+                $('#card-edad').text(data.edad);
+                $('#card-estado').text(data.estado);
+                let estadoTexto = $('#card-estado').text().trim();
+                if (estadoTexto === 'ACTIVO') {
+                    $('#card-estado').css({
+                        'color': 'green',
+                        'font-weight': 'bold'
+                    })
+                } else {
+                    $('#card-estado').css({
+                        'color': 'red',
+                        'font-weight': 'bold'
+                    })
+                }
+                // Actualizar elementos dentro del modal usando los IDs
+                var rutaImagen = "./src/assets/images/alumno/" + data.dni + ".jpg";
+
+                // Establecer la fuente de la imagen
+                $('#card-imgA').attr('src', rutaImagen);
+                $('#card-dni').text(data.dni);
+                $('#card-fnac').text(data.fechaNacimiento);
+                $('#card-cel').text(data.telefono);
+                $('#card-dir').text(data.direccion);
+                $('#card-col').text(data.colegio);
+                $('#card-uni').text(data.universidad);
+                $('#card-napo').text(data.apoderado);
+                $('#card-ntel').text(data.telefonoApoderado);
+                $('#card-carrera').text(data.nombre_carrera);
+                $('#card-area').text(data.nombre_area);
+                let telApoderado = $('#card-ntel').text().trim();
+                let dataApoderado = $('#card-napo').text().trim();
+                console.log({
+                    telApoderado,
+                    dataApoderado
+                })
+                if (telApoderado === "" && dataApoderado === "") {
+                    $('#apo-icon-1').css({
+                        'display': 'none'
+                    })
+                    $('#apo-icon-2').css({
+                        'display': 'none'
+                    })
+
+                } else {
+                    $('#apo-icon-1').css({
+                        'display': 'block'
+                    })
+                    $('#apo-icon-2').css({
+                        'display': 'block'
+                    })
+                }
+
+                $('#card-logo-img').attr('src', 'src/assets/images/alumno/' + data.dni + '.jpg');
+            },
+            error: function(xhr, status, error) {
+                console.error("Error en la solicitud AJAX:", status, error);
+            }
+        })
+    }
+</script>
 <script>
     function cargar_info(dato) {
 

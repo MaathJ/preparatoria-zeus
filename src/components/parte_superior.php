@@ -62,7 +62,7 @@ if ($_SESSION["usuario"]) {
 
                     <li class="nav-link">
                         <a style="cursor: pointer;" onclick="window.location.href='./asistencia.php'">
-                        <i class="fa-solid fa-user-graduate icon"></i>
+                        <i class="fa-solid fa-calendar-days icon"></i>
                             <span class="text nav-text">Asistencia</span>
                         </a>
                     </li>
