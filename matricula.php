@@ -7,7 +7,7 @@ include('./config/conexion.php');
 
 $sqlma = "SELECT 
 SUM(CASE WHEN bo.estadodeu_bo = 'DEUDA' AND bo.estadodur_bo = 'ACTIVO' THEN bo.deuda_bo ELSE 0 END) AS total_deudas,
-SUM(CASE WHEN bo.estadodur_bo = 'ACTIVO' THEN bo.mes_bo ELSE 0 END) AS total_meses,
+SUM(CASE WHEN bo.mes_bo IS NOT NULL THEN bo.mes_bo ELSE 0 END) AS total_meses,
 ma.*, al.*, ci.*, us.*, de.*, pe.*
 FROM 
 matricula ma
@@ -24,9 +24,8 @@ descuento de ON ma.id_de = de.id_de
 LEFT JOIN 
 boleta bo ON ma.id_ma = bo.id_ma AND bo.estadodur_bo = 'ACTIVO'
 GROUP BY 
-ma.id_ma;
-
-/* WHERE  ma.estado_ma ='ACTIVO' */ ";
+ma.id_ma
+";
 ?>
 <!-- Asegúrate de incluir jQuery y jQuery UI -->
 
