@@ -60,9 +60,37 @@ if ($_SESSION["usuario"] && !isset($_SESSION["last_access_date"]) || $_SESSION["
             <span><i class="fa-solid fa-door-open"></i></span>
             <p style="font-weight: 500; font-size: 30px;">Asistencia Total del día</p>
         </div>
-        <h2 class="card-earnings-text" style="font-size: 35px;" align="center">
-            50 alumnos
-        </h2>
+
+
+        <?php
+                        date_default_timezone_set('America/Lima');
+                        $fechaActual = date("Y-m-d");
+
+                
+                $sql = "SELECT COUNT(*) AS cantidad_asistentes
+                    FROM asistencia
+                    WHERE fecha_as >= '$fechaActual' AND estado_as = 'ASISTIO'";
+
+               
+                $result = mysqli_query($cn, $sql);
+
+               
+                if ($result) {
+                
+                $row = $result->fetch_assoc();
+
+               
+                echo $row['cantidad_asistentes'];
+                
+                } else {
+              
+                echo "Error en la consulta: " . $conn->error;
+                }
+
+                ?>      
+
+        
+       
     </div>
 
     <div class="content-left-tables">
@@ -112,6 +140,63 @@ if ($_SESSION["usuario"] && !isset($_SESSION["last_access_date"]) || $_SESSION["
             }
             ?>
         </div>
+
+        <div class="content-left-tables">
+        <div class="table">
+            <h3>Matrículas del día Por Ciclo </h3>
+            <?php
+           $sql = "
+           SELECT
+             p.nombre_pe AS periodo,
+             c.nombre_ci AS ciclo,
+             COUNT(m.id_ma) AS cantidad_matriculas
+           FROM
+             matricula m
+           JOIN
+             ciclo c ON m.id_ci = c.id_ci
+           JOIN
+             periodo p ON c.id_pe = p.id_pe
+           WHERE
+             m.estado_ma = 'ACTIVO' AND c.estado_ci = 'ACTIVO'  -- Agregar condición para matrículas y ciclos activos
+           GROUP BY
+             p.nombre_pe, c.nombre_ci
+           ORDER BY
+             p.nombre_pe, c.nombre_ci;
+       ";
+    
+    $result = mysqli_query($cn, $sql);
+
+    if ($result->num_rows > 0) {
+        // Imprimir resultados
+        while ($row = $result->fetch_assoc()) {
+
+            ?>
+            <div class="content-table-one">
+                <div class="table-card">
+                    <div class="table-card-info">
+                        <div class="card-info">
+                        <?php  echo "Periodo: " . $row["periodo"] . " - Ciclo: " . $row["ciclo"] . " - Cantidad de matrículas: " . $row["cantidad_matriculas"] . "<br>"; ?>
+                        </div>
+                       
+                    </div>
+                   
+                </div>
+            </div>
+    <?php
+
+
+  
+        }
+    } else {
+        echo "No se encontraron resultados.";
+    }
+            ?>
+        </div>
+
+
+
+
+
 
         <div class="table">
             <h3>Alumnos con deuda</h3>
