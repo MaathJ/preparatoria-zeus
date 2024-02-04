@@ -1,5 +1,5 @@
 <?php  
-
+session_start();
 include('../config/conexion.php');
 
 
@@ -106,8 +106,19 @@ $stmt->bind_param("ssssssssssssssis", $nombre, $apellido, $dni, $telefono, $fnac
 echo $nombre.$apellido. $dni. $telefono. $fnac. $ciudad. $colegio. $universidad. $nombreArea. $nombreCarrera.$ESTADO.$direccion. $nombreap. $celularap. $idcarrera.$genero;
 // Ejecutar el procedimiento almacenado
 $stmt->execute();
+
+// Verificar si la inserción fue exitosa
+if ($stmt->affected_rows > 0) {
+    // La inserción fue exitosa, establece una variable de sesión
+    $_SESSION['registro_exitoso'] = "¡Se ha registrado al alumno correctamente!";
+} else {
+    // La inserción no fue exitosa, establece una variable de sesión de error
+    $_SESSION['error_registro'] = "Hubo un problema al registrar. Por favor, inténtalo de nuevo.";
+}
+
 // Cerrar la conexión y liberar recursos
 $stmt->close();
+
 
 if (isset($_FILES['foto']) && $_FILES['foto']['error'] == UPLOAD_ERR_OK) {
     $archivo = $_FILES['foto']['tmp_name'];
