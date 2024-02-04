@@ -36,7 +36,7 @@ include('modales_alumno.php');
                     })
                 }
                 // Actualizar elementos dentro del modal usando los IDs
-                var rutaImagen = "./src/assets/images/alumno/" + data.dni + ".jpeg";
+                var rutaImagen = "./src/assets/images/alumno/" + data.dni + ".jpg";
 
                 // Establecer la fuente de la imagen
                 $('#card-imgA').attr('src', rutaImagen);
@@ -73,7 +73,7 @@ include('modales_alumno.php');
                     })
                 }
 
-                $('#card-logo-img').attr('src', 'src/assets/images/alumno/' + data.dni + '.jpeg');
+                $('#card-logo-img').attr('src', 'src/assets/images/alumno/' + data.dni + '.jpg');
             },
             error: function(xhr, status, error) {
                 console.error("Error en la solicitud AJAX:", status, error);

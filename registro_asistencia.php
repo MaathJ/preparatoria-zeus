@@ -35,7 +35,7 @@ include_once('modal_card_alumno.php');
                     })
                 }
                 // Actualizar elementos dentro del modal usando los IDs
-                var rutaImagen = "./src/assets/images/alumno/" + data.dni + ".jpeg";
+                var rutaImagen = "./src/assets/images/alumno/" + data.dni + ".jpg";
 
                 // Establecer la fuente de la imagen
                 $('#card-imgA').attr('src', rutaImagen);
@@ -72,7 +72,7 @@ include_once('modal_card_alumno.php');
                     })
                 }
 
-                $('#card-logo-img').attr('src', 'src/assets/images/alumno/' + data.dni + '.jpeg');
+                $('#card-logo-img').attr('src', 'src/assets/images/alumno/' + data.dni + '.jpg');
             },
             error: function(xhr, status, error) {
                 console.error("Error en la solicitud AJAX:", status, error);
@@ -145,7 +145,7 @@ include_once('modal_card_alumno.php');
                             <td align="center"><?php echo date('d-m-Y', strtotime($rsqlasis['fecha_as'])); ?></td>
                             <td align="center"><?php echo date('H:i:s', strtotime($rsqlasis['fecha_as'])); ?></td>
                             <td> <?php echo $rsqlasis['apellido_al'] . ' ' . $rsqlasis['nombre_al'];  ?></td>
-                            <td align="center"><?php echo $rsqlasis['nombre_pe'].$rsqlasis['nombre_ci']; ?></td>
+                            <td align="center"><?php echo $rsqlasis['nombre_pe'] . $rsqlasis['nombre_ci']; ?></td>
                             <td align="center"><?php echo $rsqlasis['nombre_ar']; ?></td>
                             <td align="center"><?php echo $rsqlasis['nombre_tu']; ?></td>
                             <td align="center" class="button <?php
@@ -159,7 +159,7 @@ include_once('modal_card_alumno.php');
                                                                     case 'JUSTIFICADO':
                                                                         echo 'btnjustificacion';
                                                                         break;
-                                                                    case 'FALTO':
+                                                                    case 'FALTA':
                                                                         echo 'btnfalto';
                                                                         break;
                                                                 }
@@ -204,26 +204,26 @@ include_once('modal_card_alumno.php');
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #010133; color: #ffffff;">
-                <h4 class="modal-title" id="exampleModalLabel">EDITAR  ESTADO:</h4>
+                <h4 class="modal-title" id="exampleModalLabel">EDITAR ESTADO:</h4>
             </div>
             <div class="modal-body">
                 <form action="app/controllers/asistencia/U_asistencia.php" method="post" class="row g-3">
                     <div class="col-12 mb-3">
                         <label for="turno" class="form-label">Estados:</label>
 
-                       
-                         <select name="u_lstestado" class="form-control" id="u_estado">
 
-                           <option value="ASISTIO">ASISTIO</option>
-                           <option value="TARDANZA">TARDANZA</option>
-                           <option value="FALTA">FALTA</option>
-                           <option value="JUSTIFICADO">JUSTIFICADO</option>
+                        <select name="u_lstestado" class="form-control" id="u_estado">
+
+                            <option value="ASISTIO">ASISTIO</option>
+                            <option value="TARDANZA">TARDANZA</option>
+                            <option value="FALTA">FALTA</option>
+                            <option value="JUSTIFICADO">JUSTIFICADO</option>
 
 
-                         </select>           
+                        </select>
 
                     </div>
-                   
+
                     <div class="modal-footer">
                         <input type="hidden" name="u_cod" id="u_id">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CERRAR</button>
@@ -248,16 +248,15 @@ include_once('src/components/parte_inferior.php');
 
 
 <script>
- function cargar_info(dato) {
-       
+    function cargar_info(dato) {
+
         document.getElementById('u_estado').value = dato.estado;
         document.getElementById('u_id').value = dato.id;
 
         console.log(dato.estado);
-            
+
 
     }
-
 </script>
 
 <script>
@@ -279,169 +278,158 @@ include_once('src/components/parte_inferior.php');
     }
 
     $(document).ready(function() {
-    var table = $('#table_registro_asistencia').DataTable({
-        dom: 'PBlfrtip',
-        stateSave: true,
-        searchPanes: {
-            initCollapsed: true,
-            order:['Fecha','Ciclo','Area','Turno','Estado'],
-            threshold: 0.4,
-            layout: 'columns-5',
-            cascadePanes: true,
-            viewTotal: true,
-            dtOpts: {
-                
-                dom: 'tp',
-                paging: 'true',
-                pagingType: "simple",
-                searching: true
-            },
-
-        },
-        columnDefs: [
-            {
-                searchPanes: {
-                    name: 'Ciclo',
-                    show: true
-                },
-                targets: [3]
-            },
-            {
-                searchPanes: {
-                    name: 'Fecha',
-                    show: true
-                },
-                targets: [0]
-            },
-            {
-                searchPanes: {
-                    name: 'Area',
-                    show: true
-                },
-                targets: [4]
-            },
-            {
-                searchPanes: {
-                    name: 'Turno',
-                    show: true
-                },
-                targets: [5]
-            },
-            {
-                searchPanes: {
-                    name: 'Estado',
-                    show: true
-                },
-                targets: [6]
-            }
-        ],
-        responsive: true,
-        language: {
-
-            "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json",
+        var table = $('#table_registro_asistencia').DataTable({
+            dom: 'PBlfrtip',
+            stateSave: true,
             searchPanes: {
-                title: '',
-                countFiltered: '{shown}/{total}',
-            },
-            "decimal": "",
-            "emptyTable": "No hay asistencias encontradas",
-            "info": "Mostrando de _START_ a _END_ de _TOTAL_ Asistencias",
-            "infoEmpty": "Mostrando  0 Asistencias",
-            "infoFiltered": "(Filtrado de _MAX_ Asistencias)",
-            "infoPostFix": "",
-            "thousands": ",",
-            "lengthMenu": "Mostrar _MENU_ Asistencias",
-            "loadingRecords": "Cargando...",
-            "processing": "Procesando...",
-            "search": "Buscar:",
-            "zeroRecords": "Sin resultados encontrados",
-            "paginate": {
-                "first": "Primero",
-                "last": "Ultimo",
-                "next": "Siguiente",
-                "previous": "Anterior"
-            }
-        },
+                initCollapsed: true,
+                order: ['Fecha', 'Ciclo', 'Area', 'Turno', 'Estado'],
+                threshold: 0.4,
+                layout: 'columns-5',
+                cascadePanes: true,
+                viewTotal: true,
+                dtOpts: {
 
-        buttons: [
-            {
-                extend: 'excelHtml5',
-                autofilter: true,
-                text: '<i class="fa-regular fa-file-excel"></i>',
-                titleAttr: 'Exportar a Excel',
-                exportOptions: {
-                    columns: [1, 2, 3, 4, 5]
+                    dom: 'tp',
+                    paging: 'true',
+                    pagingType: "simple",
+                    searching: true
+                },
+
+            },
+            columnDefs: [{
+                    searchPanes: {
+                        name: 'Ciclo',
+                        show: true
+                    },
+                    targets: [3]
+                },
+                {
+                    searchPanes: {
+                        name: 'Fecha',
+                        show: true
+                    },
+                    targets: [0]
+                },
+                {
+                    searchPanes: {
+                        name: 'Area',
+                        show: true
+                    },
+                    targets: [4]
+                },
+                {
+                    searchPanes: {
+                        name: 'Turno',
+                        show: true
+                    },
+                    targets: [5]
+                },
+                {
+                    searchPanes: {
+                        name: 'Estado',
+                        show: true
+                    },
+                    targets: [6]
                 }
+            ],
+            responsive: true,
+            language: {
 
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json",
+                searchPanes: {
+                    title: '',
+                    countFiltered: '{shown}/{total}',
+                },
+                "decimal": "",
+                "emptyTable": "No hay asistencias encontradas",
+                "info": "Mostrando de _START_ a _END_ de _TOTAL_ Asistencias",
+                "infoEmpty": "Mostrando  0 Asistencias",
+                "infoFiltered": "(Filtrado de _MAX_ Asistencias)",
+                "infoPostFix": "",
+                "thousands": ",",
+                "lengthMenu": "Mostrar _MENU_ Asistencias",
+                "loadingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "search": "Buscar:",
+                "zeroRecords": "Sin resultados encontrados",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Ultimo",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
             },
-            {
-                extend: 'pdfHtml5',
-                text: '<i class="fa-regular fa-file-pdf"></i>',
-                titleAttr: 'Exportar a PDF',
-                exportOptions: {
-                    columns: [1, 2, 3, 4, 5]
-                },
-                customize: function(doc) {
-                    doc.content[1].table.body[0].forEach(function(h) {
-                        h.fillColor = 'rgb(1, 1, 51)';
-                    });
-                },
-            },
-            {
-                extend: 'print',
-                text: '<i class="fa-solid fa-print"></i>',
-                titleAttr: 'Imprimir',
-                exportOptions: {
-                    columns: [1, 2, 3, 4, 5]
-                },
 
-            },
-        ]
+            buttons: [{
+                    extend: 'excelHtml5',
+                    autofilter: true,
+                    text: '<i class="fa-regular fa-file-excel"></i>',
+                    titleAttr: 'Exportar a Excel',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5]
+                    }
+
+                },
+                {
+                    extend: 'pdfHtml5',
+                    text: '<i class="fa-regular fa-file-pdf"></i>',
+                    titleAttr: 'Exportar a PDF',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5]
+                    },
+                    customize: function(doc) {
+                        doc.content[1].table.body[0].forEach(function(h) {
+                            h.fillColor = 'rgb(1, 1, 51)';
+                        });
+                    },
+                },
+                {
+                    extend: 'print',
+                    text: '<i class="fa-solid fa-print"></i>',
+                    titleAttr: 'Imprimir',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5]
+                    },
+
+                },
+            ]
+        });
+
+        new $.fn.dataTable.FixedHeader(table);
     });
-
-    new $.fn.dataTable.FixedHeader(table);
-});
 </script>
 
 <style>
-    
-.btasistio .bttardanza .btnjustificacion .btnfalto {
-    display: grid;
-    place-items: center;
-}
+    .btasistio p,
+    .bttardanza p,
+    .btnjustificacion p,
+    .btnfalto p {
+        width: auto;
+        border: none;
+        font-size: 12px;
+        border-radius: 12px;
+        padding: 0.3rem 1.7rem;
+        color: white;
+        font-weight: bold;
+        display: flex;
+        place-content: center;
+    }
 
-.btasistio p{
-    background: #4FFB0F;
-    border-radius: 15px;
-    font-weight: 600;
-    color:white;
-    padding: 7px ;
+    .btasistio p {
+        background: #4FFB0F;
 
-}
+    }
 
-.bttardanza p{
-    background: #FCB932;
-    border-radius: 15px;
-    font-weight: 600;
-    color:white;
-    padding: 7px;
-}
-    
-.btnjustificacion p{
-    background:#13F9C2;
-    border-radius: 15px;
-    font-weight: 600;
-    color:white ;
-    padding: 7px;
-}
-.btnfalto p{
-    background:red;
-    border-radius: 15px;
-    font-weight: 600;
-    color:white ;
-    padding: 7px;
-}
+    .bttardanza p {
+        background: #FCB932;
+    }
 
+    .btnjustificacion p {
+        background: #13F9C2;
+    }
 
-
+    .btnfalto p {
+        background: red;
+    }
 </style>
