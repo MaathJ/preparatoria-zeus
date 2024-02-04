@@ -2,10 +2,10 @@
 include_once('auth.php');
 include_once('src/components/parte_superior.php');
 include('config/conexion.php');
+$sql = "SELECT * FROM turno";
+$f = mysqli_query($cn, $sql);
 include('modales_turno.php');
 ?>
-
-<link rel="icon" href="src/assets/images/logo-zeus.png">
 
 <div class="container-page">
     <div>
@@ -29,37 +29,36 @@ include('modales_turno.php');
                 </thead>
                 <tbody>
                     <?php
-                    $sqlTurno = "SELECT * FROM turno ";
-                    $resultadoTurno = mysqli_query($cn, $sqlTurno);
 
-                    while ($filaTurno = mysqli_fetch_assoc($resultadoTurno)) {
+
+                    while ($r = mysqli_fetch_assoc($f)) {
                     ?>
                         <?php
-                        deleteModalTurno($filaTurno['id_tu']);
+                        deleteModalTurno($r['id_tu']);
                         ?>
                         <tr>
 
-                            <td align="center"><?php echo $filaTurno['nombre_tu']; ?></td>
-                            <td align="center"><?php echo $filaTurno['hent_tu']; ?></td>
-                            <td align="center"><?php echo $filaTurno['hsal_tu']; ?></td>
-                            <td align="center"><?php echo $filaTurno['tolerancia_tu']; ?></td>
+                            <td align="center"><?php echo $r['nombre_tu']; ?></td>
+                            <td align="center"><?php echo $r['hent_tu']; ?></td>
+                            <td align="center"><?php echo $r['hsal_tu']; ?></td>
+                            <td align="center"><?php echo $r['tolerancia_tu']; ?></td>
                             <td align="center"><?php
-                                                $estado = $filaTurno['estado_tu'];
+                                                $estado = $r['estado_tu'];
                                                 $button = '<button class="' . ($estado === "ACTIVO" ? 'active-button' : 'inactive-button') . '">' . $estado . '</button>';
                                                 echo $button;
                                                 ?></td>
                             <td>
                                 <center>
                                     <a class="btn btn-sm btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#modalEditar" data-bs-whatever="@mdo" target="_parent" onclick="cargar_info({
-                                            'id': '<?php echo $filaTurno['id_tu'] ?? ''; ?>',
-                                            'turno': '<?php echo $filaTurno['nombre_tu'] ?? ''; ?>',
-                                            'horaentrada': '<?php echo $filaTurno['hent_tu'] ?? ''; ?>',
-                                            'horasalida': '<?php echo $filaTurno['hsal_tu'] ?? ''; ?>',
-                                            'tolerancia': '<?php echo $filaTurno['tolerancia_tu'] ?? ''; ?>',
-                                            'estado': '<?php echo $filaTurno['estado_tu'] ?? ''; ?>'
+                                            'id': '<?php echo $r['id_tu'] ?? ''; ?>',
+                                            'turno': '<?php echo $r['nombre_tu'] ?? ''; ?>',
+                                            'horaentrada': '<?php echo $r['hent_tu'] ?? ''; ?>',
+                                            'horasalida': '<?php echo $r['hsal_tu'] ?? ''; ?>',
+                                            'tolerancia': '<?php echo $r['tolerancia_tu'] ?? ''; ?>',
+                                            'estado': '<?php echo $r['estado_tu'] ?? ''; ?>'
                                                 });">
                                         <i class="fas fa-edit"> </i></a>
-                                    <a class="btn btn-sm btn-danger btn-circle" target="_parent" data-bs-toggle="modal" data-bs-target="#DeleteModalTurno<?php echo $filaTurno['id_tu'] ?? ''; ?>" data-bs-whatever="@mdo">
+                                    <a class="btn btn-sm btn-danger btn-circle" target="_parent" data-bs-toggle="modal" data-bs-target="#DeleteModalTurno<?php echo $r['id_tu'] ?? ''; ?>" data-bs-whatever="@mdo">
                                         <i class="fas fa-trash"> </i>
                                     </a>
                                 </center>
@@ -76,7 +75,19 @@ include('modales_turno.php');
 </div>
 
 <?php
-
+if (isset($_SESSION['success_message'])) {
+    echo
+    '<script>
+    setTimeout(() => {
+        Swal.fire({
+            title: "¡Éxito!",
+            text: "' . $_SESSION['success_message'] . '",
+            icon: "success"
+        });
+    }, 200);
+</script>';
+    unset($_SESSION['success_message']);
+}
 if (isset($_SESSION['deleted_turn'])) {
     echo
     '<script>
@@ -86,7 +97,7 @@ if (isset($_SESSION['deleted_turn'])) {
             text: "' . $_SESSION['deleted_turn'] . '",
             icon: "success"
         });
-    }, 500);
+    }, 200);
 </script>';
     unset($_SESSION['deleted_turn']);
 }
@@ -101,7 +112,7 @@ if (isset($_SESSION['error_turn'])) {
             text: "' . $_SESSION['error_turn'] . '",
             icon: "error"
         });
-    }, 500);
+    }, 200);
     </script>';
     unset($_SESSION['error_turn']);
 }
@@ -115,7 +126,7 @@ if (isset($_SESSION['alert_message'])) {
             text: "' . $alertMessage . '",
             icon: "warning"
         });
-    }, 500);
+    }, 200);
     </script>';
     unset($_SESSION['alert_message']);
 }
@@ -154,64 +165,62 @@ include_once('src/components/parte_inferior.php');
         document.getElementById('U_hsal').min = horaEntradaEditar;
     }
 </script>
-
-<script src="src/assets/js/datatableIntegration.js"></script>
 <script>
     $(document).ready(function() {
-            var table = $('#table_turno').DataTable({
-                responsive: true,
-                language: {
-                    "lengthMenu": "Mostrar _MENU_ registros",
-                    "zeroRecords": "No se encontraron resultados",
-                    "info": " _TOTAL_ registros",
-                    "infoEmpty": "No hay registros para mostrar",
-                    "infoFiltered": "(filtrado de _MAX_  registros)",
-                    "sSearch": "Buscar:",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "sProcessing": "Cargando...",
+        var table = $('#table_turno').DataTable({
+            responsive: true,
+            language: {
+                "lengthMenu": "Mostrar _MENU_ registros",
+                "zeroRecords": "No se encontraron resultados",
+                "info": " _TOTAL_ registros",
+                "infoEmpty": "No hay registros para mostrar",
+                "infoFiltered": "(filtrado de _MAX_  registros)",
+                "sSearch": "Buscar:",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast": "Último",
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior"
                 },
-                dom: 'Bfrtilp',
-                buttons: [{
-                        extend: 'excelHtml5',
-                        autofilter: true,
-                        text: '<i class="fa-regular fa-file-excel"></i>',
-                        titleAttr: 'Exportar a Excel',
-                        exportOptions: {
-                            columns: [1, 2, 3, 4, 5]
-                        }
+                "sProcessing": "Cargando...",
+            },
+            dom: 'Bfrtilp',
+            buttons: [{
+                    extend: 'excelHtml5',
+                    autofilter: true,
+                    text: '<i class="fa-regular fa-file-excel"></i>',
+                    titleAttr: 'Exportar a Excel',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5]
+                    }
 
+                },
+                {
+                    extend: 'pdfHtml5',
+                    text: '<i class="fa-regular fa-file-pdf"></i>',
+                    titleAttr: 'Exportar a PDF',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5]
                     },
-                    {
-                        extend: 'pdfHtml5',
-                        text: '<i class="fa-regular fa-file-pdf"></i>',
-                        titleAttr: 'Exportar a PDF',
-                        exportOptions: {
-                            columns: [1, 2, 3, 4, 5]
-                        },
-                        customize: function(doc) {
+                    customize: function(doc) {
 
-                            doc.content[1].table.body[0].forEach(function(h) {
-                                h.fillColor = 'rgb(1, 1, 51)';
-                            });
-                        },
+                        doc.content[1].table.body[0].forEach(function(h) {
+                            h.fillColor = 'rgb(1, 1, 51)';
+                        });
                     },
-                    {
-                        extend: 'print',
-                        text: '<i class="fa-solid fa-print"></i>',
-                        titleAttr: 'Imprimir',
-                        exportOptions: {
-                            columns: [1, 2, 3, 4, 5]
-                        },
-
+                },
+                {
+                    extend: 'print',
+                    text: '<i class="fa-solid fa-print"></i>',
+                    titleAttr: 'Imprimir',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5]
                     },
-                ]
-            });
 
-            new $.fn.dataTable.FixedHeader(table);
+                },
+            ]
         });
+
+        new $.fn.dataTable.FixedHeader(table);
+    });
 </script>

@@ -197,7 +197,7 @@ include_once('src/components/parte_inferior.php');
                         text: '<i class="fa-regular fa-file-excel"></i>',
                         titleAttr: 'Exportar a Excel',
                         exportOptions: {
-                            columns: [1, 2, 3, 4, 5]
+                            columns: [0,1, 2, 3, 4, 5]
                         }
 
                     },
@@ -206,7 +206,7 @@ include_once('src/components/parte_inferior.php');
                         text: '<i class="fa-regular fa-file-pdf"></i>',
                         titleAttr: 'Exportar a PDF',
                         exportOptions: {
-                            columns: [1, 2, 3, 4, 5]
+                            columns: [0,1, 2, 3, 4, 5]
                         },
                         customize: function(doc) {
 
@@ -220,7 +220,7 @@ include_once('src/components/parte_inferior.php');
                         text: '<i class="fa-solid fa-print"></i>',
                         titleAttr: 'Imprimir',
                         exportOptions: {
-                            columns: [1, 2, 3, 4, 5]
+                            columns: [0,1, 2, 3, 4, 5]
                         },
 
                     },

@@ -27,7 +27,7 @@ try {
         // Confirmar la transacción
         mysqli_commit($cn);
 
-        $_SESSION['deleted_ciclo'] = "Ciclo eliminado: $nombre_ciclo";
+        $_SESSION['deleted_ciclo'] = "Ciclo eliminado: $nombre_ciclo con ID: $id";
     } else {
         $_SESSION['deleted_ciclo'] = "No se pudo obtener la información del ciclo con ID: $id";
     }
@@ -36,7 +36,7 @@ try {
     mysqli_rollback($cn);
 
     // Manejar el error según tus necesidades
-    $_SESSION['error_ciclo'] = "El ciclo $nombre_ciclo contiene matrículas activas.";
+    $_SESSION['error_ciclo'] = "Error en la eliminación del ciclo con ID: $id: " . $e->getMessage();
 }
 
 // Cerrar la conexión

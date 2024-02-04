@@ -22,10 +22,11 @@ usuario us ON ma.id_us = us.id_us
 INNER JOIN  
 descuento de ON ma.id_de = de.id_de
 LEFT JOIN 
-boleta bo ON ma.id_ma = bo.id_ma AND bo.estadodur_bo = 'ACTIVO'
+boleta bo ON ma.id_ma = bo.id_ma 
 GROUP BY 
 ma.id_ma
 ";
+
 ?>
 <!-- Asegúrate de incluir jQuery y jQuery UI -->
 
@@ -88,7 +89,7 @@ ma.id_ma
                             </td>
                             <td align="center">
 
-                                <a class="btn btn-sm btn-success" href="boleta.php?id=<?php echo $rma['id_ma']; ?>"><i class="fa-solid fa-file-invoice"></i></a>
+                                <a class="btn btn-lx " style="background-color: #4385F5; color: white; text-decoration: none;" href="boleta.php?id=<?php echo $rma['id_ma']; ?>">Boletas<i class="fa-solid fa-file-invoice"></i></a>
 
                             </td>
 
@@ -157,7 +158,7 @@ ma.id_ma
                                         // Si no es "DEUDA", mostrar el botón
                                     ?>
                                         <!-- Botón de registro -->
-                                        <button class="turno btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#Registrar" data-bs-whatever="@mdo" style="cursor: pointer;" onclick="cargar_registro({
+                                        <button class="turno btn btn-sm "   data-bs-toggle="modal" data-bs-target="#Registrar" data-bs-whatever="@mdo" style="cursor: pointer; background-color: #4385F5; color: #fff;" onclick="cargar_registro({
                                             'mensualidad': '<?php echo $rma['mensualidad_ma']; ?>',
                                             'volver':'<?php echo $id; ?>',
                                             'fini':'<?php echo $inicio; ?>',

@@ -53,13 +53,17 @@ if ($resultadoExistencia) {
                 WHERE 
                     a.dni_al = '$dniAlumno' AND
                     '$fechaHoraActual' BETWEEN CONCAT(CURRENT_DATE, ' ', t.hent_tu) AND CONCAT(CURRENT_DATE, ' ', t.hsal_tu)
+                    AND m.estado_ma = 'ACTIVO'
             ";
 
-            $resultado = mysqli_query($cn, $consulta);
+            $resultado_c = mysqli_query($cn, $consulta);
+            $temp = $resultado_c;
 
-            if ($resultado) {
+            $numero = mysqli_num_rows($temp);
 
-                    $filama = mysqli_fetch_assoc($resultado); 
+            if ($numero > 0) {
+
+                    $filama = mysqli_fetch_assoc($resultado_c); 
                     // Matrícula encontrada dentro del rango
                     $idMatricula = $filama['id_ma'];
                     $idTurno = $filama['id_tu'];
@@ -69,7 +73,7 @@ if ($resultadoExistencia) {
                     $turno = $filama['nombre_tu'];
                     $ciclo = $filama['nombre_ci'];
 
-                    mysqli_free_result($resultado);
+                    mysqli_free_result($resultado_c);
 
                     $sqlboleta="SELECT * from boleta where id_ma=$idMatricula and estadodur_bo='ACTIVO'";
                     $rsqlb=mysqli_query($cn,$sqlboleta);
