@@ -27,16 +27,16 @@ try {
         // Confirmar la transacción
         mysqli_commit($cn);
 
-        $_SESSION['deleted_ciclo'] = "Ciclo eliminado: $nombre_ciclo con ID: $id";
+        $_SESSION['deleted_ciclo'] = "Ciclo eliminado: $nombre_ciclo";
     } else {
-        $_SESSION['deleted_ciclo'] = "No se pudo obtener la información del ciclo con ID: $id";
+        $_SESSION['deleted_ciclo'] = "No se pudo obtener la información del ciclo: nombre_ciclo";
     }
 } catch (Exception $e) {
     // Revertir la transacción en caso de error
     mysqli_rollback($cn);
 
     // Manejar el error según tus necesidades
-    $_SESSION['error_ciclo'] = "Error en la eliminación del ciclo con ID: $id: " . $e->getMessage();
+    $_SESSION['error_ciclo'] = "Matrículas existentes para $nombre_ciclo.";
 }
 
 // Cerrar la conexión
