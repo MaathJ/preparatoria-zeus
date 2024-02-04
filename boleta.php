@@ -88,7 +88,7 @@ $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "
                             ?>
                                 <tr>
                                     <td align="center">
-                                    
+
                                         <?php echo $rB['nroboleta_bo']; ?>
                                     </td>
                                     <td align="center">
@@ -113,11 +113,27 @@ $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "
                                         ?>
                                     </td>
                                     <td align="center">
-                                        <?php $estado = $rB['estadodur_bo'];
-                                        $button = '<button  class="' . ($estado === "ACTIVO" ? 'active-button' : 'inactive-button') . '">' . $estado . '</button>';
+                                        <?php
+                                        $estado = $rB['estadodur_bo'];
+                                        $class = '';
+
+                                        switch ($estado) {
+                                            case 'ACTIVO':
+                                                $class = 'active-button';
+                                                break;
+                                            case 'EN ESPERA':
+                                                $class = 'waiting-button';
+                                                break;
+                                            default:
+                                                $class = 'inactive-button';
+                                                break;
+                                        }
+
+                                        $button = '<button class="' . $class . '">' . $estado . '</button>';
                                         echo $button;
                                         ?>
                                     </td>
+
                                     <td align="center">
                                         <a class="btn btn-sm btn-primary btn-circle ver-pagos-btn" id="abrir_pago" data-bs-toggle="modal" data-bs-target="#ModalPago" data-bs-whatever="@mdo" data-id-bo="<?php echo $rB['id_bo']; ?>"><i class="fa-solid fa-money-bill"></i></a>
                                     </td>
@@ -140,7 +156,7 @@ $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "
                                         <?php
                                         if ($rB['deuda_bo'] != 0) {
                                         ?>
-                                            <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#Registrar_pago" onclick="cargar_registro_pago({
+                                            <a class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#Registrar_pago" onclick="cargar_registro_pago({
                                             'id_bo': '<?php echo $rB['id_bo']; ?>',
                                             'deuda_bo': '<?php echo $rB['deuda_bo']; ?>',
                                             'volver_bo':'<?php echo $id; ?>',
