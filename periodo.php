@@ -82,7 +82,7 @@ include('modales_periodo.php');
         '<script>
         setTimeout(() => {
             Swal.fire({
-                title: "¡Éxito!",
+                title: "¡Error!",
                 text: "' . $_SESSION['error_cycle'] . '",
                 icon: "error"
             });

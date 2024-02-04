@@ -196,6 +196,52 @@ include('modales_alumno.php');
             </table>
         </div>
     </div>
+
+    <?php
+    if (isset($_SESSION['deleted_student'])) {
+        echo
+        '<script>
+        setTimeout(() => {
+            Swal.fire({
+                title: "¡Éxito!",
+                text: "' . $_SESSION['deleted_student'] . '",
+                icon: "success"
+            });
+        }, 500);
+    </script>';
+        unset($_SESSION['deleted_student']);
+    }
+
+
+    if (isset($_SESSION['error_student'])) {
+        echo
+        '<script>
+        setTimeout(() => {
+            Swal.fire({
+                title: "¡Error!",
+                text: "' . $_SESSION['error_student'] . '",
+                icon: "error"
+            });
+        }, 500);
+        </script>';
+        unset($_SESSION['error_student']);
+    }
+
+    if (isset($_SESSION['alert_message'])) {
+        $alertMessage = $_SESSION['alert_message'];
+        echo '<script>
+        setTimeout(() => {
+            Swal.fire({
+                title: "¡Cuidado!",
+                text: "' . $alertMessage . '",
+                icon: "warning"
+            });
+        }, 500);
+        </script>';
+        unset($_SESSION['alert_message']);
+    }
+
+    ?>
     <?php
     include_once("./src/components/parte_inferior.php")
     ?>

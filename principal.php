@@ -95,14 +95,13 @@ if ($_SESSION["usuario"] && !isset($_SESSION["last_access_date"]) || $_SESSION["
 
     <div class="content-left-tables">
         <div class="table">
-            <h3>Matrículas del día</h3>
+            <center><h3>Matrículas del día</h3></center>
             <?php
             $sql = "SELECT 
                 alumno.nombre_al AS nombre_alumno,
                 alumno.apellido_al AS apellido_alumno,
                 alumno.dni_al AS dni_alumno,
-                usuario.nombre_us AS nombre_usuario,
-                usuario.apellido_us AS apellido_usuario,
+                usuario.usuario_us AS nombre_usuario,
                 DATE_FORMAT(matricula.freg_ma, '%H:%i') AS hora
                 FROM matricula
                 INNER JOIN alumno ON matricula.id_al = alumno.id_al
@@ -126,7 +125,7 @@ if ($_SESSION["usuario"] && !isset($_SESSION["last_access_date"]) || $_SESSION["
                                 </div>
                             </div>
                             <div class="table-card-days">
-                                <?php echo $fila['nombre_usuario'] . ' ' . $fila['apellido_usuario']; ?>
+                                <?php echo $fila['nombre_usuario'] ?>
                             </div>
                             <div class="table-card-days">
                                 <?php echo $fila['hora']; ?>
@@ -141,9 +140,9 @@ if ($_SESSION["usuario"] && !isset($_SESSION["last_access_date"]) || $_SESSION["
             ?>
         </div>
 
-        <div class="content-left-tables">
+        
         <div class="table">
-            <h3>Matrículas del día Por Ciclo </h3>
+            <center><h3>Matrículas del día Por Ciclo </h3></center>
             <?php
            $sql = "
            SELECT
@@ -175,8 +174,9 @@ if ($_SESSION["usuario"] && !isset($_SESSION["last_access_date"]) || $_SESSION["
                 <div class="table-card">
                     <div class="table-card-info">
                         <div class="card-info">
-                        <?php  echo "Periodo: " . $row["periodo"] . " - Ciclo: " . $row["ciclo"] . " - Cantidad de matrículas: " . $row["cantidad_matriculas"] . "<br>"; ?>
+                        <?php  echo "<b>PER-CICLO:</b> " . $row["periodo"] ." ". $row["ciclo"] . " - <b>CANT</b>: " . $row["cantidad_matriculas"] . "<br>"; ?>
                         </div>
+                        
                        
                     </div>
                    

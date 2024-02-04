@@ -75,6 +75,52 @@ include('modales_turno.php');
     </div>
 </div>
 
+<?php
+
+if (isset($_SESSION['deleted_turn'])) {
+    echo
+    '<script>
+    setTimeout(() => {
+        Swal.fire({
+            title: "¡Éxito!",
+            text: "' . $_SESSION['deleted_turn'] . '",
+            icon: "success"
+        });
+    }, 500);
+</script>';
+    unset($_SESSION['deleted_turn']);
+}
+
+
+if (isset($_SESSION['error_turn'])) {
+    echo
+    '<script>
+    setTimeout(() => {
+        Swal.fire({
+            title: "¡Error!",
+            text: "' . $_SESSION['error_turn'] . '",
+            icon: "error"
+        });
+    }, 500);
+    </script>';
+    unset($_SESSION['error_turn']);
+}
+
+if (isset($_SESSION['alert_message'])) {
+    $alertMessage = $_SESSION['alert_message'];
+    echo '<script>
+    setTimeout(() => {
+        Swal.fire({
+            title: "¡Cuidado!",
+            text: "' . $alertMessage . '",
+            icon: "warning"
+        });
+    }, 500);
+    </script>';
+    unset($_SESSION['alert_message']);
+}
+
+?>
 
 
 <?php
