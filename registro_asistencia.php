@@ -166,8 +166,8 @@ include_once('modal_card_alumno.php');
                                 <p><?php echo $rsqlasis['estado_as']; ?></p>
                             </td>
                             <td align="center">
-                                <a class="btn btn-sm btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#ModalCardInfo" data-bs-whatever="@mdo" onclick="infoI(
-                                                        '<?php echo $r['id_al'] ?? ''; ?>'
+                                <a class="btn btn-sm btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#ModalCardInfo" data-bs-whatever="@mdo" onclick="infoCard(
+                                                        '<?php echo $rsqlasis['id_al'] ?? ''; ?>'
                                                     )">
                                     Más Info
                                 </a>
@@ -175,7 +175,10 @@ include_once('modal_card_alumno.php');
                             <td align="center">
                                 <center>
 
-                                    <a class="btn btn-sm btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#modalEditar" data-bs-whatever="@mdo" target="_parent">
+                                    <a class="btn btn-sm btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#ModalEditar" data-bs-whatever="@mdo" onclick="cargar_info({
+                                        'id':'<?php echo $rsqlasis['id_as']; ?>',
+                                        'estado':'<?php echo $rsqlasis['estado_as'] ?? ''; ?>'
+                                        });">
                                         <i class="fas fa-edit"></i></a>
 
 
@@ -193,6 +196,43 @@ include_once('modal_card_alumno.php');
 </div>
 
 
+<!-- MODAL PARA REGISTRO Usuario  -->
+<div class="modal fade" id="ModalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -20px;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #010133; color: #ffffff;">
+                <h4 class="modal-title" id="exampleModalLabel">EDITAR  ESTADO:</h4>
+            </div>
+            <div class="modal-body">
+                <form action="app/controllers/asistencia/U_asistencia.php" method="post" class="row g-3">
+                    <div class="col-12 mb-3">
+                        <label for="turno" class="form-label">Estados:</label>
+
+                       
+                         <select name="u_lstestado" class="form-control" id="u_estado">
+
+                           <option value="ASISTIO">ASISTIO</option>
+                           <option value="TARDANZA">TARDANZA</option>
+                           <option value="FALTA">FALTA</option>
+                           <option value="JUSTIFICADO">JUSTIFICADO</option>
+
+
+                         </select>           
+
+                    </div>
+                   
+                    <div class="modal-footer">
+                        <input type="hidden" name="u_cod" id="u_id">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CERRAR</button>
+                        <button type="submit" class="btn btn-primary" id="registrar">EDITAR</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 
 
@@ -202,6 +242,20 @@ include_once('modal_card_alumno.php');
 include_once('src/components/parte_inferior.php');
 ?>
 <script src="src/assets/js/datatableIntegration.js"></script>
+
+
+<script>
+ function cargar_info(dato) {
+       
+        document.getElementById('u_estado').value = dato.estado;
+        document.getElementById('u_id').value = dato.id;
+
+        console.log(dato.estado);
+            
+
+    }
+
+</script>
 
 <script>
     function returndatenow() {

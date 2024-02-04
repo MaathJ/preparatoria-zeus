@@ -4,6 +4,9 @@ include_once('config/conexion.php');
 include_once('app/controllers/boleta/Modal_boleta.php');
 include_once('app/controllers/pago/Modal_pago.php');
 include_once('src/components/parte_superior.php');
+
+include_once('./app/controllers/boleta/U_estadoboleta.php');
+
 $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
 ?>
 <link rel="stylesheet" href="src/assets/css/boleta/forma_pago.css">
