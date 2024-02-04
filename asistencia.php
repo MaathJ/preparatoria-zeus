@@ -30,7 +30,11 @@ include_once('src/components/parte_superior.php');
         </div>
     </div>
     <div class="container-card-asistencia matri-content" style="background-color: #fff;">
-
+    </div>
+    <div class="container-asitencia" style="background-color: #fff;">
+        <div class="asistencia-input-info">
+            <button class="btn btn-danger" style="text-decoration: none;" id="cerrar_asi">CERRAR ASISTENCIA</button>
+        </div>
     </div>
 </div>
 
@@ -46,11 +50,11 @@ include_once('src/components/parte_superior.php');
             }
         });
 
-    function search() {
-        var dni = $('#buscador').val();
+        function search() {
+            var dni = $('#buscador').val();
 
-        // Verificar que la longitud del dni sea suficiente
-        if (dni.length >= 8) { // Cambia este valor si el dni tiene una longitud diferente
+            // Verificar que la longitud del dni sea suficiente
+            if (dni.length >= 3) { // Cambia este valor si el dni tiene una longitud diferente
                 $.ajax({
                     url: './app/controllers/asistencia/controlasistencia.php',
                     type: 'POST',
@@ -62,69 +66,122 @@ include_once('src/components/parte_superior.php');
                         // escenario---Numero de evento,
                         console.log(data); 
                         switch (data[0].escenario){
+                            case 1:{
+                                Swal.fire({
+                                title: data[0].mensaje,
+                                text: "Agregue al alumno o considere actualizar el DNI",
+                                icon: "warning",
+                                showConfirmButton: false,
+                                timer: 3000
+                            });};
+                            break;
+                            case 2:{
+                                Swal.fire({
+                                title: data[0].mensaje,
+                                text: "Registre una matrícula o revise su horario",
+                                icon: "warning",
+                                showConfirmButton: false,
+                                timer: 3000
+                            });};
+                            break;
+                            case 3:{
+                                Swal.fire({
+                                title: data[0].mensaje,
+                                text: "Genere su boleta",
+                                icon: "warning",
+                                showConfirmButton: false,
+                                timer: 3000
+                            });};
+                            break;
+                            case 4:{
+                                Swal.fire({
+                                title: "Asistencia exitosa",
+                                text: "Se registró exitosamente",
+                                icon: "success",
+                                showConfirmButton: false,
+                                timer: 1000
+                            });
+                        
+                            $('.matri-content').html(data[0].info);
+                            $('#buscador').val("");
+                            clearTimeout(timeoutId);
+                            var timeoutId = setTimeout(function () {
+                                $('.matri-content').empty();
+                            }, 10000);
+                            
+                            };
+                            break;
+                            case 5:{
+                                Swal.fire({
+                                title: data[0].mensaje,
+                                text: "ya registro su asistencia",
+                                icon: "warning",
+                                showConfirmButton: false,
+                                timer: 2000
+                            });};
+                            break;    
+                            case 6:{
+                                Swal.fire({
+                                title: data[0].mensaje,
+                                text: "Ningun turno existe a esta hora",
+                                icon: "warning",
+                                showConfirmButton: false,
+                                timer: 3000
+                            });};
+                            break;  
+                        }
+                    },
+
+                    error: function(xhr, status, error) {
+                        console.error("Error en la solicitud AJAX:", status, error);
+                        // Puedes agregar aquí código adicional para manejar el error, como
+                    }
+                });
+
+            }
+        }
+
+        
+    });
+</script>
+    
+<script>
+    $(document).ready(function () {
+        $('#cerrar_asi').on('click', function (event) {
+            $.ajax({
+                url: './app/controllers/asistencia/cerrarasistencia.php',
+                type: 'POST',
+                data: {
+                    dni: 0,
+                },
+                dataType: 'json',  // Indica que esperas datos en formato JSON
+                success: function(data) {
+                    // escenario---Numero de evento,
+                    console.log(data); 
+                    switch (data[0].escenario){
                         case 1:{
                             Swal.fire({
                             title: data[0].mensaje,
-                            text: "Agregue al alumno o considere actualizar el DNI",
+                            text: data[0].texto,
                             icon: "warning"
                         });};
                         break;
                         case 2:{
                             Swal.fire({
                             title: data[0].mensaje,
-                            text: "Registre una matrícula o revise su horario",
-                            icon: "warning"
-                        });};
-                        break;
-                        case 3:{
-                            Swal.fire({
-                            title: data[0].mensaje,
-                            text: "Genere su boleta",
-                            icon: "warning"
-                        });};
-                        break;
-                        case 4:{
-                            Swal.fire({
-                            title: "Asistencia exitosa",
-                            text: "Se registró exitosamente",
+                            text: data[0].texto,
                             icon: "success"
-                        });
-                    
-                        $('.matri-content').html(data[0].info);
-                        $('#buscador').val("");
-                        clearTimeout(timeoutId);
-                        var timeoutId = setTimeout(function () {
-                            $('.matri-content').empty();
-                        }, 15000);
-                        
-
-                        };
+                        });};
                         break;
-                        case 5:{
-                            Swal.fire({
-                            title: data[0].mensaje,
-                            text: "ya registro su asistencia",
-                            icon: "warning"
-                        });};
-                        break;    
-                        case 6:{
-                            Swal.fire({
-                            title: data[0].mensaje,
-                            text: "Ningun turno existe a esta hora",
-                            icon: "warning"
-                        });};
-                        break;  
-        }
-    },
+                    }
+                },
 
-    error: function(xhr, status, error) {
-        console.error("Error en la solicitud AJAX:", status, error);
-        // Puedes agregar aquí código adicional para manejar el error, como
-    }
-});
-
-            }
-        }
+                error: function(xhr, status, error) {
+                    console.error("Error en la solicitud AJAX:", status, error);
+                    // Puedes agregar aquí código adicional para manejar el error, como
+                }
+            });
+        });  
     });
 </script>
 
