@@ -417,7 +417,7 @@ ma.id_ma
                                 <label for="ciclo" class="col-form-label" style="color: black;">Ciclo:</label>
                                 <div style="position: relative;">
 
-                                    <select name="u_lstciclo" id="select-cicloU">
+                                    <select name="u_lstciclo" id="select-cicloU" class="form-control">
                                         <option value="" disabled selected>Selecciona un Ciclo</option>
                                         <?php
                                         $sqlmatric = "SELECT ci.*  , pe.* FROM ciclo as ci INNER JOIN  periodo pe
@@ -471,7 +471,7 @@ ma.id_ma
                             <div class="col-12 mb-3">
                                 <label for="r_descuento" class="col-form-label" style="color: black;">Descuento:</label>
                                 <br>
-                                <select class="form-select form-select-sm mb-3" name="u_lstdesc" id="select-descU">
+                                <select class="form-control form-select-sm mb-3" name="u_lstdesc" id="select-descU">
                                     <option value="" disabled>Selecciona un descuento</option>
                                     <?php
 

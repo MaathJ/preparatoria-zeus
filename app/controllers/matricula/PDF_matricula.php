@@ -44,10 +44,7 @@ $r=mysqli_fetch_assoc($f_pdf);
     $ruta = '../../../src/assets/images/alumno/'.$dni.'.jpg';
     
     if(!file_exists($ruta)){
-        $ruta = '../../../src/assets/images/alumno/'.$dni.'.jpeg';
-        if(!file_exists($ruta)){
-            $ruta = '../../../src/assets/images/alumno/desconocido.jpg';
-        }
+        $ruta = '../../../src/assets/images/alumno/predt.jpg';
     }
 
 
