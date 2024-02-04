@@ -157,10 +157,8 @@ include_once('modal_card_alumno.php');
                                                                     case 'JUSTIFICADO':
                                                                         echo 'btnjustificacion';
                                                                         break;
-                                                                    case 'FALTA':
+                                                                    case 'FALTO':
                                                                         echo 'btnfalto';
-                                                                        break;
-                                                                    default:
                                                                         break;
                                                                 }
                                                                 ?>">
@@ -279,15 +277,17 @@ include_once('src/components/parte_inferior.php');
 
     $(document).ready(function() {
     var table = $('#table_registro_asistencia').DataTable({
-        dom: 'Plfrtip',
-
+        dom: 'PBlfrtip',
+        stateSave: true,
         searchPanes: {
+            initCollapsed: true,
+            order:['Fecha','Ciclo','Area','Turno','Estado'],
             threshold: 0.4,
-            order: ['Custom Name','Ciclo', 'Fecha', 'Area', 'Turno', 'Estado'],
             layout: 'columns-5',
             cascadePanes: true,
-            collapse:true,
+            viewTotal: true,
             dtOpts: {
+                
                 dom: 'tp',
                 paging: 'true',
                 pagingType: "simple",
@@ -301,7 +301,7 @@ include_once('src/components/parte_inferior.php');
                     name: 'Ciclo',
                     show: true
                 },
-                targets: [5]
+                targets: [3]
             },
             {
                 searchPanes: {
@@ -322,33 +322,46 @@ include_once('src/components/parte_inferior.php');
                     name: 'Turno',
                     show: true
                 },
-                targets: [6]
+                targets: [5]
             },
             {
                 searchPanes: {
                     name: 'Estado',
                     show: true
                 },
-                targets: [3]
+                targets: [6]
             }
         ],
         responsive: true,
         language: {
-            "lengthMenu": "Mostrar MENU registros",
-            "zeroRecords": "No se encontraron resultados",
-            "info": " TOTAL registros",
-            "infoEmpty": "No hay registros para mostrar",
-            "infoFiltered": "(filtrado de MAX  registros)",
-            "sSearch": "Buscar:",
-            "oPaginate": {
-                "sFirst": "Primero",
-                "sLast": "Último",
-                "sNext": "Siguiente",
-                "sPrevious": "Anterior"
+
+            "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json",
+            searchPanes: {
+                title: '',
+                countFiltered: '{shown}/{total}',
             },
-            "sProcessing": "Cargando...",
+            "decimal": "",
+            "emptyTable": "No hay asistencias encontradas",
+            "info": "Mostrando de _START_ a _END_ de _TOTAL_ Asistencias",
+            "infoEmpty": "Mostrando  0 Asistencias",
+            "infoFiltered": "(Filtrado de _MAX_ Asistencias)",
+            "infoPostFix": "",
+            "thousands": ",",
+            "lengthMenu": "Mostrar _MENU_ Asistencias",
+            "loadingRecords": "Cargando...",
+            "processing": "Procesando...",
+            "search": "Buscar:",
+            "zeroRecords": "Sin resultados encontrados",
+            "paginate": {
+                "first": "Primero",
+                "last": "Ultimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            }
         },
-        buttons: [{
+
+        buttons: [
+            {
                 extend: 'excelHtml5',
                 autofilter: true,
                 text: '<i class="fa-regular fa-file-excel"></i>',
@@ -395,19 +408,19 @@ include_once('src/components/parte_inferior.php');
 }
 
 .btasistio p{
-    background:#4FFB0F;
+    background: #4FFB0F;
     border-radius: 15px;
     font-weight: 600;
-    color:white ;
+    color:white;
     padding: 7px ;
 
 }
 
 .bttardanza p{
-    background:#FCB932;
+    background: #FCB932;
     border-radius: 15px;
     font-weight: 600;
-    color:white ;
+    color:white;
     padding: 7px;
 }
     
@@ -419,7 +432,7 @@ include_once('src/components/parte_inferior.php');
     padding: 7px;
 }
 .btnfalto p{
-    background:#F31253;
+    background:red;
     border-radius: 15px;
     font-weight: 600;
     color:white ;

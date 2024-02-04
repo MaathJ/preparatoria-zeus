@@ -32,7 +32,7 @@ include_once('app/controllers/forma_pago/Modal_formapago.php');
                     ?>
                         <tr align="center">
                             <td data-imagen="<?php echo $r['estado_fp']; ?>">
-                                <img src="src/assets/images/forma_pago/<?php echo $r['id_fp']; ?>.jpg" onerror="this.src='src/assets/images/forma_pago/desconocido.jpg'" alt="Imagen" width="50" height="50">
+                                <img src="src/assets/images/forma_pago/<?php echo $r['id_fp']; ?>.jpg" onerror="this.src='src/assets/images/forma_pago/desconocido.jpg'" alt="Imagen" width="30" height="30">
                             </td>
                             <td data-estado="<?php echo $r['estado_fp']; ?>">
                                 <?php echo $r['nombre_fp']; ?>
@@ -46,14 +46,14 @@ include_once('app/controllers/forma_pago/Modal_formapago.php');
                             </td>
                             <td>
                                 <!-- BOTON EDITAR -->
-                                <button type="button" class="btn btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#Editar" onclick="cargar_editar({ 
+                                <button type="button" class="btn btn-sm btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#Editar" onclick="cargar_editar({ 
                                     'id_fp': '<?php echo $r['id_fp']; ?>',
                                     'nombre_fp': '<?php echo $r['nombre_fp']; ?>',
                                     'estado_fp': '<?php echo $r['estado_fp']; ?>',
                                 });"><i class="fas fa-edit"></i> </button>
 
                                 <!-- BOTON ELIMINAR -->
-                                <button type="button" class="btn btn-danger btn-circle" data-bs-toggle="modal" data-bs-target="#Eliminar" onclick="cargar_eliminar({ 
+                                <button type="button" class="btn btn-sm btn-danger btn-circle" data-bs-toggle="modal" data-bs-target="#Eliminar" onclick="cargar_eliminar({ 
                                     'id_fp': '<?php echo $r['id_fp']; ?>',
                                     'nombre_fp': '<?php echo $r['nombre_fp']; ?>',
                                     'estado_fp': '<?php echo $r['estado_fp']; ?>',

@@ -1,11 +1,11 @@
 <?php 
 include_once('auth.php');
 include_once('config/conexion.php');
-include_once('app/controllers/descuento/Modal_descuento.php');
 include_once('src/components/parte_superior.php');
+include_once('app/controllers/descuento/Modal_descuento.php');
+
 ?>
 
-<link rel="icon" href="src/assets/images/logo-zeus.png">
 
 <div class="container-page">
     <div>
@@ -44,7 +44,7 @@ include_once('src/components/parte_superior.php');
                                 
                                             <td align="center">
                                                 <!-- BOTON EDITAR -->
-                                                <a class="btn btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#Editar" data-bs-whatever="@mdo" target="_parent" onclick="cargar_editar({ 
+                                                <a class="btn btn-sm btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#Editar" data-bs-whatever="@mdo" target="_parent" onclick="cargar_editar({ 
                                                     'id_de': '<?php echo $r['id_de']; ?>',
                                                     'nombre_de': '<?php echo $r['nombre_de']; ?>',
                                                     'monto_de': '<?php echo $r['monto_de']; ?>',
@@ -52,7 +52,7 @@ include_once('src/components/parte_superior.php');
                                                 });"><i class="fas fa-edit"> </i></a></a>
 
                                                 <!-- BOTON ELIMINAR -->
-                                                <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Eliminar" onclick="cargar_eliminar({ 
+                                                <a class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#Eliminar" onclick="cargar_eliminar({ 
                                                     'id_de': '<?php echo $r['id_de']; ?>',
                                                     'nombre_de': '<?php echo $r['nombre_de']; ?>',
                                                     'monto_de': '<?php echo $r['monto_de']; ?>',
