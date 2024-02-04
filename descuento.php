@@ -72,6 +72,53 @@ include_once('app/controllers/descuento/Modal_descuento.php');
     </div>
 </div>
 
+<?php
+
+    if (isset($_SESSION['deleted_descuento'])) {
+        echo
+        '<script>
+        setTimeout(() => {
+            Swal.fire({
+                title: "¡Éxito!",
+                text: "' . $_SESSION['deleted_descuento'] . '",
+                icon: "success"
+            });
+        }, 500);
+    </script>';
+        unset($_SESSION['deleted_descuento']);
+    }
+
+
+    if (isset($_SESSION['error_descuento'])) {
+        echo
+        '<script>
+        setTimeout(() => {
+            Swal.fire({
+                title: "¡Error!",
+                text: "' . $_SESSION['error_descuento'] . '",
+                icon: "error"
+            });
+        }, 500);
+        </script>';
+        unset($_SESSION['error_descuento']);
+    }
+
+    if (isset($_SESSION['alert_message'])) {
+        $alertMessage = $_SESSION['alert_message'];
+        echo '<script>
+        setTimeout(() => {
+            Swal.fire({
+                title: "¡Cuidado!",
+                text: "' . $alertMessage . '",
+                icon: "warning"
+            });
+        }, 500);
+        </script>';
+        unset($_SESSION['alert_message']);
+    }
+
+    ?>
+
 <!-- SCRIPT ESTADO -->
 <script src="src/assets/js/estado.js"></script>
 <!-- STYLE ESTADO -->

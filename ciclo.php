@@ -89,6 +89,54 @@ include('modales_ciclo.php');
 
     </div>
 </div>
+
+<?php
+
+if (isset($_SESSION['deleted_ciclo'])) {
+        echo
+        '<script>
+        setTimeout(() => {
+            Swal.fire({
+                title: "¡Éxito!",
+                text: "' . $_SESSION['deleted_ciclo'] . '",
+                icon: "success"
+            });
+        }, 500);
+    </script>';
+        unset($_SESSION['deleted_ciclo']);
+    }
+
+
+    if (isset($_SESSION['error_ciclo'])) {
+        echo
+        '<script>
+        setTimeout(() => {
+            Swal.fire({
+                title: "¡Error!",
+                text: "' . $_SESSION['error_ciclo'] . '",
+                icon: "error"
+            });
+        }, 500);
+        </script>';
+        unset($_SESSION['error_ciclo']);
+    }
+
+    if (isset($_SESSION['alert_message'])) {
+        $alertMessage = $_SESSION['alert_message'];
+        echo '<script>
+        setTimeout(() => {
+            Swal.fire({
+                title: "¡Cuidado!",
+                text: "' . $alertMessage . '",
+                icon: "warning"
+            });
+        }, 500);
+        </script>';
+        unset($_SESSION['alert_message']);
+    }
+
+    ?>
+
 <?php
 function obtenerTurnosCiclo($idx, $conexion)
 {

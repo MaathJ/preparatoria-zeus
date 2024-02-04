@@ -93,11 +93,11 @@ function deleteModalTurno($id)
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                     <div class="modal-header" style="background-color: #010133; color: #ffffff;">
-                        <h4 class="modal-title" id="exampleModalLabel">Confirmar Eliminación</h5>
+                        <h4 class="modal-title" id="exampleModalLabel">Confirmar Eliminación</h4>
                     </div>
                     <div class="modal-body">
                     <form action="app/controllers/turno/D_Turno.php?id={$id}" method="POST">
-                        Estas seguro de que quieres eliminar este periodo?
+                        ¿Estás seguro de que quieres eliminar este periodo?
                         <button class="btn btn-danger btn-circle">Eliminar</button>
                     </form>
                 </div>

@@ -7,17 +7,18 @@ $f = mysqli_query($cn, $sql);
 include('modales_area.php');
 ?>
 
+
 <div class="container-page">
     <div>
-        <p>Zeus<span>/Area</span></p>
-        <h3>Area</h3>
+        <p>Zeus<span>/Área</span></p>
+        <h3>Área</h3>
     </div>
-    <button type="button" class="periodo btn btn-primary " style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
+    <button type="button" class="area btn btn-primary " style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
         Registrar
     </button>
     <div class="container-table" style="background-color: #fff; overflow:hidden">
         <div class="col-md-12" style="box-sizing: border-box;">
-            <table class="table table-striped" id="table_area" id="table_area" style="width:100%; box-sizing: border-box; overflow:hidden">
+            <table class="table table-striped" id="table_area" style="width:100%; box-sizing: border-box; overflow:hidden">
                 <thead align="center" class="" style="color: #fff; background-color:#010133;">
                     <tr>
 
@@ -92,7 +93,7 @@ if (isset($_SESSION['error_area'])) {
     '<script>
     setTimeout(() => {
         Swal.fire({
-            title: "¡Éxito!",
+            title: "¡Ups!",
             text: "' . $_SESSION['error_area'] . '",
             icon: "error"
         });
@@ -143,7 +144,7 @@ include_once("src/components/parte_inferior.php")
                     text: '<i class="fa-regular fa-file-excel"></i>',
                     titleAttr: 'Exportar a Excel',
                     exportOptions: {
-                        columns: [1, 2, 3, 4, 5]
+                        columns: [0, 1]
                     }
 
                 },
@@ -152,7 +153,7 @@ include_once("src/components/parte_inferior.php")
                     text: '<i class="fa-regular fa-file-pdf"></i>',
                     titleAttr: 'Exportar a PDF',
                     exportOptions: {
-                        columns: [1, 2, 3, 4, 5]
+                        columns: [0, 1]
                     },
                     customize: function(doc) {
 
@@ -166,7 +167,7 @@ include_once("src/components/parte_inferior.php")
                     text: '<i class="fa-solid fa-print"></i>',
                     titleAttr: 'Imprimir',
                     exportOptions: {
-                        columns: [1, 2, 3, 4, 5]
+                        columns: [0, 1]
                     },
 
                 },

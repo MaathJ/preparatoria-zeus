@@ -11,7 +11,7 @@ include('modales_carrera.php');
         <h3>Carrera</h3>
 
     </div>
-    <button type="button" class="periodo btn btn-primary " style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
+    <button type="button" class="carrera btn btn-primary " style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
         Registrar
     </button>
 
@@ -23,7 +23,7 @@ include('modales_carrera.php');
                     <tr>
 
                         <th class="text-center">Nombre</th>
-                        <th class="text-center">Area</th>
+                        <th class="text-center">Área</th>
                         <th class="text-center">Estado</th>
                         <th class="text-center">Opciones</th>
                     </tr>
@@ -80,7 +80,53 @@ include('modales_carrera.php');
 
 </div>
 
+<?php
 
+if (isset($_SESSION['deleted_carrera'])) {
+    echo
+    '<script>
+    setTimeout(() => {
+        Swal.fire({
+            title: "¡Éxito!",
+            text: "' . $_SESSION['deleted_carrera'] . '",
+            icon: "success"
+        });
+    }, 500);
+    </script>';
+    unset($_SESSION['deleted_carrera']);
+}
+
+if (isset($_SESSION['error_carrera'])) {
+    echo
+    '<script>
+    setTimeout(() => {
+        Swal.fire({
+            title: "¡Ups!",
+            text: "' . $_SESSION['error_carrera'] . '",
+            icon: "error"
+        });
+     }, 500);
+    </script>';
+    unset($_SESSION['error_carrera']);
+}
+
+if (isset($_SESSION['alert_message'])) {
+    $alertMessage = $_SESSION['alert_message'];
+    echo '<script>
+    setTimeout(() => {
+        Swal.fire({
+            title: "¡Cuidado!",
+            text: "' . $alertMessage . '",
+            icon: "warning"
+        });
+    }, 500);
+    </script>';
+    unset($_SESSION['alert_message']);
+}
+?>
+
+
+?>
 
 <script>
     function cargar_info(dato) {
@@ -127,7 +173,7 @@ include_once("src/components/parte_inferior.php")
                         text: '<i class="fa-regular fa-file-excel"></i>',
                         titleAttr: 'Exportar a Excel',
                         exportOptions: {
-                            columns: [1, 2, 3, 4, 5]
+                            columns: [0, 1, 2]
                         }
 
                     },
@@ -136,7 +182,7 @@ include_once("src/components/parte_inferior.php")
                         text: '<i class="fa-regular fa-file-pdf"></i>',
                         titleAttr: 'Exportar a PDF',
                         exportOptions: {
-                            columns: [1, 2, 3, 4, 5]
+                            columns: [0, 1, 2]
                         },
                         customize: function(doc) {
 
@@ -150,7 +196,7 @@ include_once("src/components/parte_inferior.php")
                         text: '<i class="fa-solid fa-print"></i>',
                         titleAttr: 'Imprimir',
                         exportOptions: {
-                            columns: [1, 2, 3, 4, 5]
+                            columns: [0, 1, 2]
                         },
 
                     },
@@ -164,6 +210,8 @@ include_once("src/components/parte_inferior.php")
 <!-- Recibiendo por metodo post el formulario  -->
 
 <?php
+
+session_start();
 if (
     isset($_POST['txtcarrera']) &&
 
@@ -173,23 +221,27 @@ if (
 ) {
 
     $carrera = $_POST['txtcarrera'];
-
     $area = $_POST['lstarea'];
 
 
     include('config/conexion.php');
 
-
-
-    $sql = "INSERT INTO carrera (nombre_ca,  estado_ca, id_ar) VALUES ('$carrera',  'ACTIVO','$area')";
-    $f = mysqli_query($cn, $sql);
-
-    if ($f) {
-        // Redirigir a la misma vista con un mensaje de éxito
-        echo '<script>window.location.href = "carrera.php";</script>';
-    } else {
-        // Redirigir a la misma vista con un mensaje de error
-        echo '<script>window.location.href = "carrera.php";</script>';
+        $sql_select = "SELECT nombre_ca FROM carrera";
+        $result = mysqli_query($cn, $sql_select);
+        
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                if ($row['nombre_ca'] === $carrera) {
+                    $_SESSION['alert_message'] = 'La carrera ' .$row['nombre_ca'] . ' ya se encuentra registrada';
+                    header('location: ../../../periodo.php');
+                    exit();
+                }
+            }
+        }
+        $sql = "INSERT INTO carrera(nombre_ca, estado_ca id_ar) VALUES ('$carrera', 'ACTIVO', '$area')";
+        $r = mysqli_query($cn, $sql);
+        
+        header('location: ../../../carrera.php');
     }
-}
+    
 ?>

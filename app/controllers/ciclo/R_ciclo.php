@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 
 include('../../../config/conexion.php');
 
@@ -11,7 +11,18 @@ $precio = $_POST['r_precio'];
 $estado = 'ACTIVO';
 $turno = isset($_POST['checkturno']) ? $_POST['checkturno'] : [];
 
+$sql_select = "SELECT nombre_ci FROM ciclo";
+$result = mysqli_query($cn, $sql_select);
 
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        if ($row['nombre_ci'] === $nombre) {
+            $_SESSION['alert_message'] = 'El ciclo ' .$row['nombre_ci'] . ' ya se encuentra registrado';
+            header('location: ../../../ciclo.php');
+            exit();
+        }
+    }
+}
 
 // Registro del ciclo
 $sqlci = "INSERT INTO ciclo (nombre_ci , fini_ci , ffin_ci,precio_ci , estado_ci ,id_pe) 

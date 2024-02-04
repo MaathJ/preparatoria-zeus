@@ -6,7 +6,7 @@ $volver = $_POST['txt_volver'];
 
 
 
-$sqlp ="DELETE FROM pago  WHERE id_bo = $codigo";
+$sqlp ="DELETE FROM pago WHERE id_bo = $codigo";
 mysqli_query($cn,$sqlp);
 if ($sqlp) {
 

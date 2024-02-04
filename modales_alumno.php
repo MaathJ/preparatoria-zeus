@@ -4,12 +4,12 @@ include_once('auth.php');
     <div class="modal fade  " id="ModalEliminarD" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header " style="background-color: #010133; color: #ffffff;">
+                <div class="modal-header " style="background-color: red; color: #ffffff;">
                     <h5 class="modal-title" id="exampleModalLabel">CONFIRMAR ELIMINACION DE ALUMNO:</h5>
                 </div>
                 <div class="modal-body">
                     <form action="./Alumno/D_alumno.php" method="post">
-                        <h5>¿Está seguro que desea eliminar al alumno?</h5>
+                        <h4>IMPORTANTE: SE ELIMINARÁN MATRÍCULAS, BOLETAS, PAGOS Y ASISTENCIAS DEL ALUMNO, ¿Está seguro de continuar?</h4>
                         <input type="text" name="codalD" id="id_alumnoD" class="form-control" hidden>
                         <div class="modal-footer">
                             <input type="hidden" name="id_rol_seleccionado" id="id_rol_seleccionado" value="">

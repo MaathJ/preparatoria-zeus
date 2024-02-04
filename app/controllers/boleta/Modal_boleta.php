@@ -162,19 +162,18 @@
 </div>
 
 <!--ELIMINAR BOLETA-->
-<div class="modal fade" id="ModalEliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade" id="ModalEliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -20px;">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header" style="color: #fff; background-color:#0A1048;">
+            <div class="modal-header" style="background-color: #010133; color: #ffffff;">
                 <h4 class="modal-title" id="exampleModalLabel">CONFIRMAR ELIMINACION DE LA BOLETA:</h4>
-                <button type="button" class="btn-close" style="background-color: #ffffff;" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form action="app/controllers/boleta/D_boleta.php" method="post">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="mb-3">
-                                <h5>¿Está seguro que desea eliminar la boleta?</h5>
+                                <h4>¿Está seguro que desea eliminar la boleta?</h4>
                                 <input type="text" name="txt_id" id="D-id" class="form-control" hidden>
                                 <input type="text" name="txt_volver" id="D-volver" class="form-control" hidden>
                             </div>

@@ -68,6 +68,52 @@ include_once('app/controllers/forma_pago/Modal_formapago.php');
     <div id="styleSelector"> </div>
 </div>
 
+<?php
+
+    if (isset($_SESSION['deleted_fpago'])) {
+        echo
+        '<script>
+        setTimeout(() => {
+            Swal.fire({
+                title: "¡Éxito!",
+                text: "' . $_SESSION['deleted_fpago'] . '",
+                icon: "success"
+            });
+        }, 500);
+    </script>';
+        unset($_SESSION['deleted_fpago']);
+    }
+
+
+    if (isset($_SESSION['error_fpago'])) {
+        echo
+        '<script>
+        setTimeout(() => {
+            Swal.fire({
+                title: "¡Error!",
+                text: "' . $_SESSION['error_fpago'] . '",
+                icon: "error"
+            });
+        }, 500);
+        </script>';
+        unset($_SESSION['error_fpago']);
+    }
+
+    if (isset($_SESSION['alert_message'])) {
+        $alertMessage = $_SESSION['alert_message'];
+        echo '<script>
+        setTimeout(() => {
+            Swal.fire({
+                title: "¡Cuidado!",
+                text: "' . $alertMessage . '",
+                icon: "warning"
+            });
+        }, 500);
+        </script>';
+        unset($_SESSION['alert_message']);
+    }
+
+    ?>
 
 <!-- SCRIPT ESTADO -->
 <script src="src/assets/js/estado.js"></script>

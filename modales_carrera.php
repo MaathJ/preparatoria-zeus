@@ -12,9 +12,9 @@
                         <input type="text" name="txtcarrera" placeholder="Ingresar la carrera" class="form-control" id="U_carrera" required>
                     </div>
                     <div class="col-12">
-                        <label for="area" class="form-label" style="color: black;">Area:</label>
+                        <label for="area" class="form-label" style="color: black;">Área:</label>
                         <select class="form-control" name="lstarea" id="U_area" required>
-                            <option value="" disabled selected>Selecciona un area</option>
+                            <option value="" disabled selected>Selecciona un área</option>
                             <?php
                             $sql = "SELECT *
                                     FROM area ";
@@ -65,9 +65,9 @@
                         <input type="text" name="txtcarrera" placeholder="Ingrese el nombre" class="form-control" id="carrera" required>
                     </div>
                     <div class="col-12">
-                        <label for="area" class="col-form-label" style="color: black;">Area:</label>
+                        <label for="area" class="col-form-label" style="color: black;">Área:</label>
                         <select class="form-control" name="lstarea" id="area" required>
-                            <option value="" disabled selected>Selecciona un area</option>
+                            <option value="" disabled selected>Selecciona un área</option>
                             <?php
                             $sql = "SELECT *
                                     FROM area ";
@@ -111,7 +111,7 @@ function deleteModalCarrera($id)
                     </div>
                     <div class="modal-body">
                     <form action="app/controllers/carrera/D_carrera.php?id={$id}" method="POST">
-                        ¿Estas seguro de que quieres eliminar esta carrera?
+                        ¿Estás seguro de que quieres eliminar esta carrera?
                         <button class="btn btn-danger btn-circle">Eliminar</button>
                     </form>
                 </div>
