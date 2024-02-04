@@ -4,9 +4,6 @@ include_once('config/conexion.php');
 include_once('app/controllers/boleta/Modal_boleta.php');
 include_once('app/controllers/pago/Modal_pago.php');
 include_once('src/components/parte_superior.php');
-
-include_once('./app/controllers/boleta/U_estadoboleta.php');
-
 $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
 ?>
 <link rel="stylesheet" href="src/assets/css/boleta/forma_pago.css">
@@ -16,12 +13,13 @@ $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
 
-        $sql = "SELECT ma.*, ci.*, al.*, ar.*
+        $sql = "SELECT ma.*, ci.*, al.*, ar.*,pe.*
             FROM matricula ma
             INNER JOIN ciclo ci ON ma.id_ci = ci.id_ci
             INNER JOIN alumno al ON al.id_al = ma.id_al
             INNER JOIN carrera ca ON al.id_ca = ca.id_ca
             INNER JOIN area ar ON ca.id_ar = ar.id_ar
+            INNER JOIN periodo pe ON pe.id_pe= ci.id_pe
             WHERE ma.id_ma = $id";
         $f = mysqli_query($cn, $sql);
         if ($r = mysqli_fetch_assoc($f)) {
@@ -34,6 +32,7 @@ $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "
             $dni = $r['dni_al'];
             $nombre = $r['apellido_al'] . ", " . $r['nombre_al'];
             $area = $r['nombre_ar'];
+            $periodo = $r['nombre_pe'];
             //------------
             //DATOS MATRICULA
             $ciclo = $r['nombre_ci'];
@@ -204,7 +203,7 @@ $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "
     </div>
     <div class="boleta-user-matricula">
         <h2>MATRICULA</h2>
-        <h3>CICLO: </h3><?php echo $ciclo ?>
+        <h3>CICLO: </h3><?php echo $periodo.$ciclo ?>
         <h3>INICIO: </h3><?php echo $fecha_ini ?>
         <h3>FINAL: </h3><?php echo $fecha_fin ?>
     </div>
