@@ -15,10 +15,11 @@
 <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
 <script src="https://cdn.datatables.net/fixedheader/3.3.2/js/dataTables.fixedHeader.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/v/dt/sp-1.4.0/sl-1.3.1/datatables.min.js"></script>
 
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.3.2/css/fixedHeader.bootstrap.min.css">
-
+<link rel="stylesheet" href="https://cdn.datatables.net/v/dt/sp-1.4.0/sl-1.3.1/datatables.min.css" rel="stylesheet">
 <script src="planti.js"></script>
 </body>
 </html>

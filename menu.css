@@ -188,9 +188,14 @@ header .image-text .header-text {
   background: #e40000;
 }
 
+.waiting-button {
+  background: orange;
+}
+
 .active-button,
-.inactive-button {
-  max-width: 100px;
+.inactive-button,
+.waiting-button {
+  width: auto;
   border: none;
   font-size: 12px;
   border-radius: 12px;

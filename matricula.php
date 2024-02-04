@@ -32,7 +32,6 @@ ma.id_ma;
 
 <link rel="stylesheet" href="./src/assets/css/matricula/matricula.css">
 
-<link rel="icon" href="src/assets/images/logo-zeus.png">
 
 
 
@@ -112,7 +111,29 @@ ma.id_ma;
                                 <span style="font-weight: bold; color:#010133">
                                     <?php echo $rma['nombre_us'] ?>
                                 </span>
-                                <?php echo $rma['freg_ma'] ?>
+                                <?php $freg_ma = $rma['freg_ma'];
+
+                                // Verificar si la fecha es nula
+                                if ($freg_ma !== null) {
+                                    // Intentar crear un objeto DateTime
+                                    $fechaOriginalObj = DateTime::createFromFormat('Y-m-d H:i:s', $freg_ma);
+
+                                    // Verificar si la conversión fue exitosa
+                                    if ($fechaOriginalObj !== false) {
+                                        // Obtener la fecha formateada como 'd-m-Y'
+                                        $fechaFormateada = $fechaOriginalObj->format('d-m-Y H:i:s');
+                                        echo $fechaFormateada;
+                                    } else {
+                                        echo "La fecha no es válida";
+                                    }
+                                } else {
+                                    echo "La fecha es nula";
+                                }
+
+
+                                ?>
+
+                                
                             </td>
 
                             <td>

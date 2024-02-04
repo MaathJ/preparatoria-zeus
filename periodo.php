@@ -93,10 +93,16 @@ include('modales_periodo.php');
 
     if (isset($_SESSION['alert_message'])) {
         $alertMessage = $_SESSION['alert_message'];
+        echo '<script>
+        setTimeout(() => {
+            Swal.fire({
+                title: "¡Cuidado!",
+                text: "' . $alertMessage . '",
+                icon: "warning"
+            });
+        }, 500);
+        </script>';
         unset($_SESSION['alert_message']);
-        echo "<script>
-                alert('$alertMessage');
-            </script>";
     }
 
     ?>
