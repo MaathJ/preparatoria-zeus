@@ -145,7 +145,7 @@
 
 
                                 ?>
-                                    <input type="checkbox" name="checkturnoEditar[]" value="<?php echo $rt['id_tu'] ?>" id="u_turno">
+                                    <input type="checkbox" name="checkturnoEditar[]" value="<?php echo $rt['id_tu'] ?>"   id="u_turno" require >
                                     <?php echo $rt['nombre_tu'] . '/' . date('H:i A', strtotime($rt['hent_tu'])) . '-' . date('H:i A', strtotime($rt['hsal_tu'])) ?>
                                     <br>
 
@@ -183,7 +183,7 @@ function deleteModalCiclo($id)
                 <div class="modal-body">
 
                     <form action="app/controllers/Ciclo/D_Ciclo.php?id={$id}" method="POST">
-                        Estas seguro de que quieres eliminar este periodo?
+                        Estas seguro de que quieres eliminar este ciclo?
                         <button class="btn btn-danger btn-circle">Eliminar</button>
                     </form>
                 </div>
