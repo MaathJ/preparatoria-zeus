@@ -97,7 +97,7 @@ function deleteModalTurno($id)
                     </div>
                     <div class="modal-body">
                     <form action="app/controllers/turno/D_Turno.php?id={$id}" method="POST">
-                        Estas seguro de que quieres eliminar este periodo?
+                        Estas seguro de que quieres eliminar este turno?
                         <button class="btn btn-danger btn-circle">Eliminar</button>
                     </form>
                 </div>

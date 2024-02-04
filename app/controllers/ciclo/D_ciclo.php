@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 include('../../../config/conexion.php');
 
 $id = $_GET['id'];
@@ -19,11 +18,9 @@ try {
     // Confirmar la transacción
     mysqli_commit($cn);
 
-    echo "Eliminación exitosa";
-
+    // Redireccionar después de completar las operaciones
     header("Location: ../../../ciclo.php");
-
-
+    exit(); // Asegurarse de que el script se detenga después de la redirección
 
 } catch (Exception $e) {
     // Revertir la transacción en caso de error
@@ -31,6 +28,7 @@ try {
 
     // Manejar el error según tus necesidades
     echo "Error en la eliminación: " . $e->getMessage();
+    header("Location: ../../../ciclo.php");
 }
 
 // Cerrar la conexión
