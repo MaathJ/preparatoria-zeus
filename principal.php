@@ -59,7 +59,7 @@ if ($_SESSION["usuario"] && !isset($_SESSION["last_access_date"]) || $_SESSION["
         <div class="card-earnings-title" align="center">
             <span><i class="fa-solid fa-door-open"></i></span>
             <p style="font-weight: 500; font-size: 30px;">Asistencia Total del día</p>
-        </div>
+    </div>
 
 
         <?php
