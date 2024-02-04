@@ -19,7 +19,7 @@ include('modales_alumno.php');
             dataType: 'json',
             success: function(data) {
                 // Actualizar elementos dentro del modal usando los IDs
-            
+
                 $('#card-user').text(data.nombre);
                 $('#card-edad').text(data.edad);
                 $('#card-estado').text(data.estado);
@@ -96,7 +96,7 @@ include('modales_alumno.php');
                 text-align: center;
             }
     </style> -->
-    
+
     <div class="container-table" style="background-color: #fff; overflow:hidden">
         <div class="col-md-12" style="box-sizing: border-box;">
             <table class="table table-striped table_id" id="table_alumno" style="width:100%; box-sizing: border-box; overflow:hidden">
@@ -126,15 +126,15 @@ include('modales_alumno.php');
                     <td align="center"><img class="img-fluid" src="./src/assets/images/alumno/<?php echo $r['dni_al'] ?>.jpg"></td>
                     <td align="center"><?php echo $r['apellido_al'] . ', ' . $r['nombre_al']; ?></td>
                     <td align="center"><?php
-                        $fechaNacimiento = $r['fnac_al'];
-                        // Obtener la fecha actual
-                        $fechaActual = date('Y-m-d');
-                        // Calcular la diferencia entre la fecha actual y la fecha de nacimiento
-                        $diff = date_diff(date_create($fechaNacimiento), date_create($fechaActual));
-                        // Obtener el componente de años de la diferencia
-                        $edad = $diff->format('%Y');
-                        echo $edad;
-                        ?>
+                                        $fechaNacimiento = $r['fnac_al'];
+                                        // Obtener la fecha actual
+                                        $fechaActual = date('Y-m-d');
+                                        // Calcular la diferencia entre la fecha actual y la fecha de nacimiento
+                                        $diff = date_diff(date_create($fechaNacimiento), date_create($fechaActual));
+                                        // Obtener el componente de años de la diferencia
+                                        $edad = $diff->format('%Y');
+                                        echo $edad;
+                                        ?>
                     </td>
                     <td align="center"><?php echo $r['dni_al'] ?></td>
                     <td align="center"><?php echo $r['celular_al'] ?></td>
@@ -198,6 +198,21 @@ include('modales_alumno.php');
     </div>
 
     <?php
+
+    if (isset($_SESSION['registro_exitoso'])) {
+        echo
+        '<script>
+    setTimeout(() => {
+        Swal.fire({
+            title: "¡Éxito!",
+            text: "' . $_SESSION['registro_exitoso'] . '",
+            icon: "success"
+        });
+    }, 500);
+</script>';
+        unset($_SESSION['deleted_student']);
+    }
+
     if (isset($_SESSION['deleted_student'])) {
         echo
         '<script>
@@ -227,19 +242,6 @@ include('modales_alumno.php');
         unset($_SESSION['error_student']);
     }
 
-    if (isset($_SESSION['alert_message'])) {
-        $alertMessage = $_SESSION['alert_message'];
-        echo '<script>
-        setTimeout(() => {
-            Swal.fire({
-                title: "¡Cuidado!",
-                text: "' . $alertMessage . '",
-                icon: "warning"
-            });
-        }, 500);
-        </script>';
-        unset($_SESSION['alert_message']);
-    }
 
     ?>
     <?php
@@ -376,6 +378,7 @@ include('modales_alumno.php');
 
             new $.fn.dataTable.FixedHeader(table);
         });
+
         function obtenerCarreras(idArea) {
             console.log(idArea);
             $.ajax({
@@ -475,13 +478,13 @@ include('modales_alumno.php');
                         // Maneja la respuesta del servidor
                         if (response == "existe") {
                             // Muestra una alerta indicando que el alumno existe
-                            alert("El alumno ya existe. Por favor, revisa el DNI.");
-
-                            // Puedes realizar otras acciones aquí si es necesario
-                            // Por ejemplo, cambiar el formato del mensaje de error en tu modal
-
-                            // Mostrar el mensaje de error en tu modal
-                            $("#mensajeError").html("El alumno ya existe. Por favor, revisa el DNI.").show();
+                            setTimeout(() => {
+                                Swal.fire({
+                                    title: "¡Cuidado!",
+                                    text: "El DNI: " + `${dni}` + " Ya se encuentra registrado.\n Ingresa otro, Por favor!",
+                                    icon: "warning"
+                                });
+                            }, 500);
                         } else {
                             // Si el alumno no existe, realiza la verificación de área y carrera
                             let selectElementArea = document.getElementById('area-alumno');
