@@ -148,11 +148,19 @@ if ($resultadoExistencia) {
                             if($estado_Asistencia != 'FALTA'){
                                     // Agregar resultado al arreglo
                             
-                                    $sqlexistenci = "SELECT COUNT(*) as total FROM  matricula m INNER JOIN 
-                                    detalle_ciclo_turno dt ON m.id_ci = dt.id_ci
-                                    INNER JOIN turno t ON dt.id_tu = t.id_tu inner join asistencia asi on asi.id_ma = m.id_ma inner join alumno al on al.id_al = m.id_al
-                                    where now() BETWEEN CONCAT(CURRENT_DATE, ' ', t.hent_tu) AND CONCAT(CURRENT_DATE, ' ', t.hsal_tu) and al.dni_al = '$dniAlumno'
-                                    AND asi.fecha_as > CONCAT(CURRENT_DATE, ' ', t.hent_tu)";
+                                    $sqlexistenci = "SELECT 
+                                                        COUNT(*) AS total 
+                                                    FROM 
+                                                        matricula m 
+                                                        INNER JOIN detalle_ciclo_turno dt ON m.id_ci = dt.id_ci
+                                                        INNER JOIN turno t ON dt.id_tu = t.id_tu 
+                                                        INNER JOIN asistencia asi ON asi.id_ma = m.id_ma 
+                                                        INNER JOIN alumno al ON al.id_al = m.id_al
+                                                    WHERE 
+                                                        NOW() BETWEEN CONCAT(CURRENT_DATE, ' ', t.hent_tu) 
+                                                        AND CONCAT(CURRENT_DATE, ' ', t.hsal_tu) 
+                                                        AND al.dni_al = '$dniAlumno'
+                                                        AND asi.fecha_as > CONCAT(CURRENT_DATE, ' ', t.hent_tu)";
     
                                     $fexistencia = mysqli_query($cn,$sqlexistenci);
                                     $rexistencia = mysqli_fetch_assoc($fexistencia);
