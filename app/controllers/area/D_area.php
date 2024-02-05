@@ -14,12 +14,12 @@ try {
         $sql_delete = "DELETE FROM area WHERE id_ar = '$id'";
         mysqli_query($cn, $sql_delete);
 
-        $_SESSION['deleted_area'] = "Se ha eliminado la area: $nombre_area con ID: $id";
+        $_SESSION['deleted_area'] = "Se ha eliminado el área: $nombre_area";
     } else {
-        $_SESSION['deleted_area'] = "No se pudo obtener la información del periodo con ID: $id";
+        $_SESSION['deleted_area'] = "No se pudo obtener la información del área con ID: $id";
     }
 } catch (Exception $e) {
-    $_SESSION['error_area'] = "Error al eliminar el periodo con ID: $id";
+    $_SESSION['error_area'] = "Error al eliminar el área $nombre_area";
 }
 
 header("Location: ../../../area.php");

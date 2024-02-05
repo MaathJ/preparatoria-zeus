@@ -43,7 +43,7 @@
                 <h4 class="modal-title" id="exampleModalLabel">REGISTRAR ÁREA:</h4>
             </div>
             <div class="modal-body">
-                <form action="area.php" method="post">
+                <form action="app/controllers/area/R_area.php" method="post">
                     <div class="col-12">
                         <label for="area" class="form-label" style="color: black;">Área:</label>
                         <input type="text" name="txtarea" placeholder="Ingrese el área" class="form-control" id="area" required>

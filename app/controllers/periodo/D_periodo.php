@@ -14,12 +14,12 @@ try {
         $sql_delete = "DELETE FROM periodo WHERE id_pe = '$id'";
         mysqli_query($cn, $sql_delete);
 
-        $_SESSION['deleted_cycle'] = "Periodo eliminado: $nombre_ciclo con ID: $id";
+        $_SESSION['deleted_cycle'] = "Periodo eliminado: $nombre_ciclo";
     } else {
         $_SESSION['deleted_cycle'] = "No se pudo obtener la información del periodo con ID: $id";
     }
 } catch (Exception $e) {
-    $_SESSION['error_cycle'] = "Error al eliminar el ciclo: $nombre_ciclo, con ID: $id";
+    $_SESSION['error_cycle'] = "Error al eliminar el ciclo: $nombre_ciclo";
 }
 
 header('location: ../../../periodo.php');

@@ -59,7 +59,7 @@
                 <h4 class="modal-title" id="exampleModalLabel">REGISTRAR CARRERA:</h4>
             </div>
             <div class="modal-body">
-                <form action="carrera.php" method="post">
+                <form action="app/controllers/carrera/R_carrera.php" method="post">
                     <div class="col-12">
                         <label for="carrera" class="form-label" style="color: black;">Nombre:</label>
                         <input type="text" name="txtcarrera" placeholder="Ingrese el nombre" class="form-control" id="carrera" required>
@@ -94,9 +94,6 @@
 
     </div>
 </div>
-<!-- Page-body end -->
-</div>
-
 
 <!-- MODAL PARA CONFIRMAR ELIMINACIÓN -->
 <?php

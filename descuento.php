@@ -74,6 +74,20 @@ include_once('app/controllers/descuento/Modal_descuento.php');
 
 <?php
 
+if (isset($_SESSION['success_message'])) {
+    echo
+    '<script>
+    setTimeout(() => {
+        Swal.fire({
+            title: "¡Éxito!",
+            text: "' . $_SESSION['success_message'] . '",
+            icon: "success"
+        });
+    }, 200);
+</script>';
+    unset($_SESSION['success_message']);
+}
+
     if (isset($_SESSION['deleted_descuento'])) {
         echo
         '<script>

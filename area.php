@@ -74,6 +74,20 @@ include('modales_area.php');
 
 <?php
 
+if (isset($_SESSION['success_message'])) {
+    echo
+    '<script>
+    setTimeout(() => {
+        Swal.fire({
+            title: "¡Éxito!",
+            text: "' . $_SESSION['success_message'] . '",
+            icon: "success"
+        });
+    }, 200);
+</script>';
+    unset($_SESSION['success_message']);
+}
+
 if (isset($_SESSION['deleted_area'])) {
     echo
     '<script>
@@ -100,6 +114,20 @@ if (isset($_SESSION['error_area'])) {
      }, 500);
     </script>';
     unset($_SESSION['error_area']);
+}
+
+if (isset($_SESSION['alert_message'])) {
+    $alertMessage = $_SESSION['alert_message'];
+    echo '<script>
+    setTimeout(() => {
+        Swal.fire({
+            title: "¡Cuidado!",
+            text: "' . $alertMessage . '",
+            icon: "warning"
+        });
+    }, 500);
+    </script>';
+    unset($_SESSION['alert_message']);
 }
 ?>
 
@@ -181,22 +209,3 @@ include_once("src/components/parte_inferior.php")
 
 <!-- Recibiendo por metodo post el formulario  -->
 
-<?php
-if (isset($_POST['txtarea'])) {
-    $area = $_POST['txtarea'];
-    // $estado = $_POST['lstestado'];
-
-    $sql = "INSERT INTO area (nombre_ar,  estado_ar) VALUES ('$area',  'ACTIVO')";
-    $f = mysqli_query($cn, $sql);
-
-    if ($f) {
-        // Redirigir a la misma vista con un mensaje de éxito
-        // header('Location:area.php');
-        echo '<script>window.location.href = "area.php";</script>';
-    } else {
-        // Redirigir a la misma vista con un mensaje de error
-        // header('Location:area.php');
-        echo '<script>window.location.href = "area.php";</script>';
-    }
-}
-?>

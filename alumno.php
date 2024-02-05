@@ -210,7 +210,7 @@ include('modales_alumno.php');
         });
     }, 500);
 </script>';
-        unset($_SESSION['deleted_student']);
+        unset($_SESSION['registro_exitoso']);
     }
 
     if (isset($_SESSION['deleted_student'])) {

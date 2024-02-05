@@ -205,7 +205,7 @@ $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "
     </div>
     <div class="boleta-user-matricula">
         <h2>MATRICULA</h2>
-        <h3>CICLO: </h3><?php echo $periodo.$ciclo ?>
+        <h3>CICLO: </h3><?php echo $periodo." ".$ciclo ?>
         <h3>INICIO: </h3><?php echo $fecha_ini ?>
         <h3>FINAL: </h3><?php echo $fecha_fin ?>
     </div>

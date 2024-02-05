@@ -82,6 +82,20 @@ include('modales_carrera.php');
 
 <?php
 
+if (isset($_SESSION['success_message'])) {
+    echo
+    '<script>
+    setTimeout(() => {
+        Swal.fire({
+            title: "¡Éxito!",
+            text: "' . $_SESSION['success_message'] . '",
+            icon: "success"
+        });
+    }, 200);
+</script>';
+    unset($_SESSION['success_message']);
+}
+
 if (isset($_SESSION['deleted_carrera'])) {
     echo
     '<script>
@@ -126,7 +140,7 @@ if (isset($_SESSION['alert_message'])) {
 ?>
 
 
-?>
+
 
 <script>
     function cargar_info(dato) {
@@ -207,41 +221,4 @@ include_once("src/components/parte_inferior.php")
         });
 </script>
 
-<!-- Recibiendo por metodo post el formulario  -->
 
-<?php
-
-session_start();
-if (
-    isset($_POST['txtcarrera']) &&
-
-    isset($_POST['lstarea'])
-
-
-) {
-
-    $carrera = $_POST['txtcarrera'];
-    $area = $_POST['lstarea'];
-
-
-    include('config/conexion.php');
-
-        $sql_select = "SELECT nombre_ca FROM carrera";
-        $result = mysqli_query($cn, $sql_select);
-        
-        if (mysqli_num_rows($result) > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                if ($row['nombre_ca'] === $carrera) {
-                    $_SESSION['alert_message'] = 'La carrera ' .$row['nombre_ca'] . ' ya se encuentra registrada';
-                    header('location: ../../../periodo.php');
-                    exit();
-                }
-            }
-        }
-        $sql = "INSERT INTO carrera(nombre_ca, estado_ca id_ar) VALUES ('$carrera', 'ACTIVO', '$area')";
-        $r = mysqli_query($cn, $sql);
-        
-        header('location: ../../../carrera.php');
-    }
-    
-?>

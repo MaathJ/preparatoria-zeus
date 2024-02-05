@@ -6,6 +6,7 @@ include_once('./src/components/parte_superior.php');
 include('./config/conexion.php');
 
 $sqlma = "SELECT 
+ DATEDIFF(bo.ffin_bo, CURRENT_DATE) AS dias_restantes,
 SUM(CASE WHEN bo.estadodeu_bo = 'DEUDA' AND bo.estadodur_bo = 'ACTIVO' THEN bo.deuda_bo ELSE 0 END) AS total_deudas,
 SUM(CASE WHEN bo.mes_bo IS NOT NULL THEN bo.mes_bo ELSE 0 END) AS total_meses,
 ma.*, al.*, ci.*, us.*, de.*, pe.*
@@ -70,6 +71,7 @@ ma.id_ma
                         $id = $rma['id_ma'];
                         $inicio = $rma['fini_ci'];
                         $final = $rma['ffin_ci'];
+                        $dias_restantes = $rma['dias_restantes'];
                     ?>
                         <tr>
                             <td>
@@ -94,7 +96,7 @@ ma.id_ma
                             </td>
 
                             <td align="center">
-                                <?php echo $rma['mensualidad_ma'] ?>
+                                <?php echo $dias_restantes ?>
                             </td>
                             <td align="center">
                                 <?php echo $rma['total_deudas'] ?>
@@ -205,6 +207,67 @@ ma.id_ma
             </table>
         </div>
     </div>
+
+    <?php
+
+if (isset($_SESSION['success_message'])) {
+    echo
+    '<script>
+    setTimeout(() => {
+        Swal.fire({
+            title: "¡Éxito!",
+            text: "' . $_SESSION['success_message'] . '",
+            icon: "success"
+        });
+    }, 200);
+</script>';
+    unset($_SESSION['success_message']);
+}
+
+if (isset($_SESSION['deleted_matricula'])) {
+    echo
+    '<script>
+    setTimeout(() => {
+        Swal.fire({
+            title: "¡Éxito!",
+            text: "' . $_SESSION['deleted_matricula'] . '",
+            icon: "success"
+        });
+    }, 500);
+    </script>';
+    unset($_SESSION['deleted_matricula']);
+}
+
+if (isset($_SESSION['error_matricula'])) {
+    echo
+    '<script>
+    setTimeout(() => {
+        Swal.fire({
+            title: "¡Ups!",
+            text: "' . $_SESSION['error_matricula'] . '",
+            icon: "error"
+        });
+     }, 500);
+    </script>';
+    unset($_SESSION['error_matricula']);
+}
+
+if (isset($_SESSION['alert_message'])) {
+    $alertMessage = $_SESSION['alert_message'];
+    echo '<script>
+    setTimeout(() => {
+        Swal.fire({
+            title: "¡Cuidado!",
+            text: "' . $alertMessage . '",
+            icon: "warning"
+        });
+    }, 500);
+    </script>';
+    unset($_SESSION['alert_message']);
+}
+?>
+
+    
 
     <!-- Para traer el modal boleta  -->
     <?php

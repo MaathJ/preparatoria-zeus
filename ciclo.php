@@ -92,6 +92,20 @@ include('modales_ciclo.php');
 
 <?php
 
+if (isset($_SESSION['success_message'])) {
+    echo
+    '<script>
+    setTimeout(() => {
+        Swal.fire({
+            title: "¡Éxito!",
+            text: "' . $_SESSION['success_message'] . '",
+            icon: "success"
+        });
+    }, 200);
+</script>';
+    unset($_SESSION['success_message']);
+}
+
 if (isset($_SESSION['deleted_ciclo'])) {
         echo
         '<script>

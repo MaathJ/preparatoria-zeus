@@ -29,7 +29,7 @@ try {
 
         $_SESSION['deleted_ciclo'] = "Ciclo eliminado: $nombre_ciclo";
     } else {
-        $_SESSION['deleted_ciclo'] = "No se pudo obtener la información del ciclo: nombre_ciclo";
+        $_SESSION['deleted_ciclo'] = "No se pudo obtener la información del ciclo: $nombre_ciclo";
     }
 } catch (Exception $e) {
     // Revertir la transacción en caso de error

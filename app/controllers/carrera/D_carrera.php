@@ -16,12 +16,12 @@ try {
         $sql_delete = "DELETE FROM carrera WHERE id_ca = '$id'";
         mysqli_query($cn, $sql_delete);
 
-        $_SESSION['deleted_carrera'] = "Carrera eliminada: $nombre_carrera con ID: $id";
+        $_SESSION['deleted_carrera'] = "Carrera eliminada: $nombre_carrera";
     } else {
         $_SESSION['deleted_carrera'] = "No se pudo obtener la información de la carrera con ID: $id";
     }
 } catch (Exception $e) {
-    $_SESSION['error_carrera'] = "Error al eliminar la carrera con ID: $id";
+    $_SESSION['error_carrera'] = "Error al eliminar la carrera $nombre_carrera";
 }
 
 header('location: ../../../carrera.php');

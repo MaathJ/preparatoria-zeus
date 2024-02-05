@@ -83,11 +83,11 @@
 
 <!-- Modal ELIMINAR -->
 <div class="modal fade" id="Eliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-dialog-centered"">
         <div class="modal-content">
             <div class="modal-header " style="background-color: red; color: #ffffff;">
                 <h4 class="modal-title" id="exampleModalLabel">
-                ¡¡ ADVERTENCIA !! SE ELIMINARÁ UNA FORMA DE PAGO
+                SE ELIMINARÁ LA FORMA DE PAGO
                 </h4>
             </div>
             <div class="modal-body">

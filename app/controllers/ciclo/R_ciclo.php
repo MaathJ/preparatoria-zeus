@@ -17,7 +17,7 @@ $result = mysqli_query($cn, $sql_select);
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         if ($row['nombre_ci'] === $nombre) {
-            $_SESSION['alert_message'] = 'El ciclo ' .$row['nombre_ci'] . ' ya se encuentra registrado';
+            $_SESSION['alert_message'] = 'El ciclo ' . $row['nombre_ci'] . ' ya se encuentra registrado';
             header('location: ../../../ciclo.php');
             exit();
         }
@@ -25,32 +25,43 @@ if (mysqli_num_rows($result) > 0) {
 }
 
 // Registro del ciclo
-$sqlci = "INSERT INTO ciclo (nombre_ci , fini_ci , ffin_ci,precio_ci , estado_ci ,id_pe) 
-        VALUE ('$nombre','$fechai' , '$fechac' ,$precio, '$estado' ,$periodo)";
-$fci = mysqli_query($cn, $sqlci);
+$sqlci = "INSERT INTO ciclo (nombre_ci, fini_ci, ffin_ci, precio_ci, estado_ci, id_pe) 
+          VALUES (?, ?, ?, ?, ?, ?)";
 
-if ($fci) {
-    // Obtener el ID del ciclo recién insertado
-    $id_ciclo = mysqli_insert_id($cn);
+$stmt = mysqli_prepare($cn, $sqlci);
 
-    // Registro de los detalles del ciclo, incluyendo los turnos seleccionados
-    foreach ($turno as $id_turno) {
-        $sqldetalle = "INSERT INTO detalle_ciclo_turno (id_ci , id_tu, estado_ct) 
-                       VALUES ($id_ciclo, $id_turno, '$estado')";
-        $fdetalle = mysqli_query($cn, $sqldetalle);
-    }
+if ($stmt) {
+    mysqli_stmt_bind_param($stmt, "sssssi", $nombre, $fechai, $fechac, $precio, $estado, $periodo);
 
-    if ($fdetalle) {
-        echo "Ciclo y detalles registrados correctamente.";
-        header("Location: ../../../ciclo.php");
-        
+    if (mysqli_stmt_execute($stmt)) {
+        // Obtener el ID del ciclo recién insertado
+        $id_ciclo = mysqli_insert_id($cn);
+
+        // Registro de los detalles del ciclo, incluyendo los turnos seleccionados
+        $sqldetalle = "INSERT INTO detalle_ciclo_turno (id_ci, id_tu, estado_ct) VALUES (?, ?, ?)";
+        $stmt_detalle = mysqli_prepare($cn, $sqldetalle);
+
+        if ($stmt_detalle) {
+            foreach ($turno as $id_turno) {
+                mysqli_stmt_bind_param($stmt_detalle, "iis", $id_ciclo, $id_turno, $estado);
+                mysqli_stmt_execute($stmt_detalle);
+            }
+            mysqli_stmt_close($stmt_detalle);
+
+            $_SESSION['success_message'] = 'Ciclo registrado exitosamente';
+        } else {
+            $_SESSION['alert_message'] = 'Error al preparar la consulta de detalles del ciclo';
+        }
     } else {
-        echo "Error al registrar detalles del ciclo: " . mysqli_error($cn);
-        header("Location: ../../../ciclo.php");
+        $_SESSION['alert_message'] = 'Error al registrar el ciclo';
     }
+
+    mysqli_stmt_close($stmt);
 } else {
-    echo "Error al registrar el ciclo: " . mysqli_error($cn);
+    $_SESSION['alert_message'] = 'Error al preparar la consulta de registro del ciclo';
 }
 
 mysqli_close($cn);
+header('location: ../../../ciclo.php');
+exit();
 ?>
