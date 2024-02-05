@@ -51,8 +51,10 @@ ma.id_ma
                 <thead align="center" class="" style="color: #fff; background-color:#010133; height:52px; max-height:100%;">
                     <tr>
                         <!-- <th class="text-center">ID</th> -->
-                        <th class="text-center">Nombres</th>
+                       
+                        <th class="text-center">ID</th>
                         <th class="text-center">Apellidos</th>
+                        <th class="text-center">Nombres</th>
                         <th class="text-center">Ciclo</th>
                         <th class="text-center">Mensualidad</th>
                         <th class="text-center">Meses</th>
@@ -75,10 +77,13 @@ ma.id_ma
                     ?>
                         <tr>
                             <td>
-                                <?php echo $rma['nombre_al'] ?>
+                                <?php echo $rma['id_al'] ?>
+                            </td>
+                            <td style="font-weight: 500;">
+                                <?php echo $rma['apellido_al'] ?>
                             </td>
                             <td>
-                                <?php echo $rma['apellido_al'] ?>
+                                <?php echo $rma['nombre_al'] ?>
                             </td>
                             <td align="center">
                                 <?php echo $rma['nombre_pe'] . ' ' . $rma['nombre_ci'] ?>
@@ -96,10 +101,18 @@ ma.id_ma
                             </td>
 
                             <td align="center">
-                                <?php echo $dias_restantes ?>
+
+                            <?php
+                                if ($dias_restantes !== null && $dias_restantes !== false && $dias_restantes !== 0) {
+                                    echo $dias_restantes.' Dias';
+                                } else {
+                                    echo '0 Dias';
+                                }
+                                ?>
+
                             </td>
-                            <td align="center">
-                                <?php echo $rma['total_deudas'] ?>
+                            <td align="center" style="font-weight: 700; color: <?php echo ($rma['total_deudas'] > 0) ? 'red' : 'black'; ?> ">
+                                <?php echo 'S/'.$rma['total_deudas']; ?>
                             </td>
 
                             <td>

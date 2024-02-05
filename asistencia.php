@@ -9,21 +9,78 @@ include_once('src/components/parte_superior.php');
 <link rel="icon" href="src/assets/images/logo-zeus.png">
 
 
+<style>
+
+.inputbuscar {
+    width: 580px;
+    height: 100px;
+    border-radius: 50px;
+    border: 2px solid rgb(1, 1, 51);
+    font-size: 25px;
+    padding-top: 35px; /* Ajusta el padding superior para centrar el texto verticalmente */
+    padding-bottom: 35px; /* Ajusta el padding inferior para centrar el texto verticalmente */
+    text-align: center; /* Centra el texto horizontalmente */
+
+    box-shadow: 0px 0px 10px rgb(1, 1, 51) , inset 0px 0px 3px rgb(1, 235, 252),0px 0px 2px rgb(255, 255, 255);
+
+}
+
+.inputbuscar:focus{
+    border: 1px solid ;
+    color: #010133;
+  
+
+    box-shadow: 0px 0px 10px rgb(92, 68, 233)
+}
+
+.asis-button-verHora {
+    background-color: #010133;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: #333;
+    width: 200px;
+}
+
+#time {
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 10px;
+}
+
+#date {
+    font-size: 18px;
+    color:  #C4CAFB;
+}
+
+
+</style>
 <div class="container-page">
 
     <div>
         <p>Zeus<span> / Asistencia</span></p>
         <h3>Asistencia</h3>
+       
     </div>
+    
 
     <div class="container-asitencia" style="background-color: #fff;">
         <div class="asistencia-input-info">
             <div class="asis-img">
                 <img src="src/assets/images/logo-zeus.png" alt="">
             </div>
-            <div class="asis-input">
-                <input class="form-control" id="buscador" type="text" placeholder="Escanear codigo de barras">
+            <div class="asis-button-verHora" id="clock">
+                <div id="time"></div>
+                <div id="date"></div>
             </div>
+            <div class="asis-input">
+                <input class="form-control inputbuscar" id="buscador" type="text" placeholder="Escanear el  codigo de barras ">
+            </div>
+           
+
             <div class="asis-button-ver">
                 <a class="btn btn-primary" href="registro_asistencia.php" style="text-decoration: none;">Ver Registros</a>
             </div>
@@ -32,8 +89,14 @@ include_once('src/components/parte_superior.php');
     <div class="container-card-asistencia matri-content" style="background-color: #fff;">
     </div>
     <div class="container-asitencia" style="background-color: #fff;">
-        <div class="asistencia-input-info">
-            <button class="btn btn-danger" style="text-decoration: none;" id="cerrar_asi">CERRAR ASISTENCIA</button>
+        <div class="asistencia-input-info" style="display: flex; flex-direction: column; ">
+            
+            <button class="btn btn-danger" style="text-decoration: none; border-radius: 50px;" id="cerrar_asi">CERRAR ASISTENCIA</button>
+            <br>
+            <p>(Cuando culmine la hora de tardanza puede cargar las faltas) </p> 
+            <br>
+            <p style="color: orange ;"> AVISO :Una vez cerrado la asistencia los que no asistieron se registraran como falta. </p> 
+            
         </div>
     </div>
 </div>
@@ -73,7 +136,9 @@ include_once('src/components/parte_superior.php');
                                 icon: "warning",
                                 showConfirmButton: false,
                                 timer: 3000
-                            });};
+                            });
+                            $('#buscador').val("");
+                        };
                             break;
                             case 2:{
                                 Swal.fire({
@@ -82,7 +147,9 @@ include_once('src/components/parte_superior.php');
                                 icon: "warning",
                                 showConfirmButton: false,
                                 timer: 3000
-                            });};
+                            });
+                            $('#buscador').val("");
+                        };
                             break;
                             case 3:{
                                 Swal.fire({
@@ -91,7 +158,9 @@ include_once('src/components/parte_superior.php');
                                 icon: "warning",
                                 showConfirmButton: false,
                                 timer: 3000
-                            });};
+                            });
+                            $('#buscador').val("");
+                        };
                             break;
                             case 4:{
                                 Swal.fire({
@@ -118,7 +187,9 @@ include_once('src/components/parte_superior.php');
                                 icon: "warning",
                                 showConfirmButton: false,
                                 timer: 2000
-                            });};
+                            });
+                            $('#buscador').val("");
+                        };
                             break;    
                             case 6:{
                                 Swal.fire({
@@ -127,7 +198,9 @@ include_once('src/components/parte_superior.php');
                                 icon: "warning",
                                 showConfirmButton: false,
                                 timer: 3000
-                            });};
+                            });
+                            $('#buscador').val("");
+                        };
                             break;  
                         }
                     },
@@ -192,3 +265,40 @@ include_once('src/components/parte_inferior.php');
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script  type="text/javascript">
 </script>
+
+<script>
+    function updateTime() {
+        var now = new Date();
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        var seconds = now.getSeconds();
+        var day = now.getDate();
+        var month = now.getMonth() + 1; // Sumamos 1 ya que en JavaScript los meses van de 0 a 11
+        var year = now.getFullYear();
+
+        // Determinamos si es AM o PM
+        var meridiem = hours >= 12 ? 'PM' : 'AM';
+        // Convertimos la hora al formato de 12 horas
+        hours = hours % 12;
+        // Si es 0, entonces son las 12 AM
+        hours = hours ? hours : 12;
+        // Agregamos un 0 adelante si los minutos o los segundos son menores que 10
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+        // Formateamos la hora y la fecha
+        var timeString = hours + ':' + minutes + ':' + seconds + ' ' + meridiem;
+        var dateString = day + '/' + month + '/' + year;
+
+        // Actualizamos el contenido de los elementos con los nuevos valores
+        document.getElementById('time').innerHTML = timeString;
+        document.getElementById('date').innerHTML = dateString;
+    }
+
+    // Llamamos a updateTime() cada segundo para que el reloj se actualice
+    setInterval(updateTime, 1000);
+
+    // Llamamos a updateTime() al cargar la página para mostrar la hora y la fecha actuales
+    updateTime();
+</script>
+
