@@ -85,31 +85,15 @@
 <div class="modal fade" id="Eliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered"">
         <div class="modal-content">
-            <div class="modal-header " style="background-color: red; color: #ffffff;">
+            <div class="modal-header " style="background-color: #010133; color: #ffffff;">
                 <h4 class="modal-title" id="exampleModalLabel">
-                SE ELIMINARÁ LA FORMA DE PAGO
+                Confirmar Eliminación
                 </h4>
             </div>
             <div class="modal-body">
                 <form action="app/controllers/forma_pago/D_formapago.php" method="post">
-                    <div class="row">
-                        <!-- ID oculto -->
-                        <input type="text" name="txt_id" id="D-id" required hidden>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="col-form-label" style="color: black;">Nombre:</label>
-                                <label class="col-form-label" style="color: black;" id="D-nombre"></label>
-                            </div>
-                            <div class="mb-3">
-                                <label class="col-form-label" style="color: black;">Estado:</label>
-                                <label class="col-form-label" style="color: black;" id="D-estado"></label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CERRAR</button>
+                        ¿Estás seguro de eliminar esta forma de pago?
                         <button type="submit" class="btn btn-danger">ELIMINAR</button>
-                    </div>
                 </form>
 
             </div>

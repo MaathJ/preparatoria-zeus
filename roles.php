@@ -87,24 +87,16 @@ include_once('src/components/parte_superior.php');
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header "style="background-color: #010133; color: #ffffff;">
-                <h4 class="modal-title" id="exampleModalLabel">CONFIRMAR ELIMINACION DEL ROL:</h4>
+                <h4 class="modal-title" id="exampleModalLabel">Confirmar Eliminación:</h4>
 
                 
               
             </div>
             <div class="modal-body">
                 <form action="app/controllers/rol/D_rol.php" method="post">
-
-                    
-                           
-                                <h5 class="modal-title" id="exampleModalLabel">¿Está seguro que desea eliminar el rol?</h5>
+                                ¿Está seguro que desea eliminar el rol seleccionado?
                                 <input type="text" name="cod_rol2" id="cod_rol2" class="form-control" hidden>
-                           
-
                 
-                    <div class="modal-footer">
-                        <input type="hidden" name="id_rol_seleccionado" id="id_rol_seleccionado" value="">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CERRAR</button>
                         <button type="submit" class="btn btn-danger" id="">ELIMINAR</button>
                         <input type="hidden" name="id_us" id="id_us" value="">
 

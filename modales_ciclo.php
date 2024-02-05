@@ -13,11 +13,11 @@
                             <input type="text" name="r_nombre" placeholder="Ingrese el Nombre" class="form-control" id="turno" required>
                         </div>
                         <div class="col-12 mb-3">
-                            <label for="fechaInicio" class="col-form-label" style="color: black;">Fecha Inicio:</label>
+                            <label for="fechaInicio" class="col-form-label" style="color: black;">Fecha de Inicio:</label>
                             <input type="date" name="r_fechainicio" placeholder="Ingrese el Nombre" class="form-control" id="fechaInicio" required>
                         </div>
                         <div class="col-12 mb-3">
-                            <label for="fechaCulminacion" class="col-form-label" style="color: black;">Fecha Culminacion:</label>
+                            <label for="fechaCulminacion" class="col-form-label" style="color: black;">Fecha de Culminación:</label>
                             <input type="date" name="r_fechaculminacion" placeholder="Ingrese el Nombre" class="form-control" id="fechaCulminacion" required>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                             <input type="number" name="r_precio" placeholder="Ingrese el Monto" class="form-control" id="precio" required>
                         </div>
                         <div class="col-12 mb-3">
-                            <label for="turnos" class="col-form-label" style="color: black;">TURNOS:</label>
+                            <label for="turnos" class="col-form-label" style="color: black;">Turnos:</label>
 
                             <br>
                             <?php
@@ -94,11 +94,11 @@
                                 <input type="text" name="u_nombre" placeholder="Ingrese el Nombre" class="form-control" id="u_nombre" required>
                             </div>
                             <div class="col-12 mb-3">
-                                <label for="fechaInicio" class="col-form-label" style="color: black;">Fecha Inicio:</label>
+                                <label for="fechaInicio" class="col-form-label" style="color: black;">Fecha de Inicio:</label>
                                 <input type="date" name="u_fechainicio" class="form-control" id="u_fechainicio" required>
                             </div>
                             <div class="col-12 mb-3">
-                                <label for="fechaCulminacion" class="col-form-label" style="color: black;">Fecha Culminacion:</label>
+                                <label for="fechaCulminacion" class="col-form-label" style="color: black;">Fecha de Culminación:</label>
                                 <input type="date" name="u_fechaculminacion" class="form-control" id="u_fechaCulminacion" required>
                             </div>
                             <div class="col-12 mb-3">
@@ -132,7 +132,7 @@
                                 <input type="number" name="u_precio" placeholder="Ingrese el Nombre" class="form-control" id="u_precio" required>
                             </div>
                             <div class="col-12 mb-3">
-                                <label for="turnos" class="col-form-label" style="color: black;">TURNOS:</label>
+                                <label for="turnos" class="col-form-label" style="color: black;">Turnos:</label>
 
                                 <br>
                                 <?php
@@ -183,7 +183,7 @@ function deleteModalCiclo($id)
                 <div class="modal-body">
 
                     <form action="app/controllers/Ciclo/D_Ciclo.php?id={$id}" method="POST">
-                        Estas seguro de que quieres eliminar este ciclo?
+                        ¿Estas seguro de que quieres eliminar este ciclo?
                         <button class="btn btn-danger btn-circle">Eliminar</button>
                     </form>
                 </div>

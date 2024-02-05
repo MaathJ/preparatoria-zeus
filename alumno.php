@@ -103,13 +103,13 @@ include('modales_alumno.php');
                 <thead align="center" class="" style="color: #fff; background-color:#010133;">
                     <tr align="center">
                         <!--<th> ID </th>-->
-                        <th> FOTO </th>
+                        <th> Foto </th>
                         <th> Alumno </th>
                         <th> Edad</th>
                         <th> DNI </th>
-                        <th> Telefono </th>
-                        <th> Direc. </th>
-                        <th> Mas Info</th>
+                        <th> Celular </th>
+                        <th> Dirección </th>
+                        <th> Más Info</th>
                         <th> Opciones</th>
                 </thead>
                 <?php
@@ -145,7 +145,7 @@ include('modales_alumno.php');
                         <a class="btn btn-sm btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#ModalCardInfo" data-bs-whatever="@mdo" onclick="infoI(
                                                         '<?php echo $r['id_al'] ?? ''; ?>'
                                                     )">
-                            Más Info
+                            <i class="fa-solid fa-info"></i>
                         </a>
                     </td>
 

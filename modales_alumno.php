@@ -4,8 +4,8 @@ include_once('auth.php');
     <div class="modal fade  " id="ModalEliminarD" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header " style="background-color: red; color: #ffffff;">
-                    <h5 class="modal-title" id="exampleModalLabel">CONFIRMAR ELIMINACION DE ALUMNO:</h5>
+                <div class="modal-header " style="background-color: #010133; color: #ffffff;">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmar Eliminación:</h5>
                 </div>
                 <div class="modal-body">
                     <form action="./Alumno/D_alumno.php" method="post">
@@ -52,7 +52,7 @@ include_once('auth.php');
                                     <input type="text" name="txtnombre" class="sm-5 form-control" id="Nombre-name" required>
                                 </div>
                                 <div class="col-12">
-                                    <label for="Dni-name" class="form-label">Dni:</label>
+                                    <label for="Dni-name" class="form-label">DNI:</label>
                                     <input type="number" name="txtdni" class="form-control" id="Dni-name" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="10" required>
                                 </div>
                                 <div class="col-12">
@@ -60,14 +60,14 @@ include_once('auth.php');
                                     <input type="number" name="txttelefono" class="form-control" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="9" id="Telefono-name" required>
                                 </div>
                                 <div class="col-12">
-                                    <label for="genero-name" class="form-label" style="color: black;">Genero:</label>
+                                    <label for="genero-name" class="form-label" style="color: black;">Género:</label>
                                     <select name="lstgenero" id="Genero-name" class="form-control" aria-label="Default select example">
                                         <option value="MASCULINO" selected>MASCULINO</option>
                                         <option value="FEMENINO">FEMENINO</option>
                                     </select>
                                 </div>
                                 <div class="col-12">
-                                    <label for="fechanac-name" class="form-label text-nowrap" style="color: black;">Fecha de Nac:</label>
+                                    <label for="fechanac-name" class="form-label text-nowrap" style="color: black;">Fecha de Nacimiento:</label>
                                     <input type="date" name="txtfnac" class="form-control" id="Fenac-alumno" required>
                                 </div>
                             </div>
@@ -89,7 +89,7 @@ include_once('auth.php');
                                     <input type="text" name="txtciudad" class="form-control" id="Ciudad-name" required>
                                 </div>
                                 <div class="col-12">
-                                    <label for="Direccion-name" class="form-label">Direccion:</label>
+                                    <label for="Direccion-name" class="form-label">Dirección:</label>
                                     <input type="text" name="txtdireccion" class="form-control" id="Direccion-name">
                                 </div>
                             </div>
@@ -107,7 +107,7 @@ include_once('auth.php');
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="col-12">
-                                    <label class="form-label" for="area">Area:</label>
+                                    <label class="form-label" for="area">Área:</label>
                                     <select class="form-control" name="lstarea" id="area-alumno">
                                     </select>
                                 </div>
@@ -201,7 +201,7 @@ include_once('auth.php');
                                     <input type="text" name="txtnombreU" class="sm-5 form-control" id="Nombre-nameU" required>
                                 </div>
                                 <div class="col-12">
-                                    <label for="Dni-name" class="form-label" style="color: black;">Dni:</label>
+                                    <label for="Dni-name" class="form-label" style="color: black;">DNI:</label>
                                     <input type="number" name="txtdniU" class="form-control" id="Dni-nameU" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="10" required>
                                 </div>
                                 <div class="col-12">
@@ -209,14 +209,14 @@ include_once('auth.php');
                                     <input type="number" name="txttelefonoU" class="form-control" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="9" id="Telefono-nameU" required>
                                 </div>
                                 <div class="col-12">
-                                    <label for="genero-name" class="form-label" style="color: black;">Genero:</label>
+                                    <label for="genero-name" class="form-label" style="color: black;">Género:</label>
                                     <select name="lstgeneroU" id="Genero-nameU" class="form-control" aria-label="Default select example">
                                         <option value="MASCULINO" selected>MASCULINO</option>
                                         <option value="FEMENINO">FEMENINO</option>
                                     </select>
                                 </div>
                                 <div class="col-12">
-                                    <label for="fechanac-name" class="form-label text-nowrap" style="color: black;">Fecha de Nac:</label>
+                                    <label for="fechanac-name" class="form-label text-nowrap" style="color: black;">Fecha de Nacimiento:</label>
                                     <input type="date" name="txtfnacU" class="form-control" id="Fenac-alumnoU" required>
                                 </div>
                             </div>
@@ -238,7 +238,7 @@ include_once('auth.php');
                                     <input type="text" name="txtciudadU" class="form-control" id="Ciudad-nameU" required>
                                 </div>
                                 <div class="col-12">
-                                    <label for="Direccion-name" class="form-label">Direccion:</label>
+                                    <label for="Direccion-name" class="form-label">Dirección:</label>
                                     <input type="text" name="txtdireccionU" class="form-control" id="Direccion-nameU">
                                 </div>
                             </div>
@@ -257,7 +257,7 @@ include_once('auth.php');
                             <div class="col-md-6">
                                 <div class="col-12">
 
-                                    <label class="form-label" for="area">Area:</label>
+                                    <label class="form-label" for="area">Área:</label>
                                     <select class="form-control" name="lstareaU" id="Area-alumnoU">
                                     </select>
                                     

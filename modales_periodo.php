@@ -13,7 +13,7 @@ function deleteModalPeriodo($id)
                 </div>
                 <div class="modal-body">
                     <form action="app/controllers/periodo/D_periodo.php?id={$id}" method="POST">
-                        Estas seguro de que quieres eliminar este periodo?
+                        ¿Estas seguro de que quieres eliminar este periodo?
                         <button class="btn btn-danger btn-circle">Eliminar</button>
                     </form>
                 </div>
@@ -28,7 +28,7 @@ HTML;
     <div class="modal-dialog  modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #010133; color: #ffffff;">
-                <h4 class="modal-title" id="exampleModalLabel">EDITAR TIPO RUTINA</h4>
+                <h4 class="modal-title" id="exampleModalLabel">Editar Periodo Académico</h4>
             </div>
             <div class="modal-body">
                 <form action="app/controllers/periodo/U_periodo.php" method="POST" class="row g-3">
@@ -37,7 +37,7 @@ HTML;
                         <input class="form-control" name="txt_id_periodo" type="text" id="id_periodo"  hidden>
                     </div>
                     <div class="col-12">
-                        <label class="form-label" for="periodo">Nombre Periodo</label>
+                        <label class="form-label" for="periodo">Nombre del Periodo</label>
                         <input class="form-control" name="txt_periodo" type="text" id="edit_nombre_periodo">
                     </div>
                     <div class="col-12">
@@ -62,13 +62,13 @@ HTML;
     <div class="modal-dialog  modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header " style="background-color: #010133; color: #ffffff;">
-                <h4 class="modal-title" id="exampleModalLabel">Registro Periodo Academico</h4>
+                <h4 class="modal-title" id="exampleModalLabel">Registro Periodo Académico</h4>
             </div>
             <div class="modal-body">
                 <form action="app/controllers/periodo/R_periodo.php" method="POST">
                     <div class="col-12">
-                        <label class="form-label" for="periodo">Nombre Periodo</label>
-                        <input class="form-control" type="text" name="txt_periodo" placeholder="Ingresa el periodo" required>
+                        <label class="form-label" for="periodo">Nombre del Periodo</label>
+                        <input class="form-control" type="text" name="txt_periodo" required>
                     </div>
 
                     <div class="modal-footer">

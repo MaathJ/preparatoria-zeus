@@ -6,27 +6,28 @@ include_once('./src/components/parte_superior.php');
 include('./config/conexion.php');
 
 $sqlma = "SELECT 
- DATEDIFF(bo.ffin_bo, CURRENT_DATE) AS dias_restantes,
-SUM(CASE WHEN bo.estadodeu_bo = 'DEUDA' AND bo.estadodur_bo = 'ACTIVO' THEN bo.deuda_bo ELSE 0 END) AS total_deudas,
-SUM(CASE WHEN bo.mes_bo IS NOT NULL THEN bo.mes_bo ELSE 0 END) AS total_meses,
-ma.*, al.*, ci.*, us.*, de.*, pe.*
+    DATEDIFF(bo.ffin_bo, CURRENT_DATE) AS dias_restantes,
+    SUM(CASE WHEN bo.estadodeu_bo = 'DEUDA' AND bo.estadodur_bo = 'ACTIVO' THEN bo.deuda_bo ELSE 0 END) AS total_deudas,
+    SUM(CASE WHEN bo.mes_bo IS NOT NULL THEN bo.mes_bo ELSE 0 END) AS total_meses,
+    ma.*, al.*, ci.*, us.*, de.nombre_de, de.monto_de, ma.observacion_ma, pe.*
 FROM 
-matricula ma
+    matricula ma
 INNER JOIN  
-alumno al ON ma.id_al = al.id_al
+    alumno al ON ma.id_al = al.id_al
 INNER JOIN 
-ciclo ci ON ma.id_ci = ci.id_ci
+    ciclo ci ON ma.id_ci = ci.id_ci
 INNER JOIN 
-periodo pe ON ci.id_pe = pe.id_pe
+    periodo pe ON ci.id_pe = pe.id_pe
 INNER JOIN 
-usuario us ON ma.id_us = us.id_us
-INNER JOIN  
-descuento de ON ma.id_de = de.id_de
+    usuario us ON ma.id_us = us.id_us
+LEFT JOIN  
+    descuento de ON ma.id_de = de.id_de
 LEFT JOIN 
-boleta bo ON ma.id_ma = bo.id_ma 
+    boleta bo ON ma.id_ma = bo.id_ma 
 GROUP BY 
-ma.id_ma
-";
+    ma.id_ma";
+
+
 
 ?>
 <!-- Asegúrate de incluir jQuery y jQuery UI -->
@@ -38,8 +39,8 @@ ma.id_ma
 
 <div class="container-page">
     <div>
-        <p>Zeus<span> / Matricula</span></p>
-        <h3>Matricula</h3>
+        <p>Zeus<span> / Matrícula</span></p>
+        <h3>Matrícula</h3>
     </div>
 
     <button class="turno btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalMatriculaRegistro" data-bs-whatever="@mdo" style="cursor: pointer;">Registrar</button>
@@ -59,10 +60,11 @@ ma.id_ma
                         <th class="text-center">Mensualidad</th>
                         <th class="text-center">Meses</th>
                         <th class="text-center">Boletas</th>
-                        <th class="text-center">Dias Restantes</th>
+                        <th class="text-center">Días Restantes</th>
                         <th class="text-center">Deuda</th>
                         <th class="text-center">Estado</th>
                         <th class="text-center">Operario</th>
+                        <th class="text-center">Más Info.</th>
                         <th class="text-center">Acciones</th>
                     </tr>
                 </thead>
@@ -104,7 +106,7 @@ ma.id_ma
 
                             <?php
                                 if ($dias_restantes !== null && $dias_restantes !== false && $dias_restantes !== 0) {
-                                    echo $dias_restantes.' Dias';
+                                    echo $dias_restantes.' Días';
                                 } else {
                                     echo '0 Dias';
                                 }
@@ -150,6 +152,14 @@ ma.id_ma
 
                                 
                             </td>
+
+                            <td align="center">
+                                <a class="btn btn-sm btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#ModalCardInfomatri" data-bs-whatever="@mdo" onclick="infoI(
+                                                                '<?php echo $rma['id_ma'] ?? ''; ?>'
+                                                            )">
+                                   <i class="fa-solid fa-info"></i>
+                                </a>
+                             </td>
 
                             <td>
 
@@ -289,6 +299,54 @@ if (isset($_SESSION['alert_message'])) {
     ?>
 
 
+    <!-- MODAL PARA MAS INFO  -->
+<div class="modal fade" id="ModalCardInfomatri" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <?php
+                    $fmat = mysqli_query($cn, $sqlma);
+                    while ($rma = mysqli_fetch_assoc($fmat)) {
+                ?>
+
+                <?php if (isset($rma['monto_ma'])) : ?>
+                    <p><strong>Monto de la matrícula:</strong> $<?php echo $rma['monto_ma']; ?></p>
+                <?php else : ?>
+                    <p><strong>Monto de la matrícula:</strong> No disponible</p>
+                <?php endif; ?>
+
+                <?php if (isset($rma['nombre_de'])) : ?>
+                    <p><strong>Tipo de descuento:</strong> <?php echo $rma['nombre_de']; ?></p>
+                <?php else : ?>
+                    <p><strong>Tipo de descuento:</strong> No disponible</p>
+                <?php endif; ?>
+
+                <?php if (isset($rma['monto_de'])) : ?>
+                    <p><strong>Monto del descuento:</strong> $<?php echo $rma['monto_de']; ?></p>
+                <?php else : ?>
+                    <p><strong>Monto del descuento:</strong> No disponible</p>
+                <?php endif; ?>
+
+                <?php if (!empty($rma['observacion_ma'])) : ?>
+                    <p><strong>Observación:</strong> <?php echo $rma['observacion_ma']; ?></p>
+                <?php else : ?>
+                    <p><strong>Observación:</strong> No se han registrado observaciones.</p>
+                <?php endif; ?>
+
+            </div>
+
+            <?php
+                    }
+            ?>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
 
     <!-- MODAL PARA REGISTRAR REGISTRAR  -->
@@ -330,7 +388,7 @@ if (isset($_SESSION['alert_message'])) {
                         <!-- Columna derecha -->
                         <div class="col-md-6">
                             <div class="col-12 mb-3">
-                                <label for="area" class="col-form-label" style="color: black;">Area:</label>
+                                <label for="area" class="col-form-label" style="color: black;">Área:</label>
                                 <input type="text" placeholder=" " class="form-control" id="r_area" readonly required>
                             </div>
 
@@ -418,7 +476,7 @@ if (isset($_SESSION['alert_message'])) {
                             </div>
 
                             <div class="col-12 mb-3">
-                                <label for="comentario" class="col-form-label" style="color: black;">Comentario:</label>
+                                <label for="comentario" class="col-form-label" style="color: black;">Observación:</label>
 
                                 <textarea class="form-control" name="r_comentario" id="" cols="20" rows="10"></textarea>
 
@@ -533,14 +591,14 @@ if (isset($_SESSION['alert_message'])) {
                     </div> -->
 
                         <div class="col-md-12">
-                            <h3 class="title"> Datos de la matricula</h3>
+                            <h3 class="title"> Datos de la matrícula</h3>
                             <hr>
                         </div>
 
                         <div class="col-md-6">
 
                             <div class="col-12 mb-3">
-                                <label for="monto" class="col-form-label" style="color: black;">Costo De Matricula:</label>
+                                <label for="monto" class="col-form-label" style="color: black;">Costo De Matrícula:</label>
                                 <input type="number" name="u_montoM" placeholder="Ingrese el costo" class="form-control" id="montoMU">
                             </div>
 
@@ -568,7 +626,7 @@ if (isset($_SESSION['alert_message'])) {
                             </div>
 
                             <div class="col-12 mb-3">
-                                <label for="comentario" class="col-form-label" style="color: black;">Comentario:</label>
+                                <label for="comentario" class="col-form-label" style="color: black;">Observación:</label>
 
                                 <textarea class="form-control" name="u_comentario" id="comentarioU" cols="20" rows="10"></textarea>
 
@@ -632,13 +690,13 @@ if (isset($_SESSION['alert_message'])) {
         <div class="modal-dialog  modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header " style="background-color: #010133; color: #ffffff;">
-                    <h4 class="modal-title" id="exampleModalLabel">Registro Periodo Academico</h4>
+                    <h4 class="modal-title" id="exampleModalLabel">Confirmar Eliminación</h4>
                 </div>
-                <div class="modal-body text-center">
+                <div class="modal-body">
                     <form action="app/controllers/matricula/D_matricula.php" method="POST">
-                        Estas seguro de que quieres eliminar esta Matricula?
+                        ¿Estás seguro de que quieres eliminar esta Matrícula?
                         <input hidden type="number" name="id_maD" id="id_maD">
-                        <button class="btn btn-danger btn-circle text-center">Eliminar</button>
+                        <button class="btn btn-danger btn-circle">Eliminar</button>
                     </form>
                 </div>
             </div>
@@ -650,7 +708,7 @@ if (isset($_SESSION['alert_message'])) {
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-header " style="background-color: #010133; color: #ffffff;">
-                    <h4 class="modal-title" id="exampleModalLabel">MATRICULA DOCUMENTO</h4>
+                    <h4 class="modal-title" id="exampleModalLabel">MATRÍCULA DOCUMENTO</h4>
                 </div>
                 <div class="modal-body">
                     <iframe id='pdfIFrame' width='1100' height='600'></iframe>

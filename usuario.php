@@ -49,8 +49,8 @@ include_once('src/components/parte_superior.php');
                         <th class="text-center">Usuario</th>
                         <th class="text-center">Contraseña</th>
                         <th class="text-center">Nombre y Apellido</th>
-                        <th class="text-center">Dni</th>
-                        <th class="text-center">Telefono</th>
+                        <th class="text-center">DNI</th>
+                        <th class="text-center">Celular</th>
                         <th class="text-center">Estado</th>
                         <th class="text-center">Rol</th>
                         <th class="text-center">Opciones</th>
@@ -115,28 +115,21 @@ include_once('src/components/parte_superior.php');
     </div>
 
 <div class="modal fade  " id="ModalEliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header " style="background-color: #952513; color: #ffffff;">
-                <h4 class="modal-title" id="exampleModalLabel">CONFIRMAR ELIMINACION DE USUARIO:</h4>
+            <div class="modal-header " style="background-color: #010133; color: #ffffff;">
+                <h4 class="modal-title" id="exampleModalLabel">Confirmar Eliminación</h4>
             </div>
             <div class="modal-body">
                 <form action="app/controllers/usuario/D_usuario.php" method="post">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <h5>¿Está seguro que desea eliminar el usuario?</h5>
-                                <input type="text" name="cod_usu2" id="cod_us" class="form-control" hidden>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="modal-footer">
+                    
+                     ¿Está seguro que desea eliminar el usuario seleccionado?
+                    <input type="text" name="cod_usu2" id="cod_us" class="form-control" hidden>
+            
                         <input type="hidden" name="id_rol_seleccionado" id="id_rol_seleccionado" value="">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CERRAR</button>
-                        <button type="submit" class="btn btn-primary" id="">ELIMINAR</button>
+                        <button type="submit" class="btn btn-danger" id="">ELIMINAR</button>
                         <input type="hidden" name="id_us" id="id_us" value="">
-                    </div>
+                    
                 </form>
             </div>
         </div>
@@ -181,7 +174,7 @@ include_once('src/components/parte_superior.php');
                                         <input type="text" name="txtdni2" placeholder="Ingrese el dni completo" maxlength="50" class="form-control" id="U-dni2" required>
                                     </td>
                                     <td>
-                                        <label for="telefono" class="col-form-label" style="color: black;">Telefono:</label>
+                                        <label for="telefono" class="col-form-label" style="color: black;">Celular:</label>
                                     </td>
                                     <td>
                                         <input type="text" name="txttelefono" placeholder="Ingrese 9 digitos" class="form-control" id="U-telefono" required maxlength="9">
@@ -192,7 +185,7 @@ include_once('src/components/parte_superior.php');
                         </div>
 
                         <div class="col-md-12">
-                            <h5 style="color: #1A3B81;">Datos especificos del Usuario</h5>
+                            <h5 style="color: #1A3B81;">Datos específicos del Usuario</h5>
                             <br>
                             <table style="width: 100%">
                                 <tr>
@@ -217,7 +210,7 @@ include_once('src/components/parte_superior.php');
                                         <div class="usuar">
                                             <input type="password" name="txtpass" placeholder="Ingrese su contraseña" class="form-control" id="U-Confpass2" required><img src="src/assets/images/candado.png" class="icono" width="20px" style="margin-top: 10px;" height="20px" onclick="mostrarContrasena2()">
                                         </div>
-                                        <p id="" style="display: none;">Corregir No es igual a la contraseña</p>
+                                        <p id="" style="display: none;">Las contraseñas no coinciden</p>
 
                                     </td>
                                     <td><label for="rol" class="col-form-label" style="color: black;">Rol:</label></td>
@@ -301,7 +294,7 @@ include_once('src/components/parte_superior.php');
                                         <input type="text" name="txtdni" placeholder="Ingrese 9 digitos" class="form-control" id="telefono" required maxlength="9">
                                     </td>
                                     <td>
-                                        <label for="telefono" class="col-form-label" style="color: black;">Telefono:</label>
+                                        <label for="telefono" class="col-form-label" style="color: black;">Celular:</label>
                                     </td>
                                     <td>
                                         <input type="text" name="txttelefono" placeholder="Ingrese 9 digitos" class="form-control" id="telefono" required maxlength="9">
@@ -310,7 +303,7 @@ include_once('src/components/parte_superior.php');
                             </table>
                         </div>
                         <div class="col-md-12">
-                            <h5 style="color: #1A3B81;">Datos especificos del Usuario</h5>
+                            <h5 style="color: #1A3B81;">Datos específicos del Usuario</h5>
                             <br>
                             <table style="width: 100%">
                                 <tr>
@@ -329,8 +322,8 @@ include_once('src/components/parte_superior.php');
                                         <div class="usuar">
                                             <input type="password" name="txtconfpass" placeholder="Repita su contraseña" class="form-control" id="Confpass" required><img src="src/assets/images/candado.png" class="icono" width="20px" style="margin-top: 10px;" height="20px" onclick="mostrarContrasena4()">
                                         </div>
-                                        <p id="corrector" style="display: none;">Corregir No es igual a la contraseña</p>
-                                        <p id="Bueno" style="display: none;">Corregir No es igual a la contraseña</p>
+                                        <p id="corrector" style="display: none;">Las contraseñas no coinciden</p>
+                                        <p id="Bueno" style="display: none;">Las contraseñas no coinciden</p>
 
                                     </td>
                                     <td><label for="rol" class="col-form-label" style="color: black;">Rol:</label></td>

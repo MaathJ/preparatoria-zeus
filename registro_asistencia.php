@@ -18,11 +18,11 @@ include_once('modal_card_alumno.php');
             <table class="table table-striped table_id" id="table_registro_asistencia" style="width:100%; box-sizing: border-box; overflow:hidden">
                 <thead align="center" style="color: #fff; background-color:#010133;">
                     <tr>
-                        <th class="text-center">Fecha Asistencia</th>
+                        <th class="text-center">F. Asistencia</th>
                         <th class="text-center">Hora de Entrada</th>
                         <th class="text-center">Apellidos y Nombres</th>
                         <th class="text-center">Ciclo</th>
-                        <th class="text-center">Area</th>
+                        <th class="text-center">Área</th>
                         <th class="text-center">Turno</th>
                         <th class="text-center">Estado</th>
                         <th class="text-center">Detalle</th>
@@ -139,7 +139,7 @@ include_once('modal_card_alumno.php');
 
                         <select name="u_lstestado" class="form-control" id="u_estado">
 
-                            <option value="ASISTIO">ASISTIO</option>
+                            <option value="ASISTIO">ASISTIÓ</option>
                             <option value="TARDANZA">TARDANZA</option>
                             <option value="FALTA">FALTA</option>
                             <option value="JUSTIFICADO">JUSTIFICADO</option>
