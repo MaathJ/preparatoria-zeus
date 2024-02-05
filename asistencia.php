@@ -202,6 +202,17 @@ include_once('src/components/parte_superior.php');
                             $('#buscador').val("");
                         };
                             break;  
+                            case 7:{
+                                Swal.fire({
+                                title: data[0].mensaje,
+                                text: "Registre el cierre de asistencia",
+                                icon: "warning",
+                                showConfirmButton: false,
+                                timer: 3000
+                            });
+                            $('#buscador').val("");
+                        };
+                            break;
                         }
                     },
 

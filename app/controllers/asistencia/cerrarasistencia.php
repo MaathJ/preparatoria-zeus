@@ -32,14 +32,20 @@ if($numero_ciclo > 0){
     if(mysqli_num_rows($temp) > 0){
 
         //TOTAL DE ALUMNOS
-        $sql_alumnos = "SELECT COUNT(m.id_ma) AS total_alu, COALESCE(COUNT(a.id_ma), 0)  AS total_asi
-                        FROM matricula m
-                        INNER JOIN ciclo c ON m.id_ci = c.id_ci 
-                        INNER JOIN detalle_ciclo_turno dt ON c.id_ci = dt.id_ci
-                        INNER JOIN turno t ON dt.id_tu = t.id_tu
-                        LEFT JOIN asistencia a ON m.id_ma = a.id_ma
-                        WHERE NOW() BETWEEN CONCAT(CURRENT_DATE, ' ', t.hent_tu) AND CONCAT(CURRENT_DATE, ' ', t.hsal_tu)
-                        AND m.estado_ma = 'ACTIVO'";
+        $sql_alumnos = "SELECT 
+                            COUNT(m.id_ma) AS total_alu, 
+                            COALESCE(COUNT(a.id_ma), 0) AS total_asi
+                        FROM 
+                            matricula m
+                            INNER JOIN ciclo c ON m.id_ci = c.id_ci 
+                            INNER JOIN detalle_ciclo_turno dt ON c.id_ci = dt.id_ci
+                            INNER JOIN turno t ON dt.id_tu = t.id_tu
+                            LEFT JOIN asistencia a ON m.id_ma = a.id_ma
+                                                    AND DATE(a.fecha_as) = CURRENT_DATE
+                                                    AND a.fecha_as > CONCAT(CURRENT_DATE, ' ', t.hent_tu)
+                        WHERE 
+                            NOW() BETWEEN CONCAT(CURRENT_DATE, ' ', t.hent_tu) AND CONCAT(CURRENT_DATE, ' ', t.hsal_tu)
+                            AND m.estado_ma = 'ACTIVO'";
         $f_alumnos = mysqli_query($cn, $sql_alumnos);
         $r_alumnos = mysqli_fetch_assoc($f_alumnos);
 
@@ -62,14 +68,19 @@ if($numero_ciclo > 0){
 
             if($horaActual > $HoraLimite){
 
-                $sql_ina = "SELECT m.id_ma, COALESCE(COUNT(a.id_ma), 0) AS asist
-                            FROM matricula m
-                            INNER JOIN ciclo c ON m.id_ci = c.id_ci 
-                            INNER JOIN detalle_ciclo_turno dt ON c.id_ci = dt.id_ci
-                            INNER JOIN turno t ON dt.id_tu = t.id_tu
-                            LEFT JOIN asistencia a ON m.id_ma = a.id_ma
+                $sql_ina = "SELECT 
+                                m.id_ma, 
+                                COALESCE(COUNT(a.id_ma), 0) AS asist
+                            FROM 
+                                matricula m
+                                INNER JOIN ciclo c ON m.id_ci = c.id_ci 
+                                INNER JOIN detalle_ciclo_turno dt ON c.id_ci = dt.id_ci
+                                INNER JOIN turno t ON dt.id_tu = t.id_tu
+                                LEFT JOIN asistencia a ON m.id_ma = a.id_ma 
+                                                                AND DATE(a.fecha_as) = CURRENT_DATE
+                                                                AND a.fecha_as > CONCAT(CURRENT_DATE, ' ', t.hent_tu)
                             WHERE NOW() BETWEEN CONCAT(CURRENT_DATE, ' ', t.hent_tu) AND CONCAT(CURRENT_DATE, ' ', t.hsal_tu)
-                            AND m.estado_ma = 'ACTIVO'
+                                AND m.estado_ma = 'ACTIVO'
                             GROUP BY m.id_ma";
 
                 $f_ina = mysqli_query($cn, $sql_ina);
