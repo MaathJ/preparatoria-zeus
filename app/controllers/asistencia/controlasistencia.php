@@ -259,7 +259,7 @@ if ($resultadoExistencia) {
                     // Manejar el error en la consulta si es necesario
                     $resultados[] = array(
                         'escenario' => 2,
-                        'mensaje' => "El alumno no está matriculado o está fuera de su horario" 
+                        'mensaje' => "El alumno esta fuera de Horario , Revise su matricula" 
                     );
                 }
             } else {

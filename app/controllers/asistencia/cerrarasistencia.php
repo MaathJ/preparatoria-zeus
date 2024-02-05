@@ -85,7 +85,7 @@ if($numero_ciclo > 0){
 
                 $cerrar[] = array(
                     'escenario' => 2,
-                    'mensaje' => "INASISTENCIAS GENERADAS",
+                    'mensaje' => "LAS FALTAS HAN SIDO REGISTRADAS",
                     'texto' => "Se han registrado las inasistencias"
                 );
 
@@ -99,7 +99,7 @@ if($numero_ciclo > 0){
         }else{
             $cerrar[] = array(
                 'escenario' => 1,
-                'mensaje' => "TODOS LOS ALUMNOS REGISTRADOS",
+                'mensaje' => "¡YA ESTAN REGISTRADOS TODOS LOS ALUMNOS!",
                 'texto' => "Ya se genero todas las asistencias"
             );
         }

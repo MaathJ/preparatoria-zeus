@@ -64,8 +64,9 @@ $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "
                     <i class="fa-solid fa-plus text-white"></i> Registrar
                 </button>
 
-                <a href="matricula.php" style="text-decoration: none; background-color: #FFC107;" class="turno btn " > <i class="fa-solid fa-rotate-left"></i> VOLVER </a>
             <?php } ?>
+            <a href="matricula.php" style="text-decoration: none; background-color: #FFC107;" class="turno btn " > <i class="fa-solid fa-rotate-left"></i> VOLVER </a>
+
             <br>
             <div class="container-table" style="background-color: #fff; overflow:hidden">
                 <div class="col-md-12" style="box-sizing: border-box;">
