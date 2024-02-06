@@ -6,20 +6,6 @@ include_once('modal_card_alumno.php');
 include('modales_alumno.php');
 ?>
 <link rel="stylesheet" href="src/assets/css/alumno/alumno.css">
-<style>
-#zoomable-image {
-    transition: transform 0.5s ease-in-out; /* Aumenté la duración de la transición */
-    z-index: 1;
-}
-
-#zoomable-image:hover {
-    transform: scale(3.5); /* Reduje la escala a un valor más razonable */
-    position: absolute;
-    z-index: 2;
-}
-
-
-</style>
 <script>
     function infoI(dato) {
         idAlumno = dato;
@@ -122,7 +108,7 @@ include('modales_alumno.php');
                         <th> Edad</th>
                         <th> DNI </th>
                         <th> Celular </th>
-                        <th> Estado </th>
+                        <th> Dirección </th>
                         <th> Más Info</th>
                         <th> Opciones</th>
                 </thead>
@@ -136,8 +122,8 @@ include('modales_alumno.php');
                 ?>
 
 
-                    <!--<td align="center"><?php /* echo $r['id_al'] */ ?></td>-->
-                    <td align="center" id="backimg" ><img  class="img-fluid" id="zoomable-image"  src="./src/assets/images/alumno/<?php echo $r['dni_al'] ?>.jpg"></td>
+                    <!--<td align="center"><?php echo $r['id_al'] ?></td>-->
+                    <td align="center"><img class="img-fluid" src="./src/assets/images/alumno/<?php echo $r['dni_al'] ?>.jpg"></td>
                     <td align="center"><?php echo $r['apellido_al'] . ', ' . $r['nombre_al']; ?></td>
                     <td align="center"><?php
                                         $fechaNacimiento = $r['fnac_al'];
@@ -152,10 +138,7 @@ include('modales_alumno.php');
                     </td>
                     <td align="center"><?php echo $r['dni_al'] ?></td>
                     <td align="center"><?php echo $r['celular_al'] ?></td>
-                    <td align="center"><?php $estado = $r['estado_al'];
-                                $button = '<button class= "' . ($estado === "ACTIVO" ? 'active-button' : 'inactive-button') . '">' . $estado . '</button';
-                                echo $button;
-                                ?></td>
+                    <td align="center"><?php echo $r['direccion_al'] ?></td>
                     <!-- <td align="center"> <?php //echo $r['freg_al'] 
                                                 ?></td> -->
                     <td align="center">
@@ -195,8 +178,7 @@ include('modales_alumno.php');
                                                         'celapodU': '<?php echo $r['celapod_al'] ?? ''; ?>',
                                                         'idcaU': '<?php echo $r['id_ca'] ?? ''; ?>',
                                                         'idarU': '<?php echo $id_arU; ?>',
-                                                        'generoU': '<?php echo $r['genero_al'] ?? ''; ?>',
-                                                        'estadoU': '<?php echo $r['estado_al'] ?? ''; ?>'
+                                                        'generoU': '<?php echo $r['genero_al'] ?? ''; ?>'
                                                     });">
                                 <i class="fas fa-edit"> </i></a>
                             <a class="btn btn-sm btn-danger btn-circle " data-bs-toggle="modal" data-bs-target="#ModalEliminarD" data-bs-whatever="@mdo" target="_parent" onclick="cargar_infoD({
@@ -324,14 +306,6 @@ include('modales_alumno.php');
                     break;
                 }
             }
-            var estadoupdate = dato.estadoU;
-            if (estadoupdate === 'ACTIVO') {
-                document.getElementById('checkU').checked = true;
-            } else {
-                document.getElementById('checkU').checked = false;
-            }
-
-
 
             var generoSelectUniv = document.getElementById('Universidad-alumnoU');
 

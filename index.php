@@ -1,44 +1,29 @@
 <?php 
 include_once('./config/conexion.php');
 ?>
-    <style>
-        /* Estilos generales */
-.inputuser:hover {
+<style>
+.inputuser:hover{
   background-color: aliceblue !important;
   color: #000000 !important;
   transition: 1s !important;    
+  
 }
 
-.inputuser:focus {
+.inputuser:focus{
   background-color: aliceblue !important;
   color: #000000 !important;
   transition: 1s !important;
-}
 
+}
+/* Estilo para el color del placeholder en estado :focus */
 .inputuser:focus::placeholder {
   color: #000000 !important;
 }
 
+/* Estilo para el color del placeholder en estado :hover */
 .inputuser:hover::placeholder {
   color: #000000 !important;
 }
-
-/* Estilos del rayo y la chispa */
-.logo__form img {
-    position: relative;
-    animation: fallDown 1s ease-in-out, spark 0.5s ease-in-out 1s; /* Agrega la animación al cargar la página y la chispa después de 1 segundo */
-}
-
-@keyframes fallDown {
-    from {
-        transform: translateY(-100vh); /* Inicia fuera de la pantalla (arriba) */
-    }
-    to {
-        transform: translateY(0); /* Termina en la posición original */
-    }
-}
-
-
 
     </style>
 

@@ -79,31 +79,3 @@
   font-size: 2rem;
   font-weight: bolder;
 }/*# sourceMappingURL=asistencia.css.map */
-
-
-
-.estado-activo {
-  background-color: green;
-  color: white;
-  padding: 10px; /* Ajusta según el espacio deseado alrededor del texto */
-  border-radius: 5px; /* Añade bordes redondeados si lo deseas */
-  font-size: 1.5em;
-}
-
-.estado-tardanza {
-  background-color: yellow;
-  color: black;
-  padding: 10px; /* Ajusta según el espacio deseado alrededor del texto */
-  border-radius: 5px; /* Añade bordes redondeados si lo deseas */
-  font-size: 1.5em;
-
-}
-
-.estado-falta {
-  background-color: red;
-  color: white;
-  padding: 10px; /* Ajusta según el espacio deseado alrededor del texto */
-  border-radius: 5px; /* Añade bordes redondeados si lo deseas */
-  font-size: 1.5em;
-
-}
