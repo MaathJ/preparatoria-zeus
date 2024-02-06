@@ -60,7 +60,8 @@ include_once('modal_card_alumno.php');
             INNER JOIN 
                 turno t ON dt.id_tu = t.id_tu
             WHERE 
-                asi.fecha_as BETWEEN CONCAT(CURRENT_DATE, ' ', t.hent_tu) AND CONCAT(CURRENT_DATE, ' ', t.hsal_tu)
+                TIME(asi.fecha_as) BETWEEN TIME(CONCAT(CURRENT_DATE, ' ', t.hent_tu)) AND TIME(CONCAT(CURRENT_DATE, ' ', t.hsal_tu));
+            
             ";
                 $fsqlasis = mysqli_query($cn, $sqlasistencia);
 
@@ -289,8 +290,8 @@ include_once('src/components/parte_inferior.php');
                 layout: 'columns-5',
                 cascadePanes: true,
                 viewTotal: true,
+                collapse:true,
                 dtOpts: {
-
                     dom: 'tp',
                     paging: 'true',
                     pagingType: "simple",
@@ -335,10 +336,11 @@ include_once('src/components/parte_inferior.php');
                 }
             ],
             responsive: true,
-            language: {
 
-                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json",
+            language: {
                 searchPanes: {
+                    clearMessage: 'Obliterate Selections',
+                    collapse: {0: 'Search Options', _: 'Search Options (%d)'},
                     title: '',
                     countFiltered: '{shown}/{total}',
                 },
@@ -362,22 +364,22 @@ include_once('src/components/parte_inferior.php');
                 }
             },
 
-            buttons: [{
+            buttons: [
+                {
                     extend: 'excelHtml5',
                     autofilter: true,
                     text: '<i class="fa-regular fa-file-excel"></i>',
                     titleAttr: 'Exportar a Excel',
                     exportOptions: {
-                        columns: [1, 2, 3, 4, 5]
+                        columns: [1, 2, 3, 4, 5,6]
                     }
-
                 },
                 {
                     extend: 'pdfHtml5',
                     text: '<i class="fa-regular fa-file-pdf"></i>',
                     titleAttr: 'Exportar a PDF',
                     exportOptions: {
-                        columns: [1, 2, 3, 4, 5]
+                        columns: [1, 2, 3, 4, 5,6]
                     },
                     customize: function(doc) {
                         doc.content[1].table.body[0].forEach(function(h) {
@@ -390,7 +392,7 @@ include_once('src/components/parte_inferior.php');
                     text: '<i class="fa-solid fa-print"></i>',
                     titleAttr: 'Imprimir',
                     exportOptions: {
-                        columns: [1, 2, 3, 4, 5]
+                        columns: [1, 2, 3, 4, 5,6]
                     },
 
                 },

@@ -48,6 +48,7 @@ if ($resultadoExistencia) {
                 $consulta = "
                     SELECT 
                         m.*,
+                        pe.nombre_pe,
                         dt.id_tu,
                         c.nombre_ci,
                         t.nombre_tu,
@@ -60,6 +61,8 @@ if ($resultadoExistencia) {
                         ciclo c ON m.id_ci = c.id_ci 
                     INNER JOIN
                         detalle_ciclo_turno dt ON c.id_ci = dt.id_ci
+                    INNER JOIN
+                        periodo pe ON pe.id_pe=c.id_pe
                     INNER JOIN 
                         turno t ON dt.id_tu = t.id_tu
                     INNER JOIN 
@@ -87,6 +90,7 @@ if ($resultadoExistencia) {
                         $tolerancia = $filama['tolerancia_tu'];
                         $turno = $filama['nombre_tu'];
                         $ciclo = $filama['nombre_ci'];
+                        $periodo = $filama['nombre_pe'];
 
                         mysqli_free_result($resultado_c);
 
@@ -138,11 +142,14 @@ if ($resultadoExistencia) {
                             // Comparar la hora actual con la hora de inicio y fin del turno
                             if ($horaActual >= $hentTuHoraFormato && $horaActual <= $hentTuHoraFormatoConTolerancia) {
                                 $estado_Asistencia = 'ASISTIO';
+                                $clase_estado = 'estado-activo';
                             } elseif ($horaActual > $hentTuHoraFormatoConTolerancia && $horaActual <= $hsalTuTardanzaHoraFormato) {
                                 // El estudiante llega dentro del rango de asistencia con tolerancia (tardanza)
                                 $estado_Asistencia = 'TARDANZA';
+                                $clase_estado = 'estado-tardanza';
                             } else {
                                 $estado_Asistencia = 'FALTA';
+                                $clase_estado = 'estado-falta';
                             }
 
                             if($estado_Asistencia != 'FALTA'){
@@ -204,11 +211,14 @@ if ($resultadoExistencia) {
                                                         </div>
                                                     </div>
                                                     <div class='card-second-info'>
-                                                        <span>".$edad->y." AÑOS</span>
+                                                        <span class='$clase_estado'> $estado_Asistencia</span>
+                                                    </div>
+                                                    <div class='card-second-info'>
+                                                        <strong><span >".$edad->y." AÑOS</span></strong>
                                                     </div>
                                                     <div class='card-asistencia-footer'>
                                                         <div class='asis-footer-info'>
-                                                            <span>CICLO: </span>".$ciclo."
+                                                            <span>CICLO: </span>".$periodo.$ciclo."
                                                         </div>
                                                         <div class='asis-footer-info'>
                                                             <span>DEUDA: </span> ".$deuda."
