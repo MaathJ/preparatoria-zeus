@@ -108,7 +108,7 @@ include('modales_alumno.php');
                         <th> Edad</th>
                         <th> DNI </th>
                         <th> Celular </th>
-                        <th> Dirección </th>
+                        <th> Estado </th>
                         <th> Más Info</th>
                         <th> Opciones</th>
                 </thead>
@@ -138,7 +138,10 @@ include('modales_alumno.php');
                     </td>
                     <td align="center"><?php echo $r['dni_al'] ?></td>
                     <td align="center"><?php echo $r['celular_al'] ?></td>
-                    <td align="center"><?php echo $r['direccion_al'] ?></td>
+                    <td align="center"><?php $estado = $r['estado_al'];
+                                $button = '<button class= "' . ($estado === "ACTIVO" ? 'active-button' : 'inactive-button') . '">' . $estado . '</button';
+                                echo $button;
+                                ?></td>
                     <!-- <td align="center"> <?php //echo $r['freg_al'] 
                                                 ?></td> -->
                     <td align="center">

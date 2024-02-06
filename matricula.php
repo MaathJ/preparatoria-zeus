@@ -301,11 +301,11 @@ GROUP BY
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">
-                    <input type="number" name="u_idma" id="id_maU" hidden>
-                    <p><strong>Monto de la matrícula:</strong> <span id="monto_ma"></span></p>
-                    <p><strong>Tipo de descuento:</strong> <span id="nombre_de"></span></p>
-                    <p><strong>Monto del descuento:</strong> <span id="monto_de"></span></p>
-                    <p><strong>Observación:</strong> <span id="observacion_ma"></span></p>
+                    <input type="number" name="i_idma" id="id_maI" hidden>
+                    <p><strong>Monto de la matrícula:</strong> <span id="monto_maI"></span></p>
+                    <p><strong>Tipo de descuento:</strong> <span id="nombre_deI"></span></p>
+                    <p><strong>Monto del descuento:</strong> <span id="monto_deI"></span></p>
+                    <p><strong>Observación:</strong> <textarea style="height: 100px;" class="form-control" id="observacion_maI"></textarea></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -316,11 +316,11 @@ GROUP BY
 
     <script>
         function infoI(id_ma, monto_ma, nombre_de, monto_de, observacion_ma) {
-            document.getElementById("id_maU").value = id_ma;
-            document.getElementById("monto_ma").textContent = monto_ma || "No disponible";
-            document.getElementById("nombre_de").textContent = nombre_de || "No disponible";
-            document.getElementById("monto_de").textContent = monto_de || "No disponible";
-            document.getElementById("observacion_ma").textContent = observacion_ma || "No se han registrado observaciones.";
+            document.getElementById("id_maI").value = id_ma;
+            document.getElementById("monto_maI").textContent = monto_ma || "No disponible";
+            document.getElementById("nombre_deI").textContent = nombre_de || "No disponible";
+            document.getElementById("monto_deI").textContent = monto_de || "No disponible";
+            document.getElementById("observacion_maI").textContent = observacion_ma || "No se han registrado observaciones.";
         }
     </script>
 
@@ -562,7 +562,6 @@ GROUP BY
                             </div>
                         </div>
                         <!-- <div class="col-md-12">
-
                         <div class="col-6 mb-3">
                             <label for="nombre" class="col-form-label" style="color: black;">Precio:</label>
                             <input class="form-control" id="r_precio" readonly required>
@@ -726,11 +725,11 @@ GROUP BY
             var table = $('#table_matricula').DataTable({
                 responsive: true,
                 language: {
-                    "lengthMenu": "Mostrar _MENU_ registros",
+                    "lengthMenu": "Mostrar MENU registros",
                     "zeroRecords": "No se encontraron resultados",
-                    "info": " _TOTAL_ registros",
+                    "info": " TOTAL registros",
                     "infoEmpty": "No hay registros para mostrar",
-                    "infoFiltered": "(filtrado de _MAX_  registros)",
+                    "infoFiltered": "(filtrado de MAX  registros)",
                     "sSearch": "Buscar:",
                     "oPaginate": {
                         "sFirst": "Primero",
