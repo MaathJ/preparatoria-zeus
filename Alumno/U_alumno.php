@@ -68,7 +68,7 @@ if (!mb_check_encoding($celapod_al, 'UTF-8')) {
     $celapod_al= mb_convert_encoding($celapod_al, 'UTF-8', 'ISO-8859-1');
 }
 $apoderado_al = trim(mb_strtoupper($apoderado_al, 'UTF-8'));
-$celular_al = trim(mb_strtoupper($celular_al, 'UTF-8'));
+$celular_al = trim($celular_al);
 
 
 

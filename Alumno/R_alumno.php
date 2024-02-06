@@ -92,7 +92,7 @@ if (!mb_check_encoding($celularap, 'UTF-8')) {
     $celularap= mb_convert_encoding($celularap, 'UTF-8', 'ISO-8859-1');
 }
 $nombreap = trim(mb_strtoupper($nombreap, 'UTF-8'));
-$celularap = trim(mb_strtoupper($celularap, 'UTF-8'));
+$celularap = trim($celularap);
 
 $ESTADO="ACTIVO";
 
@@ -102,8 +102,7 @@ $ESTADO="ACTIVO";
 $stmt = $cn->prepare($sql);
 
 // Bind de parámetros
-$stmt->bind_param("ssssssssssssssis", $nombre, $apellido, $dni, $telefono, $fnac, $ciudad, $colegio, $universidad, $nombreArea, $nombreCarrera,$ESTADO, $direccion, $nombreap, $nombrecelularap, $idcarrera,$genero);
-echo $nombre.$apellido. $dni. $telefono. $fnac. $ciudad. $colegio. $universidad. $nombreArea. $nombreCarrera.$ESTADO.$direccion. $nombreap. $celularap. $idcarrera.$genero;
+$stmt->bind_param("ssssssssssssssis", $nombre, $apellido, $dni, $telefono, $fnac, $ciudad, $colegio, $universidad, $nombreArea, $nombreCarrera,$ESTADO, $direccion, $nombreap, $celularap, $idcarrera,$genero);
 // Ejecutar el procedimiento almacenado
 $stmt->execute();
 
