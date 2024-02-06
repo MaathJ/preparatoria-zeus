@@ -342,7 +342,7 @@ if ($_SESSION["usuario"] && !isset($_SESSION["last_access_date"]) || $_SESSION["
                 c.*,
                 pe.*,
                 asi.*,
-                (SELECT nombre_tu FROM turno WHERE id_tu = (SELECT id_tu FROM detalle_ciclo_turno WHERE id_ci = c.id_ci LIMIT 1)) AS nombre_tu
+                t.nombre_tu AS nombre_tu
             FROM 
                 asistencia asi
             INNER JOIN  
@@ -357,10 +357,13 @@ if ($_SESSION["usuario"] && !isset($_SESSION["last_access_date"]) || $_SESSION["
                 ciclo c ON c.id_ci = m.id_ci
             INNER JOIN 
                 periodo pe ON pe.id_pe = c.id_pe
-            
-
-
-                                    ";
+            INNER JOIN 
+                detalle_ciclo_turno dt ON c.id_ci = dt.id_ci
+            INNER JOIN 
+                turno t ON dt.id_tu = t.id_tu
+            WHERE 
+                asi.fecha_as BETWEEN CONCAT(CURRENT_DATE, ' ', t.hent_tu) AND CONCAT(CURRENT_DATE, ' ', t.hsal_tu)
+            ";
             $fsqlasis = mysqli_query($cn, $sqlasistencia);
 
             ?>
