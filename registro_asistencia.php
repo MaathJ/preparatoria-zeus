@@ -401,9 +401,16 @@ include_once('src/components/parte_inferior.php');
 
         new $.fn.dataTable.FixedHeader(table);
     });
+
+    
 </script>
 
+
+
 <style>
+
+
+
     .btasistio p,
     .bttardanza p,
     .btnjustificacion p,

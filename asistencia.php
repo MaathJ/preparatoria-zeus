@@ -176,7 +176,7 @@ include_once('src/components/parte_superior.php');
                             clearTimeout(timeoutId);
                             var timeoutId = setTimeout(function () {
                                 $('.matri-content').empty();
-                            }, 10000);
+                            }, 15000);
                             
                             };
                             break;
