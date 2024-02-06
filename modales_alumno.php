@@ -179,11 +179,10 @@ include_once('auth.php');
                             <div class="col-md-8 ml-1">
                                 <h3>DATOS DEL ALUMNO</h3>
                             </div>
-                            <div class="col-md-3 ml-1 text-nowrap form-check">
-                                <input name="checkestado" class="form-check-input" id="checkU" type="checkbox" value="ACTIVO" >
-                                <label class="form-check-label text-black" for="checkU">ACTIVO</label>
+                            <div class="col-md-3 ml-1 text-nowrap">
+                                <input name="checkestado" class="form-check-input" type="checkbox" value="ACTIVO" checked>
+                                <label class="form-check-label text-black" for="miCheckbox">ACTIVO</label>
                             </div>
-
                         </div>
                         <div class="row">
                             <div class="col-md-12  ml-1">

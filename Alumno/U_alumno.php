@@ -54,7 +54,7 @@ $stmt->close();
 
 // Hacer lo que necesitas con $nombreArea y $nombreCarrera...
 
-$estado_al = $_POST['checkestado']=='ACTIVO' ? $_POST['checkestado'] : 'INACTIVO';
+$estado_al = isset($_POST['checkestado']) ? $_POST['checkestado'] : 'INACTIVO';
 
 $direccion_al = trim($_POST['txtdireccionU']);
 
