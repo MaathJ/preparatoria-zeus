@@ -52,7 +52,7 @@ GROUP BY
                 <thead align="center" class="" style="color: #fff; background-color:#010133; height:52px; max-height:100%;">
                     <tr>
                         <!-- <th class="text-center">ID</th> -->
-                       
+
                         <th class="text-center">ID</th>
                         <th class="text-center">Apellidos</th>
                         <th class="text-center">Nombres</th>
@@ -104,9 +104,9 @@ GROUP BY
 
                             <td align="center">
 
-                            <?php
+                                <?php
                                 if ($dias_restantes !== null && $dias_restantes !== false && $dias_restantes !== 0) {
-                                    echo $dias_restantes.' Días';
+                                    echo $dias_restantes . ' Días';
                                 } else {
                                     echo '0 Dias';
                                 }
@@ -114,7 +114,7 @@ GROUP BY
 
                             </td>
                             <td align="center" style="font-weight: 700; color: <?php echo ($rma['total_deudas'] > 0) ? 'red' : 'black'; ?> ">
-                                <?php echo 'S/'.$rma['total_deudas']; ?>
+                                <?php echo 'S/' . $rma['total_deudas']; ?>
                             </td>
 
                             <td>
@@ -150,16 +150,14 @@ GROUP BY
 
                                 ?>
 
-                                
+
                             </td>
 
                             <td align="center">
-                                <a class="btn btn-sm btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#ModalCardInfomatri" data-bs-whatever="@mdo" onclick="infoI(
-                                                                '<?php echo $rma['id_ma'] ?? ''; ?>'
-                                                            )">
-                                   <i class="fa-solid fa-info"></i>
+                                <a class="btn btn-sm btn-primary btn-circle" data-bs-toggle="modal" data-bs-target="#ModalCardInfomatri" data-bs-whatever="@mdo" onclick="infoI('<?php echo $rma['id_ma'] ?? ''; ?>', '<?php echo $rma['monto_ma'] ?? ''; ?>', '<?php echo $rma['nombre_de'] ?? ''; ?>', '<?php echo $rma['monto_de'] ?? ''; ?>', '<?php echo $rma['observacion_ma'] ?? ''; ?>')">
+                                    <i class="fa-solid fa-info"></i>
                                 </a>
-                             </td>
+                            </td>
 
                             <td>
 
@@ -183,7 +181,7 @@ GROUP BY
                                         // Si no es "DEUDA", mostrar el botón
                                     ?>
                                         <!-- Botón de registro -->
-                                        <button class="turno btn btn-sm "   data-bs-toggle="modal" data-bs-target="#Registrar" data-bs-whatever="@mdo" style="cursor: pointer; background-color: #4385F5; color: #fff;" onclick="cargar_registro({
+                                        <button class="turno btn btn-sm " data-bs-toggle="modal" data-bs-target="#Registrar" data-bs-whatever="@mdo" style="cursor: pointer; background-color: #4385F5; color: #fff;" onclick="cargar_registro({
                                             'mensualidad': '<?php echo $rma['mensualidad_ma']; ?>',
                                             'volver':'<?php echo $id; ?>',
                                             'fini':'<?php echo $inicio; ?>',
@@ -233,9 +231,9 @@ GROUP BY
 
     <?php
 
-if (isset($_SESSION['success_message'])) {
-    echo
-    '<script>
+    if (isset($_SESSION['success_message'])) {
+        echo
+        '<script>
     setTimeout(() => {
         Swal.fire({
             title: "¡Éxito!",
@@ -244,12 +242,12 @@ if (isset($_SESSION['success_message'])) {
         });
     }, 200);
 </script>';
-    unset($_SESSION['success_message']);
-}
+        unset($_SESSION['success_message']);
+    }
 
-if (isset($_SESSION['deleted_matricula'])) {
-    echo
-    '<script>
+    if (isset($_SESSION['deleted_matricula'])) {
+        echo
+        '<script>
     setTimeout(() => {
         Swal.fire({
             title: "¡Éxito!",
@@ -258,12 +256,12 @@ if (isset($_SESSION['deleted_matricula'])) {
         });
     }, 500);
     </script>';
-    unset($_SESSION['deleted_matricula']);
-}
+        unset($_SESSION['deleted_matricula']);
+    }
 
-if (isset($_SESSION['error_matricula'])) {
-    echo
-    '<script>
+    if (isset($_SESSION['error_matricula'])) {
+        echo
+        '<script>
     setTimeout(() => {
         Swal.fire({
             title: "¡Ups!",
@@ -272,12 +270,12 @@ if (isset($_SESSION['error_matricula'])) {
         });
      }, 500);
     </script>';
-    unset($_SESSION['error_matricula']);
-}
+        unset($_SESSION['error_matricula']);
+    }
 
-if (isset($_SESSION['alert_message'])) {
-    $alertMessage = $_SESSION['alert_message'];
-    echo '<script>
+    if (isset($_SESSION['alert_message'])) {
+        $alertMessage = $_SESSION['alert_message'];
+        echo '<script>
     setTimeout(() => {
         Swal.fire({
             title: "¡Cuidado!",
@@ -286,11 +284,11 @@ if (isset($_SESSION['alert_message'])) {
         });
     }, 500);
     </script>';
-    unset($_SESSION['alert_message']);
-}
-?>
+        unset($_SESSION['alert_message']);
+    }
+    ?>
 
-    
+
 
     <!-- Para traer el modal boleta  -->
     <?php
@@ -299,51 +297,32 @@ if (isset($_SESSION['alert_message'])) {
     ?>
 
 
-    <!-- MODAL PARA MAS INFO  -->
-<div class="modal fade" id="ModalCardInfomatri" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body">
-                <?php
-                    $fmat = mysqli_query($cn, $sqlma);
-                    while ($rma = mysqli_fetch_assoc($fmat)) {
-                ?>
-
-                <?php if (isset($rma['monto_ma'])) : ?>
-                    <p><strong>Monto de la matrícula:</strong> $<?php echo $rma['monto_ma']; ?></p>
-                <?php else : ?>
-                    <p><strong>Monto de la matrícula:</strong> No disponible</p>
-                <?php endif; ?>
-
-                <?php if (isset($rma['nombre_de'])) : ?>
-                    <p><strong>Tipo de descuento:</strong> <?php echo $rma['nombre_de']; ?></p>
-                <?php else : ?>
-                    <p><strong>Tipo de descuento:</strong> No disponible</p>
-                <?php endif; ?>
-
-                <?php if (isset($rma['monto_de'])) : ?>
-                    <p><strong>Monto del descuento:</strong> $<?php echo $rma['monto_de']; ?></p>
-                <?php else : ?>
-                    <p><strong>Monto del descuento:</strong> No disponible</p>
-                <?php endif; ?>
-
-                <?php if (!empty($rma['observacion_ma'])) : ?>
-                    <p><strong>Observación:</strong> <?php echo $rma['observacion_ma']; ?></p>
-                <?php else : ?>
-                    <p><strong>Observación:</strong> No se han registrado observaciones.</p>
-                <?php endif; ?>
-
-            </div>
-
-            <?php
-                    }
-            ?>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+    <div class="modal fade" id="ModalCardInfomatri" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <input type="number" name="u_idma" id="id_maU" hidden>
+                    <p><strong>Monto de la matrícula:</strong> <span id="monto_ma"></span></p>
+                    <p><strong>Tipo de descuento:</strong> <span id="nombre_de"></span></p>
+                    <p><strong>Monto del descuento:</strong> <span id="monto_de"></span></p>
+                    <p><strong>Observación:</strong> <span id="observacion_ma"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+    <script>
+        function infoI(id_ma, monto_ma, nombre_de, monto_de, observacion_ma) {
+            document.getElementById("id_maU").value = id_ma;
+            document.getElementById("monto_ma").textContent = monto_ma || "No disponible";
+            document.getElementById("nombre_de").textContent = nombre_de || "No disponible";
+            document.getElementById("monto_de").textContent = monto_de || "No disponible";
+            document.getElementById("observacion_ma").textContent = observacion_ma || "No se han registrado observaciones.";
+        }
+    </script>
 
 
 
