@@ -305,7 +305,7 @@ GROUP BY
                     <p><strong>Monto de la matrícula:</strong> <span id="monto_maI"></span></p>
                     <p><strong>Tipo de descuento:</strong> <span id="nombre_deI"></span></p>
                     <p><strong>Monto del descuento:</strong> <span id="monto_deI"></span></p>
-                    <p><strong>Observación:</strong> <span id="observacion_maI"></span></p>
+                    <p><strong>Observación:</strong> <textarea class="form-control" id="observacion_maI"></textarea></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
