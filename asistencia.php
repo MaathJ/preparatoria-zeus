@@ -7,54 +7,55 @@ include_once('src/components/parte_superior.php');
 
 <link rel="stylesheet" href="src/assets/css/asistencia/asistencia.css">
 <link rel="icon" href="src/assets/images/logo-zeus.png">
+<link rel="icon" href="src/assets/css/estado.css">
 
 
 <style>
 
-.inputbuscar {
-    width: 580px;
-    height: 100px;
-    border-radius: 50px;
-    border: 2px solid rgb(1, 1, 51);
-    font-size: 25px;
-    padding-top: 35px; /* Ajusta el padding superior para centrar el texto verticalmente */
-    padding-bottom: 35px; /* Ajusta el padding inferior para centrar el texto verticalmente */
-    text-align: center; /* Centra el texto horizontalmente */
+    .inputbuscar {
+        width: 580px;
+        height: 100px;
+        border-radius: 50px;
+        border: 2px solid rgb(1, 1, 51);
+        font-size: 25px;
+        padding-top: 35px; /* Ajusta el padding superior para centrar el texto verticalmente */
+        padding-bottom: 35px; /* Ajusta el padding inferior para centrar el texto verticalmente */
+        text-align: center; /* Centra el texto horizontalmente */
 
-    box-shadow: 0px 0px 10px rgb(1, 1, 51) , inset 0px 0px 3px rgb(1, 235, 252),0px 0px 2px rgb(255, 255, 255);
+        box-shadow: 0px 0px 10px rgb(1, 1, 51) , inset 0px 0px 3px rgb(1, 235, 252),0px 0px 2px rgb(255, 255, 255);
 
-}
+    }
 
-.inputbuscar:focus{
-    border: 1px solid ;
-    color: #010133;
-  
+    .inputbuscar:focus{
+        border: 1px solid ;
+        color: #010133;
+    
 
-    box-shadow: 0px 0px 10px rgb(92, 68, 233)
-}
+        box-shadow: 0px 0px 10px rgb(92, 68, 233)
+    }
 
-.asis-button-verHora {
-    background-color: #010133;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    font-family: Arial, sans-serif;
-    color: #333;
-    width: 200px;
-}
+    .asis-button-verHora {
+        background-color: #010133;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        font-family: Arial, sans-serif;
+        color: #333;
+        width: 200px;
+    }
 
-#time {
-    font-size: 24px;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 10px;
-}
+    #time {
+        font-size: 24px;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 10px;
+    }
 
-#date {
-    font-size: 18px;
-    color:  #C4CAFB;
-}
+    #date {
+        font-size: 18px;
+        color:  #C4CAFB;
+    }
 
 
 </style>
@@ -114,8 +115,7 @@ include_once('src/components/parte_superior.php');
         });
 
         function search() {
-            var dni = $('#buscador').val();
-
+            var dni = $('#buscador').val().trim();
             // Verificar que la longitud del dni sea suficiente
             if (dni.length >= 3) { // Cambia este valor si el dni tiene una longitud diferente
                 $.ajax({
@@ -183,7 +183,7 @@ include_once('src/components/parte_superior.php');
                             case 5:{
                                 Swal.fire({
                                 title: data[0].mensaje,
-                                text: "ya registro su asistencia",
+                                text: "",
                                 icon: "warning",
                                 showConfirmButton: false,
                                 timer: 2000
@@ -273,43 +273,43 @@ include_once('src/components/parte_superior.php');
 <?php
 include_once('src/components/parte_inferior.php');
 ?>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script  type="text/javascript">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+
 </script>
 
-<script>
-    function updateTime() {
-        var now = new Date();
-        var hours = now.getHours();
-        var minutes = now.getMinutes();
-        var seconds = now.getSeconds();
-        var day = now.getDate();
-        var month = now.getMonth() + 1; // Sumamos 1 ya que en JavaScript los meses van de 0 a 11
-        var year = now.getFullYear();
+    <script>
+        function updateTime() {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+            var day = now.getDate();
+            var month = now.getMonth() + 1; // Sumamos 1 ya que en JavaScript los meses van de 0 a 11
+            var year = now.getFullYear();
 
-        // Determinamos si es AM o PM
-        var meridiem = hours >= 12 ? 'PM' : 'AM';
-        // Convertimos la hora al formato de 12 horas
-        hours = hours % 12;
-        // Si es 0, entonces son las 12 AM
-        hours = hours ? hours : 12;
-        // Agregamos un 0 adelante si los minutos o los segundos son menores que 10
-        minutes = minutes < 10 ? '0' + minutes : minutes;
-        seconds = seconds < 10 ? '0' + seconds : seconds;
+            // Determinamos si es AM o PM
+            var meridiem = hours >= 12 ? 'PM' : 'AM';
+            // Convertimos la hora al formato de 12 horas
+            hours = hours % 12;
+            // Si es 0, entonces son las 12 AM
+            hours = hours ? hours : 12;
+            // Agregamos un 0 adelante si los minutos o los segundos son menores que 10
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
 
-        // Formateamos la hora y la fecha
-        var timeString = hours + ':' + minutes + ':' + seconds + ' ' + meridiem;
-        var dateString = day + '/' + month + '/' + year;
+            // Formateamos la hora y la fecha
+            var timeString = hours + ':' + minutes + ':' + seconds + ' ' + meridiem;
+            var dateString = day + '/' + month + '/' + year;
 
-        // Actualizamos el contenido de los elementos con los nuevos valores
-        document.getElementById('time').innerHTML = timeString;
-        document.getElementById('date').innerHTML = dateString;
-    }
+            // Actualizamos el contenido de los elementos con los nuevos valores
+            document.getElementById('time').innerHTML = timeString;
+            document.getElementById('date').innerHTML = dateString;
+        }
 
-    // Llamamos a updateTime() cada segundo para que el reloj se actualice
-    setInterval(updateTime, 1000);
+        // Llamamos a updateTime() cada segundo para que el reloj se actualice
+        setInterval(updateTime, 1000);
 
-    // Llamamos a updateTime() al cargar la página para mostrar la hora y la fecha actuales
-    updateTime();
-</script>
+        // Llamamos a updateTime() al cargar la página para mostrar la hora y la fecha actuales
+        updateTime();
+    </script>
 

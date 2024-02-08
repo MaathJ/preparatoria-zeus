@@ -301,11 +301,11 @@ GROUP BY
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">
-                    <input type="number" name="i_idma" id="id_maI" hidden>
+                <input type="number" name="i_idma" id="id_maI" hidden>
                     <p><strong>Monto de la matrícula:</strong> <span id="monto_maI"></span></p>
                     <p><strong>Tipo de descuento:</strong> <span id="nombre_deI"></span></p>
                     <p><strong>Monto del descuento:</strong> <span id="monto_deI"></span></p>
-                    <p><strong>Observación:</strong> <textarea style="height: 100px;" class="form-control" id="observacion_maI"></textarea></p>
+                    <p><strong>Observación:</strong> <textarea class="form-control" id="observacion_maI"></textarea></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
