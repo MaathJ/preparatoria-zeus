@@ -1,15 +1,11 @@
 <?php
 include_once("auth.php");
 include_once("src/components/parte_superior.php");
-
 include('./config/conexion.php');
 $sql = "select * from periodo";
 $f = mysqli_query($cn, $sql);
 include('modales_periodo.php');
 ?>
-<link rel="stylesheet" src="style.css" href="./bootstrap/bootstrap.css">
-<link rel="stylesheet" src="style.css" href="./datatables/datatables.css">
-<link rel="icon" href="src/assets/images/logo-zeus.png">
 <div class="container-page">
     <div>
         <p>Zeus<span> / Periodo</span></p>
@@ -35,7 +31,7 @@ include('modales_periodo.php');
                         deleteModalPeriodo($r['id_pe']);
                         ?>
                         <tr>
-                            <td align="center"><i class="fa-solid fa-eye"></i> <?php echo $r['nombre_pe'] ?></td>
+                            <td align="center"><?php echo $r['nombre_pe'] ?></td>
                             <td align="center"><?php
                                                 $estado = $r['estado_pe'];
                                                 $button = '<button class="' . ($estado === "ACTIVO" ? 'active-button' : 'inactive-button') . '">' . $estado . '</button>';
@@ -67,26 +63,40 @@ include('modales_periodo.php');
     <?php
 
     if (isset($_SESSION['deleted_cycle'])) {
-        echo '<div id="alertDiv" class="alert alert-warning alert-dismissible fade show" role="alert" >
-        <strong>¡Éxito!</strong> ' . $_SESSION['deleted_cycle'] . '
-      </div>';
+        echo
+        '<script>
+        setTimeout(() => {
+            Swal.fire({
+                title: "¡Éxito!",
+                text: "' . $_SESSION['deleted_cycle'] . '",
+                icon: "success"
+            });
+        }, 500);
+    </script>';
         unset($_SESSION['deleted_cycle']);
-        echo '<script>
-            const alertDiv = document.getElementById("alertDiv");
-            setTimeout(() => {
-                if (alertDiv) {
-                    alertDiv.style.display = "none";
-                }
-            }, 2000);
-          </script>';
+    }
+
+
+    if (isset($_SESSION['error_cycle'])) {
+        echo
+        '<script>
+        setTimeout(() => {
+            Swal.fire({
+                title: "¡Éxito!",
+                text: "' . $_SESSION['error_cycle'] . '",
+                icon: "error"
+            });
+        }, 500);
+        </script>';
+        unset($_SESSION['error_cycle']);
     }
 
     if (isset($_SESSION['alert_message'])) {
         $alertMessage = $_SESSION['alert_message'];
         unset($_SESSION['alert_message']);
         echo "<script>
-                    alert('$alertMessage');
-                </script>";
+                alert('$alertMessage');
+            </script>";
     }
 
     ?>
@@ -103,20 +113,6 @@ include_once("src/components/parte_inferior.php")
         document.getElementById('edit_nombre_periodo').value = data.nombre;
         document.getElementById('estado').value = data.estado;
         console.log(data)
-    }
-
-    function createCellPos(n) {
-        var ordA = 'A'.charCodeAt(0);
-        var ordZ = 'Z'.charCodeAt(0);
-        var len = ordZ - ordA + 1;
-        var s = "";
-
-        while (n >= 0) {
-            s = String.fromCharCode(n % len + ordA) + s;
-            n = Math.floor(n / len) - 1;
-        }
-
-        return s;
     }
 </script>
 

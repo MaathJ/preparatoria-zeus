@@ -102,14 +102,23 @@ if (isset($_FILES['foto']) && $_FILES['foto']['error'] == UPLOAD_ERR_OK) {
     $archivo = $_FILES['foto']['tmp_name'];
     $nombres = $_FILES['foto']['name'];
 
-    list($n, $e) = explode(".", $nombres);
+    $lastDotPosition = strrpos($nombres, ".");
+    if ($lastDotPosition !== false) {
+        $n = substr($nombres, 0, $lastDotPosition);
+        $e = substr($nombres, $lastDotPosition + 1);
+    } else {
+        // Si no hay punto en el nombre del archivo, manejar según tus necesidades
+        // Puedes asignar un valor predeterminado a $n y $e, o mostrar un mensaje de error, etc.
+        $n = $nombres;
+        $e = '';
+    }
 
     $allowedExtensions = ['png', 'jpg', 'jpeg'];
     $imageType = exif_imagetype($archivo);
 
     if (in_array($e, $allowedExtensions) && ($imageType == IMAGETYPE_JPEG || $imageType == IMAGETYPE_PNG)) {
         // Genera un nombre único para evitar conflictos
-        $nombreArchivo = $dni . '.' . $e;
+        $nombreArchivo = $dni . '.jpg';
 
         // Mueve el archivo a la ubicación deseada
         move_uploaded_file($archivo, "../src/assets/images/alumno/" . $nombreArchivo);

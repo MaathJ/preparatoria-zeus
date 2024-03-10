@@ -39,7 +39,7 @@ include('modales_turno.php');
                         ?>
                         <tr>
 
-                            <td align="center"><i class="fa-solid fa-eye"></i> <?php echo $filaTurno['nombre_tu']; ?></td>
+                            <td align="center"><?php echo $filaTurno['nombre_tu']; ?></td>
                             <td align="center"><?php echo $filaTurno['hent_tu']; ?></td>
                             <td align="center"><?php echo $filaTurno['hsal_tu']; ?></td>
                             <td align="center"><?php echo $filaTurno['tolerancia_tu']; ?></td>

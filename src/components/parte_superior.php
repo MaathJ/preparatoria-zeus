@@ -13,16 +13,22 @@ if ($_SESSION["usuario"]) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Preparatoria Zeus</title>
+    <link rel="icon" href="src/assets/images/logo-zeus.png">
     <link rel="stylesheet" href="menu.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Boostrap 5  -->
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
-    <script src="src/assets/js/boostrap/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" src="style.css" href="./datatables/datatables.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="icon" href="src/assets/images/logo-zeus.png">
+
+    <!-- GRAFICOS CHART.js  -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
     
 
 </head>
@@ -52,6 +58,13 @@ if ($_SESSION["usuario"]) {
                         </a>
                     </li>
 
+                    <li class="nav-link">
+                        <a style="cursor: pointer;" onclick="window.location.href='./asistencia.php'">
+                        <i class="fa-solid fa-user-graduate icon"></i>
+                            <span class="text nav-text">Asistencia</span>
+                        </a>
+                    </li>
+
                     <li class="nav-link" id="button-estudiante">
                         <a style="cursor: pointer;">
                             <i class="fa-solid fa-users icon"></i>
@@ -63,7 +76,6 @@ if ($_SESSION["usuario"]) {
                         <li class="links-options" onclick="window.location.href='./alumno.php'">Alumnos</li>
                         <li class="links-options" onclick="window.location.href='./area.php'">Área</li>
                         <li class="links-options" onclick="window.location.href='./carrera.php'">Carrera</li>
-                        <li class="links-options" onclick="window.location.href='./asistencia.php'">Asistencia</li>
                     </ul>
                     
 
@@ -119,18 +131,7 @@ if ($_SESSION["usuario"]) {
                 </ul>
             </div>
             <div class="bottom-content">
-                <li class="">
-                    <a href="#">
-                        <i class="fa-solid fa-user icon"></i>
-                        <span class="text nav-text" style="text-transform: capitalize;">
-
-                            <?php
-                            echo $nombreUsuario;
-                            ?>
-
-                        </span>
-                    </a>
-                </li>
+                
                 <li class="">
                     <a href="./cerrar_sesion.php">
                         <i class="fa-solid fa-arrow-right-from-bracket icon"></i>

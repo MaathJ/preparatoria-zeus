@@ -44,7 +44,7 @@ include('modales_ciclo.php');
                         ?>
                         <tr>
                             
-                            <td align="center"><i class="fa-solid fa-eye"></i> <?php echo $r['nombre_pe'] . ' ' . $r['nombre_ci'] ?></td>
+                            <td align="center"><?php echo $r['nombre_pe'] . ' ' . $r['nombre_ci'] ?></td>
                             <td align="center">
                                 <?php
                                 $turnos_nombre_array = explode(', ', $turnos['turnos_nombre']);

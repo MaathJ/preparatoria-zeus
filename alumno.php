@@ -6,9 +6,6 @@ include_once('modal_card_alumno.php');
 include('modales_alumno.php');
 ?>
 <link rel="stylesheet" href="src/assets/css/alumno/alumno.css">
-<link rel="stylesheet" src="style.css" href="./bootstrap/bootstrap.css">
-<link rel="stylesheet" src="style.css" href="./datatables/datatables.css">
-<link rel="icon" href="src/assets/images/logo-zeus.png">
 <script>
     function infoI(dato) {
         idAlumno = dato;
@@ -38,7 +35,11 @@ include('modales_alumno.php');
                         'font-weight': 'bold'
                     })
                 }
+                // Actualizar elementos dentro del modal usando los IDs
+                var rutaImagen = "./src/assets/images/alumno/" + data.dni + ".jpg";
 
+                // Establecer la fuente de la imagen
+                $('#card-imgA').attr('src', rutaImagen);
                 $('#card-dni').text(data.dni);
                 $('#card-fnac').text(data.fechaNacimiento);
                 $('#card-cel').text(data.telefono);
@@ -47,6 +48,8 @@ include('modales_alumno.php');
                 $('#card-uni').text(data.universidad);
                 $('#card-napo').text(data.apoderado);
                 $('#card-ntel').text(data.telefonoApoderado);
+                $('#card-carrera').text(data.nombre_carrera);
+                $('#card-area').text(data.nombre_area);
                 let telApoderado = $('#card-ntel').text().trim();
                 let dataApoderado = $('#card-napo').text().trim();
                 console.log({
@@ -120,9 +123,9 @@ include('modales_alumno.php');
 
 
                     <!--<td align="center"><?php echo $r['id_al'] ?></td>-->
-                    <td><img class="img-fluid" src="./src/assets/images/alumno/<?php echo $r['dni_al'] ?>.jpg"></td>
-                    <td><?php echo $r['apellido_al'] . ', ' . $r['nombre_al']; ?></td>
-                    <td><?php
+                    <td align="center"><img class="img-fluid" src="./src/assets/images/alumno/<?php echo $r['dni_al'] ?>.jpg"></td>
+                    <td align="center"><?php echo $r['apellido_al'] . ', ' . $r['nombre_al']; ?></td>
+                    <td align="center"><?php
                         $fechaNacimiento = $r['fnac_al'];
                         // Obtener la fecha actual
                         $fechaActual = date('Y-m-d');
@@ -193,44 +196,10 @@ include('modales_alumno.php');
             </table>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <?php
-
     include_once("./src/components/parte_inferior.php")
     ?>
-
     <script type="text/javascript">
-        /* function validarFormularioAlumnoR() {
-                let selectElement = document.getElementById('area-alumno');
-                let selectedValue = selectElement.value;
-
-                // Verifica si se ha seleccionado una opción válida
-                if (selectedValue == '' || selectedValue == null) {
-                    alert('Por favor, selecciona un area y tambien una carrera.');
-                    return false; // Evita que el formulario se envíe
-                }
-                let selectElementc = document.getElementById('carrera-alumno');
-                let selectedValuec = selectElementc.value;
-
-                // Verifica si se ha seleccionado una opción válida
-                if (selectedValuec == '' || selectedValuec == null) {
-                    alert('Por favor, selecciona una carrera.');
-                    return false; // Evita que el formulario se envíe
-                }
-            } */
         // Función para obtener el valor de una cookie
         function getCookie(name) {
             var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
@@ -369,7 +338,7 @@ include('modales_alumno.php');
                 data: {
                     id_arU: idArea
                 },
-                /* dataType: 'json', */ // Indica que esperas datos en formato JSON
+                dataType: 'json', // Indica que esperas datos en formato JSON
                 success: function(data) {
                     console.log(data);
 

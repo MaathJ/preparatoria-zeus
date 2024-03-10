@@ -2,91 +2,160 @@
 include_once("auth.php");
 include_once("src/components/parte_superior.php");
 include('./config/conexion.php');
-include_once('./app/controllers/boleta/U_estadoboleta.php');
-$sql = "select * from periodo";
-$f = mysqli_query($cn, $sql);
-?>
-<link rel="stylesheet" src="style.css" href="./bootstrap/bootstrap.css">
-<link rel="stylesheet" src="style.css" href="./datatables/datatables.css">
-<link rel="icon" href="src/assets/images/logo-zeus.png">
-<div class="container-page">
-    <div>
-        <p>Zeus<span> / Panel de Control</span></p>
-        <h3>Panel de Control</h3>
-    </div>
-    <form action="backup.php" method="post">
-    <button class="btn btn-primary" style="cursor: pointer;" name="backup_btn" value="Generar Backup">Generar BackUp</button>
-    
-    </form>
-    </div>
+include_once('limpiezaciclo.php');
 
+include_once('./app/controllers/boleta/U_estadoboleta.php');
+if ($_SESSION["usuario"] && !isset($_SESSION["welcome_message_shown"])) {
+  $nombreUsuario = $_SESSION["n_usuario"];
+  echo '
+  <script>
+      setTimeout(() => {
+          Swal.fire({
+              height: 300,
+              width: 300,
+              text: "Bienvenido! ' . $_SESSION['n_usuario'] . '",
+              imageUrl: "src/assets/images/logo-zeus.png",
+              imageWidth: 150,
+              imageHeight: 150,
+              timer: 1000,
+              timerProgressBar: true,
+              didOpen: () => {
+                  Swal.showLoading();
+                  const timer = Swal.getPopup().querySelector("b");
+                  timerInterval = setInterval(() => {
+                      timer.textContent = `${Swal.getTimerLeft()}`;
+                  }, 100);
+              },
+              willClose: () => {
+                  clearInterval(timerInterval);
+              }
+          }).then((result) => {
+              if (result.dismiss === Swal.DismissReason.timer) {
+                  console.log("I was closed by the timer");
+              }
+          });
+      }, 100);
+  </script>';
+
+  $_SESSION["welcome_message_shown"] = true;
+}
+
+?>
+<link rel="stylesheet" src="style.css" href="src/assets/css/dashboard/dashboard.css">
+<div class="container-page">
+  <div>
+    <p>Zeus<span> / Panel de Control</span></p>
+    <h3>Panel de Control</h3>
+  </div>
+  <form action="backup.php" method="post">
+    <button class="btn btn-primary" style="cursor: pointer;" name="backup_btn" value="Generar Backup">Generar BackUp</button>
+    <div class="card-earningsasis" style="margin-top:15px; width:100%;">
+      <div class="card-earnings-title">
+        <span><i class="fa-solid fa-door-open"></i></span>
+        <p style="font-weight: 500; font-size: 30px;">Asistencia Total del día</p>
+      </div>
+      <h2 class="card-earnings-text" style="font-size: 40px;">
+        20
+      </h2>
+    </div>
+    <div class="content-left-tables">
+      <div class="table">
+        <h3>Matrículas del día</h3>
+        <div class="content-table-one">
+          <div class="table-card">
+            <div class="table-card-info">
+              <div class="card-info">
+                <img src="src/assets/images/logo-zeus.png" width="30px" height="30px">
+              </div>
+              <div>
+                PERSONA
+              </div>
+            </div>
+            <div class="table-card-days">
+              ADMIN
+            </div>
+            <div class="table-card-days">
+              FECHA Y HORA
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="table">
+        <h3>Matriculas a Vencer</h3>
+        <div class="content-table-one">
+          <div class="table-card">
+            <div class="table-card-info">
+              <div class="card-info">
+                <img src="src/assets/images/logo-zeus.png" alt="img-dni">
+              </div>
+              <div>ABC</div>
+            </div>
+            <div class="table-card-days">
+              25 días
+            </div>
+          </div>
+  </form>
 </div>
 
-
-
+</div>
 <?php
 include_once("src/components/parte_inferior.php")
 ?>
 <script>
-
-
-    let table = new DataTable('#table_periodo', {
-        // "bInfo": false,
-        responsive: true,
-        language: {
-            "lengthMenu": "Mostrar _MENU_ registros",
-            "zeroRecords": "No se encontraron resultados",
-            "info": " _TOTAL_ registros",
-            "infoEmpty": "No hay registros para mostrar",
-            "infoFiltered": "(filtrado de _MAX_  registros)",
-            "sSearch": "Buscar:",
-            "oPaginate": {
-                "sFirst": "Primero",
-                "sLast": "Último",
-                "sNext": "Siguiente",
-                "sPrevious": "Anterior"
-            },
-            "sProcessing": "Cargando...",
+  let table = new DataTable('#table_periodo', {
+    responsive: true,
+    language: {
+      "lengthMenu": "Mostrar _MENU_ registros",
+      "zeroRecords": "No se encontraron resultados",
+      "info": " _TOTAL_ registros",
+      "infoEmpty": "No hay registros para mostrar",
+      "infoFiltered": "(filtrado de _MAX_  registros)",
+      "sSearch": "Buscar:",
+      "oPaginate": {
+        "sFirst": "Primero",
+        "sLast": "Último",
+        "sNext": "Siguiente",
+        "sPrevious": "Anterior"
+      },
+      "sProcessing": "Cargando...",
+    },
+    responsive: "true",
+    dom: 'Bfrtilp',
+    buttons: [{
+        extend: 'excelHtml5',
+        autofilter: true,
+        text: '<i class="fa-regular fa-file-excel"></i>',
+        titleAttr: 'Exportar a Excel',
+      },
+      {
+        extend: 'pdfHtml5',
+        text: '<i class="fa-regular fa-file-pdf"></i>',
+        titleAttr: 'Exportar a PDF',
+        exportOptions: {
+          columns: [0, 1]
         },
-        //para usar los botones   
-        responsive: "true",
-        dom: 'Bfrtilp',
-        buttons: [{
-                extend: 'excelHtml5',
-                autofilter: true,
-                text: '<i class="fa-regular fa-file-excel"></i>',
-                titleAttr: 'Exportar a Excel',
-                // className: 'btn btn-success'
-            },
-            {
-                extend: 'pdfHtml5',
-                text: '<i class="fa-regular fa-file-pdf"></i>',
-                titleAttr: 'Exportar a PDF',
-                exportOptions: {
-                    columns: [0, 1]
-                },
-                customize: function(doc) {
-                   
-                    doc.content[1].table.body[0].forEach(function(h) {
-                        h.fillColor = 'rgb(1, 1, 51)';
-                    });
-                    doc.content[1].table.widths = [
-                        '50%',
-                        '50%',
-                    ]
-                    doc.content[1].margin = [ 100, 0, 100, 0 ]
-                },
-            },
-            {
-                extend: 'print',
-                text: '<i class="fa-solid fa-print"></i>',
-                titleAttr: 'Imprimir',
-                exportOptions: {
-                    columns: [0, 1]
-                },
-                // className: 'btn btn-info'
-            },
-        ]
+        customize: function(doc) {
 
-    });
+          doc.content[1].table.body[0].forEach(function(h) {
+            h.fillColor = 'rgb(1, 1, 51)';
+          });
+          doc.content[1].table.widths = [
+            '50%',
+            '50%',
+          ]
+          doc.content[1].margin = [100, 0, 100, 0]
+        },
+      },
+      {
+        extend: 'print',
+        text: '<i class="fa-solid fa-print"></i>',
+        titleAttr: 'Imprimir',
+        exportOptions: {
+          columns: [0, 1]
+        },
+      },
+    ]
+
+  });
 </script>
