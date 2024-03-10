@@ -9,7 +9,9 @@ $fecha_actual= new DateTime( date('Y-m-d') );
 
 while($r=mysqli_fetch_assoc($f)){
     
-	$fecha_final = new DateTime( $r['ffin_bo'] );
+    $suma7=date("d-m-Y",strtotime($r['ffin_bo']."+ 7 days"));
+
+	$fecha_final = new DateTime( $suma7 );
 	$fecha_inicio= new DateTime( $r['fini_bo'] );
 
     $id=$r['id_bo'];
