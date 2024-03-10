@@ -29,7 +29,6 @@ include_once('src/components/parte_superior.php');
             </div>
         </div>
     </div>
-<<<<<<< HEAD
     <div class="container-card-asistencia matri-content" style="background-color: #fff;">
 
     </div>
@@ -128,38 +127,6 @@ include_once('src/components/parte_superior.php');
         }
     });
 </script>
-=======
-    <div class="container-card-asistencia" style="background-color: #fff;">
-        <div class="card-principal-info">
-            <div class="card-asistencia-info">
-                <h1>La Cruz Salvador,Elder Stefano</h1>
-                <span>INGENIERIA</span>
-            </div>
-            <div class="card-asistencia-info-image">
-                <img src="src/assets/images/alumno/75441125.jpg" alt="">
-            </div>
-        </div>
-        <div class="card-second-info">
-            <span>21 AÑOS</span>
-        </div>
-        <div class="card-asistencia-footer">
-            <div class="asis-footer-info">
-                <span>CICLO: </span> VERANO 2024  III
-            </div>
-            <div class="asis-footer-info">
-                <span>DEUDA: </span> S/110.0
-            </div>
-            <div class="asis-footer-info">
-                <span>TURNO: </span> MAÑANA
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
->>>>>>> 453f0215c7f632419ac6dfa5333fef82669806e1
 
 
 <?php
@@ -167,62 +134,4 @@ include_once('src/components/parte_inferior.php');
 ?>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script  type="text/javascript">
-<<<<<<< HEAD
-
-   /*
-=======
-    
->>>>>>> 453f0215c7f632419ac6dfa5333fef82669806e1
-    let dni=45645600;
-    $.ajax({
-    url: './app/controllers/asistencia/controlasistencia.php',
-    type: 'POST',
-    data: {
-        dni: dni
-    },
-    dataType: 'json',  // Indica que esperas datos en formato JSON
-    success: function(data) {
-        // escenario---Numero de evento,
-        console.log(data); 
-        switch (data[0].escenario){
-        case 1:{
-            Swal.fire({
-            title: data[0].mensaje,
-            text: "Agregue al alumno o considere actualizar el DNI",
-            icon: "warning"
-        });};
-        break;
-        case 2:{
-            Swal.fire({
-            title: data[0].mensaje,
-            text: "Registre una matrícula o revise su horario",
-            icon: "warning"
-        });};
-        break;
-        case 3:{
-            Swal.fire({
-            title: data[0].mensaje,
-            text: "Genere su boleta",
-            icon: "warning"
-        });};
-        break;
-        case 4:{
-            Swal.fire({
-            title: "Asistencia exitosa",
-            text: "Se registró exitosamente",
-            icon: "success"
-        });};
-
-        }
-    },
-
-    error: function(xhr, status, error) {
-        console.error("Error en la solicitud AJAX:", status, error);
-        // Puedes agregar aquí código adicional para manejar el error, como
-    }
-<<<<<<< HEAD
-});*/
-=======
-});
->>>>>>> 453f0215c7f632419ac6dfa5333fef82669806e1
 </script>
